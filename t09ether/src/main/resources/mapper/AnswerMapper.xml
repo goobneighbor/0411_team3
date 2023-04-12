@@ -2,9 +2,5 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD:t09ether/src/main/resources/mapper/Mapper.xml
-<!-- <mapper namespace="com.t09ether.home.dao.AnswerDAO">  -->
-=======
 <mapper namespace="com.t09ethr.dao.AnswerDAO">
 </mapper>
->>>>>>> 9397497eb457f3207570052acdc293de9b915679:t09ether/src/main/resources/mapper/AnswerMapper.xml

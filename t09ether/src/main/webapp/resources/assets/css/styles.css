@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
-* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
+* Start Bootstrap - Blog Home v5.0.9 (https://startbootstrap.com/template/blog-home)
 * Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-home/blob/master/LICENSE)
 */
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
@@ -10,23 +10,6 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- 
-/*글꼴 적용*/ 
-
-@font-face {
-    font-family: 'KIMM_Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-} 
-
-*{
-	font-family: 'KIMM_Bold';	
-} 
-
-/*글꼴 적용*/ 
-
- 
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -66,12 +49,7 @@
   --bs-warning-rgb: 255, 193, 7;
   --bs-danger-rgb: 220, 53, 69;
   --bs-light-rgb: 248, 249, 250;
-  --bs-dark-rgb: 33, 37, 41; 
-  
-  /*내가 추가한 부분*/
-  --bs-tomato-rgb: 255, 99, 71; /*244,98,58; 255, 99, 71;*/
-  /*내가 추가한 부분*/
-  
+  --bs-dark-rgb: 33, 37, 41;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
@@ -3638,7 +3616,6 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  background-color: transparent;;
 }
 
 .nav-link {
@@ -6760,7 +6737,7 @@ textarea.form-control-lg {
 }
 
 .link-light {
-  color: #fff !important;
+  color: #f8f9fa !important;
 }
 .link-light:hover, .link-light:focus {
   color: #f9fafb !important;
@@ -8106,12 +8083,6 @@ textarea.form-control-lg {
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
 
-/*내가 추가한 부분*/
-.text-white-myself {
-  --bs-text-opacity: 1;
-  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
-}
-/*내가 추가한 부분*/
 .text-body {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
@@ -8132,12 +8103,6 @@ textarea.form-control-lg {
   color: rgba(255, 255, 255, 0.5) !important;
 }
 
-/*내가 추가한 부분*/
-.text-white-75 {
-  --bs-text-opacity: 1;
-  color: rgba(255, 255, 255, 0.75) !important;
-}
-/*내가 추가한 부분*/
 .text-reset {
   --bs-text-opacity: 1;
   color: inherit !important;
@@ -8193,12 +8158,6 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
-/*여기부터 임의로 색상 추가*/
-.bg-tomato {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-tomato-rgb), var(--bs-bg-opacity)) !important;
-}
-/*여기까지 임의로 색상 추가*/
 
 .bg-dark {
   --bs-bg-opacity: 1;
@@ -10864,9 +10823,4 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-  
 }
- /* 변경 */
-  .navbar navbar-expand-lg navbar-light bg-light{
-  	background-color:transparent;
-  }

@@ -6,13 +6,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-
+@RequestMapping("/online")
 public class OnlineListController {
 	
-	@GetMapping("online/onlineHome")
+	@GetMapping("/onlineHome")
 	public ModelAndView online() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("online/onlineList");
+		return mav;
+	}
+	
+	@GetMapping("/productDetail")
+	public ModelAndView productDetail() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("online/productDetail");
 		return mav;
 	}
 }

@@ -3638,6 +3638,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  background-color: transparent;;
 }
 
 .nav-link {
@@ -6759,7 +6760,7 @@ textarea.form-control-lg {
 }
 
 .link-light {
-  color: #f8f9fa !important;
+  color: #fff !important;
 }
 .link-light:hover, .link-light:focus {
   color: #f9fafb !important;

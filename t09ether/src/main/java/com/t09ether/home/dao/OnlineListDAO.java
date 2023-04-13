@@ -1,5 +1,5 @@
 package com.t09ether.home.dao;
 
-public interface AnswerDAO {
+public interface OnlineListDAO {
 
 }

@@ -26,7 +26,7 @@
 	 		<bean class="com.t09ether.home.LoginInterceptor"></bean>
 	 	</mvc:interceptor>
 	 </mvc:interceptors>
-	 
+
 	 <!-- 파일업로드 -->
 	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	 

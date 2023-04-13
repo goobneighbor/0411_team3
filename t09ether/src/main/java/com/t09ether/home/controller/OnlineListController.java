@@ -19,11 +19,17 @@ public class OnlineListController {
 		return mav;
 	}
 	
-	@GetMapping("/onlineDetail")
-	public ModelAndView onlineDetail() {
+	@GetMapping("/productDetail")
+	public ModelAndView productDetail() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("online/onlineDetail");
+		mav.setViewName("online/productDetail");
 		return mav;
 	}
 	
+	@GetMapping("/onlineGB")
+	public ModelAndView onlineGB() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("online/onlineGB");
+		return mav;
+	}
 }

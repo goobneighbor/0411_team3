@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script>
+	
+		
+</script>
+
 <!-- Header-->
 <header class="bg-tomato py-5">
 	<div class="container px-4 px-lg-5 my-5">
@@ -14,6 +19,9 @@
 <section class="py-5">
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        	
+  
+        
         	<div class="col mb-5">
             	<div class="card h-100">
                 	<!-- Product image-->
@@ -31,10 +39,13 @@
                         
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                         </div>
                  </div>
             </div>
+            
+        
+            
             <div class="col mb-5">
             	<div class="card h-100">
                 	
@@ -64,7 +75,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -89,7 +100,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -116,7 +127,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -138,7 +149,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -157,7 +168,7 @@
                 	</div>
                 	<!-- Product actions-->
                 	<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                		<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                		<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                 	</div>
             	</div>
             </div>
@@ -190,7 +201,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                         </div>
                 </div>
             </div>
@@ -217,10 +228,11 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="${pageContext.request.contextPath }/online/onlineDetail">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+

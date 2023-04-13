@@ -26,7 +26,8 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		vertical-align: baseline;
+		/* font: inherit; */
+
 	}
 
 	article, aside, details, figcaption, figure,
@@ -124,7 +125,7 @@
 		color: #e89980;
 		text-decoration: none;
 	}
-
+		
 		a:hover {
 			border-bottom-color: transparent;
 		}

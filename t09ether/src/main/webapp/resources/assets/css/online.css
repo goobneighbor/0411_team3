@@ -10864,4 +10864,9 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+  
 }
+ /* 변경 */
+  .navbar navbar-expand-lg navbar-light bg-light{
+  	background-color:transparent;
+  }

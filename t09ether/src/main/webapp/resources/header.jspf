@@ -5,26 +5,26 @@
 	<head>
 		<title>t09ether</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="resources/assets/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/main.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<!-- Favicon-->
-		<link rel="icon" type="image/x-icon" href="resources/assets/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
 		<!-- Bootstrap icons-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 		<!-- Core theme CSS (includes Bootstrap)-->
-		<link href="resources/assets/css/online.css" rel="stylesheet" />
+		<link href="${pageContext.request.contextPath }/resources/assets/css/online.css" rel="stylesheet" />
 		<!-- 여기까지 삽입 -->
 		<!-- Scripts -->
-			<script src="resources/assets/js/jquery.min.js"></script>
-			<script src="resources/assets/js/jquery.dropotron.min.js"></script>
-			<script src="resources/assets/js/jquery.scrollex.min.js"></script>
-			<script src="resources/assets/js/browser.min.js"></script>
-			<script src="resources/assets/js/breakpoints.min.js"></script>
-			<script src="resources/assets/js/util.js"></script>
-			<script src="resources/assets/js/main.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.dropotron.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/browser.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/breakpoints.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/util.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 
 <!-- 여기부터 삽입 -->
 </head>

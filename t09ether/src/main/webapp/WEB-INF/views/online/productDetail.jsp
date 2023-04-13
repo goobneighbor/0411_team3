@@ -10,6 +10,10 @@
 	margin:0 auto;
 	padding:20px;
 }
+.card-img-top{
+	width:850;
+	height:350;
+}
 
 </style>
 <!-- Header-->
@@ -30,7 +34,7 @@
                 <div class="col-lg-8">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                        <a href="#!"><img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/product_sample.png" /></a>
                         <div class="card-body">
                             <div class="small text-muted">리뷰보기</div>
                             <h2 class="card-title">상품명</h2>

@@ -7,12 +7,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<title>t09ether</title>
 		<meta charset="utf-8" />
+
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/assets/css/main.css" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 		<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
 		<!-- Bootstrap icons-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -58,11 +58,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-
-
                         <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/online/onlineHome">온라인공구</a></li>
-
                         <li class="nav-item"><a class="nav-link" href="#!">오프라인공구</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/customer/customerBoard">고객센터</a></li>
                         <c:if test="${logStatus == 'Y' }">

@@ -1,0 +1,9 @@
+diff a/t09ether/src/main/webapp/resources/header.jspf b/t09ether/src/main/webapp/resources/header.jspf	(rejected hunks)
+@@ -6,7 +6,6 @@
+ 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ 		<title>t09ether</title>
+ 		<meta charset="utf-8" />
+-
+ 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/assets/css/main.css" />
+ 		<meta name="description" content="" />
+ 		<meta name="author" content="" />

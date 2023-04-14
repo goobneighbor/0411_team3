@@ -9,23 +9,45 @@
 	width:1000px;
 	margin:0 auto;
 	padding:20px;
+	float:center;
+
+	
 }
+
 .card-img-top{
-	width:850;
-	height:350;
+	width:600px;
+	height:350px;
 }
-
+#review{
+	float:right;
+}
+#onlineJoinForm {
+	float:right;
+ 	widh:100px; 
+ 	padding-right:30px;
+ 	text-align:center;
+ 	}
 </style>
-<!-- Header-->
-<header class="bg-tomato py-5">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
-            <p class="lead fw-normal text-white-75 mb-0">직접 공동구매를 함께할 메이트 모집을 시작하거나 참여해보세요.</p>
-        </div>
-    </div>
-</header>
+<script>
+$(function(){
+	$("#onlineJoinForm").on('click', function(){
+		window.open("onlineJoinForm","join","width=500,height=260");
+	});
+	
+});
 
+function openPopup() {
+	 
+    var _width = '730';
+    var _height = '750';
+ 
+    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+    var _left = Math.ceil(( window.screen.width - _width )/2);
+    var _top = Math.ceil(( window.screen.height - _height )/2); 
+
+    window.open('kakaomap', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+}
+</script>
  
         <!-- Page content-->
         <div class="container">
@@ -34,29 +56,31 @@
                 <div class="col-lg-8">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/product_sample.png" /></a>
+                        <img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
                         <div class="card-body">
-                            <div class="small text-muted">리뷰보기</div>
+                            <div class="small text-muted"></div>
+                            <div id="review">리뷰</div>
                             <h2 class="card-title">상품명</h2>
                             <p class="card-text">상세설명</p>
-                            <a class="btn btn-primary" href="#!">내가 공구만들기</a>
+                            <a class="btn btn-primary" href="">내가 공구만들기</a>
                         </div>
                     </div>
 
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4">
+                <div class="col-lg-6" style="float:left">
                     <!-- Search widget-->
-                    <div class="card mb-4">
+                    <div class="card mb-6">
                         <div class="card-header">참여하기</div>
                         <div class="card-body">
+                        <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                                <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 320px; padding: 10px;">
+                                <input class="form-control" type="text" placeholder="지역명" aria-label="지역명" aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button" >검색</button>
+                                <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
 								  <h4 id="scrollspyHeading1">서울시 서대문구</h4>
-								  <p>통일로 135 충정빌딩</p>
-								  <p>통일로 135 충정빌딩 앞</p>
+								  <p>통일로 135 충정빌딩<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
+								  <p>통일로 135 충정빌딩 앞</p> 
 								  <p>통일로 135 충정빌딩 옆</p>
 								  <h4 id="scrollspyHeading2">서울시 동작구</h4>
 								  <p>...</p>

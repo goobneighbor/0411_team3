@@ -30,6 +30,7 @@ public class OnlineListController {
 	@GetMapping("/onlineGB")
 	public ModelAndView onlineGB() {
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("online/onlineGB");
 		return mav;
 	}

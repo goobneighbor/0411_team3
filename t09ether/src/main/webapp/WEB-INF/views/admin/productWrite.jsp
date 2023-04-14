@@ -3,13 +3,13 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 
 <style>
-	#oproIn ul{
+	#productForm ul{
 		overflow:auto; 
 		/*border:1px solid #ddd;*/
 		padding:50px;
 		
 	}
-	#proIn li{
+	#productForm li{
 		
 		margin:5px ; 
 		padding:5px 0;	
@@ -20,7 +20,7 @@
 		width:50%;
 	}
 
-	#on_count, #pro_price{
+	#pro_stock, #pro_price{
 		text-align:center;
 	}
 	
@@ -39,7 +39,7 @@
 <script>
 	$(function(){
 		//바디실행후 실행시키기위해 제이쿼리사용
-		CKEDITOR.ClassicEditor.create(document.getElementById("detail"), {
+		CKEDITOR.ClassicEditor.create(document.getElementById("detailed"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
                 items: [
@@ -179,25 +179,59 @@
                 'MathType'
             ]
         }); //CKEDITOR
-
+       
+		$("#productForm").submit(function(){
+	        //상품명
+	        if($("#pro_name").val()==""){
+	        	alert("상품명을 입력하세요.");
+	        	return false;
+	        }
+	        
+	        //상품가격
+	        if($("#pro_price").val()==""){
+	        	alert("상품가격을 입력하세요.");
+	        	return false;
+	        }
+	        
+	      	//재고개수
+	        if($("#pro_stock").val()==""){
+	        	alert("재고개수를 입력하세요.");
+	        	return false;
+	        }
+	      	
+	      	//상품이미지주소
+	        if($("#image").val()==""){
+	        	alert("이미지주소를 입력하세요.");
+	        	return false;
+	        }
+	      	
+	      //상품정보
+	        if($("#detailed").val()==""){
+	        	alert("상세정보를 입력하세요.");
+	        	return false;
+	        }
+	     	return true;
+		});
+        
 	});
 </script>
 <div class="container">
-<form method="post" id="proIn">
+<form method="post" action="productWriteOk" id="productForm">
 	<h1>상품 등록</h1>
 	<ul> 
 		<li>상품명</li>
-		<input type="text" name="pro_name" id="pro_name"/>
+		<li><input type="text" name="pro_name" id="pro_name"/></li>
 		<li>상품가격</li>
-		<input type="number" name="pro_price" id="pro_price"/>
+		<li><input type="number" name="pro_price" id="pro_price"/></li>
 		<li>재고개수</li>
 		<li><input type="number" name="pro_stock" id="pro_stock"/></li>
 		<li>상품이미지 주소</li>
 		<li><input type="text" name="image" id="image"/></li>
+		
 		<!-- <li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li> -->
 		<li>상품정보</li>
-		<textarea name="detail" id="detail"></textarea>
-		<li><input type="button" value="등록하기"/></li>
+		<li><textarea name="detailed" id="detailed"></textarea></li>
+		<li><input type="submit" value="등록하기"/></li>
 	</ul>
 </form>
 </div>

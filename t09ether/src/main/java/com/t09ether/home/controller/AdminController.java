@@ -8,11 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-	
-	@GetMapping("/adminIn")
-	public ModelAndView adminIn() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/productIn");
-		return mav;
-	}
+
 }

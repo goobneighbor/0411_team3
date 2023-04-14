@@ -8,7 +8,7 @@
 						<c:if test="${logStatus != 'Y' }">
 						<li><a href="<%=request.getContextPath()%>/join" class="button primary">회원가입</a></li>
 						</c:if>
-						<li><a href="#" class="button">더 알아보기</a></li>
+						<!-- <li><a href="#" class="button">더 알아보기</a></li> -->
 					</ul>
 				</section>
 

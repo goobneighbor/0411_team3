@@ -192,10 +192,12 @@
 		<input type="number" name="pro_price" id="pro_price"/>
 		<li>재고개수</li>
 		<li><input type="number" name="pro_stock" id="pro_stock"/></li>
-		<li>상품이미지</li>
-		<li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li>
+		<li>상품이미지 주소</li>
+		<li><input type="text" name="image" id="image"/></li>
+		<!-- <li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li> -->
 		<li>상품정보</li>
 		<textarea name="detail" id="detail"></textarea>
+		<li><input type="button" value="등록하기"/></li>
 	</ul>
 </form>
 </div>

@@ -10,6 +10,6 @@ public interface OfflineDAO {
 	public int offlineInsert(OfflineDTO dto);
 	//총레코드수
 	public int totalRecord(OfflinePagingVO vo);
-	//해당페이지 선택하기
-	public List<OfflineDTO> pageSelect(OfflinePagingVO vo);
+	//DB에 있는 DTO 배열에 담기
+	public List<OfflineDTO> offList(OfflinePagingVO vo);
 }

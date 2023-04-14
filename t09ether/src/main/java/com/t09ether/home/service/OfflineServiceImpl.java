@@ -24,8 +24,12 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public List<OfflineDTO> pageSelect(OfflinePagingVO vo) {
-		return dao.pageSelect(vo);
+	public List<OfflineDTO> offList(OfflinePagingVO vo) {
+		return dao.offList(vo);
 	}
+
+	
+
+	
 
 }

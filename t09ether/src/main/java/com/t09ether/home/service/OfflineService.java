@@ -8,5 +8,5 @@ import com.t09ether.home.dto.OfflinePagingVO;
 public interface OfflineService {
 	public int offlineInsert(OfflineDTO dto);
 	public int totalRecord(OfflinePagingVO vo);
-	public List<OfflineDTO> pageSelect(OfflinePagingVO vo);
+	public List<OfflineDTO> offList(OfflinePagingVO vo);
 }

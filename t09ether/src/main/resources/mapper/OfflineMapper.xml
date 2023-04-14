@@ -11,5 +11,8 @@
 	<select id="totalRecord" resultType="int">
 		select count(off_no) totalRecord from off_gb		
 	</select>
+	<select id="offList" resultType="com.t09ether.home.dto.OfflineDTO">
+		select * from off_gb order by off_no desc
+	</select>
 	
 </mapper>

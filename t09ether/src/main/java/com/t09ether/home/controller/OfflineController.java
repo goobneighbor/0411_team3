@@ -29,10 +29,11 @@ public class OfflineController {
 	//오프라인공구 게시판목록
 	@GetMapping("/offline")
 	public ModelAndView offline(OfflinePagingVO vo) {
-		ModelAndView mav = new ModelAndView();
-		vo.setTotalRecord(service.totalRecord(vo));
+		ModelAndView mav = new ModelAndView();		
 		
-		System.out.println(vo.toString());		
+		vo.setTotalRecord(service.totalRecord(vo));//총레코드수 세팅 
+		System.out.println(vo.getTotalRecord());
+		mav.addObject("offDTO", service.offList(vo));
 		mav.addObject("vo", vo);//뷰페이지로 페이지 정보 세팅
 		mav.setViewName("offline/offline_board");
 		return mav;
@@ -58,9 +59,8 @@ public class OfflineController {
 		dto.setLocation("TestLocation");
 		Date date = new Date();
 		DateFormat sdFormat = new SimpleDateFormat("yy/MM/dd");				
-		String writedate = sdFormat.format(date);
-		dto.setWritedate(writedate);
-		System.out.println(writedate);
+		String writedate = sdFormat.format(date);		
+		
 		//글등록실패하면 예외발생
 		String htmlTag="<script>";
 		try {
@@ -81,6 +81,19 @@ public class OfflineController {
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 		
 	}
-	
+	@GetMapping("/boardView")
+	public ModelAndView boardView() {
+		//조회수증가
+		//service.boardHitCount(no);
+		//BoardDTO dto = service.boardSelect(no);
+		
+		ModelAndView mav = new ModelAndView();		
+		
+		//mav.addObject("dto", dto); //선택한 레코드
+		//mav.addObject("vo", vo); // 페이지번호, 검색어, 검색키
+		
+		mav.setViewName("board/boardView");
+		return mav;
+	}
 	
 }

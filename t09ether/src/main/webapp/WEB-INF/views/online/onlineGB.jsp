@@ -3,25 +3,63 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <style>
-	
 	#onlineGBForm ul{
-		overflow:auto;
+		overflow:auto; 
+		border:1px solid #ddd;
+		padding:50px;
+		
 	}
 	#onlineGBForm li{
+		
+		margin:5px;
+		padding:5px 0;	
 		list-style:none;
 	}
 	
-
+	#addr, #shareaddr{
+ 		width:80%;
+ 		float:left;
+ 	}
+ 	
+	#addrdetail, #shareaddrDetail{
+		width:91.2%;
+	}
+	
+	#lastbutton{
+		width:150px;
+        margin:auto;
+		display:block;
+	}
+	#test{
+		float:left;
+	}
+	#imagetest{
+		
+	}
+	#on_count{
+		text-align:center;
+	}
+	.card-img-top{
+		width: 400px;
+  		height: 400px;
+  		
+	}
+	h1{
+		margin: 30px;
+	}
+	h1, h2, h3, h4, h5{
+		color:#212529;
+	}
 </style>
 <script>
 	$(function(){
 		
-		$("#gbAddrSearch").click(function kakaopost() {
+		$("#shareaddrSearch").click(function kakaopost() {
 		      new daum.Postcode({
 		        oncomplete: function (data) {
 		          var addressCompany = data.address;
 		          document.getElementById("gbaddr").value = addressCompany; // 주소 넣기
-		          document.querySelector("input[name=gbAddrDetail]").focus(); //상세입력 포커싱
+		          document.querySelector("input[name=shareaddrDetail]").focus(); //상세입력 포커싱
 		        }
 		      }).open();
 		});
@@ -36,46 +74,103 @@
 		      }).open();
 		});
 		
+		//유효성 검사
+		$("#onlineGBForm").submit(function() {
+			
+			if($("#username").val()=="") {
+				alert("이름을 입력하세요.");
+				return false;
+			}
+			//이름검사
+			reg = /^[가-힣]{2,10}$/
+			if(!reg.test($("#username").val())) {
+				alert("이름은 2글자에서 10글자까지 한글만 가능합니다.");
+				return false;
+			}
+			
+			//전화번호
+			if($("#tel").val()=="") {
+				alert("전화번호를 입력하세요.");
+				return false;
+			}
+			
+			reg = /^[0-9]{10,11}$/
+			if(!reg.test($("#tel").val())) {
+				alert("전화번호를 잘못 입력했습니다.");
+				return false;
+			}
+			
+			if($("#addr").val()=="") {
+				alert("배송주소를 입력하세요.");
+				return false;
+			}
+			
+			if($("#addrdetail").val()=="") {
+				alert("배송상세주소를 입력하세요.");
+				return false;
+			}
+			
+			if($("#shareaddr").val()=="") {
+				alert("나눔주소를 입력하세요.");
+				return false;
+			}
+			
+			if($("#shareaddrDetail").val()=="") {
+				alert("나눔상세주소를 입력하세요.");
+				return false;
+			}
+			
+
+			//form태그의 action속성 설정
+			$("#onlineGBForm").attr("action","onlineList");
+		});
 	});
 		
 </script>
-
-<!-- Header-->
-<header class="bg-tomato py-5">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#FFF">온라인 공동구매</h1>
-            <p class="lead fw-normal text-white-75 mb-0">공동구매를 시작하거나 참여해보세요.</p>
-        </div>
-    </div>
-</header>
 <div class="container">
 	<h1>온라인 공구 생성폼</h1>
 	<form method="post" id="onlineGBForm">
-		<img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." /></div>
 		<ul>
-			
-			<li>갤업 고농축 액체세제 2.5L x 50개</li>
-			<li>가격 : 49,500</li>
-			<li>공구 주소</li>
-			<li>
-				<input type="text" id="gbaddr" name="gbaddr" readonly />
-				<input type="button" value="주소찾기" id="gbAddrSearch"/>
-			</li>
-			<li>공구 상세주소</li>
-				<li><input type="text" name="gbAddrDetail" id="gbAddrDetail"/></li>
+			<li><h3>주문상품</h3></li>
+			<!-- 상품이미지가져와야함 -->
+			<li id="#imagetest"><img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." /></li>
+			<li>	
+				<li><input type="text" >갤업 고농축 액체세제 2.5L x 50개</h5></li> <!-- 상품명가져와야함 -->
+				<li><h5>가격 49,500 원<h5></li> <!-- 가격가져와야함 -->
+				<li id="test"><h5>수량</h5></li> 
+				<li><input type="number" name="on_count" id="on_count" min="1" max="50" value="1"/></li>
 				
-			<li>배송지 주소</li>
-			<li>
-				<input type="text" name="addr" id="addr"/>
-				<input type="button" value="주소찾기" id="addrSearch"/>
-			</li>
-			<li>배송지 상세주소</li>
-			<li><input type="text" name="addrdetail" id="addrdetail"/></li>
-			<li>
-					<input type="submit" value="공구등록"/>
-			</li>
+				<li>전체 가격 </li>
+			</li>	
 		</ul>
+		
+		<ul>			
+			<li><h3>주문자</h3></li> 
+			<li>주문자명</li> <!-- 주문자명가져와야함 -->
+			<li><input type="text" id="username" name="username" value="" placeholder="주문자명입력" onfocus="this.placeholder=''"/></li>
+			<li>전화번호</li> <!-- 전화번호가져와야함 -->
+			<li><input type="text" id="tel" name="tel" placeholder="-빼고입력" onfocus="this.placeholder=''"/></li>
+		</ul>	
+		<ul>	
+			<li><h3>배송지</h3></li>
+			<li>배송 주소</li>
+			<li>
+				<!-- 배송주소가져와야함 -->
+				<input type="text" name="addr" id="addr" value="" placeholder="수령주소" onfocus="this.placeholder=''" readonly/>
+				<input type="button" value="주소찾기" id="addrSearch"/> 
+			</li>
+			<!-- 상세주소가져와야함 -->
+			<li><input type="text" name="addrdetail" id="addrdetail" value="" placeholder="수령상세주소입력" onfocus="this.placeholder=''"/></li>
+			
+			<li>만남 주소</li>
+			<li>
+				<input type="text" id="shareaddr" name="shareaddr" value="" placeholder="나눔주소입력" onfocus="this.placeholder=''" readonly/>
+				<input type="button" value="주소찾기" id="shareaddrSearch"/>
+			</li>
+			<li><input type="text" name="shareaddrDetail" id="shareaddrDetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
+		</ul>
+		
+		<input type="submit" value="결제하기" id="lastbutton"/>
 	</form>
 </div>
 

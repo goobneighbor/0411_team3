@@ -1,6 +1,9 @@
 package com.t09ether.home.controller;
 
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.OfflineDTO;
+import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.service.OfflineService;
 
 @RestController
@@ -24,8 +28,12 @@ public class OfflineController {
 	
 	//오프라인공구 게시판목록
 	@GetMapping("/offline")
-	public ModelAndView offline() {
+	public ModelAndView offline(OfflinePagingVO vo) {
 		ModelAndView mav = new ModelAndView();
+		vo.setTotalRecord(service.totalRecord(vo));
+		
+		System.out.println(vo.toString());		
+		mav.addObject("vo", vo);//뷰페이지로 페이지 정보 세팅
 		mav.setViewName("offline/offline_board");
 		return mav;
 	}
@@ -42,12 +50,22 @@ public class OfflineController {
 	@PostMapping("/offlineInsert")	
 	public ResponseEntity<String> boardWriteOk(OfflineDTO dto,HttpServletRequest request) {
 		//dto.setIp(request.getRemoteAddr());//ip
-		dto.setUserid((String)request.getSession().getAttribute("logId"));//로그인한 아이디 구하기
+		//dto.setUserid((String)request.getSession().getAttribute("logId"));//로그인한 아이디 구하기
+		dto.setCurrent_num(1);//현재인원 1명 초기화
+		dto.setOff_hit(1);
+		//테스트용 userid. location 세팅
+		dto.setUserid("TestID");
+		dto.setLocation("TestLocation");
+		Date date = new Date();
+		DateFormat sdFormat = new SimpleDateFormat("yy/MM/dd");				
+		String writedate = sdFormat.format(date);
+		dto.setWritedate(writedate);
+		System.out.println(writedate);
 		//글등록실패하면 예외발생
 		String htmlTag="<script>";
 		try {
 			int result = service.offlineInsert(dto);
-			htmlTag += "location.href='offline_board';";
+			htmlTag += "location.href='/home/offline/offline_board';";
 		}catch(Exception e) {
 			e.printStackTrace();
 			htmlTag += "alert('글이 등록되지않았습니다.');";
@@ -58,7 +76,7 @@ public class OfflineController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
-		
+		System.out.println(dto.toString());
 		//                        내용
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 		

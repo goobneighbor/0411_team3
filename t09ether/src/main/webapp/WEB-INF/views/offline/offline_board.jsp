@@ -68,9 +68,9 @@
 	<div class="board_header"><a href="offlineWrite">글쓰기</a></div>
 	<div class = "pHeader">
 		<div>진행중인 공구 : ${vo.totalRecord}5건 </div>
-		<div>${vo.totalPage}1/${vo.nowPage}2</div>
-		
+		<div>${vo.totalPage}1/${vo.nowPage}2</div>		
 	</div>
+	
 	<ul class="board_list">
 		<li>번호</li>		
 		<li>지역</li>
@@ -104,53 +104,12 @@
 		<li>조회수</li>
 		<li>등록일</li>
 		
-		<li>4</li>		
-		<li>지역</li>
-		<li>인원</li>
-		<li>제목</li>
-		<li>작성자</li>
-		<li>조회수</li>
-		<li>등록일</li>
+		<c:forEach var="offDTO" items="list">
 		
+		</c:forEach>
+				
 	</ul>
-	
-	
-<section class="box">
-<div class="table-wrapper">
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-			<td>Something</td>
-			<td>Ante turpis integer aliquet porttitor.</td>
-			<td>29.99</td>
-		</tr>
-			<tr>
-			<td>Nothing</td>
-			<td>Vis ac commodo adipiscing arcu aliquet.</td>
-			<td>19.99</td>
-		</tr>
-		<tr>
-			<td>Nothing</td>
-			<td>Vis ac commodo adipiscing arcu aliquet.</td>
-			<td>19.99</td>
-		</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-			<td colspan="2"></td>
-			<td>100.00</td>
-			</tr>
-	</tfoot>
-</table>
-</section>
+
 </div>
-</div>	
 
 </body>

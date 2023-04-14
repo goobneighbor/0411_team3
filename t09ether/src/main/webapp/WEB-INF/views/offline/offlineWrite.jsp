@@ -22,6 +22,12 @@
 	#subject{
 		width:100%;		
 	}
+	.zipcode{
+		float:left;
+	}
+	.gn{
+		float:left;
+	}
 	/*CKEDITOR*/
 	.ck-editor__editable[role="textbox"] {
       /* editing area */
@@ -241,18 +247,24 @@
 			<li>글제목 : </li>
 			<li><input type="text" name="off_subject" id="off_subject"/></li>
 			<li>공구장소 설정<li><hr/>
-			<li>우편번호
+			<div class="zipcode">
+				우편번호
 				<input type="text" id="sample6_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="sample6_address" placeholder="주소"><br>
-				<input type="text" id="sample6_detailAddress" placeholder="상세주소">		
+				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+			</div>	
+				<li><input type="text" id="sample6_address" placeholder="주소"></li>
+				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	
 				<!-- location 어떻게? -->	
-			</li>			
-			<li class="group_num_li">모집인원 :<input type="text" name="group_num" id="group_num"/>명</li>
-			<li>마감일 :</li>
-			<li><input type="text" name="deaddate" id="deaddate"/></li>
-			<li>공구시간 :</li>
-			<li><input type="text" name="app_time" id="apptime"/></li>
+			<div class="gn">	
+				<li>모집인원 : </li>
+				<li><input type="text" name="group_num" id="group_num"/></li>명				
+			</div>	
+			<div>
+				<li>마감일 :</li>
+				<li><input type="text" name="deaddate" id="deaddate"/></li>
+				<li>공구시간 :</li>
+				<li><input type="text" name="app_time" id="apptime"/></li>
+			</div>
 			
 			<li>상세 안내</li>				
 			<li>

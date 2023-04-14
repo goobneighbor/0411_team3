@@ -52,9 +52,7 @@ public class RegisterController {
 			mav.setViewName("redirect:/");
 			
 		}else { //실패
-			
 			mav.setViewName("redirect:loginForm");
-			
 		}
 		return mav;
 	}
@@ -80,6 +78,7 @@ public class RegisterController {
 		public String join() {
 			return "register/join";	
 		}
+		
 		//아이디 중복검사
 		@GetMapping("/idCheck")
 		public String idCheck(String userid, Model model) {

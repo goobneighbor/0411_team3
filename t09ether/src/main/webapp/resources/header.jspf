@@ -3,30 +3,39 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<title>t09ether</title>
 		<meta charset="utf-8" />
+
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/assets/css/main.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-		<!-- Favicon-->
-		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath() %>/resources/assets/favicon.ico" />
+
+		<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath }/resources/assets/favicon.ico" />
 		<!-- Bootstrap icons-->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 		<!-- Core theme CSS (includes Bootstrap)-->
-		<link href="<%=request.getContextPath() %>/resources/assets/css/online.css" rel="stylesheet" />
-		<!-- 여기까지 삽입 -->
-		<!-- Scripts -->
-			<script src="<%=request.getContextPath() %>/resources/assets/js/jquery.min.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/jquery.dropotron.min.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/jquery.scrollex.min.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/browser.min.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/breakpoints.min.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/util.js"></script>
-			<script src="<%=request.getContextPath() %>/resources/assets/js/main.js"></script>
+		<link href="${pageContext.request.contextPath }/resources/assets/css/online.css" rel="stylesheet" />
 
+		<!-- Scripts -->
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.dropotron.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/browser.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/breakpoints.min.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/util.js"></script>
+			<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+
+
+		<link rel="icon" type="image/x-icon" href="<%=request.getContextPath() %>/resources/assets/favicon.ico" />
+		<!-- Bootstrap icons-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+		
+		<!-- 여기까지 삽입 -->
+		
 <!-- 여기부터 삽입 -->
 
 </head>
@@ -34,16 +43,26 @@
 <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/home">t09ether</a>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/">t09ether</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+
+
                         <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="#!">온라인공구</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/online/onlineHome">온라인공구</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="#!">오프라인공구</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">고객센터</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/mypage/myPage">마이페이지</a></li>
+                        <c:if test="${logStatus == 'Y' }">
+                        <li class="nav-item"><a class="nav-link" >${logName } 님, 환영합니다.</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/mypage/mypage">마이페이지</a></li>
+                        </c:if>
+                        <c:if test="${logStatus != 'Y' }">
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/loginForm">로그인</a></li>
+                        </c:if>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

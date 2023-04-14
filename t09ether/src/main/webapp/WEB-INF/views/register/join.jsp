@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
-
 <style>
 	#joinForm ul{
  		overflow:auto; 
 	}
 	#joinForm li {
  		float:left;
+ 		text-align:center;
 		width:20%; 
 		padding:10px 0; 
- 		border-bottom:1px solid #ddd;
+ 		/*border-bottom:1px solid #ddd;*/
 		line-height:40px;
 		list-style:none;		
 	}
@@ -113,13 +113,11 @@
 	});
 </script>
 <div class="container">
-	<h1>회원가입 폼</h1>
 	<form method="post" id="joinForm">
 		<ul>
 			<li>아이디</li>
 			<li>
 				<input type="text" name="userid" id="userid" minlength="8" maxlength="15"/>
-				<input type="button" value="아이디중복검사"/>
 				<input type="hidden" id="idStatus" value="N"/>
 			</li>
 			
@@ -134,22 +132,22 @@
 			
 			<li>연락처</li>
 			<li>
-				<select name="tel1" id="tel1">
+				<select style="width:13%; float:left; margin:0;" name="tel1" id="tel1">
 					<option value="010">010</option>
 					<option value="02">02</option>
 					<option value="031">031</option>
 					<option value="041">041</option>
 					<option value="051">051</option>
-				</select>
-				<input type="text" name="tel2" id="tel2" maxlength="4" value="1234"/> -
-				<input type="text" name="tel3" id="tel3" maxlength="4" value="5678"/>		
+				</select> 
+				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel2" id="tel2" maxlength="4" value="1234"/>
+				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel3" id="tel3" maxlength="4" value="5678"/>		
 			</li>
 			<li>이메일</li>
 			<li><input type="text" name="email" id="email"/></li>
 			<li>우편번호</li>
 			<li>
-				<input type="text" name="zipcode" id="txtPostCodeC"/>
-				<input type="button" value="우편번호찾기" id="zipcodeSearch"/>
+				<input style="width:78%; float:left; margin:2px;" type="text" name="zipcode" id="txtPostCodeC"/>
+				<input style="width:20%; float:right; margin:2px;" type="button" value="우편번호찾기" id="zipcodeSearch"/>
 			</li>
 			<li>주소</li>
 			<li><input type="text" name="addr" id="txtAddressC"/></li>
@@ -157,11 +155,12 @@
 			<li><input type="text" name="addrdetail"/></li>
 
 			<!-- 등급 -->
-			<input type="hidden" name="rank" id="rank" value="1" />
-			<!-- 신고당한 횟수 -->
-			<input type="hidden" name="report" id="report" value="0"/>
+			<li><input type="hidden" name="rank" id="rank" value="1"/><li>
+			<!-- 신고당한횟수 -->
+			<li><input type="hidden" name="report" id="report" value="0"/><li>
+			<br/><br/>
 
-			<li><input type="submit" value="회원가입"/></li>
+			<li><input type="submit" value="회원정보수정"/></li>
 		</ul>
 	</form>
 </div>

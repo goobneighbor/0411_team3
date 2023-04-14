@@ -25,7 +25,7 @@
         	<div class="col mb-5">
             	<div class="card h-100">
                 	<!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." />
                     	
                     	<!-- Product details-->
                         <div class="card-body p-4">

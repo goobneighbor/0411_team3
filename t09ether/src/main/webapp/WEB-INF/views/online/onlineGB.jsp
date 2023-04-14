@@ -29,7 +29,6 @@
 		width:90%;
 	}
 	
-	/*스타일 되는부분*/
 	#lastsubmit{
 		width:150px;
         margin:auto;
@@ -42,20 +41,18 @@
 	#imagetest{
 		
 	}
-	
-	/*스타일 되는부분*/
+
 	#on_count, #pro_price{
 		text-align:center;
 	}
 	
-	/*스타일 되는부분*/
+	
 	.card-img-top{
 		width: 400px;
   		height: 400px;
   		
 	}
 	
-	/*스타일 되는부분*/
 	h1{
 		margin: 30px;
 	}
@@ -144,13 +141,15 @@
 			<ul id="firstul">
 				<li><h3>주문상품</h3></li>
 				<!-- 상품이미지가져와야함 -->
-				<li id="#imagetest"><img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." /></li>
+				<li><img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." /></li>
+				<li>상품명</li>
 				<li><input type="text" name="pro_name" id="pr_name" value="갤업 고농축 액체세제 2.5L x 50개" readonly></li> <!-- 상품명가져와야함 -->
 				<li>가격</li>
 				<li><input type="number" name="pro_price" id="pro_price" value="49500" readonly/></li> <!-- 가격가져와야함 -->
 				<li>수량</li> 
 				<li><input type="number" name="on_count" id="on_count" min="1" max="50" value="1"/></li>
 				<li>전체 가격 </li>
+				
 					
 			</ul>
 			<ul>			

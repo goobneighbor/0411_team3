@@ -26,13 +26,8 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-<<<<<<< HEAD
-		/* font: inherit; */
-
-=======
 		/*font: inherit; */
 		vertical-align: baseline;
->>>>>>> a618469f4b60f18e341e87976951934191dbdd70
 	}
 
 	article, aside, details, figcaption, figure,
@@ -127,7 +122,6 @@
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-		/*border-bottom: dotted 1px;*/
 		color: #e89980;
 		text-decoration: none;
 	}

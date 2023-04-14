@@ -39,16 +39,16 @@ public class ProductController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
-		//»óÇ°µî·Ï½Ã ½ÇÆĞÇÏ¸é ¿¹¿Ü¹ß»ı
+		//ìƒí’ˆë“±ë¡ ì‹¤íŒ¨í•˜ë©´ ì˜ˆì™¸ë°œìƒ
 		try {
 			service.productInsert(dto);
-			String htmlTag = "<script>location.href='home';</script>";
+			String htmlTag = "<script>location.href='/home';</script>";
 			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 			String htmlTag = "<script>"; 
-			htmlTag += "alert('±ÛÀÌ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.');";
+			htmlTag += "alert('ìƒí’ˆì´ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.');";
 			htmlTag += "history.back();";
 			htmlTag += "</script>";
 			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.BAD_REQUEST);

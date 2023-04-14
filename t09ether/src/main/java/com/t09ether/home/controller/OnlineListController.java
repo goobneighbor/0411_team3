@@ -15,4 +15,23 @@ public class OnlineListController {
 		mav.setViewName("online/onlineList");
 		return mav;
 	}
+	
+	@GetMapping("/productDetail")
+	public ModelAndView productDetail() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("online/productDetail");
+		return mav;
+	}
+	@GetMapping("/onlineJoinForm") 
+ 	public ModelAndView onlineJoin() {
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("online/onlineJoinForm"); 
+		return mav; 
+		}
+	@GetMapping("/kakaomap")
+	public ModelAndView googlemap() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("online/kakaomap");
+		return mav;
+	}
 }

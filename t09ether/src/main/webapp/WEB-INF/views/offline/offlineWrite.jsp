@@ -3,6 +3,9 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+	.container{
+		padding:0;
+	}
 	body,ul,li{
 		padding:0;
 		margin:0;
@@ -39,6 +42,7 @@
       max-width: 100%;
       margin: 20px auto;
      }
+     .conhead{margin:0;}
 </style>
 <script>
 	//=======================에디터 시작=====================//
@@ -241,7 +245,13 @@
 </script>
 
 <div class="container">
-	<h1>오프라인 공동구매 시작하기</h1>
+	<section id="main" class="container">
+		<header class="conhead">
+		<h1>오프라인 공동구매 시작하기</h1>		
+		<p>상세 정보를 입력하세요</p>				
+		</header>
+	</section>
+	
 	<form method="post" action="offlineInsert" id="offlineWriteForm">
 		<ul>
 			<li>글제목 : </li>
@@ -252,7 +262,7 @@
 				<input type="text" id="sample6_postcode" placeholder="우편번호">
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 			</div>	
-				<li><input type="text" id="sample6_address" placeholder="주소"></li>
+				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>
 				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	
 				<!-- location 어떻게? -->	
 			<div class="gn">	
@@ -263,7 +273,7 @@
 				<li>마감일 :</li>
 				<li><input type="text" name="deaddate" id="deaddate"/></li>
 				<li>공구시간 :</li>
-				<li><input type="text" name="app_time" id="apptime"/></li>
+				<li><input type="text" name="app_time" id="app_time"/></li>
 			</div>
 			
 			<li>상세 안내</li>				

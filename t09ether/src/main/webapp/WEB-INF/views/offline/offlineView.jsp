@@ -18,16 +18,16 @@
 	<h1>글내용보기</h1>
 	<ul id="view">
 		<li>번호</li>
-		<li>33</li>
+		<li>${dto.off_no}</li>
 		<li>글쓴이</li>
-		<li>홍길동</li>
+		<li>${dto.userid}</li>
 		<li>조회수</li>
-		<li>10</li>
+		<li>${dto.off_hit}</li>
 		<li>등록일</li>
-		<li>04-13</li>
+		<li>${dto.writedate}</li>
 		<li>제목</li>
-		<li>코스트코 서초점 같이 가실분구해요</li>			
+		<li>${dto.off_subject}</li>			
 		<li>글내용</li>
-		<li>00월 00일 코스트코 양재점에 같이 00 사러 가실분 00 분 구합니다</li>			
-	</ul>	
+		<li>${dto.off_content}</li>			
+	</ul>
 </div>

@@ -19,11 +19,11 @@
 		overflow:hidden;
 		text-align: center;
 	}
-	.board_list li:nth-child(7n+1){
+	.board_list li:nth-child(8n+1){
 		width:5%;
 		text-align: center;	
 	}
-	.board_list li:nth-child(7n+2){
+	.board_list li:nth-child(8n+2){
 		width:15%;
 		/*말줄임표시하기*/
 		white-space: nowrap;/*줄바꾸지않는다*/
@@ -31,8 +31,8 @@
 		text-overflow:ellipsis;/*넘친데이터 말줄임표시*/	
 		text-align: center;	
 	}
-	.board_list li:nth-child(7n+4){
-		width:40%;
+	.board_list li:nth-child(8n+4){
+		width:30%;
 		/*말줄임표시하기*/
 		white-space: nowrap;/*줄바꾸지않는다*/
 		overflow:hidden;
@@ -40,13 +40,13 @@
 		text-align: center;	
 	}
 	
-	.board_list li:nth-child(7n+7){
+	.board_list li:nth-child(8n+7){
 		width:15%;		
 		white-space: nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;	
 	}
-	.board_list li:nth-child(7n+3), board_list li:nth-child(7n+6){
+	.board_list li:nth-child(8n+3), board_list li:nth-child(8n+6){
 		width:5%;		
 		white-space: nowrap;
 		overflow:hidden;
@@ -75,7 +75,7 @@
 	.searchDiv{
 		clear:left;
 		padding:10px;
-		text-align: center;
+		text-align: center;		
 	}
 </style>
 
@@ -83,54 +83,93 @@
 	<h1>오프라인 공구 게시판</h1>
 	<div class="board_header"><a href="offlineWrite">글쓰기</a></div>
 	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord}건 </div>
+		<div>진행중인 공구 :  </div>
 		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>		
 	</div>
-	
-	<ul class="board_list">
-		<li>번호</li>		
-		<li>지역</li>
-		<li>인원</li>
-		<li>제목</li>
-		<li>작성자</li>
-		<li>조회수</li>
-		<li>등록일</li>
-		
-		<li>1</li>		
-		<li>서울시 서초구</li>
-		<li>3</li>
-		<li><a href="offline/offlineView">코스트코 양재점 같이가실분 구해요</a></li>
-		<li>홍길동</li>
-		<li>3</li>
-		<li>04-13</li>
-		
-		<li>2</li>		
-		<li>서울시 중랑구</li>
-		<li>4</li>
-		<li>코스트코 상봉점 같이 가실분 구합니다</li>
-		<li>이순신</li>
-		<li>4</li>
-		<li>04-13</li>
-		
-		<li>3</li>		
-		<li>지역</li>
-		<li>인원</li>
-		<li>제목</li>
-		<li>작성자</li>
-		<li>조회수</li>
-		<li>등록일</li>
-		
-		<c:forEach var="offDTO" items="${list}">					
-				<li>${offDTO.off_no}</li>
+	<form method="post" action="/campus/board/boardMultiDel" id="delList">
+		<!-- 페이지번호, 검색어, 검색키 -->
+		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
+		<c:if test="${vo.searchWord!=null}">
+			<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
+			<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
+		</c:if>
+		<ul class="board_list">			
+			<li>번호</li>
+			<li>지역</li>
+			<li>인원</li>
+			<li>제목</li>
+			<li>작성자</li>
+			<li>조회수</li>
+			<li>등록일</li>
+			<li>마감일</li>
+			<!-- 시작번호 설정       :                 총 레코드 수       현재페이지        한페이지레코드수-->	
+			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord}"/>
+			<c:forEach var="bDTO" items="${list}">
+				
+				<li>${recordNum}</li>
 				<!-- 글내용보기 : 레코드번호, 현재페이지, 검색어가 있다면 검색키와 검색어 가지고 뷰페이지로 이동하여야 
 				다시 목록으로 올 때 해당 검색과 페이지도 이동할 수 있다-->
-				<li><a href="boardView?no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${bDTO.subject}</a></li>
-				<li>${offDTO.userid }</li>
-				<li>${offDTO.off_hit }</li>
-				<li>${offDTO.writedate }</li>
-		</c:forEach>
+				<li><a href="boardView?no=${bDTO.no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${bDTO.subject}</a></li>
+				<li>${bDTO.username }</li>
+				<li>${bDTO.hit }</li>
+				<li>${bDTO.writedate }</li>
+				<c:set var="recordNum" value="${recordNum-1}"/>
+			</c:forEach>
+		</ul>
+	</form>
+	
+	<!-- 페이징 -->	
+	<div class="pagingDiv">
+		<ul>
+			<!-- nowPage -->
+			<c:if test="${vo.nowPage==1}"> <!-- 현재페이지가 1일때 -->
+				<li>prev</li>
+			</c:if>
+			<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 1아닐때 -->
+				<li><a href="boardList?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+			</c:if>
+			
+			<!-- 페이지번호 -->
+			<c:forEach var="p" begin="${vo.startPageNum}" end="${vo.startPageNum+ vo.onePageNumCount-1}">
+				<c:if test="${p <= vo.totalPage}"> <!-- 표시할 페이지 번호가 총페이지 수보다 작거나 같을 때 페이지 번호를 출력한다 -->
+					<!-- 현재페이지 표시하기 -->
+				<c:if test ="${p==vo.nowPage }">
+					<li style="background:#ddd;">
+				</c:if>	
+				<c:if test ="${p!=vo.nowPage }">
+					<li>
+				</c:if>
+					<a href="boardList?nowPage=${p}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+				</c:if>
+			</c:forEach>
+			
+			
+			<!-- 다음페이지 -->
+			<c:if test="${vo.nowPage==vo.totalPage}"> <!-- 현재페이지가 마지막일때 -->
+				<li>next</li>
+			</c:if>
+			<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 현재페이지가 마지막 아닐때 -->
 				
-	</ul>
+				<li><a href="boardList?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
+				
+			</c:if>
+			
+		</ul>
+	</div>
+	<!--검색 -->
+	
+	<div class ="searchDiv">
+		<form method="get" id="searchForm" action="boardList">
+			<select name = "searchKey">
+				<option value="subject">제목</option>
+				<option value="username">작성자</option>
+				<option value="content">글내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="Search"/>
+		</form>
+	
+	</div>
 
 </div>
 

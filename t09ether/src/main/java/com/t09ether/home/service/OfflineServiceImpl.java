@@ -28,6 +28,11 @@ public class OfflineServiceImpl implements OfflineService {
 		return dao.offList(vo);
 	}
 
+	@Override
+	public OfflineDTO offlineSelect(int no) {
+		return dao.offlineSelect(no);
+	}
+
 	
 
 	

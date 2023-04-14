@@ -12,4 +12,6 @@ public interface OfflineDAO {
 	public int totalRecord(OfflinePagingVO vo);
 	//DB에 있는 DTO 배열에 담기
 	public List<OfflineDTO> offList(OfflinePagingVO vo);
+	//글선택(no)
+	public OfflineDTO offlineSelect(int no);
 }

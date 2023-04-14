@@ -1,10 +1,6 @@
 package com.t09ether.home.controller;
 
 import java.nio.charset.Charset;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +22,20 @@ public class OfflineController {
 	@Autowired
 	OfflineService service;
 	
-	//¿ÀÇÁ¶óÀÎ°ø±¸ °Ô½ÃÆÇ¸ñ·Ï
+	//ê²Œì‹œíŒëª©ë¡
 	@GetMapping("/offline")
 	public ModelAndView offline(OfflinePagingVO vo) {
 		ModelAndView mav = new ModelAndView();		
 		
-		vo.setTotalRecord(service.totalRecord(vo));//ÃÑ·¹ÄÚµå¼ö ¼¼ÆÃ 
+		vo.setTotalRecord(service.totalRecord(vo));
 		System.out.println(vo.getTotalRecord());
 		mav.addObject("offDTO", service.offList(vo));
-		mav.addObject("vo", vo);//ºäÆäÀÌÁö·Î ÆäÀÌÁö Á¤º¸ ¼¼ÆÃ
+		mav.addObject("vo", vo);
 		mav.setViewName("offline/offline_board");
 		return mav;
 	}
 	
-	//±Û¾²±â
+	//ï¿½Û¾ï¿½ï¿½ï¿½
 	@GetMapping("/offlineWrite")
 	public ModelAndView offlineWrite() {
 		ModelAndView mav = new ModelAndView();
@@ -47,52 +43,47 @@ public class OfflineController {
 		return mav;
 	}
 	
-	//±Ûµî·Ï(DB)
+	//ê¸€ë“±ë¡(DB)
 	@PostMapping("/offlineInsert")	
-	public ResponseEntity<String> boardWriteOk(OfflineDTO dto,HttpServletRequest request) {
+	public ResponseEntity<String> offlineInsert(OfflineDTO dto,HttpServletRequest request) {
 		//dto.setIp(request.getRemoteAddr());//ip
-		//dto.setUserid((String)request.getSession().getAttribute("logId"));//·Î±×ÀÎÇÑ ¾ÆÀÌµğ ±¸ÇÏ±â
-		dto.setCurrent_num(1);//ÇöÀçÀÎ¿ø 1¸í ÃÊ±âÈ­
-		dto.setOff_hit(1);
-		//Å×½ºÆ®¿ë userid. location ¼¼ÆÃ
-		dto.setUserid("TestID");
-		dto.setLocation("TestLocation");
-		Date date = new Date();
-		DateFormat sdFormat = new SimpleDateFormat("yy/MM/dd");				
-		String writedate = sdFormat.format(date);		
+		dto.setUserid((String)request.getSession().getAttribute("logId"));//ë¡œê·¸ì¸í•œ ì•„ì´ë”” êµ¬í•˜ê¸°
+		dto.setCurrent_num(1);
+		dto.setOff_hit(1);				
 		
-		//±Ûµî·Ï½ÇÆĞÇÏ¸é ¿¹¿Ü¹ß»ı
 		String htmlTag="<script>";
 		try {
 			int result = service.offlineInsert(dto);
 			htmlTag += "location.href='/home/offline/offline_board';";
 		}catch(Exception e) {
 			e.printStackTrace();
-			htmlTag += "alert('±ÛÀÌ µî·ÏµÇÁö¾Ê¾Ò½À´Ï´Ù.');";
+			htmlTag += "alert('ê¸€ì´ë“±ë¡ë˜ì§€ì•Šì•˜ìŠµë‹ˆë‹¤.');";
 			htmlTag += "history.back();";
 		}
 		htmlTag += "</script>";
-		//°á°ú
+		//ê²°ê³¼
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		System.out.println(dto.toString());
-		//                        ³»¿ë
+		//                        ë‚´ìš©
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 		
 	}
+	
+	//ê¸€ë‚´ìš©ë³´ê¸°
 	@GetMapping("/boardView")
-	public ModelAndView boardView() {
-		//Á¶È¸¼öÁõ°¡
+	public ModelAndView boardView(int no, OfflinePagingVO vo) {
+		//ì¡°íšŒìˆ˜ì¦ê°€
 		//service.boardHitCount(no);
-		//BoardDTO dto = service.boardSelect(no);
+		OfflineDTO dto = service.offlineSelect(no);
 		
 		ModelAndView mav = new ModelAndView();		
 		
-		//mav.addObject("dto", dto); //¼±ÅÃÇÑ ·¹ÄÚµå
-		//mav.addObject("vo", vo); // ÆäÀÌÁö¹øÈ£, °Ë»ö¾î, °Ë»öÅ°
+		//mav.addObject("dto", dto); //ì„ íƒí•œë ˆì½”ë“œ
+		mav.addObject("vo", vo); // í˜ì´ì§€ë²ˆí˜¸, ê²€ìƒ‰ì–´, ê²€ìƒ‰í‚¤
 		
-		mav.setViewName("board/boardView");
+		mav.setViewName("offline/offlineView");
 		return mav;
 	}
 	

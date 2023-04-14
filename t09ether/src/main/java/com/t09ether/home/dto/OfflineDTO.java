@@ -10,10 +10,11 @@ public class OfflineDTO {
 	private String location;//장소
 	private int group_num;//모집인원
 	private int current_num;//현재인원
-	private Date app_time;//약속시간
-	private Date deaddate;//모집마감일
+	private String app_time;//약속시간
+	private String deaddate;//모집마감일
 	private int off_hit;//조회수
-	private Date writedate;//등록일
+	private String writedate;//등록일
+	
 	public int getOff_no() {
 		return off_no;
 	}
@@ -56,16 +57,17 @@ public class OfflineDTO {
 	public void setCurrent_num(int current_num) {
 		this.current_num = current_num;
 	}
-	public Date getApp_time() {
+	
+	public String getApp_time() {
 		return app_time;
 	}
-	public void setApp_time(Date app_time) {
+	public void setApp_time(String app_time) {
 		this.app_time = app_time;
 	}
-	public Date getDeaddate() {
+	public String getDeaddate() {
 		return deaddate;
 	}
-	public void setDeaddate(Date deaddate) {
+	public void setDeaddate(String deaddate) {
 		this.deaddate = deaddate;
 	}
 	public int getOff_hit() {
@@ -74,10 +76,10 @@ public class OfflineDTO {
 	public void setOff_hit(int off_hit) {
 		this.off_hit = off_hit;
 	}
-	public Date getWritedate() {
+	public String getWritedate() {
 		return writedate;
 	}
-	public void setWritedate(Date writedate) {
+	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
 	@Override
@@ -87,6 +89,8 @@ public class OfflineDTO {
 				+ ", app_time=" + app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate="
 				+ writedate + "]";
 	}
+	
+	
 
 	
 	

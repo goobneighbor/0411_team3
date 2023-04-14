@@ -113,11 +113,13 @@
 	});
 </script>
 <div class="container">
+	<h1>회원가입 폼</h1>
 	<form method="post" id="joinForm">
 		<ul>
 			<li>아이디</li>
 			<li>
-				<input type="text" name="userid" id="userid" minlength="8" maxlength="15"/>
+				<input type="text" name="userid" id="userid" minlength="8" maxlength="15" style="width:80%; float:left;"/>
+				<input type="button" value="아이디중복검사" style="float:right;"/>
 				<input type="hidden" id="idStatus" value="N"/>
 			</li>
 			
@@ -160,7 +162,7 @@
 			<li><input type="hidden" name="report" id="report" value="0"/><li>
 			<br/><br/>
 
-			<li><input type="submit" value="회원정보수정"/></li>
+			<li><input type="submit" value="회원가입"/></li>
 		</ul>
 	</form>
 </div>

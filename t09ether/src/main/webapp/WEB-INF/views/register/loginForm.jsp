@@ -83,7 +83,14 @@ function kakaoLogout() {
 </style>
 
 <div class="container">
-	<h1>로그인</h1>
+<section id="main" class="container">
+	<header>
+		<h2>로그인</h2>
+		<p>함께 만드는 t09ether에 오신것을 환영합니다.<br/>
+		로그인 하시면 보다 편리하게 서비스를 이용하실 수 있습니다.</p>
+	</header>
+</section>
+	
 	<form method="post" action="loginOk" id="logFrm">
 		<ul>
 			<li>아이디</li>

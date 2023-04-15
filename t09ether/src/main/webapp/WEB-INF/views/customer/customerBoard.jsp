@@ -96,7 +96,7 @@
 		</section>
 		</div>
 		</div>
-		
+		<div class="row">
 			<h3 style="text-align:left; padding:20px;">1:1 문의</h3>
 			<div id="totalBox">
 				<div class="inbox1">
@@ -120,7 +120,7 @@
 				
 				</div>
 			</div>
-		
+		</div>
 
 
 	</section>

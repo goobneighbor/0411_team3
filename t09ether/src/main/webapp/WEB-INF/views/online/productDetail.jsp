@@ -90,15 +90,15 @@ function openPopup() {
                                 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
 								  <h4 id="scrollspyHeading1">서울시 서대문구</h4>
 								  <p>통일로 135 충정빌딩<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
-								  <p>통일로 135 충정빌딩 앞</p> 
-								  <p>통일로 135 충정빌딩 옆</p>
+								  <p>구산대로 311 종로메가타워 1층<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p> 
+								  <p>서초구 반포자이아파트 상가동<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
 								  <h4 id="scrollspyHeading2">서울시 동작구</h4>
 								  <p>...</p>
 								  <h4 id="scrollspyHeading3">서울시 영등포구</h4>
 								  <p>...</p>
-								  <h4 id="scrollspyHeading4">Fourth heading</h4>
+								  <h4 id="scrollspyHeading4">경기도 분당시 서현동</h4>
 								  <p>...</p>
-								  <h4 id="scrollspyHeading5">Fifth heading</h4>
+								  <h4 id="scrollspyHeading5">제주시 서귀포</h4>
 								  <p>...</p>
 								</div>
                             </div>

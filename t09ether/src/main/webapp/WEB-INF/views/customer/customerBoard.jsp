@@ -92,12 +92,8 @@
 					</c:forEach>	
 				</tbody>
 			</table>
-		</div>
-		</section>
-		</div>
-		</div>
 		
-			<h3 style="text-align:left; padding:20px;">1:1 문의</h3>
+		<h2 style="text-align:left; padding:20px;">1:1문의</h2>
 			<div id="totalBox">
 				<div class="inbox1">
 					<img src="../resources/images/checklist.png" alt=""/>
@@ -121,8 +117,13 @@
 				</div>
 			</div>
 		
+		</div>
+		</section>
+		</div>
+		
+	</div>
+		</section>		
 
-
-	</section>
+	
 </body>
 </html>

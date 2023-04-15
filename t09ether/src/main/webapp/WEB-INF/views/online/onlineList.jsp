@@ -9,8 +9,8 @@
 <header class="bg-tomato py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
-            <p class="lead fw-normal text-white-75 mb-0">직접 공동구매를 함께할 메이트 모집을 시작하거나 참여해보세요.</p>
+        	<h1 class="display-4 fw-bolder" style="color:#FFF">온라인 공동구매</h1>
+            <p class="lead fw-normal text-white-75 mb-0">공동구매를 시작하거나 참여해보세요.</p>
         </div>
     </div>
 </header>
@@ -25,7 +25,7 @@
         	<div class="col mb-5">
             	<div class="card h-100">
                 	<!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." />
                     	
                     	<!-- Product details-->
                         <div class="card-body p-4">
@@ -75,7 +75,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -127,17 +127,14 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
             <div class="col mb-5">
             	<div class="card h-100">
-            	
-                	<!-- Sale badge
+                	<!-- Sale badge-->
                 	<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                	-->
-                	
                     <!-- Product image-->
                     <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
                     <!-- Product details-->
@@ -152,7 +149,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>
@@ -171,7 +168,7 @@
                 	</div>
                 	<!-- Product actions-->
                 	<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                		<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                		<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                 	</div>
             	</div>
             </div>
@@ -204,7 +201,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                         </div>
                 </div>
             </div>
@@ -231,7 +228,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하기</a></div>
+                    	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="productDetail">구매하기</a></div>
                     </div>
                 </div>
             </div>

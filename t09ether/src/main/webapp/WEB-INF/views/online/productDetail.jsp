@@ -62,7 +62,7 @@ function openPopup() {
                             <div id="review">리뷰</div>
                             <h2 class="card-title">상품명</h2>
                             <p class="card-text">상세설명</p>
-                            <a class="btn btn-primary" href="">내가 공구만들기</a>
+                            <a class="btn btn-primary" href="onlineGB">내가 공구만들기</a>
                         </div>
                     </div>
 
@@ -105,4 +105,4 @@ function openPopup() {
                     </div>
                 </div>
             </div>
-        </div>
+

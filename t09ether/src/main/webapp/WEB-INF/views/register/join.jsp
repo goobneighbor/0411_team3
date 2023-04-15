@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 <style>
+	#header,footer {
+		display:none;
+	}
 	#joinForm ul{
  		overflow:auto; 
 	}
@@ -26,6 +29,10 @@
  	} 
  	#addr{
  		width:80%;
+ 	}
+ 	#topregi {
+ 		text-align:center;
+ 		padding: 50px;
  	}
 </style>
 <script>
@@ -113,7 +120,12 @@
 	});
 </script>
 <div class="container">
-	<h1>회원가입 폼</h1>
+<section id="main" class="container">
+	<header>
+		<h2>회원 가입</h2>
+		<p>어서오세요.</p>
+	</header>
+</section>
 	<form method="post" id="joinForm">
 		<ul>
 			<li>아이디</li>

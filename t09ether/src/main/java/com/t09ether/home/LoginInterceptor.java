@@ -9,40 +9,43 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /*
- interceptorÃ³¸®ÇÒ Å¬·¡½º
- ¹İµå½Ã HandlerInterceptorAdapter¸¦ »ó¼Ó¹Ş¾Æ ¸¸µç´Ù 
+ * interceptorì²˜ë¦¬ í•  í´ë˜ìŠ¤
+ * ë°˜ë“œì‹œ HandlerInterceptorAdapterë¥¼ ìƒì†ë°›ì•„ ë§Œë“¤ì–´ì•¼ í•¨ 
  */
-public class LoginInterceptor extends HandlerInterceptorAdapter{
-	//ÄÁÆ®·Ñ·¯°¡ È£ÃâµÇ±â Àü¿¡ ½ÇÇàµÈ´Ù
+
+public class LoginInterceptor extends HandlerInterceptorAdapter {
+	//ì»¨íŠ¸ë¡¤ëŸ¬ê°€ í˜¸ì¶œë˜ê¸° ì „ì— ì‹¤í–‰ëœë‹¤.
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-		//·Î±×ÀÎ À¯¹«¸¦ È®ÀÎÇÏ°í ·Î±×ÀÎ µÈ °æ¿ì È£ÃâÇÑ ¸ÅÇÎÁÖ¼Ò·Î ÀÌµ¿ÇÏ°í,
-		//·Î±×ÀÎÀÌ ¾ÈµÈ °æ¿ì ·Î±×ÀÎ ÆûÀ¸·Î ½ÇÇàÀÌ ÀÌµ¿µÇµµ·ÏÇÑ´Ù
-		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		//ë¡œê·¸ì¸ ìœ ë¬´ë¥¼ í™•ì¸í•˜ê³  ë¡œê·¸ì¸ ëœ ê²½ìš° í˜¸ì¶œí•œ ë§¤í•‘ì£¼ì†Œë¡œ ì´ë™í•˜ê³ 
+		//ë¡œê·¸ì¸ì´ ì•ˆëœ ê²½ìš° ë¡œê·¸ì¸ í¼ìœ¼ë¡œ ì‹¤í–‰ì´ ì´ë™ë˜ë„ë¡ í•œë‹¤.
 		HttpSession session = request.getSession();
 		
-		String logId = (String) session.getAttribute("logId");
-		String logStatus = (String) session.getAttribute("logStatus"); //null. 'Y'
+		String logId = (String)session.getAttribute("logId");
+		String logStatus = (String)session.getAttribute("logStatus");	// null, "Y"
 		
-		if(logStatus==null|| !logStatus.equals("Y")) {//·Î±×ÀÎÀÌ ¾ÈµÈ°æ¿ì ->°¡´ø±æ ¸ØÃß°í ·Î±×ÀÎÀ¸·Î º¸³½´Ù
+		if(logStatus==null || !logStatus.equals("Y")) { //logStatusê°€ ë„ì´ê±°ë‚˜ logStatusê°€ yê°€ ì•„ë‹ˆë¼ë©´ ë¡œê·¸ì¸ì´ ì•ˆë˜ì–´ìˆëŠ” ê²½ìš°ì„ -> í•˜ë˜ê±° ë©ˆì¶”ê³  ë¡œê·¸ì¸ìœ¼ë¡œ ë³´ë‚´
 			response.sendRedirect(request.getContextPath()+"/loginForm");
 			return false;
 		}
 		
-		//¹İÈ¯ÇüÀÌ falseÀÌ¸é ¸ÅÇÎÀ»º¯°æÇÏ°í
-		//trueÀÌ¸é ¸ÅÇÎÀ» Áö¼ÓÇÑ´Ù
+		
+		//ë°˜í™˜í˜•ì´ falseì´ë©´ ë§¤í•‘ì„ ë³€ê²½í•˜ê³  
+		
+		// trueì´ë©´ ë§¤í•‘ì„ ì§€ì†í•œë‹¤.
 		return true;
 	}
-	//ÄÁÆ®·Ñ·¯°¡ ½ÇÇàÈÄ  View·Î ÀÌµ¿ÇÏ±âÀü¿¡ ½ÇÇàµÇ´Â ¸Ş¼Òµå
+	
+	//ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ì‹¤í–‰ í›„ Viewë¡œ ì´ë™í•˜ê¸° ì „ì— ì‹¤í–‰ë˜ëŠ” ë©”ì†Œë“œ
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			@Nullable ModelAndView mav) throws Exception{
 		
 	}
 	
-	//ÄÁÆ®·Ñ·¯°¡ ½ÇÇàÈÄ È£ÃâµÇ´Â ¸Ş¼Òµå
+	//ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ì‹¤í–‰ í›„ í˜¸ì¶œë˜ëŠ” ë©”ì†Œë“œ
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, 
 			@Nullable Exception ex) throws Exception{
 		
 	}

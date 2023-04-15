@@ -1,11 +1,5 @@
 package com.t09ether.home.dao;
 
-import java.util.List;
+public class CustomerCenterDAO {
 
-import com.t09ether.home.dto.CustomerCenterDTO;
-
-public interface CustomerCenterDAO {
-	public List<CustomerCenterDTO> boardList();
-	
-	
 }

@@ -26,13 +26,9 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-<<<<<<< HEAD
-=======
 
->>>>>>> d93d313943c1a6ee86a5b13100fd25c4d2886bbc
 		/*font: inherit; */
 		vertical-align: baseline;
-
 	}
 
 	article, aside, details, figcaption, figure,
@@ -127,10 +123,6 @@
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-<<<<<<< HEAD
-=======
-
->>>>>>> d93d313943c1a6ee86a5b13100fd25c4d2886bbc
 		color: #e89980;
 		text-decoration: none;
 	}

@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: USER
-=======
-Built-By: simeee
->>>>>>> d93d313943c1a6ee86a5b13100fd25c4d2886bbc
 Build-Jdk: 11.0.17
 Created-By: Maven Integration for Eclipse
 

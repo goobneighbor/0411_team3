@@ -227,6 +227,7 @@
 		<li><input type="number" name="pro_stock" id="pro_stock"/></li>
 		<li>상품이미지 주소</li>
 		<li><input type="text" name="image" id="image"/></li>
+		<img src=""/>
 		
 		<!-- <li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li> -->
 		<li>상품정보</li>

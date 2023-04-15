@@ -6,13 +6,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <style>
 .container{
-	width:1000px;
 	margin:0 auto;
 	padding:20px;
-	float:center;
-
-	
-}
 
 .card-img-top{
 	width:600px;
@@ -60,9 +55,14 @@ function openPopup() {
  
         <!-- Page content-->
         <div class="container">
-            <div class="row">
+        <div class="row">
+        	<div class="card mb-4">
+                        <div class="card-header">온라인 공동구매 시작하세요!</div>
+                        <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
+            </div>
+            
                 <!-- Blog entries-->
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
                         <img src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
@@ -78,7 +78,7 @@ function openPopup() {
 
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-6" style="float:left">
+                <div class="col-lg-5">
                     <!-- Search widget-->
                     <div class="card mb-6">
                         <div class="card-header">참여하기</div>
@@ -103,16 +103,10 @@ function openPopup() {
 								</div>
                             </div>
                         </div>
-                    </div>
-                  
-							    
-							    							                     
-                    </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">온라인 공동구매 시작하세요!</div>
-                        <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
-                    </div>
-                </div>
+                    </div>		    							                     
+                  </div>
+                    
+                    
+              </div>
             </div>
 

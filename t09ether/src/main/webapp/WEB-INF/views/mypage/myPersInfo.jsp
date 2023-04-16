@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 	#joinForm ul{
- 		overflow:auto; 
+ 		overflow:auto;
 	}
 	#joinForm li {
  		float:left;
@@ -17,13 +17,14 @@
 		padding:10px 0; 
  		/*border-bottom:1px solid #ddd;*/
 		line-height:40px;
-		list-style:none;		
+		list-style:none;
 	}
  	#joinForm li:nth-child(2n) { 
- 		width:80%; 
+ 		width:80%;
+ 		z-index:10; 
  	} 
  	#joinForm li:last-child { 
- 		width:100%; 
+ 		width:100%;
  	}
  	#nothankyou ul{
  		list-style:none;

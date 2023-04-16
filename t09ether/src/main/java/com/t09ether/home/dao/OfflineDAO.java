@@ -6,12 +6,12 @@ import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 
 public interface OfflineDAO {
-	//±Ûµî·Ï
+	//ê¸€ë“±ë¡
 	public int offlineInsert(OfflineDTO dto);
-	//ÃÑ·¹ÄÚµå¼ö
+	//ì´ë ˆì½”ë“œìˆ˜
 	public int totalRecord(OfflinePagingVO vo);
-	//DB¿¡ ÀÖ´Â DTO ¹è¿­¿¡ ´ã±â
+	//í•´ë‹¹í˜ì´ì§€ ì„ íƒí•˜ê¸°
 	public List<OfflineDTO> offList(OfflinePagingVO vo);
-	//±Û¼±ÅÃ(no)
+	//ê¸€ì„ íƒ(off_no)
 	public OfflineDTO offlineSelect(int no);
 }

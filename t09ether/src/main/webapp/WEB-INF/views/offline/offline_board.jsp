@@ -83,7 +83,7 @@
 	<h1>오프라인 공구 게시판</h1>
 	<div class="board_header"><a href="offlineWrite">글쓰기</a></div>
 	<div class = "pHeader">
-		<div>진행중인 공구 :  </div>
+		<div>진행중인 공구 : ${vo.totalRecord } </div>
 		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>		
 	</div>
 	<form method="post" action="/campus/board/boardMultiDel" id="delList">

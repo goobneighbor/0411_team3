@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: rnsjt
+=======
+Built-By: rhdms
+>>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
 Build-Jdk: 11.0.17
 Created-By: Maven Integration for Eclipse
 

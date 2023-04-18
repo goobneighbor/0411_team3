@@ -1,5 +1,7 @@
 package com.t09ether.home.dao;
 
-public interface MyPageDAO {
+import com.t09ether.home.dto.MyPageDTO;
 
+public interface MyPageDAO {
+	public MyPageDTO loginOk(String userid, String userpwd);
 }

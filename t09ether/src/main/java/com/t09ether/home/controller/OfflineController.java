@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,13 +21,15 @@ import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.service.OfflineService;
 
+
 @RestController
+@RequestMapping("/offline")
 public class OfflineController {
 	@Autowired
 	OfflineService service;
 	
 	//게시판목록
-	@GetMapping("/offline")
+	@GetMapping("/offline_board")
 	public ModelAndView offline(OfflinePagingVO vo) {
 		ModelAndView mav = new ModelAndView();				
 		vo.setTotalRecord(service.totalRecord(vo)); //총레코드수

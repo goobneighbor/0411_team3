@@ -19,7 +19,7 @@
 		from off_gb where off_no=${param1}
 	</select>
 	<update id="offlineHitCount">
-		update off_gb set hit = hit + 1 where no=${param1}
+		update off_gb set off_hit = off_hit + 1 where off_no=${param1}
 	</update>
 	
 </mapper>

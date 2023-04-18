@@ -81,7 +81,7 @@ public class OfflineController {
 	@GetMapping("/offlineView")
 	public ModelAndView boardView(int no, OfflinePagingVO vo) {
 		//조회수증가
-		//service.boardHitCount(no);
+		service.offlineHitCount(no);
 		OfflineDTO dto = service.offlineSelect(no);
 		
 		ModelAndView mav = new ModelAndView();		

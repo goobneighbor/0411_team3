@@ -13,7 +13,7 @@ public interface OfflineDAO {
 	//전체레코드 담아오기
 	public List<OfflineDTO> offList(OfflinePagingVO vo);
 	//글선택(off_no)
-	public OfflineDTO offlineSelect(int no);
+	public OfflineDTO offlineSelect(int off_no);
 	//조회수증가
 	public void offlineHitCount(int off_no);
 }

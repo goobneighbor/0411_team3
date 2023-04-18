@@ -5,9 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
-import com.t09ether.home.dao.RegisterDAO;
 import com.t09ether.home.dto.MyPageDTO;
-import com.t09ether.home.dto.RegisterDTO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -17,6 +15,16 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public MyPageDTO loginOk(String userid, String userpwd) {
 		return dao.loginOk(userid, userpwd);
+	}
+
+	@Override
+	public MyPageDTO mpRegisterEdit(String userid) {
+		return dao.mpRegisterEdit(userid);
+	}
+
+	@Override
+	public MyPageDTO idChk(String userid) {
+		return dao.idChk(userid);
 	}
 
 }

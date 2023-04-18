@@ -54,8 +54,12 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myPersInfo_IdChk")
-		public ModelAndView myPersInfo_IdChk() {
+		public ModelAndView myPersInfo_IdChk(HttpSession session) {
+		
+		String userid = (String)session.getAttribute("logId");
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("userid", userid);		
 		mav.setViewName("mypage/myPersInfo_IdChk");
 		
 		return mav;
@@ -67,23 +71,20 @@ public class MyPageController {
 		
 		ModelAndView mav = new ModelAndView();
 		if(dto!=null) { //성공
-			session.setAttribute("logId", dto.getUserid());
-			session.setAttribute("logName", dto.getUsername());
-			session.setAttribute("logStatus", "Y");
 			
-			//나오는지 확인 후 삭제해야 합니다! 잘나오는데 왜 안돼.................................
-			System.out.println("logId: "+dto.getUserid());
-			System.out.println("logName: "+dto.getUsername());
-			String tempo = (String)session.getAttribute("logStatus");
-			System.out.println("logStatus: "+tempo);
+			dto = service.mpRegisterEdit((String)session.getAttribute("logId"));
+			mav.addObject("dto", dto);
 			
-			mav.setViewName("redirect:myPersInfo");
+			mav.setViewName("mypage/myPersInfo");
 			
 		}else { //실패
 			mav.setViewName("redirect:myPersInfo_IdChk");
 		}
 		return mav;
 	}
+	
+	
+	
 	
 	
 	/*@Autowired

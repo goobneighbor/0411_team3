@@ -126,7 +126,6 @@
 		<p>어서오세요.</p>
 	</header>
 </section>
-	
 	<form method="post" id="joinForm">
 		<ul>
 			<li>아이디</li>

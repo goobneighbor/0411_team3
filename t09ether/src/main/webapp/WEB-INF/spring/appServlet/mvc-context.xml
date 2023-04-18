@@ -19,7 +19,7 @@
 	 -->
 	 <mvc:interceptors>
 	 	<mvc:interceptor>
-	 		<mvc:mapping path=""/>
+	 		<mvc:mapping path="/online/productdetail"/>
 	 		
 	 		
 	 		

@@ -34,9 +34,4 @@ public class CustomerCenterController {
 		
 		return mav;
 	}
-
-	
-	
-	
-	
 }

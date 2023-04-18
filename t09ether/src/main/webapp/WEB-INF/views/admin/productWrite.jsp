@@ -216,8 +216,13 @@
 	});
 </script>
 <div class="container">
+<section id="main" class="container">
+	<header>
+			<h2>관리자 상품 등록</h2>
+			<p>판매 상품 등록하기</p>
+	</header>
+</section>
 <form method="post" action="productWriteOk" id="productForm">
-	<h1>상품 등록</h1>
 	<ul> 
 		<li>상품명</li>
 		<li><input type="text" name="pro_name" id="pro_name"/></li>

@@ -1,13 +1,13 @@
 package com.t09ether.home.controller;
 
 import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.OnlineDTO;
+import com.t09ether.home.dto.OnlinePagingVO;
 import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.service.ProductService;
 
@@ -56,5 +58,38 @@ public class ProductController {
 		return entity; 
 		
 	}
-
+	
+	
+	@GetMapping("/onlineHome")
+	public ModelAndView online(OnlinePagingVO vo) {
+		ModelAndView mav = new ModelAndView();
+		
+		//총레코드수
+		vo.setTotalRecord(service.totalRecord(vo));
+		mav.addObject("vo", vo);
+		
+		//해당페이지 레코드 선택하기
+		mav.addObject("list", service.pageSelect(vo));
+		
+		mav.setViewName("online/onlineList");
+		return mav;
+	}
+	
+	@GetMapping("/productDetail")
+	public ModelAndView productDetail(int pro_code) {
+		ModelAndView mav = new ModelAndView();
+		ProductDTO dto = service.productDetailSelect(pro_code);
+		mav.addObject("dto", dto); //선택 레코드
+		mav.setViewName("online/productDetail");
+		return mav;
+	}
+	
+	@GetMapping("/onlineGB")
+	public ModelAndView onlineGB(int pro_code) {
+		ModelAndView mav = new ModelAndView();
+		ProductDTO dto = service.productDetailMakeSelect(pro_code);
+		mav.addObject("dto", dto); //선택 레코드
+		mav.setViewName("online/onlineGB");
+		return mav;
+	}
 }

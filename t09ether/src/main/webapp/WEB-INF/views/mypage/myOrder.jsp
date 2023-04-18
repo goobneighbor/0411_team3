@@ -35,6 +35,19 @@
 													<td>22,350원</td>
 													<td>1개</td>
 												</tr>
+												<tr>
+													<td>2023.03.26</td>
+													<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
+													<td>22,350원</td>
+													<td>1개</td>
+												</tr>
+												<tr>
+													<td>2023.03.26</td>
+													<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
+													<td>22,350원</td>
+													<td>1개</td>
+												</tr>
+												<tr>
 												<c:forEach var="data" items="${list}">
 													<td>${data.no}2023.03.26</td>
 													<td>${data.product}니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>

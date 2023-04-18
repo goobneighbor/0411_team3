@@ -38,6 +38,21 @@ public class OfflineServiceImpl implements OfflineService {
 		dao.offlineHitCount(off_no);
 	}
 
+	@Override
+	public OfflineDTO offlineEditSelect(int off_no) {
+		return dao.offlineEditSelect(off_no);
+	}
+
+	@Override
+	public int offlineUpdate(OfflineDTO dto) {
+		return dao.offlineUpdate(dto);
+	}
+
+	@Override
+	public int offlineDelete(OfflineDTO dto) {
+		return dao.offlineDelete(dto);
+	}
+
 	
 
 	

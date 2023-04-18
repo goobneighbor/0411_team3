@@ -26,10 +26,7 @@
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-<<<<<<< HEAD
-=======
 		/*font: inherit; */
->>>>>>> a618469f4b60f18e341e87976951934191dbdd70
 		vertical-align: baseline;
 	}
 
@@ -124,15 +121,15 @@
 		-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-<<<<<<< HEAD
-		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;		
-=======
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 >>>>>>> a618469f4b60f18e341e87976951934191dbdd70
 =======
 >>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
+=======
+>>>>>>> 4e36a9922aa08176e048ed4c4251c46b428b65ab
 		color: #e89980;
 		text-decoration: none;
 	}

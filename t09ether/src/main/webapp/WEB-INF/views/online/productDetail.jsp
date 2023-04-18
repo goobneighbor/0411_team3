@@ -65,10 +65,11 @@ function openPopup() {
                 <div class="col-lg-6">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <img src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
+                        <img src="${dto.image }" />
                         <div class="card-body">
                             <div class="small text-muted"></div>
                             <div id="review">리뷰</div>
+<<<<<<< HEAD
                             <h2 class="card-title">상품명</h2>
 <<<<<<< HEAD
                             <p class="card-text">상세설명</p>
@@ -77,6 +78,12 @@ function openPopup() {
                             <p class="card-text">상세설명<br/><br/><br/><br/></p>
                             <a class="btn btn-primary" href="" style="float:right">내가 공구만들기</a>
 >>>>>>> 3dc4d5c1b851ac7bf9dda36ad01abffb8b3cc55b
+=======
+                            <h2 class="card-title">${dto.pro_name }</h2>
+                            <p class="card-text">${dto.detailed }</p>
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
+
+>>>>>>> 4e36a9922aa08176e048ed4c4251c46b428b65ab
                         </div>
                     </div>
 
@@ -94,7 +101,7 @@ function openPopup() {
                                 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
 								  <h4 id="scrollspyHeading1">서울시 서대문구</h4>
 								  <p>통일로 135 충정빌딩<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
-								  <p>통일로 135 충정빌딩 앞</p> 
+								  <p>통일로 135 충정빌딩</p> 
 								  <p>통일로 135 충정빌딩 옆</p>
 								  <h4 id="scrollspyHeading2">서울시 동작구</h4>
 								  <p>...</p>

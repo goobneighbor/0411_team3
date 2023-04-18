@@ -16,4 +16,10 @@ public interface OfflineDAO {
 	public OfflineDTO offlineSelect(int off_no);
 	//조회수증가
 	public void offlineHitCount(int off_no);
+	//글선택(수정폼으로이동)
+	public OfflineDTO offlineEditSelect(int off_no);
+	//글수정(DB등록)
+	public int offlineUpdate(OfflineDTO dto);
+	//글삭제
+	public int offlineDelete(OfflineDTO dto);
 }

@@ -21,5 +21,13 @@
 	<update id="offlineHitCount">
 		update off_gb set off_hit = off_hit + 1 where off_no=${param1}
 	</update>
-	
+	<select id="offlineEditSelect" resultType="com.t09ether.home.dto.OfflineDTO">
+		select * from off_gb where off_no=${param1}
+	</select>
+	<update id="offlineUpdate" parameterType="com.t09ether.home.dto.OfflineDTO">
+		update off_gb set off_subject=#{off_subject},off_content=#{off_content},group_num=#{group_num} where off_no=${off_no} and userid=#{userid}
+	</update>
+	<delete id="offlineDelete">
+		delete from off_gb where off_no = ${off_no} and userid=#{userid}
+	</delete>
 </mapper>

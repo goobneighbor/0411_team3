@@ -47,7 +47,7 @@
 	<form method="post" action="loginOk" id="logFrm">
 		<ul>
 			<li>아이디</li>
-			<li><input type="text" name="userid" id="userid"/></li>
+			<li><input type="text" name="userid" id="userid" value="${userid }" readonly/></li>
 			<li>비밀번호</li>
 			<li><input type="password" name="userpwd" id="userpwd"/></li>
 			<li><input type="submit" value="확인"/></li>

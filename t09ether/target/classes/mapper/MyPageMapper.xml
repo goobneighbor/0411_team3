@@ -7,4 +7,12 @@
 		select userid, username from registerinfo
 		where userid=#{param1} and userpwd=#{param2}
 	</select>
+	<select id="mpRegisterEdit" resultType="com.t09ether.home.dto.MyPageDTO">
+		select userid, username,tel, email, zipcode, addr, addrdetail, rank from registerinfo
+		where userid=#{param1}
+	</select>
+	<select id="idChk" resultType="com.t09ether.home.dto.MyPageDTO">
+		select userid from registerinfo
+		where userid=#{param1}
+	</select>
 </mapper>

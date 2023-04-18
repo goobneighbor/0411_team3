@@ -130,46 +130,46 @@
 		<ul>
 			<li>아이디</li>
 			<li>
-				<input type="text" name="userid" id="userid" minlength="8" maxlength="15" value="원래아이디_db연결하고 수정" readonly/>
+				<input type="text" name="userid" id="userid" minlength="8" maxlength="15" value="${dto.userid }"readonly/>
 				<input type="hidden" id="idStatus" value="N"/>
 			</li>
 			
 			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15"/></li>
+			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15" /></li>
 			
 			<li>비밀번호확인</li>
-			<li><input type="password" name="userpwd2" id="userpwd2" value="12345678"/></li>
+			<li><input type="password" name="userpwd2" id="userpwd2" /></li>
 			
 			<li>이름</li>
-			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>
+			<li><input type="text" name="username" id="username" minlength="2" maxlength="10" value="${dto.username }" readonly/></li>
 			
 			<li>연락처</li>
 			<li>
 				<select style="width:13%; float:left; margin:0;" name="tel1" id="tel1">
-					<option value="010">010</option>
-					<option value="02">02</option>
-					<option value="031">031</option>
-					<option value="041">041</option>
-					<option value="051">051</option>
+					<option value="010" <c:if test="${dto.tel1=='010'}">selected</c:if>>010</option>
+					<option value="02" <c:if test="${dto.tel1=='02'}">selected</c:if>>02</option>
+					<option value="031" <c:if test="${dto.tel1=='031'}">selected</c:if>>031</option>
+					<option value="041" <c:if test="${dto.tel1=='041'}">selected</c:if>>041</option>
+					<option value="051" <c:if test="${dto.tel1=='051'}">selected</c:if>>051</option>
 				</select> 
-				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel2" id="tel2" maxlength="4" value="1234"/>
-				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel3" id="tel3" maxlength="4" value="5678"/>		
+				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel2" id="tel2" maxlength="4" value="${dto.tel2 }" />
+				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel3" id="tel3" maxlength="4" value="${dto.tel3 }" />		
 			</li>
 			<li>이메일</li>
-			<li><input type="text" name="email" id="email"/></li>
+			<li><input type="text" name="email" id="email" value="${dto.email }"/></li>
 			<li>우편번호</li>
 			<li>
-				<input style="width:78%; float:left; margin:2px;" type="text" name="zipcode" id="txtPostCodeC"/>
+				<input style="width:78%; float:left; margin:2px;" type="text" name="zipcode" id="txtPostCodeC" value="${dto.zipcode }"/>
 				<input style="width:20%; float:right; margin:2px;" type="button" value="우편번호찾기" id="zipcodeSearch"/>
 			</li>
 			<li>주소</li>
-			<li><input type="text" name="addr" id="txtAddressC"/></li>
+			<li><input type="text" name="addr" id="txtAddressC" value="${dto.addr }"/></li>
 			<li>상세주소</li>
-			<li><input type="text" name="addrdetail"/></li>
+			<li><input type="text" name="addrdetail" value="${dto.addrdetail }"/></li>
 
 			<!-- 등급 -->
 			<li>등급</li>
-			<li><input type="text" name="rank" id="rank" value="1" readonly/><li>
+			<li><input type="text" name="rank" id="rank" value="${dto.rank }" readonly/><li>
 			<br/><br/>
 
 			<li><input type="submit" value="회원정보수정"/></li>

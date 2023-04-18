@@ -48,6 +48,7 @@ public class RegisterController {
 			System.out.println("logName: "+dto.getUsername());
 			String tempo = (String)session.getAttribute("logStatus");
 			System.out.println("logStatus: "+tempo);
+			System.out.println("register rank: "+dto.getRank());
 			
 			mav.setViewName("redirect:/");
 			

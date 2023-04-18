@@ -50,7 +50,7 @@
 			<li><input type="text" name="userid" id="userid"/></li>
 			<li>비밀번호</li>
 			<li><input type="password" name="userpwd" id="userpwd"/></li>
-			<li><input type="submit" value="LOGIN"/></li>
+			<li><input type="submit" value="확인"/></li>
 		</ul>
 	</form>
 </div>

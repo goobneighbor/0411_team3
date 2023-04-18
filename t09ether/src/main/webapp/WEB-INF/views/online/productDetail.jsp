@@ -104,9 +104,7 @@ function openPopup() {
                             </div>
                         </div>
                     </div>
-                  
-							    
-							    							                     
+	    							                     
                     </div>
                     <!-- Side widget-->
                     <div class="card mb-4">

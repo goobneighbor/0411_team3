@@ -37,7 +37,7 @@
 
 <!-- 여기부터 삽입 -->
 <style>
-<<<<<<< HEAD
+
 	nav>div>div {
 		display: inline-block;	
 	}
@@ -54,7 +54,7 @@
  		padding: 20px;	
 	} 
 	
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
+
 </style>
 
 </head>
@@ -69,18 +69,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li> -->
-<<<<<<< HEAD
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/online/onlineHome">온라인공구</a></li>
-                        <li class="nav-item"><a class="nav-link" href="offline">오프라인공구</a></li>
-                       
-=======
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/online/onlineHome">온라인공구</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="#!">오프라인공구</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/online/onlineHome">온라인공구</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/offline">오프라인공구</a></li>
+                       
+
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/product/productWrite">관리자임시</a></li>
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">    
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
+
                         <c:if test="${logStatus == 'Y' }">
                         <li class="nav-item"><a class="nav-link" >${logName } 님, 환영합니다.</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout">로그아웃</a></li>
@@ -90,46 +87,10 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/loginForm">로그인</a></li>
                         </c:if>
                         <li class="nav-item"><a class="nav-link" href="#!">고객센터</a></li>
-<<<<<<< HEAD
-=======
-                        
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
+
                         <li class="nav-item dropdown">
-                        <!-- <li class="nav-item dropdown">
-
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li> 
 
 
-                    </ul>
-<<<<<<< HEAD
-
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-
-=======
-					<!-- 
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
-                    <form class="d-flex">
-                       <button class="btn btn-outline-dark" type="submit">
-
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
-<<<<<<< HEAD
-                    -->
-
-=======
-                     -->
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
                 </div>
             </div>
         </nav>

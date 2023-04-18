@@ -27,11 +27,20 @@
  	padding-right:30px;
  	text-align:center;
  	}
+
 </style>
 <script>
 $(function(){
 	$("#onlineJoinForm").on('click', function(){
-		window.open("onlineJoinForm","join","width=500,height=260");
+		var _width = '500';
+	    var _height = '248';
+	    
+		// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+	    var _left = Math.ceil(( window.screen.width - _width )/2);
+	    var _top = Math.ceil(( window.screen.height - _height )/2); 
+
+	    window.open('onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
 	});
 	
 });
@@ -53,16 +62,21 @@ function openPopup() {
         <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
+                        <img src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
                         <div class="card-body">
                             <div class="small text-muted"></div>
                             <div id="review">리뷰</div>
                             <h2 class="card-title">상품명</h2>
+<<<<<<< HEAD
                             <p class="card-text">상세설명</p>
                             <a class="btn btn-primary" href="onlineGB">내가 공구만들기</a>
+=======
+                            <p class="card-text">상세설명<br/><br/><br/><br/></p>
+                            <a class="btn btn-primary" href="" style="float:right">내가 공구만들기</a>
+>>>>>>> 3dc4d5c1b851ac7bf9dda36ad01abffb8b3cc55b
                         </div>
                     </div>
 

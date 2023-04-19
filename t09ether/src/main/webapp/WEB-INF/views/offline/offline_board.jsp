@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+	li{
+		list-style-type: none;
+	}
 	.board_header{
 		margin:20px;
 		padding:30px;
@@ -48,7 +51,7 @@
 		text-align: center;	
 	}
 	
-	.board_list li:nth-child(8n+7){
+	.board_list li:nth-child(8n+7),{
 		width:15%;		
 		white-space: nowrap;
 		overflow:hidden;
@@ -70,6 +73,10 @@
 	.pHeader>div:last-child{
 		text-align: right;
 	}
+	.pagingDiv{
+		margin: 0 auto;
+		text-align: center;
+	}
 	.pagingDiv li{
 		float:left;
 		padding:10px 20px;
@@ -85,7 +92,19 @@
 		padding:10px;
 		text-align: center;		
 	}
+	
+	
 </style>
+<script>
+	$(function(){
+		$("#searchForm").submit(function(){
+			if($("#searchWord").val()==""){
+				alert("검색어를 입력하세요....");
+				return false;
+			}
+			return true;
+		});
+</script>
 <!-- Header-->
 <header class="bg-tomato py-5">
 	<div class="container px-4 px-lg-5 my-5">
@@ -128,7 +147,7 @@
 				<li><a href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${offDTO.off_subject}</a></li>
 				<li>${offDTO.userid }</li>
 				<li>${offDTO.off_hit }</li>
-				<li>${offDTO.writedate }</li>
+				<li>${offDTO.writedate}</li>
 				<li>${offDTO.deaddate}</li>
 				<c:set var="recordNum" value="${recordNum-1}"/>
 			</c:forEach>
@@ -143,7 +162,7 @@
 				<li>prev</li>
 			</c:if>
 			<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 1아닐때 -->
-				<li><a href="boardList?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+				<li><a href="offline_board?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
 			</c:if>
 			
 			<!-- 페이지번호 -->
@@ -156,7 +175,7 @@
 				<c:if test ="${p!=vo.nowPage }">
 					<li>
 				</c:if>
-					<a href="boardList?nowPage=${p}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+					<a href="offline_board?nowPage=${p}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
 				</c:if>
 			</c:forEach>
 			
@@ -167,7 +186,7 @@
 			</c:if>
 			<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 현재페이지가 마지막 아닐때 -->
 				
-				<li><a href="boardList?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
+				<li><a href="offline_board?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
 				
 			</c:if>
 			
@@ -176,14 +195,16 @@
 	<!--검색 -->
 	
 	<div class ="searchDiv">
-		<form method="get" id="searchForm" action="boardList">
-			<select name = "searchKey">
-				<option value="subject">제목</option>
-				<option value="username">작성자</option>
-				<option value="content">글내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="submit" value="Search"/>
+		<form method="get" id="searchForm" action="offline_board">
+		<ul>
+			<li><select name = "searchKey">
+				<option value="off_subject">제목</option>
+				<option value="userid">작성자</option>
+				<option value="off_content">글내용</option>
+			</select></li>
+			<li><input type="text" name="searchWord" id="searchWord"/></li>
+			<li><input type="submit" value="Search"/></li>
+		</ul>	
 		</form>
 	
 	</div>

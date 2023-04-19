@@ -92,7 +92,9 @@
                </c:forEach>   
             </tbody>
          </table>
-      
+      <c:if test="${CustomerCenterDTO.rank==7}">
+      	<button type="button" onclick="location.href=''"></button>
+      </c:if>
       <h2 style="text-align:left; padding:20px;">1:1문의</h2>
          <div id="totalBox">
             <div class="inbox1">

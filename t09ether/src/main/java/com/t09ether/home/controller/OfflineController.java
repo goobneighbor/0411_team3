@@ -30,13 +30,14 @@ public class OfflineController {
 	
 	//게시판목록
 	@GetMapping("/offline")
-	public ModelAndView offline(OfflinePagingVO vo) {
-		ModelAndView mav = new ModelAndView();				
-		vo.setTotalRecord(service.totalRecord(vo)); //총레코드수
-		System.out.println("totalRecord="+vo.getTotalRecord() );
+	public ModelAndView offline(OfflinePagingVO vo) {		
+		ModelAndView mav = new ModelAndView();			
+		//총레코드수
+		vo.setTotalRecord(service.totalRecord(vo));
+		
 		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
 		list = service.offList(vo);
-		System.out.println("list->"+list.toArray());
+		
 		//해당페이지 레코드 선택하기
 		mav.addObject("list", service.offList(vo));		
 		mav.addObject("vo", vo);
@@ -179,23 +180,10 @@ public class OfflineController {
 		String userid = ((String)request.getSession().getAttribute("logId")); //로그인한 아이디구하기
 		System.out.println("userid->"+userid);
 		
-		RegisterDTO rDTO = new RegisterDTO();
-		rDTO = service.offlineParticipant(userid);
-		System.out.println("rDTO->"+rDTO.toString());
 		
-		OfflineParticipantDTO pDTO = new OfflineParticipantDTO();
-		pDTO.setOff_no(dto.getOff_no());//원글번호
-		pDTO.setUserid(userid);//참가자아이디
-		pDTO.setUsername(rDTO.getUserid());//참가자이름
-		pDTO.setTel(rDTO.getTel());//참가자연락처
 		
-		List<OfflineParticipantDTO> list = new ArrayList<OfflineParticipantDTO>();
-		list.add(pDTO);
-		
-		//현재인원증가
-		//
 		mav.addObject("dto", dto);//원글정보
-		mav.addObject("list", list);//참여자정보
+		//mav.addObject("list", list);//참여자정보
 		mav.setViewName("offline/offlineDetail");
 		return mav;
 	}

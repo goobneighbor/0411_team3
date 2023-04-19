@@ -38,9 +38,15 @@
 		width:100px;
 		border:1px solid tomato;
 		border-radius: 10px;
-		background-color : red;
+		background-color : orange;
 		color:#fff;
-		float:right		
+		float:right;	
+		text-align: center;
+	}
+	#offlineJoin{
+		margin:0 auto;
+		float:left;
+		text-align: center;
 	}
 	
 </style>
@@ -72,15 +78,15 @@
 		<li>모집마감일 : ${dto.deaddate}</li>				
 		<li>만남시간 : ${dto.app_time}</li>					
 		<li>상세정보 : ${dto.off_content}</li>
-		<div class="jr">
-		<form method="post" action="offlineJoin" id="offlineJoin">
-			<input type="submit" value="지금참여하기"/>
-		</form>
-			
+		
 		<li class="report"><a href="">신고하기</a></li>
-		</div>		
+			
 	</ul>
-	
+	<form method="post" action="offlineJoin" id="offlineJoin">
+			<input type="submit" value="지금참여하기"/>
+			<input type="hidden" name="dto" value="${dto}"/>
+	</form>
+			
 	<div class="boardSubMenu">		
 		<!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
 		<c:if test="${logId==dto.userid}">

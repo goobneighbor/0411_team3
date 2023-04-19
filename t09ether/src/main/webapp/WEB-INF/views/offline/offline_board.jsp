@@ -5,8 +5,8 @@
 		list-style-type: none;
 	}
 	.board_header{
-		margin:20px;
-		padding:30px;
+		margin:30px;
+		padding:20px;
 		width:350px;
 		height:70px;
 		background-color:tomato;
@@ -16,6 +16,7 @@
 	.board_header a{
 		color:white;
 	}
+	
 	.board_list{
 		text-decoration: none;
 	}
@@ -30,11 +31,11 @@
 		overflow:hidden;
 		text-align: center;
 	}
-	.board_list li:nth-child(8n+1){
+	.board_list li:nth-child(8n+1){/*글번호*/
 		width:5%;
 		text-align: center;	
 	}
-	.board_list li:nth-child(8n+2){
+	.board_list li:nth-child(8n+2){/*지역*/
 		width:15%;
 		/*말줄임표시하기*/
 		white-space: nowrap;/*줄바꾸지않는다*/
@@ -42,8 +43,8 @@
 		text-overflow:ellipsis;/*넘친데이터 말줄임표시*/	
 		text-align: center;	
 	}
-	.board_list li:nth-child(8n+4){
-		width:30%;
+	.board_list li:nth-child(8n+4){/*글제목*/
+		width:35%;
 		/*말줄임표시하기*/
 		white-space: nowrap;/*줄바꾸지않는다*/
 		overflow:hidden;
@@ -51,13 +52,14 @@
 		text-align: center;	
 	}
 	
-	.board_list li:nth-child(8n+7),{
-		width:15%;		
+	.board_list li:nth-child(8n+7),.board_list li:nth-child(8n+8){/*등록일, 마감일*/
+		width:10%;		
 		white-space: nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;	
 	}
-	.board_list li:nth-child(8n+3), board_list li:nth-child(8n+6){
+	
+	.board_list li:nth-child(8n+3), board_list li:nth-child(8n+6){/*인원, 조회수*/
 		width:5%;		
 		white-space: nowrap;
 		overflow:hidden;
@@ -68,14 +70,14 @@
 		width:50%;
 		float:left;
 		padding:10px 0;
-		background : #888;
+		background :#ff6347;
 	}
 	.pHeader>div:last-child{
 		text-align: right;
 	}
-	.pagingDiv{
-		margin: 0 auto;
+	.pagingDiv{		
 		text-align: center;
+		border:1px solid orange;
 	}
 	.pagingDiv li{
 		float:left;
@@ -87,13 +89,21 @@
 	.board_list a:link, .board_list a:hover, .board_list a:visited{
 		color:#000;
 	}
+	.listDiv a:hover, .listDivt a:visited{
+		color:tomato;
+	}
 	.searchDiv{
 		clear:left;
-		padding:10px;
+		margin:0;
+		padding:0;
 		text-align: center;		
 	}
-	
-	
+	#wrapper{
+		display: grid;
+     	place-items: center;
+     	min-height: 5vh;
+     	margin:0 auto;
+	}
 </style>
 <script>
 	$(function(){
@@ -117,16 +127,17 @@
 <div class="container">	
 	<div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h2></div>
 	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord } </div>
-		<div>${vo.totalPage}페이지/${vo.nowPage}페이지</div>		
-	</div>
-	<form method="post" action="/campus/board/boardMultiDel" id="delList">
-		<!-- 페이지번호, 검색어, 검색키 -->
+		<div>진행중인 공구 : ${vo.totalRecord }건 </div>
+		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>			
+	</div>	
+	<!-- 페이지번호, 검색어, 검색키 -->
 		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 		<c:if test="${vo.searchWord!=null}">
 			<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 			<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
-		</c:if>
+		</c:if>	
+	
+	<div class="listDiv">
 		<ul class="board_list">			
 			<li>번호</li>
 			<li>지역</li>
@@ -152,17 +163,19 @@
 				<c:set var="recordNum" value="${recordNum-1}"/>
 			</c:forEach>
 		</ul>
-	</form>
+	</div>
 	
 	<!-- 페이징 -->	
-	<div class="pagingDiv">
+	
+	<div class="pagingDiv" id="wrapper">
+		<div id="item">
 		<ul>
 			<!-- nowPage -->
 			<c:if test="${vo.nowPage==1}"> <!-- 현재페이지가 1일때 -->
 				<li>prev</li>
 			</c:if>
 			<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 1아닐때 -->
-				<li><a href="offline_board?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+				<li><a href="offline?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
 			</c:if>
 			
 			<!-- 페이지번호 -->
@@ -170,12 +183,12 @@
 				<c:if test="${p <= vo.totalPage}"> <!-- 표시할 페이지 번호가 총페이지 수보다 작거나 같을 때 페이지 번호를 출력한다 -->
 					<!-- 현재페이지 표시하기 -->
 				<c:if test ="${p==vo.nowPage }">
-					<li style="background:#ddd;">
+					<li style="background:orange;">
 				</c:if>	
 				<c:if test ="${p!=vo.nowPage }">
 					<li>
 				</c:if>
-					<a href="offline_board?nowPage=${p}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+					<a href="offline?nowPage=${p}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
 				</c:if>
 			</c:forEach>
 			
@@ -186,25 +199,23 @@
 			</c:if>
 			<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 현재페이지가 마지막 아닐때 -->
 				
-				<li><a href="offline_board?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
+				<li><a href="offline?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
 				
 			</c:if>
 			
 		</ul>
+		</div>	
 	</div>
 	<!--검색 -->
-	
 	<div class ="searchDiv">
 		<form method="get" id="searchForm" action="offline_board">
-		<ul>
-			<li><select name = "searchKey">
-				<option value="off_subject">제목</option>
-				<option value="userid">작성자</option>
-				<option value="off_content">글내용</option>
-			</select></li>
-			<li><input type="text" name="searchWord" id="searchWord"/></li>
-			<li><input type="submit" value="Search"/></li>
-		</ul>	
+			<select name = "searchKey" id="searchKey">
+				<option value="subject">제목</option>
+				<option value="username">작성자</option>
+				<option value="content">글내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="Search" id="searchSubmit"/>
 		</form>
 	
 	</div>

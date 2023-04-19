@@ -1,11 +1,26 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
+
 public class OfflineParticipantDTO {
 	private int off_j_no; // 일련번호
 	private int off_no;//원글번호
 	private String userid; // 참가자 아이디
 	private String username;//참가자 이름
 	private String tel;//참가자 연락처
+	
+	//참가자들을 보관할 배열
+	private List<RegisterDTO> party;	
+	
+	
+	
+	public List<RegisterDTO> getParty() {
+		return party;
+	}
+	public void setParty(List<RegisterDTO> party) {
+		this.party = party;
+	}
+	
 	public int getOff_j_no() {
 		return off_j_no;
 	}

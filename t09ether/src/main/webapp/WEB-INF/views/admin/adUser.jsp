@@ -8,6 +8,7 @@
 </head>
 <body>
 <!-- Main -->
+	<!-- Main -->
 	<section id="main" class="container">
 		<header>
 			<h2>온라인 공구 내역</h2>
@@ -21,7 +22,7 @@
 						<table>
 							<thead>
 								<tr>
-									<th>주문일</th>
+									<th>번호</th>
 									<th>상품명</th>
 									<th>가격</th>
 									<th>수량</th>
@@ -29,19 +30,19 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>2023.03.26</td>
+									<td>1</td>
 									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
 									<td>22,350원</td>
 									<td>1개</td>
 								</tr>
 								<tr>
-									<td>2023.03.26</td>
+									<td>2</td>
 									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
 									<td>22,350원</td>
 									<td>1개</td>
 								</tr>
 								<tr>
-									<td>2023.03.26</td>
+									<td>3</td>
 									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
 									<td>22,350원</td>
 									<td>1개</td>

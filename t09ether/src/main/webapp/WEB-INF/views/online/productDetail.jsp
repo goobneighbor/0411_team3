@@ -6,13 +6,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <style>
 .container{
-	width:1000px;
 	margin:0 auto;
 	padding:20px;
-	float:center;
-
-	
-}
 
 .card-img-top{
 	width:600px;
@@ -32,15 +27,34 @@
 <script>
 $(function(){
 	$("#onlineJoinForm").on('click', function(){
+	/*	
+	    var query = $(this).serialize();//no=45&coment=dfdfdfdf형태의 쿼리문으로 만들어주는 serialize()
+		console.log(query);
+		$.ajax({
+			url : "/campus/commentSend",//서버주소 in commentcontroller
+			data : no,
+			type : "POST",
+			success : function(result){
+				console.log(result); ///**************************8
+				//기존에 입력한 댓글 지우기 //ajax는 화면전환없으므로 댓글 지워지지않으니깐 초기화해야해
+				$("#coment").val("");
+				
+				//댓글목록을 다시 뿌려준다. //나는 실패하든 안하든 다른사람 댓글 성공했을수있어
+				commentList();//댓글쓴후 다시 뿌려진 상황
+			},error : function(e){
+				console.log(e.responseText);
+			}
+			
+		});
+	*/	
 		var _width = '500';
 	    var _height = '248';
-	    
+	   
 		// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-	    window.open('onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
-
+	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
@@ -54,15 +68,53 @@ function openPopup() {
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-    window.open('kakaomap', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+    window.open('<%=request.getContextPath()%>/online/kakaomap', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 }
+
+$(function(){
+	//지역목록뿌리기
+		function locationList(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/online/locationList", //onlineListController에 있어
+			data:{
+				pro_code:${dto.pro_code}
+			},
+			success:function(locationList){//서버에서 정상적으로 데이터를 가져왔을때
+				
+				var tag = "";
+				$(locationList).each(function(i, lDTO){
+					tag += "<li><p>"+lDTO.shareaddr+"<button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
+					
+					tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
+				
+				});
+				
+				$("#locationList").html(tag);
+			},error:function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
+
+		//제일마지막에 실행** 
+		//뿌려주기 ===>처음에 상품상세보기로 오면 지역 보여주기
+		locationList();//호출
+	})
+	
+	
+	
 </script>
  
         <!-- Page content-->
         <div class="container">
-            <div class="row">
+        <div class="row">
+        	<div class="card mb-4">
+                        <div class="card-header">온라인 공동구매 시작하세요!</div>
+                        <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
+            </div>
+            
                 <!-- Blog entries-->
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
                         <img src="${dto.image }" />
@@ -78,7 +130,7 @@ function openPopup() {
 
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-6" style="float:left">
+                <div class="col-lg-5">
                     <!-- Search widget-->
                     <div class="card mb-6">
                         <div class="card-header">참여하기</div>
@@ -112,5 +164,4 @@ function openPopup() {
                         <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
                     </div>
                 </div>
-            </div>
 

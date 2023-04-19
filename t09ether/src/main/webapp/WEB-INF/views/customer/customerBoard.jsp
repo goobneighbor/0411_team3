@@ -62,6 +62,7 @@ $(function() {
 <div class="row">
 <div class="col-12">
 <section class="box">
+
    <div class="table-wrapper">
    <h2 style="text-align:left; padding:20px;">자주 묻는 질문</h2>
       <table>
@@ -149,6 +150,6 @@ $(function() {
       </div>
       
    </div>
-      </section>      
+      </section>
 </body>
 </html>

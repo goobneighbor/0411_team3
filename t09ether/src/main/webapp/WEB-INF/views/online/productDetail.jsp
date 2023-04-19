@@ -121,7 +121,7 @@ function listView(result) {
             </div>
             
                 <!-- Blog entries-->
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
                         <img src="${dto.image }" />
@@ -137,7 +137,7 @@ function listView(result) {
 
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <!-- Search widget-->
                     <div class="card mb-6">
                         <div class="card-header">참여하기</div>

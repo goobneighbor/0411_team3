@@ -50,6 +50,7 @@ header,footer{
 		$("#searchForm").submit(function(){
 			event.preventDefault();
 			let params = $("#searchForm").serialize();
+			console.log(params);
 			$.ajax({
 				url:"/home/online/kakaomapList", //commentController에 있어
 				type:"GET",		//서버서 가져온데이터

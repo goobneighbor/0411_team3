@@ -37,16 +37,17 @@ public class OnlineController {
 		return mav; 
 	}
 	
-	@GetMapping("/kakaomap")
-	public ModelAndView kakaomap(SearchVO vo) {
+	@GetMapping(value="/kakaomap", produces="application/text;charset=utf-8")
+	public ModelAndView kakaomap(SearchVO vo, OrderDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		
 		//검색어
 		mav.addObject("vo",vo);
+		mav.addObject("dto", dto);
 		mav.setViewName("online/kakaomap");
 		return mav;
 	}
-	//모든 나눔장소
+	//지도 나눔장소 리스트
 	@GetMapping("/kakaomapList")
 	public List<OrderDTO> list(int pro_code, String searchWrd) {
 	   System.out.println(searchWrd);

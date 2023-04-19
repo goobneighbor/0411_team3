@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.t09ethr.dao.OrderDAO">
+	 <insert id="orderInsert">
+		insert into order09(ord_no, pro_code, userid, ord_count, status, shareaddr, sharedetail) values(ord_no_sq.nextval, #{pro_code}, #{userid},#{on_count}, 1, #{shareaddr}, #{sharedetail})
+	</insert>
+</mapper>

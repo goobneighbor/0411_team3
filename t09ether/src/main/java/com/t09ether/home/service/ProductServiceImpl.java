@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.t09ether.home.dao.ProductDAO;
 import com.t09ether.home.dto.OnlinePagingVO;
 import com.t09ether.home.dto.ProductDTO;
+import com.t09ether.home.dto.RegisterDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,10 +35,5 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO productDetailSelect(int pro_code) {
 		return dao.productDetailSelect(pro_code);
-	}
-
-	@Override
-	public ProductDTO productDetailMakeSelect(int pro_code) {
-		return dao.productDetailMakeSelect(pro_code);
 	}
 }

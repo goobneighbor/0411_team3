@@ -6,6 +6,7 @@ public class OnlineDTO {
 	private int on_count;
 	private String find_addr;
 	private int hit;
+	private String userid;
 	
 	private String pro_name;
 	private int pro_price;
@@ -48,6 +49,12 @@ public class OnlineDTO {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getPro_name() {
 		return pro_name;

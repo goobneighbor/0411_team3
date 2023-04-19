@@ -13,8 +13,15 @@ public class OnlineListServiceImpl implements OnlineListService {
 	OnlineListDAO dao;
 
 	//@Override
+	//public OnlineDTO productDetailMakeSelect(int pro_code) {
+	//	return dao.productDetailMakeSelect(pro_code);
+	//}
+
+	//@Override
 	//public OnlineDTO productDetailSelect(int pro_code) {
 	//	return dao.productDetailSelect(pro_code);
 	//}
+	
+	
 	
 }

@@ -36,38 +36,28 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>상품명</th>
-									<th>가격</th>
-									<th>수량</th>
+									<th>이름</th>
+									<th>아이디</th>
+									<th>전화번호</th>
+									<th>이메일</th>
+									<th>등급</th>
+									<th>가입일</th>
+									<th>신고횟수</th>
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach var="bDTO" items="${list}">
 								<tr>
-									<td>1</td>
-									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
-									<td>22,350원</td>
-									<td>1개</td>
+									<td>${bDTO.rownum }</td>
+									<td>${bDTO.username }</td>
+									<td>${bDTO.userid }</td>
+									<td>${bDTO.tel }</td>
+									<td>${bDTO.email }</td>
+									<td>${bDTO.rank }</td>
+									<td>${bDTO.writedate }</td>
+									<td>${bDTO.report }</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
-									<td>22,350원</td>
-									<td>1개</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
-									<td>22,350원</td>
-									<td>1개</td>
-								</tr>
-								<tr>
-								<c:forEach var="data" items="${list}">
-									<td>${data.no}2023.03.26</td>
-									<td>${data.product}니베아 맨 센서티브 쉐이빙 폼, 200ml, 6개</td>
-									<td>${data.price}22,350원</td>
-									<td>${data.quantity}1개</td>
-								</c:forEach>
-								</tr>
+							</c:forEach>
 							</tbody>
 							<!--<tfoot>
 								<tr>

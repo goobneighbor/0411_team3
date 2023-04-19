@@ -105,7 +105,6 @@
 			<!-- 시작번호 설정       :                 총 레코드 수       현재페이지        한페이지레코드수-->	
 			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord}"/>
 			<c:forEach var="bDTO" items="${list}">
-				
 				<li>${recordNum}</li>
 				<!-- 글내용보기 : 레코드번호, 현재페이지, 검색어가 있다면 검색키와 검색어 가지고 뷰페이지로 이동하여야 
 				다시 목록으로 올 때 해당 검색과 페이지도 이동할 수 있다-->

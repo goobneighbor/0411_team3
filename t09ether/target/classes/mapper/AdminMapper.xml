@@ -9,4 +9,8 @@
 			where ${searchKey} like '%${searchWord}%'
 		</if> 
 	</select>
+	<select id="pageSelect" resultType="com.t09ether.home.dto.RegisterDTO">
+		select rownum, a.username, a.userid, a.tel, a.email, a.rank, a.writedate, a.report 
+		from (select username, userid, tel, email, rank, writedate, report from registerinfo order by username) a
+	</select>
 </mapper>

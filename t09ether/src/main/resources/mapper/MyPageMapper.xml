@@ -8,11 +8,19 @@
 		where userid=#{param1} and userpwd=#{param2}
 	</select>
 	<select id="mpRegisterEdit" resultType="com.t09ether.home.dto.MyPageDTO">
-		select userid, username,tel, email, zipcode, addr, addrdetail, rank from registerinfo
+		select userid, userpwd, username,tel, email, zipcode, addr, addrdetail, rank from registerinfo
 		where userid=#{param1}
 	</select>
 	<select id="idChk" resultType="com.t09ether.home.dto.MyPageDTO">
 		select userid from registerinfo
 		where userid=#{param1}
 	</select>
+	<update id="mpRegisterEditOk1">
+		update registerinfo set tel=#{tel}, email=#{email}, zipcode=#{zipcode}, addr=#{addr}, addrdetail=#{addrdetail}
+		where userid=#{userid}
+	</update>
+	<update id="mpRegisterEditOk2">
+		update registerinfo set userpwd=#{userpwd1}, tel=#{tel}, email=#{email}, zipcode=#{zipcode}, addr=#{addr}, addrdetail=#{addrdetail}
+		where userid=#{userid} and userpwd=#{userpwd}
+	</update>
 </mapper>

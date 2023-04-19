@@ -18,12 +18,13 @@ public class RegisterDTO {
 	private String rank;
 	private String writedate;
 	private int report;
+	
 	@Override
 	public String toString() {
-		return "RegisterDTO [userid=" + userid + ", userpwd=" + userpwd + ", username=" + username + ", tel=" + tel
-				+ ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email=" + email + ", zipcode=" + zipcode
-				+ ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank + ", writedate=" + writedate
-				+ ", report=" + report + "]";
+		return "RegisterDTO [userid=" + userid + ", userpwd=" + userpwd + ", username="
+				+ username + ", tel=" + tel + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email="
+				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
+				+ ", writedate=" + writedate + ", report=" + report + "]";
 	}
 	public String getUserid() {
 		return userid;

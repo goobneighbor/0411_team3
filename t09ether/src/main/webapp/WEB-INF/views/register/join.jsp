@@ -139,7 +139,7 @@
 			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15"/></li>
 			
 			<li>비밀번호확인</li>
-			<li><input type="password" name="userpwd2" id="userpwd2" value="12345678"/></li>
+			<li><input type="password" name="userpwd2" id="userpwd2"/></li>
 			
 			<li>이름</li>
 			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>

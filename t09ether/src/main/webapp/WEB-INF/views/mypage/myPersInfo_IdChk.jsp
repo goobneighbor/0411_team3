@@ -7,22 +7,39 @@
 <title>Insert title here</title>
 <style>
 	#logFrm input{
-		width:100%;	
+		margin:0 auto;
+		width:60%;
 	}
+	#logFrm div{
+		width: 700px;
+		height: 400px;
+		border: 1px solid #ddd;
+		margin: 0 auto;
+		padding: 0;
+		position:relative;
+	}
+	#logFrm ul{
+		width: 700px;
+		height: 400px;
+		margin-left:-360px;
+		margin-top:-200px;
+		left:50%;
+		top:50%;
+		position:absolute;
+	}
+	#logFrm li:first-child {
+		margin:100px 0 0 0;
+	}	
 	#logFrm li:nth-child(2n) {
 		padding-bottom:30px;
 	}
 	#logFrm li {
-		list-style:none;	
-	}
-	#threestyle {
-		width:100%;
-		background-color:#E2D2D2;
-		margin:20px;
-		padding:30px;
+		padding-bottom:15px;
 		text-align:center;
-		word-spacing: 40px;
+		list-style:none;
+		margin: 0 auto;
 	}
+	
 	a { 
 		text-decoration: none; 
 		color: black; 
@@ -42,17 +59,20 @@
 </style>
 </head>
 <body>
-<div class="container">
-	<h1>로그인</h1>
-	<form method="post" action="loginOk" id="logFrm">
-		<ul>
-			<li>아이디</li>
-			<li><input type="text" name="userid" id="userid" value="${userid }" readonly/></li>
-			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd"/></li>
-			<li><input type="submit" value="확인"/></li>
-		</ul>
-	</form>
-</div>
+<section id="main" class="container">
+	<header>
+		<h2>회원정보 확인</h2>
+		<p>${username }님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</p>
+	</header>
+		<form method="post" action="psInfoEdit" id="logFrm">
+			<div>
+			<ul>
+				<li><input type="text" name="userid" id="userid" value="${userid }" readonly/></li>
+				<li><input type="password" name="userpwd" id="userpwd" placeholder="비밀번호를 입력하세요."/></li>
+				<li><input type="submit" value="확인"/></li>
+			</ul>
+			</div>
+		</form>
+</section>
 </body>
 </html>

@@ -49,9 +49,11 @@ header,footer{
 	$(function(){
 		$("#searchForm").submit(function(){
 			event.preventDefault();
+			let params = $("#searchForm").serialize();
 			$.ajax({
 				url:"/home/online/kakaomapList", //commentController에 있어
 				type:"GET",		//서버서 가져온데이터
+				data: params,
 				dataType:'json',
 				success:function(result){
 					console.log(result);
@@ -71,6 +73,7 @@ header,footer{
 	<form method="get" name="searchForm" id="searchForm" >
 		 
 		<div>
+			<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
 		    <input type="text" class="text" id="searchWrd" name="searchWrd" placeholder="검색어를 입력해주세요" style="width: 300px;"   value="${vo.searchWrd }" /> 
 		    <input type="submit" value="Search"/>
 		</div>
@@ -159,7 +162,7 @@ header,footer{
 		
 		    // 주소로 좌표를 검색합니다
 		    geocoder.addressSearch(addr.shareaddr, function(shareresult, status) {
-		    	console.log(addr)
+		    	console.log(": "+addr.shareaddr)
 		        // 정상적으로 검색이 완료됐으면 
 		         if (status === kakao.maps.services.Status.OK) {
 		    		//주소로 좌표구하기

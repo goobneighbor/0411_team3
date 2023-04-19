@@ -9,10 +9,17 @@
  	</select>
  	<select id="getList" resultType="com.t09ether.home.dto.OrderDTO">
 		select shareaddr
-		from order09	
+		from order09 where pro_code = ${pro_code}
 		<if test="searchWrd != null">
-			where
+			and
 		    shareaddr like '%${searchWrd}%' 
+		</if>
+	</select>
+	<select id="getSearchList" resultType="com.t09ether.home.dto.OrderDTO">
+		select shareaddr from order09
+		where pro_code = ${pro_code}
+		<if test="searchWrd != null">
+		and shareaddr like '%${searchWrd}%' 
 		</if>
 	</select>
 </mapper>

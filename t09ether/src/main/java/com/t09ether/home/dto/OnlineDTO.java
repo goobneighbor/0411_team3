@@ -7,13 +7,18 @@ public class OnlineDTO {
 	private String find_addr;
 	private int hit;
 	
+	private String pro_name;
+	private int pro_price;
+	private String pro_stock;
+	private String image;
+	private String detailed;
+	
 	@Override
 	public String toString() {
 		return "OnlineDTO [on_no=" + on_no + ", pro_code=" + pro_code + ", on_count=" + on_count + ", find_addr="
-				+ find_addr + ", hit=" + hit + ", wirtedate=" + wirtedate + "]";
+				+ find_addr + ", hit=" + hit + ", pro_name=" + pro_name + ", pro_price=" + pro_price + ", pro_stock="
+				+ pro_stock + ", image=" + image + ", detailed=" + detailed + "]";
 	}
-	
-	private String wirtedate;
 	public int getOn_no() {
 		return on_no;
 	}
@@ -44,11 +49,36 @@ public class OnlineDTO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getWirtedate() {
-		return wirtedate;
+	public String getPro_name() {
+		return pro_name;
 	}
-	public void setWirtedate(String wirtedate) {
-		this.wirtedate = wirtedate;
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
 	}
+	public int getPro_price() {
+		return pro_price;
+	}
+	public void setPro_price(int pro_price) {
+		this.pro_price = pro_price;
+	}
+	public String getPro_stock() {
+		return pro_stock;
+	}
+	public void setPro_stock(String pro_stock) {
+		this.pro_stock = pro_stock;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getDetailed() {
+		return detailed;
+	}
+	public void setDetailed(String detailed) {
+		this.detailed = detailed;
+	}
+	
 	
 }

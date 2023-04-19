@@ -53,7 +53,6 @@ public class RegisterController {
 			
 		}else { //실패
 			mav.setViewName("redirect:loginForm");
-			
 		}
 		return mav;
 	}

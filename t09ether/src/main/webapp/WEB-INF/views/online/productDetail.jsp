@@ -27,15 +27,34 @@
 <script>
 $(function(){
 	$("#onlineJoinForm").on('click', function(){
+	/*	
+	    var query = $(this).serialize();//no=45&coment=dfdfdfdf형태의 쿼리문으로 만들어주는 serialize()
+		console.log(query);
+		$.ajax({
+			url : "/campus/commentSend",//서버주소 in commentcontroller
+			data : no,
+			type : "POST",
+			success : function(result){
+				console.log(result); ///**************************8
+				//기존에 입력한 댓글 지우기 //ajax는 화면전환없으므로 댓글 지워지지않으니깐 초기화해야해
+				$("#coment").val("");
+				
+				//댓글목록을 다시 뿌려준다. //나는 실패하든 안하든 다른사람 댓글 성공했을수있어
+				commentList();//댓글쓴후 다시 뿌려진 상황
+			},error : function(e){
+				console.log(e.responseText);
+			}
+			
+		});
+	*/	
 		var _width = '500';
 	    var _height = '248';
-	    
+	   
 		// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-	    window.open('onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
-
+	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
@@ -49,8 +68,41 @@ function openPopup() {
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-    window.open('kakaomap', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+    window.open('<%=request.getContextPath()%>/online/kakaomap', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 }
+
+$(function(){
+	//지역목록뿌리기
+		function locationList(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/online/locationList", //onlineListController에 있어
+			data:{
+				pro_code:${dto.pro_code}
+			},
+			success:function(locationList){//서버에서 정상적으로 데이터를 가져왔을때
+				
+				var tag = "";
+				$(locationList).each(function(i, lDTO){
+					tag += "<li><p>"+lDTO.shareaddr+"<button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
+					
+					tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
+				
+				});
+				
+				$("#locationList").html(tag);
+			},error:function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
+
+		//제일마지막에 실행** 
+		//뿌려주기 ===>처음에 상품상세보기로 오면 지역 보여주기
+		locationList();//호출
+	})
+	
+	
+	
 </script>
  
         <!-- Page content-->
@@ -65,13 +117,13 @@ function openPopup() {
                 <div class="col-lg-7">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <img src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
+                        <img src="${dto.image }" />
                         <div class="card-body">
                             <div class="small text-muted"></div>
                             <div id="review">리뷰</div>
-                            <h2 class="card-title">상품명</h2>
-                            <p class="card-text">상세설명</p>
-                            <a class="btn btn-primary" href="onlineGB">내가 공구만들기</a>
+                            <h2 class="card-title">${dto.pro_name }</h2>
+                            <p class="card-text">${dto.detailed }</p>
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
 
                         </div>
                     </div>
@@ -88,18 +140,7 @@ function openPopup() {
                                 <input class="form-control" type="text" placeholder="지역명" aria-label="지역명" aria-describedby="button-search" />
                                 <button class="btn btn-primary" id="button-search" type="button" >검색</button>
                                 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
-								  <h4 id="scrollspyHeading1">서울시 서대문구</h4>
-								  <p>통일로 135 충정빌딩<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
-								  <p>통일로 135 충정빌딩 앞</p> 
-								  <p>통일로 135 충정빌딩 옆</p>
-								  <h4 id="scrollspyHeading2">서울시 동작구</h4>
-								  <p>...</p>
-								  <h4 id="scrollspyHeading3">서울시 영등포구</h4>
-								  <p>...</p>
-								  <h4 id="scrollspyHeading4">Fourth heading</h4>
-								  <p>...</p>
-								  <h4 id="scrollspyHeading5">Fifth heading</h4>
-								  <p>...</p>
+								  <ul id="locationList" style="list-style-type:none"></ul>
 								</div>
                             </div>
                         </div>

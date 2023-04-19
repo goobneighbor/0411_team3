@@ -135,17 +135,22 @@
 		
 </script>
 <div class="container">
-	<h1>온라인 공구 생성폼</h1>
+	<section id="main" class="container">
+		<header>
+			<h2>온라인 공동구매 생성</h2>
+			<p>공동 구매 시작</p>
+		</header>
+	</section>
 	<form method="post" id="onlineGBForm">
 		<div>
 			<ul id="firstul">
 				<li><h3>주문상품</h3></li>
 				<!-- 상품이미지가져와야함 -->
-				<li><img class="card-img-top" src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/199341325/B.jpg?523000000" alt="..." /></li>
+				<li><img class="card-img-top" src="${dto.image }" alt="${dto.pro_name }" /></li>
 				<li>상품명</li>
-				<li><input type="text" name="pro_name" id="pr_name" value="갤업 고농축 액체세제 2.5L x 50개" readonly></li> <!-- 상품명가져와야함 -->
+				<li><input type="text" name="pro_name" id="pr_name" value="${dto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
 				<li>가격</li>
-				<li><input type="number" name="pro_price" id="pro_price" value="49500" readonly/></li> <!-- 가격가져와야함 -->
+				<li><input type="number" name="pro_price" id="pro_price" value="${dto.pro_price }" readonly/></li> <!-- 가격가져와야함 -->
 				<li>수량</li> 
 				<li><input type="number" name="on_count" id="on_count" min="1" max="50" value="1"/></li>
 				<li>전체 가격 </li>
@@ -157,7 +162,7 @@
 				<li>주문자명</li> <!-- 주문자명가져와야함 -->
 				<li><input type="text" id="username" name="username" value="" placeholder="주문자명입력" onfocus="this.placeholder=''"/></li>
 				<li>전화번호</li> <!-- 전화번호가져와야함 -->
-				<li><input type="text" id="tel" name="tel" placeholder="-빼고입력" onfocus="this.placeholder=''"/></li>
+				<li><input type="text" id="tel" name="tel" placeholder="-포함입력" onfocus="this.placeholder=''"/></li>
 			</ul>	
 			<ul>	
 				<li><h3>배송지</h3></li>
@@ -179,7 +184,6 @@
 			</ul>
 			<input type="submit" value="결제하기" id="lastsubmit"/>
 		</div>
-		
 	</form>
 </div>
 

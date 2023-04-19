@@ -90,7 +90,6 @@ function kakaoLogout() {
 		로그인 하시면 보다 편리하게 서비스를 이용하실 수 있습니다.</p>
 	</header>
 </section>
-	
 	<form method="post" action="loginOk" id="logFrm">
 		<ul>
 			<li>아이디</li>
@@ -103,8 +102,8 @@ function kakaoLogout() {
 	<!-- <li onclick="kakaoLogin();"> 
       <a href="javascript:void(0)">-->
           <li><img src="resources/images/kakao_login.png" onclick="kakaoLogin()" alt=""/></li>
-     
-</ul>
+		</ul>
+
 	</form>
 	<div id="threestyle" >
 		<a href="join">회원가입</a>

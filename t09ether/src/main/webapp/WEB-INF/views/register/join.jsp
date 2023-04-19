@@ -136,7 +136,7 @@
 			</li>
 			
 			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15"/></li>
+			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15" value="12345678"/></li>
 			
 			<li>비밀번호확인</li>
 			<li><input type="password" name="userpwd2" id="userpwd2"/></li>
@@ -169,7 +169,7 @@
 			<li><input type="text" name="addrdetail"/></li>
 
 			<!-- 등급 -->
-			<li><input type="hidden" name="rank" id="rank" value="1"/><li>
+			<li><input type="hidden" name="rank" id="rank" value='admin'/><li>
 			<!-- 신고당한횟수 -->
 			<li><input type="hidden" name="report" id="report" value="0"/><li>
 			<br/><br/>

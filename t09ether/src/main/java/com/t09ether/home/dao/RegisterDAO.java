@@ -20,6 +20,5 @@ public interface RegisterDAO {
 	public int registerEditOk(RegisterDTO dto);
 	//이름과 이메일로 아이디 검색
 	public String idSearch(String username, String email);
-	
-	public RegisterDTO getRank(String rank);
+
 }

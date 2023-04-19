@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dao.RegisterDAO;
 import com.t09ether.home.dto.CustomerCenterDTO;
+import com.t09ether.home.dto.CustomerCenterPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.CustomerCenterService;
 import com.t09ether.home.service.CustomerCenterServiceImpl;
@@ -28,17 +29,16 @@ public class CustomerCenterController {
 	CustomerCenterService service;
 	
 	@GetMapping("/customerBoard")
-	public ModelAndView customerBoard() {
+	public ModelAndView customerBoard(CustomerCenterPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
-		
 		
 		// 게시판 글 리스트 전체 목록 보여주기
 		List<CustomerCenterDTO> list = service.boardList();
 		
-		//System.out.println("list출력:"+list.toString());
-		mav.addObject("list",list);
+		vo.setTotalRecord(service.totalRecord(vo));
+		mav.addObject("list",service.pageSelect(vo));
+		mav.addObject("vo",vo);
 		mav.setViewName("customer/customerBoard");
-		
 		
 		return mav;
 	}
@@ -51,7 +51,6 @@ public class CustomerCenterController {
 		ccdto = service.boardView(cus_b_num);
 		mav.addObject("CustomerCenterDTO",ccdto);
 		mav.setViewName("customer/faqlist");
-
 
 		return mav;
 		

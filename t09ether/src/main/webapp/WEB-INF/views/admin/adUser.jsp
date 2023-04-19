@@ -5,20 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.searchDiv{
+		clear:left;
+		padding:10px;
+		text-align: center;		
+	}
+</style>
 </head>
 <body>
 <!-- Main -->
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
-			<h2>온라인 공구 내역</h2>
-			<p>진행 중인 내역</p>
+			<h2>회원 관리</h2>
+			<p>회원 목록</p>
 		</header>
 		<div class="row">
 			<div class="col-12">
 				<!-- 주문내역 리스트 -->
 				<section class="box">
 					<div class="table-wrapper">
+					<form method="post">
+					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
+					<c:if test="${vo.searchWord!=null}">
+						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
+						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
+					</c:if>
 						<table>
 							<thead>
 								<tr>
@@ -63,6 +76,20 @@
 								</tr>
 							</tfoot>  -->
 						</table>
+					</form>
+					</div>
+					
+					<!--검색 -->
+					<div class ="searchDiv">
+						<form method="get" id="searchForm" action="boardList">
+							<select name = "searchKey">
+								<option value="subject">제목</option>
+								<option value="username">작성자</option>
+								<option value="content">글내용</option>
+							</select>
+							<input type="text" name="searchWord" id="searchWord"/>
+							<input type="submit" value="Search"/>
+						</form>
 					</div>
 				</section>
 			</div>

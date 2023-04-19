@@ -216,8 +216,13 @@
 	});
 </script>
 <div class="container">
+<section id="main" class="container">
+	<header>
+			<h2>관리자 상품 등록</h2>
+			<p>판매 상품 등록하기</p>
+	</header>
+</section>
 <form method="post" action="productWriteOk" id="productForm">
-	<h1>상품 등록</h1>
 	<ul> 
 		<li>상품명</li>
 		<li><input type="text" name="pro_name" id="pro_name"/></li>
@@ -226,7 +231,11 @@
 		<li>재고개수</li>
 		<li><input type="number" name="pro_stock" id="pro_stock"/></li>
 		<li>상품이미지 주소</li>
-		<li><input type="text" name="image" id="image"/></li>
+		<li>
+			<input type="text" name="image" id="image"/>
+			<img src=""/>
+		</li>
+		
 		
 		<!-- <li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li> -->
 		<li>상품정보</li>

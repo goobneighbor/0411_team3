@@ -76,7 +76,7 @@
 			var reg = /^[A-Za-z]{1}\w{7,14}$/
 			
 			if(!reg.test($("#userid").val()) ){ //유효한 값이면 true, 잘못된 데이터면 false
-				alert("아이디 첫번째 문자는 영어대소문자로 시작해야 하며, \n 영어대소문자,숫자,_가능, 아이디 길이는 8~15글자까지 가능");
+				alert("아이디 첫번째 문자는 영어대소문자로 시작해야 하며, \n 영어대소문자, 숫자 가능, 아이디 길이는 8~15글자까지 가능");
 				return false;
 			}
 			if($("#idStatus").val()=="N") {
@@ -139,7 +139,7 @@
 			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15" value="12345678"/></li>
 			
 			<li>비밀번호확인</li>
-			<li><input type="password" name="userpwd2" id="userpwd2" value="12345678"/></li>
+			<li><input type="password" name="userpwd2" id="userpwd2"/></li>
 			
 			<li>이름</li>
 			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>

@@ -65,13 +65,13 @@ function openPopup() {
                 <div class="col-lg-6">
                     <!-- Featured blog post-->
                     <div class="card mb-4">
-                        <img src="${pageContext.request.contextPath }/resources/images/product_sample.png" />
+                        <img src="${dto.image }" />
                         <div class="card-body">
                             <div class="small text-muted"></div>
                             <div id="review">리뷰</div>
-                            <h2 class="card-title">상품명</h2>
-                            <p class="card-text">상세설명</p>
-                            <a class="btn btn-primary" href="onlineGB">내가 공구만들기</a>
+                            <h2 class="card-title">${dto.pro_name }</h2>
+                            <p class="card-text">${dto.detailed }</p>
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
 
                         </div>
                     </div>
@@ -90,8 +90,13 @@ function openPopup() {
                                 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
 								  <h4 id="scrollspyHeading1">서울시 서대문구</h4>
 								  <p>통일로 135 충정빌딩<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
+<<<<<<< HEAD
 								  <p>구산대로 311 종로메가타워 1층<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p> 
 								  <p>서초구 반포자이아파트 상가동<button type="button" id="onlineJoinForm" class="btn btn-primary">참여</button></p>
+=======
+								  <p>통일로 135 충정빌딩</p> 
+								  <p>통일로 135 충정빌딩 옆</p>
+>>>>>>> 7c56cf26f798b329ef838f6d4a61eb9f7fd6ef04
 								  <h4 id="scrollspyHeading2">서울시 동작구</h4>
 								  <p>...</p>
 								  <h4 id="scrollspyHeading3">서울시 영등포구</h4>

@@ -55,18 +55,19 @@ public class MyPageController {
 	
 	@GetMapping("/myPersInfo_IdChk")
 		public ModelAndView myPersInfo_IdChk(HttpSession session) {
-		
 		String userid = (String)session.getAttribute("logId");
+		String username = (String)session.getAttribute("logName");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("userid", userid);		
+		mav.addObject("userid", userid);
+		mav.addObject("username", username);
 		mav.setViewName("mypage/myPersInfo_IdChk");
 		
 		return mav;
 	}
 	
-	@PostMapping("loginOk")
-	public ModelAndView loginOk(String userid, String userpwd, HttpServletRequest request, HttpSession session) {
+	@PostMapping("psInfoEdit")
+	public ModelAndView psInfoEdit(String userid, String userpwd, HttpServletRequest request, HttpSession session) {
 		MyPageDTO dto = service.loginOk(userid, userpwd);
 		
 		ModelAndView mav = new ModelAndView();
@@ -78,12 +79,50 @@ public class MyPageController {
 			mav.setViewName("mypage/myPersInfo");
 			
 		}else { //실패
-			mav.setViewName("redirect:myPersInfo_IdChk");
+			mav.addObject("msg", "비밀번호를 확인해주세요.");
+			mav.setViewName("mypage/psInfoEditResult");
 		}
 		return mav;
 	}
 	
+	@PostMapping("/psInfoEditOk1")
+	public ModelAndView psInfoEditOk1(MyPageDTO dto, HttpSession session) {
+		
+		dto.setUserid((String)session.getAttribute("logId"));
+		
+		int cnt = service.mpRegisterEditOk1(dto);
+		
+		ModelAndView mav = new ModelAndView();
+		if(cnt>0) {
+			mav.addObject("msg","회원 정보를 수정하였습니다.");
+			mav.setViewName("mypage/psInfoResultS");
+		}else {
+			mav.addObject("msg","회원 정보 수정에 실패하였습니다.");
+			mav.setViewName("mypage/psInfoResult");
+		}
+		
+		return mav;
+	}
 	
+	
+	@PostMapping("/psInfoEditOk2")
+	public ModelAndView psInfoEditOk2(MyPageDTO dto, HttpSession session) {
+		
+		dto.setUserid((String)session.getAttribute("logId"));
+		
+		int cnt = service.mpRegisterEditOk2(dto);
+		
+		ModelAndView mav = new ModelAndView();
+		if(cnt>0) {
+			mav.addObject("msg","회원 정보를 수정하였습니다.");
+			mav.setViewName("mypage/psInfoResultS");
+		}else {
+			mav.addObject("msg","회원 정보 수정에 실패하였습니다.");
+			mav.setViewName("mypage/psInfoResult");
+		}
+		
+		return mav;
+	}
 	
 	
 	

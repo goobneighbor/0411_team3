@@ -27,4 +27,16 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.idChk(userid);
 	}
 
+	@Override
+	public int mpRegisterEditOk1(MyPageDTO dto) {
+		return dao.mpRegisterEditOk1(dto);
+	}
+
+	@Override
+	public int mpRegisterEditOk2(MyPageDTO dto) {
+		return dao.mpRegisterEditOk2(dto);
+	}
+
+	
+
 }

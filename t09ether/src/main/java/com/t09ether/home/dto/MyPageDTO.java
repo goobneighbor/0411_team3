@@ -3,6 +3,7 @@ package com.t09ether.home.dto;
 public class MyPageDTO {
 	private String userid;
 	private String userpwd;
+	private String userpwd1;
 	private String username;
 	
 	private String tel;
@@ -20,12 +21,11 @@ public class MyPageDTO {
 	
 	@Override
 	public String toString() {
-		return "MyPageDTO [userid=" + userid + ", userpwd=" + userpwd + ", username=" + username + ", tel=" + tel
-				+ ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email=" + email + ", zipcode=" + zipcode
-				+ ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank + ", writedate=" + writedate
-				+ ", report=" + report + "]";
+		return "MyPageDTO [userid=" + userid + ", userpwd=" + userpwd + ", userpwd1=" + userpwd1 + ", username="
+				+ username + ", tel=" + tel + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email="
+				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
+				+ ", writedate=" + writedate + ", report=" + report + "]";
 	}
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -37,6 +37,13 @@ public class MyPageDTO {
 	}
 	public void setUserpwd(String userpwd) {
 		this.userpwd = userpwd;
+	}
+	
+	public String getUserpwd1() {
+		return userpwd1;
+	}
+	public void setUserpwd1(String userpwd1) {
+		this.userpwd1 = userpwd1;
 	}
 	public String getUsername() {
 		return username;

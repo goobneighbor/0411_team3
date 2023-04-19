@@ -7,6 +7,8 @@ public class OnlineDTO {
 	private String find_addr;
 	private int hit;
 	private String userid;
+	private String shareaddr;
+	private String sharedetail;
 	
 	private String pro_name;
 	private int pro_price;
@@ -14,12 +16,16 @@ public class OnlineDTO {
 	private String image;
 	private String detailed;
 	
+	
+	
 	@Override
 	public String toString() {
 		return "OnlineDTO [on_no=" + on_no + ", pro_code=" + pro_code + ", on_count=" + on_count + ", find_addr="
-				+ find_addr + ", hit=" + hit + ", pro_name=" + pro_name + ", pro_price=" + pro_price + ", pro_stock="
-				+ pro_stock + ", image=" + image + ", detailed=" + detailed + "]";
+				+ find_addr + ", hit=" + hit + ", userid=" + userid + ", shareaddr=" + shareaddr + ", sharedetail="
+				+ sharedetail + ", pro_name=" + pro_name + ", pro_price=" + pro_price + ", pro_stock=" + pro_stock
+				+ ", image=" + image + ", detailed=" + detailed + "]";
 	}
+	
 	public int getOn_no() {
 		return on_no;
 	}
@@ -55,6 +61,19 @@ public class OnlineDTO {
 	}
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	
+	public String getShareaddr() {
+		return shareaddr;
+	}
+	public void setShareaddr(String shareaddr) {
+		this.shareaddr = shareaddr;
+	}
+	public String getSharedetail() {
+		return sharedetail;
+	}
+	public void setSharedetail(String sharedetail) {
+		this.sharedetail = sharedetail;
 	}
 	public String getPro_name() {
 		return pro_name;

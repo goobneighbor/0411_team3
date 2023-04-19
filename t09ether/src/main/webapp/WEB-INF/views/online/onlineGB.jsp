@@ -50,7 +50,7 @@
 		
 	}
 
-	#on_count, #pro_price, #pro_aprice, #addr_p, #o_price{
+	#on_count, #pro_price, #final_amount, #delivery_fee, #o_price{
 		text-align:center;
 	}
 	
@@ -69,9 +69,9 @@
 <script>
 	$(function(){
 		$("#pro_aprice").ready(function(){
-		    var num = document.getElementById("pro_aprice").value
+		    var num = document.getElementById("final_amount").value
 		    num = Math.ceil(num);
-		    document.getElementById("pro_aprice").value = num;
+		    document.getElementById("final_amount").value = num;
 	    });
 		
 		$("#o_price").ready(function(){
@@ -82,9 +82,9 @@
 		
 		$("#plus").click(function(){
 			var pro_total = parseInt(document.getElementById("pro_total").value);
-			var cnt =  parseInt(document.getElementById("on_count").value);
+			var cnt =  parseInt(document.getElementById("ord_count").value);
 			if(cnt<pro_total){
-				var c_cnt = document.getElementById("on_count").value = cnt + 1;
+				var c_cnt = document.getElementById("ord_count").value = cnt + 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
@@ -92,9 +92,9 @@
 		});
 		
 		$("#minus").click(function(){
-			var cnt =  parseInt(document.getElementById("on_count").value);
+			var cnt =  parseInt(document.getElementById("ord_count").value);
 			if(cnt>1){
-				var c_cnt = document.getElementById("on_count").value = cnt - 1;
+				var c_cnt = document.getElementById("ord_count").value = cnt - 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
@@ -106,7 +106,7 @@
 		        oncomplete: function (data) {
 		          var addressCompany = data.address;
 		          document.getElementById("shareaddr").value = addressCompany; // 주소 넣기
-		          document.querySelector("input[name=shareaddrDetail]").focus(); //상세입력 포커싱
+		          document.querySelector("input[name=sharedetail]").focus(); //상세입력 포커싱
 		        }
 		      }).open();
 		});
@@ -125,7 +125,7 @@
 			}
 			
 			//form태그의 action속성 설정
-			$("#onlineGBForm").attr("action","payTest");
+			$("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo");
 		});
 	});
 		
@@ -137,7 +137,7 @@
 			<p>공동 구매 상품확인</p>
 		</header>
 	</section>
-	<form method="post" id="onlineGBForm" >
+	<form method="post" id="onlineGBForm">
 		<div>
 			<ul id="firstul">
 				<li><h3>주문상품</h3></li>
@@ -150,11 +150,12 @@
 				<li><input type="number" name="pro_price" id="pro_price" value="${dto.pro_price }" readonly/></li> <!-- 가격가져와야함 -->
 				<li>개당가격</li>
 				<li><input type="number" name="o_price" id="o_price" value="${dto.pro_price/dto.pro_total}" readonly/>&nbsp;원</li> <!-- 가격가져와야함 -->
-				<li>수량</li>
+				<li>구매수량</li>
 				<li><input type="hidden" name="pro_total" id="pro_total" value="${dto.pro_total }"/></li> 
+				<li><input type="hidden" name="on_count" id="on_count" value="${dto.pro_total }"/></li> 
 				<li>
 					<input type="button" name="plus" id="plus" value="+"/>
-					<input type="number" name="on_count" id="on_count" min="1" max="${dto.pro_total }" value="1" readonly/>
+					<input type="number" name="ord_count" id="ord_count" min="1" max="${dto.pro_total }" value="1" readonly/>
 					<input type="button" name="minus" id="minus" value="-"/>
 				</li>
 				<li>배송비</li>
@@ -167,7 +168,7 @@
 					<input type="text" id="shareaddr" name="shareaddr" value="" placeholder="나눔주소입력" onfocus="this.placeholder=''" readonly/>
 					<input type="button" value="주소찾기" id="shareaddrSearch"/>
 				</li>
-				<li><input type="text" name="shareaddrDetail" id="shareaddrDetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
+				<li><input type="text" name="sharedetail" id="sharedetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
 				
 					
 			</ul>

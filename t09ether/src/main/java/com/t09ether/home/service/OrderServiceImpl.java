@@ -5,7 +5,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.OrderDAO;
-import com.t09ether.home.dto.orderDTO;
+import com.t09ether.home.dto.OnlineDTO;
+import com.t09ether.home.dto.OrderDTO;
+
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -14,8 +16,18 @@ public class OrderServiceImpl implements OrderService {
 	OrderDAO dao;
 	
 	@Override
-	public int orderInsert(orderDTO dto) {
+	public int orderInsert(OrderDTO dto) {
 		return dao.orderInsert(dto);
+	}
+
+	@Override
+	public int onlineInsert(OnlineDTO dto) {
+		return dao.onlineInsert(dto);
+	}
+	
+	@Override
+	public OrderDTO orderSelect(int pro_code) {
+		return dao.orderSelect(pro_code);
 	}
 
 }

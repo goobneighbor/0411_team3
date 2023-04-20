@@ -125,7 +125,10 @@
 			}
 			
 			//form태그의 action속성 설정
-			$("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo");
+			<%-- $("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo"); --%>
+			$("#onlineGBForm").submit(function(){
+				
+			})
 		});
 	});
 		

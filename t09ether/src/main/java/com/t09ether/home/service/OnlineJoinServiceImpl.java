@@ -20,8 +20,13 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 	}
 
 	@Override
-	public List<OrderDTO> getList(String searchWrd) {
-		return dao.getList(searchWrd);
+	public List<OrderDTO> getList(int pro_code, String searchWrd) {
+		return dao.getList(pro_code, searchWrd);
+	}
+
+	@Override
+	public List<OrderDTO> getSearchList(int pro_code, String searchWrd) {
+		return dao.getSearchList(pro_code, searchWrd);
 	}
 
 	

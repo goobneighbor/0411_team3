@@ -6,8 +6,10 @@ public class OrderDTO {
 	private String userid;
 	private int ord_count; //내가주문한상품수
 	private int status;
-	
-//////////////////////////////////	
+	private String shareaddr;
+	private String sharedetail;
+//////////////////////////////////
+	//만들어낸 변수
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
 	

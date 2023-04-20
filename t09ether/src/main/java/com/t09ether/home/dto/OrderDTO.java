@@ -9,7 +9,7 @@ public class OrderDTO {
 	private String shareaddr;
 	private String sharedetail;
 //////////////////////////////////
-	//만들어낸 변수
+	
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
 	
@@ -71,6 +71,7 @@ public class OrderDTO {
 	}
 	public void setOrd_count(int ord_count) {
 		this.ord_count = ord_count;
+		
 	}
 	public int getStatus() {
 		return status;
@@ -83,12 +84,14 @@ public class OrderDTO {
 	}
 	public void setOn_count(int on_count) {
 		this.on_count = on_count;
+		
 	}
 	public int getRest_count() {
 		return rest_count;
 	}
 	public void setRest_count(int rest_count) {
 		this.rest_count = rest_count;
+		
 	}
 	public int getPro_total() {
 		return pro_total;

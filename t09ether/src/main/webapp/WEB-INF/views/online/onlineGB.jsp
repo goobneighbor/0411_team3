@@ -113,7 +113,7 @@
 		
 		//유효성 검사
 		$("#onlineGBForm").submit(function() {
-			
+			//event.preventDefault();
 			if($("#shareaddr").val()=="") {
 				alert("나눔주소를 입력하세요.");
 				return false;
@@ -125,10 +125,10 @@
 			}
 			
 			//form태그의 action속성 설정
-			<%-- $("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo"); --%>
-			$("#onlineGBForm").submit(function(){
-				
-			})
+			$("#onlineGBForm").attr("action","/home/order/paytestInfo");
+			
+			
+			
 		});
 	});
 		

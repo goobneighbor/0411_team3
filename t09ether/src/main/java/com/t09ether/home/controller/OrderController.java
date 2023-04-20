@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +40,7 @@ public class OrderController {
 		System.out.println((String)session.getAttribute("logId"));
 		dto.setUserid((String)session.getAttribute("logId"));
 		odto.setUserid((String)session.getAttribute("logId"));
-		
+		//dto.setRest_count(dto.getRest_count()- dto.getOrd_count()); -> update문 메소드
 		System.out.println(dto.toString());
 		System.out.println(odto.toString());
 		

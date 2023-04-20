@@ -124,7 +124,6 @@ $(function(){
                             <h2 class="card-title">${dto.pro_name }</h2>
                             <p class="card-text">${dto.detailed }</p>
                             <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
-
                         </div>
                     </div>
 
@@ -163,5 +162,6 @@ $(function(){
                         <div class="card-header">온라인 공동구매 시작하세요!</div>
                         <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
                     </div>
+                </div>
                 </div>
 

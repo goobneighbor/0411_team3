@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
 =======
 <<<<<<< HEAD
@@ -8,3 +9,9 @@ encoding//src/main/webapp/WEB-INF/views/offline/offline_board.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
 >>>>>>> a618469f4b60f18e341e87976951934191dbdd70
 >>>>>>> 722934dabbab8e3306e95ac3156d4ef71056df17
+=======
+encoding//src/main/webapp/WEB-INF/views/offline/offline_board.jsp=UTF-8
+=======
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+>>>>>>> a618469f4b60f18e341e87976951934191dbdd70
+>>>>>>> b1d2c41bcee90e4e1790979f05730a3b79060908

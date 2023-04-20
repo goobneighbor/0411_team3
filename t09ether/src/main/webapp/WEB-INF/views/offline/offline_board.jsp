@@ -2,8 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	.board_header{
+		margin:20px;
 		padding:30px;
+		width:350px;
+		height:70px;
 		background-color:tomato;
+		text-align: center;
+		border-radius: 10px;
+	}
+	.board_header a{
+		color:white;
 	}
 	.board_list{
 		text-decoration: none;
@@ -78,13 +86,20 @@
 		text-align: center;		
 	}
 </style>
-
-<div class="container">
-	<h1>오프라인 공구 게시판</h1>
-	<div class="board_header"><a href="offlineWrite">글쓰기</a></div>
+<!-- Header-->
+<header class="bg-tomato py-5">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white">
+        	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
+            <p class="lead fw-normal text-white-75 mb-0">공동구매를 시작하거나 참여해보세요.</p>
+        </div>
+    </div>
+</header>
+<div class="container">	
+	<div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
 	<div class = "pHeader">
-		<div>진행중인 공구 :  </div>
-		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>		
+		<div>진행중인 공구 : ${vo.totalRecord } </div>
+		<div>${vo.totalPage}페이지/${vo.nowPage}페이지</div>		
 	</div>
 	<form method="post" action="/campus/board/boardMultiDel" id="delList">
 		<!-- 페이지번호, 검색어, 검색키 -->
@@ -104,14 +119,17 @@
 			<li>마감일</li>
 			<!-- 시작번호 설정       :                 총 레코드 수       현재페이지        한페이지레코드수-->	
 			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord}"/>
-			<c:forEach var="bDTO" items="${list}">
-				<li>${recordNum}</li>
+			<c:forEach var="offDTO" items="${list}">				
+				<li>${offDTO.off_no}</li>
+				<li>${offDTO.location}</li>
+				<li>${offDTO.current_num}/${offDTO.group_num}</li>
 				<!-- 글내용보기 : 레코드번호, 현재페이지, 검색어가 있다면 검색키와 검색어 가지고 뷰페이지로 이동하여야 
 				다시 목록으로 올 때 해당 검색과 페이지도 이동할 수 있다-->
-				<li><a href="boardView?no=${bDTO.no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${bDTO.subject}</a></li>
-				<li>${bDTO.username }</li>
-				<li>${bDTO.hit }</li>
-				<li>${bDTO.writedate }</li>
+				<li><a href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${offDTO.off_subject}</a></li>
+				<li>${offDTO.userid }</li>
+				<li>${offDTO.off_hit }</li>
+				<li>${offDTO.writedate }</li>
+				<li>${offDTO.deaddate}</li>
 				<c:set var="recordNum" value="${recordNum-1}"/>
 			</c:forEach>
 		</ul>

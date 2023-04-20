@@ -31,7 +31,7 @@ public class AdminController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		/*vo.setTotalRecord(service.totalRecord(vo));*/
+		vo.setTotalRecord(service.totalRecord(vo));
 		
 		List<RegisterDTO> list = service.pageSelect(vo);
 		

@@ -3,17 +3,17 @@ package com.t09ether.home.dto;
 import java.util.Date;
 
 public class OfflineDTO {
-	private int off_no; //ÀÏ·Ã¹øÈ£
-	private String userid;//¾ÆÀÌµğ
-	private String off_subject;//±ÛÁ¦¸ñ
-	private String off_content;//±Û³»¿ë
-	private String location;//Àå¼Ò
-	private int group_num;//¸ğÁıÀÎ¿ø
-	private int current_num;//ÇöÀçÀÎ¿ø
-	private String app_time;//¾à¼Ó½Ã°£
-	private String deaddate;//¸ğÁı¸¶°¨ÀÏ
-	private int off_hit;//Á¶È¸¼ö
-	private String writedate;//µî·ÏÀÏ
+	private int off_no; //ê¸€ë²ˆí˜¸
+	private String userid;//ì‘ì„±ì
+	private String off_subject;//ê¸€ì œëª©
+	private String off_content;//ê¸€ë‚´ìš©
+	private String location;//ìœ„ì¹˜
+	private int group_num;//ëª¨ì§‘ì¸ì›
+	private int current_num;//í˜„ì¬ì¸ì™„
+	private String app_time;//ë§Œë‚¨ì‹œê°„
+	private String deaddate;//ëª¨ì§‘ë§ˆê°ì¼
+	private int off_hit;//ì¡°íšŒìˆ˜
+	private String writedate;//ì‘ì„±ì¼
 	
 	public int getOff_no() {
 		return off_no;

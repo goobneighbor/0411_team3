@@ -44,7 +44,6 @@
 	nav>div>div {
 		display: inline-block;	
 	}
-
 	nav {
 		position:relative;
 	}
@@ -88,7 +87,6 @@
                         <c:if test="${logStatus != 'Y' }">
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath() %>/loginForm">로그인</a></li>
                         </c:if>
-
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/customer/customerBoard">고객센터</a></li>
                     </ul>
 

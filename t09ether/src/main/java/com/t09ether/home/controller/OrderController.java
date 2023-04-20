@@ -54,7 +54,7 @@ public class OrderController {
 		}catch(Exception e) {
 			e.printStackTrace();
 			String htmlTag = "<script>"; 
-			htmlTag += "alert('상품이 등록되지 않았습니다.');";
+			htmlTag += "alert('등록에 실했습니다.');";
 			htmlTag += "history.back();";
 			htmlTag += "</script>";
 			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.BAD_REQUEST);
@@ -62,8 +62,4 @@ public class OrderController {
 		return entity; 
 		
 	}
-	
-	
-	
-	
 }

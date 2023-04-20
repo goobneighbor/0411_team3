@@ -218,7 +218,7 @@
 				<!-- 상품이미지가져와야함 -->
 				<li><img class="card-img-top" src="${dto.image }" alt="${dto.pro_name }" /></li>
 				<li>상품명</li>
-				<li><input type="text" name="pro_name" id="pr_name" value="${dto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
+				<li><input type="text" name="pro_name" id="pro_name" value="${dto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
 				<li>가격</li>
 				<li><input type="number" name="pro_price" id="pro_price" value="${dto.pro_price }" readonly/></li> <!-- 가격가져와야함 -->
 				<li>개당가격</li>

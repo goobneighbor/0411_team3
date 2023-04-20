@@ -24,10 +24,10 @@ public class OrderServiceImpl implements OrderService {
 	public int onlineInsert(OnlineDTO dto) {
 		return dao.onlineInsert(dto);
 	}
-	
+
 	@Override
-	public OrderDTO orderSelect(int pro_code) {
-		return dao.orderSelect(pro_code);
+	public OrderDTO orderSelect(int pro_code, String userid) {
+		return dao.orderSelect(pro_code, userid);
 	}
 
 }

@@ -124,6 +124,11 @@
 				return false;
 			}
 			
+			var ord_count = parseInt(document.getElementById("ord_count").value);
+			var pro_total = parseInt(document.getElementById("pro_total").value;)
+			document.getElementById("rest_count").value = pro_total - ord_count;
+			
+			
 			//form태그의 action속성 설정
 			<%-- $("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo"); --%>
 			$("#onlineGBForm").submit(function(){
@@ -172,7 +177,7 @@
 					<input type="button" value="주소찾기" id="shareaddrSearch"/>
 				</li>
 				<li><input type="text" name="sharedetail" id="sharedetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
-				
+				<li><input type="hidden" name="rest_count" id="rest_count" value="${dto.pro_total-1 }"/></li>
 					
 			</ul>
 			<input type="submit" value="등록하기" id="lastsubmit"/>

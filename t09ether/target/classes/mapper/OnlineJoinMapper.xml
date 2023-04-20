@@ -16,8 +16,8 @@
 		</if>
 	</select>
 	<select id="getSearchList" resultType="com.t09ether.home.dto.OrderDTO">
-		select shareaddr from product_detail
-		where pro_code = ${pro_code}
+		select shareaddr
+		from product_detail where pro_code = ${pro_code}
 		<if test="searchWrd != null">
 		and shareaddr like '%${searchWrd}%' 
 		</if>

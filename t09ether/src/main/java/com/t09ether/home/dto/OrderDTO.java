@@ -6,13 +6,14 @@ public class OrderDTO {
 	private String userid;
 	private int ord_count; //내가주문한상품수
 	private int status;
-	private String shareaddr;
-	private String sharedetail;
+	
 //////////////////////////////////
-	//만들어낸 변수
+	
+	private int on_no;
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
-	
+	private String shareaddr;
+	private String sharedetail;
 	
 	////상품 
 	private int pro_total;
@@ -71,6 +72,7 @@ public class OrderDTO {
 	}
 	public void setOrd_count(int ord_count) {
 		this.ord_count = ord_count;
+		
 	}
 	public int getStatus() {
 		return status;
@@ -83,13 +85,40 @@ public class OrderDTO {
 	}
 	public void setOn_count(int on_count) {
 		this.on_count = on_count;
+		
 	}
+	
+	public int getOn_no() {
+		return on_no;
+	}
+
+	public void setOn_no(int on_no) {
+		this.on_no = on_no;
+	}
+
 	public int getRest_count() {
 		return rest_count;
 	}
 	public void setRest_count(int rest_count) {
 		this.rest_count = rest_count;
+		
 	}
+	public String getShareaddr() {
+		return shareaddr;
+	}
+
+	public void setShareaddr(String shareaddr) {
+		this.shareaddr = shareaddr;
+	}
+
+	public String getSharedetail() {
+		return sharedetail;
+	}
+
+	public void setSharedetail(String sharedetail) {
+		this.sharedetail = sharedetail;
+	}
+
 	public int getPro_total() {
 		return pro_total;
 	}

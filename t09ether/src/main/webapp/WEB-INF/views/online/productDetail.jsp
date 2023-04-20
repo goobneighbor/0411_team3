@@ -101,8 +101,7 @@ $(function(){
 function listView(result) {
 	var tag = "";
 	$(result).each(function(i, lDTO){
-		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'>남은수량:""</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
-		
+		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'>남은수량:</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	
 	});

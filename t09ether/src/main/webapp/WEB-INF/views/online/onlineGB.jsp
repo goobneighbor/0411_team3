@@ -68,7 +68,7 @@
 </style>
 <script>
 	$(function(){
-		$("#pro_aprice").ready(function(){
+		$("#final_amount").ready(function(){
 		    var num = document.getElementById("final_amount").value
 		    num = Math.ceil(num);
 		    document.getElementById("final_amount").value = num;
@@ -88,16 +88,20 @@
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
+				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) - 1;
 			}
 		});
 		
 		$("#minus").click(function(){
+			var pro_total = parseInt(document.getElementById("pro_total").value);
 			var cnt =  parseInt(document.getElementById("ord_count").value);
 			if(cnt>1){
 				var c_cnt = document.getElementById("ord_count").value = cnt - 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
+				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) + 1;
+
 			}
 		});
 		
@@ -111,9 +115,11 @@
 		      }).open();
 		});
 		
+		
+		
 		//유효성 검사
 		$("#onlineGBForm").submit(function() {
-			
+			//event.preventDefault();
 			if($("#shareaddr").val()=="") {
 				alert("나눔주소를 입력하세요.");
 				return false;
@@ -124,16 +130,12 @@
 				return false;
 			}
 			
-			var ord_count = parseInt(document.getElementById("ord_count").value);
-			var pro_total = parseInt(document.getElementById("pro_total").value;)
-			document.getElementById("rest_count").value = pro_total - ord_count;
-			
 			
 			//form태그의 action속성 설정
-			<%-- $("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo"); --%>
-			$("#onlineGBForm").submit(function(){
-				
-			})
+			$("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo");
+			
+			
+			
 		});
 	});
 		

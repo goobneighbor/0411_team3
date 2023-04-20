@@ -57,6 +57,7 @@ public class OnlineController {
 	//상품에 해당하는 나눔장소 전체 리스트
 	@GetMapping("/locationList")
 	public List<OrderDTO> locationList(int pro_code) {
+		System.out.println(service.locationListSelect(pro_code).toString());
 		return service.locationListSelect(pro_code);
 	}
 	

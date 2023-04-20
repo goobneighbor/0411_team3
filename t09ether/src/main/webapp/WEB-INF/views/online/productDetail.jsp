@@ -56,11 +56,12 @@ $(function(){
 	//지역목록뿌리기
 		function locationList(){
 			$.ajax({
-				url:"<%=request.getContextPath()%>/online/locationList", //onlineListController에 있어
+				url:"<%=request.getContextPath()%>/online/locationList", //onlineController에 있어
 				data:{
 					pro_code:${dto.pro_code}
 				},
 				success:function(locationList){//서버에서 정상적으로 데이터를 가져왔을때
+					console.log(locationList);
 					listView(locationList)
 				},error:function(e){
 					console.log(e.responseText);
@@ -100,7 +101,7 @@ $(function(){
 function listView(result) {
 	var tag = "";
 	$(result).each(function(i, lDTO){
-		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'>남은수량:</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
+		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'>남은수량:"++lDTO.rest_count"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
 		
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	

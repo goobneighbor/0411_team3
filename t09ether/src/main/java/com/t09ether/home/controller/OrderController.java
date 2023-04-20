@@ -47,7 +47,8 @@ public class OrderController {
 		try {
 			service.orderInsert(dto);
 			service.onlineInsert(odto);
-			String htmlTag = "<script>location.href='online/payRes';</script>";
+			//service.orderSelect(dto.getPro_code());
+			String htmlTag = "<script>location.href='/home/online/payRes';</script>";
 			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
 			
 		}catch(Exception e) {

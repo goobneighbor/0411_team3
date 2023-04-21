@@ -24,7 +24,12 @@ public interface OfflineDAO {
 	public int offlineUpdate(OfflineDTO dto);
 	//글삭제
 	public int offlineDelete(OfflineDTO dto);
-	//공구참여시 -> 참여자의 정보(RegisterDTO)불러오기
-	public RegisterDTO offlineParticipant(String userid);
-	
+	//공구참여시 -> userid 를 이용해참여자의 정보(RegisterDTO)불러오기
+	public RegisterDTO getParticipant(String userid);	
+	// 참여자 정보를 off_participant 테이블에 추가하기
+	public int participantInsert(OfflineParticipantDTO opDTO);
+	// 공구번호(off_no)에 해당하는 참가자들 정보 불러오기(List)
+	public List<OfflineParticipantDTO> participantList(int off_no);
+	// 공구참여-> 현재인원 1 증가
+	public void currentNumCount(int off_no);
 }

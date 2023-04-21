@@ -56,7 +56,17 @@
 	<delete id="offlineDelete">
 		delete from off_gb where off_no = ${off_no} and userid=#{userid}
 	</delete>
-	<select id="offlineParticipant" resultType="com.t09ether.home.dto.RegisterDTO">
-		select * from registerinfo where userid=#{param1}
+	<select id="getParticipant" resultType="com.t09ether.home.dto.RegisterDTO">
+		select * from registerinfo where userid = #{param1}
 	</select>
+	<insert id="participantInsert">
+		insert into off_participant(off_j_no, off_no, userid, username, tel)
+		values (off_j_no_sq.nextval, #{off_no}, #{userid}, #{username}, #{tel})
+	</insert>
+	<select id="participantList" resultType="com.t09ether.home.dto.OfflineParticipantDTO">
+		select * from off_participant where off_no=${param1}
+	</select>
+	<update id="currentNumCount">
+		update off_gb set current_num = current_num + 1 where off_no=${param1}
+	</update>
 </mapper>

@@ -14,12 +14,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
+import com.t09ether.home.dto.OfflinePartyDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineService;
 
@@ -53,13 +58,15 @@ public class OfflineController {
 		return mav;
 	}
 	
-	//글등록(DB)
+	//글등록(DB) 
 	@PostMapping("/offlineInsert")	
 	public ResponseEntity<String> offlineInsert(OfflineDTO dto,HttpServletRequest request) {
 		//dto.setIp(request.getRemoteAddr());//ip
-		dto.setUserid((String)request.getSession().getAttribute("logId"));//로그인한 아이디 구하기
+		String userid = (String)request.getSession().getAttribute("logId");
+		dto.setUserid((userid));//로그인한 아이디 구하기
 		dto.setCurrent_num(1);
-		dto.setOff_hit(1);				
+		dto.setOff_hit(1);			
+		
 		
 		String htmlTag="<script>";
 		try {
@@ -71,6 +78,18 @@ public class OfflineController {
 			htmlTag += "history.back();";
 		}
 		htmlTag += "</script>";
+		
+		//글등록성공하면 자동으로 off_participant에 추가
+		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
+		//userid를 이용해 참가하는 회원의 정보를 가져와
+		RegisterDTO rDTO = service.getParticipant(userid);  
+		//DB의 offline_participant테이블에 insert한다
+		opDTO.setOff_no(dto.getOff_no());
+		opDTO.setUserid(userid);
+		opDTO.setUsername(rDTO.getUsername());
+		opDTO.setTel(rDTO.getTel());
+		service.participantInsert(opDTO);
+		System.out.println("글작성자->offline_participant에 등록완료");
 		//결과
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
@@ -173,19 +192,62 @@ public class OfflineController {
 			return mav;
 		}
 	
-	//오프라인공구 참가 -> 참여자 한명의 정보(RegisterDTO)를 OfflineParticipantDTO에 담기
+	//오프라인 공구 참여 -> 오프라인공구 상세페이지로
 	@PostMapping("/offlineJoin")
-	public ModelAndView offlineJoin(OfflineDTO dto, HttpServletRequest request) {
+	public ModelAndView offlineJoin(int off_no, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		String userid = ((String)request.getSession().getAttribute("logId")); //로그인한 아이디구하기
-		System.out.println("userid->"+userid);
+		OfflineDTO dto = service.offlineSelect(off_no);	
+		String userid = (String)request.getSession().getAttribute("logId");
 		
+		List<OfflineParticipantDTO> list=service.participantList(off_no);
+		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
+		//userid를 이용해 참가하는 회원의 정보를 가져오기
+		RegisterDTO rDTO = service.getParticipant(userid);
+		opDTO.setOff_no(off_no);
+		opDTO.setUserid(userid);
+		opDTO.setUsername(rDTO.getUsername());
+		opDTO.setTel(rDTO.getTel());
+		System.out.println("opDTO->"+opDTO.toString());
 		
+		//DB의 offline_participant테이블에 insert한다
+		service.participantInsert(opDTO);
+		//현재참가인원증가
+		service.currentNumCount(off_no);
+		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
+		mav.addObject("list", list);
 		
-		mav.addObject("dto", dto);//원글정보
-		//mav.addObject("list", list);//참여자정보
-		mav.setViewName("offline/offlineDetail");
+		/*
+		if() {//이미 참여한 사람이면 따로 등록 X
+			
+		}else { //등록되어있지 않은 사람인 경우
+			
+		}
+		*/
+		mav.addObject("dto", dto);
+		mav.setViewName("/offline/offlineDetail");
 		return mav;
+	}
+	
+	
+	@GetMapping("/offlineAjax")
+	@ResponseBody
+	public OfflineParticipantDTO offlineAjax(HttpServletRequest request) {
+		String userid = (String)request.getSession().getAttribute("logId");
+		System.out.println("로그인아이디="+userid);
+		
+		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
+		//opDTO.setOff_no(off_no);
+		opDTO.setUserid(userid);
+		opDTO.setUsername(service.getParticipant(userid).getUsername());
+		opDTO.setTel(service.getParticipant(userid).getTel());
+		System.out.println(opDTO.toString());
+		
+		return opDTO;
+	}
+	
+	@RequestMapping(value="/ajaxData", method= {RequestMethod.POST})
+	public void ajaxData(@RequestParam("userid")String userid) {
+		System.out.println();
 	}
 	
 }

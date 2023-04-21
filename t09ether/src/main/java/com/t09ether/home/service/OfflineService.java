@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 
 public interface OfflineService {
@@ -15,5 +16,9 @@ public interface OfflineService {
 	public OfflineDTO offlineEditSelect(int off_no);
 	public int offlineUpdate(OfflineDTO dto);
 	public int offlineDelete(OfflineDTO dto);
-	public RegisterDTO offlineParticipant(String userid);
+	public RegisterDTO getParticipant(String userid);
+	public int participantInsert(OfflineParticipantDTO opDTO);
+	public List<OfflineParticipantDTO> participantList(int off_no);
+	public void currentNumCount(int off_no);
+	
 }

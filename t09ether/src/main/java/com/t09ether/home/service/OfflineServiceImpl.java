@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.t09ether.home.dao.OfflineDAO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 @Service
 public class OfflineServiceImpl implements OfflineService {
@@ -55,9 +56,27 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public RegisterDTO offlineParticipant(String userid) {
-		return dao.offlineParticipant(userid);
+	public RegisterDTO getParticipant(String userid) {
+		return dao.getParticipant(userid);
 	}
+
+	@Override
+	public int participantInsert(OfflineParticipantDTO opDTO) {
+		return dao.participantInsert(opDTO);
+	}
+
+	@Override
+	public List<OfflineParticipantDTO> participantList(int off_no) {
+		return dao.participantList(off_no);
+	}
+
+	@Override
+	public void currentNumCount(int off_no) {
+		dao.currentNumCount(off_no);
+	}
+
+	
+	
 
 	
 

@@ -57,6 +57,24 @@
 		}	
 	}
 	
+	$(function(){
+		var userid = '<%=session.getAttribute("logId")%>';
+		
+		$("#joinButton").click(function(){
+			if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
+				//아니오 -> 참여안함
+				alert("공동구매 참여가 취소되었습니다.");
+				return false;
+			}else{//예 -> 참여함
+				if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
+					alert("정원이 가득 찼습니다");
+					//return false;
+				}
+			}
+		});
+			
+		
+	});
 </script>
 <div class="container">
 	<!-- Header-->
@@ -83,8 +101,8 @@
 			
 	</ul>
 	<form method="post" action="offlineJoin" id="offlineJoin">
-			<input type="submit" value="지금참여하기"/>
-			<input type="hidden" name="dto" value="${dto}"/>
+			<input type="hidden" name="off_no" value="${dto.off_no}"/>
+			<input type="submit" value="지금참여하기" id="joinButton"/>	
 	</form>
 			
 	<div class="boardSubMenu">		

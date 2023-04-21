@@ -2,6 +2,7 @@ package com.t09ether.home.dto;
 
 import java.util.Date;
 
+//오프라인 공동구매 게시판 글 정보
 public class OfflineDTO {
 	private int off_no; //글번호
 	private String userid;//작성자

@@ -67,56 +67,59 @@
 	}
 </style>
 <script>
-		$(function(){
-			
-			$("#final_amount").ready(function(){
-				var num = document.getElementById("final_amount").value;
-				num = Math.ceil(num);
-				var cnt = document.getElementById("ord_count").value;
-				var sum = (num*cnt)+500;
-				
-				document.getElementById("final_amount").value = sum;
-				
-			});
-			
-			var pro_name = document.getElementById("pro_name").value;
-			var final_amount = document.getElementById("final_amount").value;
-			var email = document.getElementById("email").value;
-			var username = document.getElementById("username").value;
-			var tel = document.getElementById("tel").value;
-			var addr = document.getElementById("addr").value + document.getElementById("addrdetail").value;
-			var zipcode = document.getElementById("zipcode").value;
-			
-			var IMP = window.IMP; 
-	        IMP.init("imp01658864"); 
-	    
-	        function requestPay() {
-	            IMP.request_pay({
-	                pg : 'kakaopay',
-	                pay_method : 'card',
-	                merchant_uid: "merchant-"+ new Date().getTime(), 
-	                name : pro_name,
-	                amount : final_amount,
-	                buyer_email : email,
-	                buyer_name : username,
-	                buyer_tel : tel,
-	                buyer_addr : addr,
-	                buyer_postcode : zipcode
-	            }, function (rsp) { // callback
-	                if (rsp.success) {
-	                    console.log(rsp);
-	                } else {
-	                    console.log(rsp);
-	                }
-	            });
-	        }
-		    
-	        $("#lastsubmit").click(function(){
-	        	requestPay();
-	        	
-	        });
-		    
-		});
+	var sum;
+$(function(){
+	
+		var num = document.getElementById("final_amount").value;
+		num = Math.ceil(num);
+		var cnt = document.getElementById("ord_count").value;
+		sum = (num*cnt)+500;
+		
+		document.getElementById("final_amount").value = sum;
+		
+
+	
+	
+	
+	
+	var IMP = window.IMP; 
+    IMP.init("imp"); 
+    
+    var pro_name = document.getElementById("pro_name").value;
+    var all_amount = document.getElementById("final_amount").value;;
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var tel = document.getElementById("tel").value;
+    var addr = document.getElementById("addr").value + document.getElementById("addrdetail").value;
+    var zipcode = document.getElementById("zipcode").value;
+
+    function requestPay() {
+        IMP.request_pay({
+            pg : 'kakaopay',
+            pay_method : 'card',
+            merchant_uid: "merchant-"+ new Date().getTime(), 
+            name : pro_name,
+            amount : all_amount,
+            buyer_email : email,
+            buyer_name : username,
+            buyer_tel : tel,
+            buyer_addr : addr,
+            buyer_postcode : zipcode
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                console.log(rsp);
+            } else {
+                console.log(rsp);
+            }
+        });
+    }
+    
+    $("#lastsubmit").click(function(){
+    	requestPay();
+    	
+    });
+    
+});
 	
 		
 </script>

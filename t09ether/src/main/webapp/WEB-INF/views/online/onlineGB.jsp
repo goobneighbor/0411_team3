@@ -144,7 +144,7 @@
 	<section id="main" class="container">
 		<header>
 			<h2>온라인 공동구매 생성</h2>
-			<p>공동 구매 상품확인</p>
+			<p>공동 구매 진행</p>
 		</header>
 	</section>
 	<form method="post" id="onlineGBForm">

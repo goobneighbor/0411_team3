@@ -24,12 +24,10 @@ public class OrderController {
 	@Autowired
 	OrderService service;
 	
-	@GetMapping("/orderForm")
-	public ModelAndView orderForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("online/orderForm");
-		return mav;
-	}
+	/*
+	 * @GetMapping("/orderForm") public ModelAndView orderForm() { ModelAndView mav
+	 * = new ModelAndView(); mav.setViewName("online/orderForm"); return mav; }
+	 */
 	
 	
 	@PostMapping("/paytestInfo")

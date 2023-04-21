@@ -26,8 +26,11 @@
 </style>
 <script>
 $(function(){
-	$("#onlineJoinForm").on('click', function(){
-
+	$(document).on('click',"#onlineJoinForm", function(){
+		console.log($(this).parent().parent())
+	
+		var idx = $("#locationList>li").index($(this).parent().parent());
+		console.log(idx)
 		var _width = '500';
 	    var _height = '248';
 	   
@@ -35,12 +38,14 @@ $(function(){
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
 
 function openPopup() {
+	
+
 	 
     var _width = '730';
     var _height = '750';
@@ -76,8 +81,8 @@ $(function(){
 		
 	})
 	
-
-
+let on_no=[];
+let rest_count=[];
 $(function(){
 	$("#searchForm").submit(function(){
 		event.preventDefault();
@@ -101,7 +106,10 @@ $(function(){
 function listView(result) {
 	var tag = "";
 	$(result).each(function(i, lDTO){
-		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'>남은수량:</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여</button>";
+		on_no.push(lDTO.on_no); // [3, 6,  9]
+		rest_count.push(lDTO.rest_count);
+		
+		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'></span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 		
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	

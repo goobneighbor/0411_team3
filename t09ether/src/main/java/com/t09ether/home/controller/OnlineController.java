@@ -2,24 +2,19 @@ package com.t09ether.home.controller;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.SearchVO;
 import com.t09ether.home.service.OnlineJoinService;
-
-import net.sf.json.JSONArray;
 
 
 
@@ -31,8 +26,12 @@ public class OnlineController {
 	
 
 	@GetMapping("/onlineJoinForm") 
- 	public ModelAndView onlineJoin() {
+ 	public ModelAndView onlineJoin(int on_no, int rest_count) {
 		ModelAndView mav = new ModelAndView(); 
+		OrderDTO dto = new OrderDTO();
+		dto.setOn_no(on_no);
+		dto.setRest_count(rest_count);
+		mav.addObject("dto", dto);
 		mav.setViewName("online/onlineJoinForm"); 
 		return mav; 
 	}
@@ -68,5 +67,21 @@ public class OnlineController {
 		return service.getSearchList(pro_code, searchWrd);
 	}
 	
-	
+	@PostMapping("/orderForm")
+	public ModelAndView orderForm(OrderDTO dto, ProductDTO pdto, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(" :-"+dto);
+		System.out.println(" :-"+pdto);
+		pdto = service.proInfor(dto.getOn_no());
+		dto.setUserid((String)request.getSession().getAttribute("logId"));
+		System.out.println(" :-"+dto.getUserid());
+		dto.setRank(service.userRank(dto.getUserid()));
+		System.out.println(" :"+dto);
+		System.out.println(" :"+pdto);
+		mav.addObject("dto", dto);
+		mav.addObject("pdto",pdto);
+		mav.setViewName("/online/orderForm");
+		return mav;
+		
+	}
 }

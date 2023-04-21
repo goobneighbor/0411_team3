@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.OnlineJoinDAO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
 
 @Service
 public class OnlineJoinServiceImpl implements OnlineJoinService {
@@ -27,6 +28,16 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 	@Override
 	public List<OrderDTO> getSearchList(int pro_code, String searchWrd) {
 		return dao.getSearchList(pro_code, searchWrd);
+	}
+
+	@Override
+	public ProductDTO proInfor(int on_no) {
+		return dao.proInfor(on_no);
+	}
+
+	@Override
+	public int userRank(String userid) {
+		return dao.userRank(userid);
 	}
 
 	

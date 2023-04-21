@@ -8,11 +8,16 @@ public class OrderDTO {
 	private int status;
 	private String shareaddr;
 	private String sharedetail;
+	///////////////////
+	private String orderdate;
+	
 //////////////////////////////////
 	
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
 	
+	//온라인공구번호(product_detail)
+	private int on_no;
 	
 	////상품 
 	private int pro_total;
@@ -33,7 +38,7 @@ public class OrderDTO {
 	private String zipcode;
 	private String addr;
 	private String addrdetail;
-	private String rank;
+	private int rank;
 	
 	
 	
@@ -171,11 +176,35 @@ public class OrderDTO {
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
 	}
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
+	}
+
+	public String getShareaddr() {
+		return shareaddr;
+	}
+
+	public void setShareaddr(String shareaddr) {
+		this.shareaddr = shareaddr;
+	}
+
+	public String getSharedetail() {
+		return sharedetail;
+	}
+
+	public void setSharedetail(String sharedetail) {
+		this.sharedetail = sharedetail;
+	}
+
+	public int getOn_no() {
+		return on_no;
+	}
+
+	public void setOn_no(int on_no) {
+		this.on_no = on_no;
 	}
 	
 	

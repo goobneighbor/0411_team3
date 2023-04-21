@@ -38,7 +38,7 @@ $(function(){
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx]+'&pro_code='+pro_code[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
@@ -83,6 +83,7 @@ $(function(){
 	
 let on_no=[];
 let rest_count=[];
+let pro_code=[];
 $(function(){
 	$("#searchForm").submit(function(){
 		event.preventDefault();
@@ -106,8 +107,10 @@ $(function(){
 function listView(result) {
 	var tag = "";
 	$(result).each(function(i, lDTO){
+	
 		on_no.push(lDTO.on_no); // [3, 6,  9]
 		rest_count.push(lDTO.rest_count);
+		pro_code.push(lDTO.pro_code);
 		
 		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'></span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 		

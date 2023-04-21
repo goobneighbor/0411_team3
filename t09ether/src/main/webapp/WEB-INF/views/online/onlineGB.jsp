@@ -68,7 +68,7 @@
 </style>
 <script>
 	$(function(){
-		$("#pro_aprice").ready(function(){
+		$("#final_amount").ready(function(){
 		    var num = document.getElementById("final_amount").value
 		    num = Math.ceil(num);
 		    document.getElementById("final_amount").value = num;
@@ -88,16 +88,20 @@
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
+				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) - 1;
 			}
 		});
 		
 		$("#minus").click(function(){
+			var pro_total = parseInt(document.getElementById("pro_total").value);
 			var cnt =  parseInt(document.getElementById("ord_count").value);
 			if(cnt>1){
 				var c_cnt = document.getElementById("ord_count").value = cnt - 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
 				document.getElementById("final_amount").value = total;
+				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) + 1;
+
 			}
 		});
 		
@@ -110,6 +114,8 @@
 		        }
 		      }).open();
 		});
+		
+		
 		
 		//유효성 검사
 		$("#onlineGBForm").submit(function() {
@@ -124,8 +130,9 @@
 				return false;
 			}
 			
+			
 			//form태그의 action속성 설정
-			$("#onlineGBForm").attr("action","/home/order/paytestInfo");
+			$("#onlineGBForm").attr("action","<%=request.getContextPath() %>/order/paytestInfo");
 			
 			
 			
@@ -172,7 +179,7 @@
 					<input type="button" value="주소찾기" id="shareaddrSearch"/>
 				</li>
 				<li><input type="text" name="sharedetail" id="sharedetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
-				
+				<li><input type="hidden" name="rest_count" id="rest_count" value="${dto.pro_total-1 }"/></li>
 					
 			</ul>
 			<input type="submit" value="등록하기" id="lastsubmit"/>

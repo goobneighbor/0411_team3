@@ -23,5 +23,13 @@ public interface OnlineJoinDAO {
 	
 	//회원 rank
 	public int userRank(String userid);
-		
+	
+	//ord_no select
+	public int ordNoSelect(OrderDTO dto);
+	
+	//주문 DB에 넣기
+	public int orderInsert(OrderDTO dto);
+	
+	//rest_count update
+	public int restUpdate(OrderDTO dto);
 }

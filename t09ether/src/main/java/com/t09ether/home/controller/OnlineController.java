@@ -26,12 +26,14 @@ public class OnlineController {
 	
 
 	@GetMapping("/onlineJoinForm") 
- 	public ModelAndView onlineJoin(int on_no, int rest_count) {
+ 	public ModelAndView onlineJoin(int on_no, int rest_count, int pro_code) {
 		ModelAndView mav = new ModelAndView(); 
 		OrderDTO dto = new OrderDTO();
 		dto.setOn_no(on_no);
 		dto.setRest_count(rest_count);
+		dto.setPro_code(pro_code);
 		mav.addObject("dto", dto);
+		mav.addObject("pdto", dto);
 		mav.setViewName("online/onlineJoinForm"); 
 		return mav; 
 	}
@@ -57,7 +59,16 @@ public class OnlineController {
 	@GetMapping("/locationList")
 	public List<OrderDTO> locationList(int pro_code) {
 		System.out.println(service.locationListSelect(pro_code).toString());
-		return service.locationListSelect(pro_code);
+		List<OrderDTO> list = service.locationListSelect(pro_code);
+		
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setPro_code(pro_code);
+		}
+
+		System.out.println("list: " + list);
+		
+		return list;
+
 	}
 	
 	//상품+검색어에 해당하는 리스트
@@ -69,13 +80,29 @@ public class OnlineController {
 	
 	@PostMapping("/orderForm")
 	public ModelAndView orderForm(OrderDTO dto, ProductDTO pdto, HttpServletRequest request) {
+		System.out.println(request.getSession());
 		ModelAndView mav = new ModelAndView();
 		System.out.println(" :-"+dto);
 		System.out.println(" :-"+pdto);
-		pdto = service.proInfor(dto.getOn_no());
+		
+		//ord_no select
+		dto.setOrd_no(service.ordNoSelect(dto));
+		System.out.println(":::"+pdto);
+		
+		pdto = service.proInfor(dto.getOrd_no());
+		
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
-		System.out.println(" :-"+dto.getUserid());
 		dto.setRank(service.userRank(dto.getUserid()));
+		dto.setPro_code(pdto.getPro_code());
+		
+		//주문DB등록
+		service.orderInsert(dto);
+		
+		//rest_count update
+		int newRest = dto.getRest_count()-dto.getOrd_count();
+		dto.setRest_count(newRest);
+		service.restUpdate(dto);
+		
 		System.out.println(" :"+dto);
 		System.out.println(" :"+pdto);
 		mav.addObject("dto", dto);
@@ -84,4 +111,6 @@ public class OnlineController {
 		return mav;
 		
 	}
+	
+	
 }

@@ -67,6 +67,7 @@ header,footer{
 						<div class="col-8 col-12-mobilep">
 							<input name="on_no" value="${dto.on_no }" type="hidden"/>
 							<input name="rest_count" value="${dto.rest_count}" type="hidden"/>
+							<input name="pro_code" value="${dto.pro_code}" type="hidden"/>
 							<input id="ord_count" name="ord_count" class="form-control" type="text" placeholder="수량을 입력하세요" aria-label="수량을 입력하세요" />
 						</div>
 						<div class="col-4 col-12-mobilep">

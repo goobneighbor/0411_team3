@@ -13,7 +13,9 @@
 	height:40px;
 	line-height:40px;
 }
-
+#username, #rank{
+	font-weight:bold;
+}
 </style>
 <script>
 	window.name="orderForm"
@@ -25,7 +27,7 @@
 	<section id="main" class="container">
 		<header>
 			<h2>주문하기</h2>
-			<p>${logName } 님은 현재 ${dto.rank} 등급입니다! <br/>할인을 확인하시고 결제진행해주세요!</p>
+			<p><span id="username">${logName }</span> 님은 현재 <span id="rank">${dto.rank}</span> 등급입니다! <br/>할인을 확인하시고 결제진행해주세요!</p>
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -71,7 +73,7 @@
 						</div>
 					</div>
 					</section>
-						<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="">결제하기</a></div>
+						<div class="text-center"><a class="btn btn-outline-dark mt-auto">결제하기</a></div>
 					</div>
 				</div>
 	</section>

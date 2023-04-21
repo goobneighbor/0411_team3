@@ -40,5 +40,20 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 		return dao.userRank(userid);
 	}
 
+	@Override
+	public int orderInsert(OrderDTO dto) {
+		return dao.orderInsert(dto);
+	}
+
+	@Override
+	public int restUpdate(OrderDTO dto) {
+		return dao.restUpdate(dto);
+	}
+
+	@Override
+	public int ordNoSelect(OrderDTO dto) {
+		return dao.ordNoSelect(dto);
+	}
+
 	
 }

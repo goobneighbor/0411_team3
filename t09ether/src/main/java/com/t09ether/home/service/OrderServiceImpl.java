@@ -26,8 +26,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderDTO orderSelect(int pro_code, String userid) {
-		return dao.orderSelect(pro_code, userid);
+	public OrderDTO orderSelect(int pro_code, int on_no, String userid) {
+		return dao.orderSelect(pro_code, on_no, userid);
 	}
 
 }

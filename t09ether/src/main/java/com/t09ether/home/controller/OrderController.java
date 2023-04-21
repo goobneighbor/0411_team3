@@ -84,12 +84,12 @@ public class OrderController {
 		//상품등록 실패하면 예외발생
 		try {
 			service.onlineInsert(odto);
-			int num = odto.getOn_no() - 1;
-			System.out.println(num);
-			dto.setOn_no(num);
+			int on_no = odto.getOn_no() - 1;
+			System.out.println(on_no);
+			dto.setOn_no(on_no);
 			service.orderInsert(dto);
 			
-			OrderDTO sdto = service.orderSelect(pro_code, userid);
+			OrderDTO sdto = service.orderSelect(pro_code, on_no, userid);
 			mav.addObject("sdto", sdto);
 			mav.setViewName("online/payRes");
 			//service.orderSelect(dto.getPro_code());

@@ -29,7 +29,7 @@
 						<div class="features-row">
 							<section>
 								<span class="icon solid major fa-bolt accent2"></span>
-								<h3><a href="<%=request.getContextPath()%>/admin/adUser">사용자관리</a></h3>
+								<h3><a href="<%=request.getContextPath()%>/admin/adUser">회원 관리</a></h3>
 								<p>회원 목록/ 검색/ 영구제명(이 부분은 다 만들고 삭제예정)</p>
 							</section>
 							<section>

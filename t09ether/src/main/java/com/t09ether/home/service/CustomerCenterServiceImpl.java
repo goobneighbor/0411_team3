@@ -40,6 +40,20 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 		return dao.pageSelect(vo);
 	}
 
+	@Override
+	public int csBoardInsert(CustomerCenterDTO cdto) {
+		return dao.csBoardInsert(cdto);
+	}
+
+	@Override
+	public CustomerCenterDTO csBoardEditSelect(int cus_b_num) {
+		return dao.csBoardEditSelect(cus_b_num);
+	}
+
+	@Override
+	public int csBoardUpdate(CustomerCenterDTO cdto) {
+		return dao.csBoardUpdate(cdto);
+	}
 
 
 }

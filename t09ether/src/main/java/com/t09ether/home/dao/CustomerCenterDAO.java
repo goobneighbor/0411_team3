@@ -13,8 +13,13 @@ public interface CustomerCenterDAO {
 	public CustomerCenterDTO boardView(int cus_b_num);
 	// 총 레코드 수
 	public int totalRecord(CustomerCenterPagingVO vo);
-	// 조회수 증가
-	public void boardHitCount(int no);
 	// 해당페이지 선택
 	public List<CustomerCenterDTO> pageSelect(CustomerCenterPagingVO vo);
+	// 문의게시판에 글쓰기
+	public int csBoardInsert(CustomerCenterDTO cdto);
+	
+	public CustomerCenterDTO csBoardEditSelect(int cus_b_num);
+	
+	public int csBoardUpdate(CustomerCenterDTO cdto);
+	
 }

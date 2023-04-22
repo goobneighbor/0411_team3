@@ -68,10 +68,10 @@
 </style>
 <script>
 	$(function(){
-		$("#final_amount").ready(function(){
-		    var num = document.getElementById("final_amount").value
+		$("#ord_amount").ready(function(){
+		    var num = document.getElementById("ord_amount").value
 		    num = Math.ceil(num);
-		    document.getElementById("final_amount").value = num;
+		    document.getElementById("ord_amount").value = num;
 	    });
 		
 		$("#o_price").ready(function(){
@@ -87,7 +87,7 @@
 				var c_cnt = document.getElementById("ord_count").value = cnt + 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
-				document.getElementById("final_amount").value = total;
+				document.getElementById("ord_amount").value = total;
 				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) - 1;
 			}
 		});
@@ -99,7 +99,7 @@
 				var c_cnt = document.getElementById("ord_count").value = cnt - 1;
 				var num =  parseInt(document.getElementById("o_price").value);
 				var total = (num*c_cnt)+500;
-				document.getElementById("final_amount").value = total;
+				document.getElementById("ord_amount").value = total;
 				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) + 1;
 
 			}
@@ -171,7 +171,7 @@
 				<li>배송비</li>
 				<li><input type="number" name="delivery_fee" id="delivery_fee" value="500" readonly/>&nbsp;원</li>
 				<li>전체 가격 </li>
-				<li><input type="number" name="final_amount" id="final_amount" value="${ (dto.pro_price/dto.pro_total)+500}" readonly/> 원</li>
+				<li><input type="number" name="ord_amount" id="ord_amount" value="${ (dto.pro_price/dto.pro_total)+500}" readonly/> 원</li>
 				
 				<li>만남 주소</li>
 				<li>

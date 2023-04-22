@@ -91,7 +91,7 @@ public class OrderController {
 			
 			OrderDTO sdto = service.orderSelect(pro_code, on_no, userid);
 			mav.addObject("sdto", sdto);
-			mav.setViewName("online/payRes");
+			mav.setViewName("online/payTest");
 			//service.orderSelect(dto.getPro_code());
 			//String htmlTag = "<script>location.href='/home/online/payRes';</script>";
 			//entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);

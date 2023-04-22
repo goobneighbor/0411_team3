@@ -12,7 +12,7 @@ public class OrderDTO {
 	private int on_no;
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
-	private int final_amout; // 배달비 + 개당*수량
+	private int ord_amount; // 배달비 + 개당*수량
 	private String shareaddr;
 	private String sharedetail;
 	
@@ -104,13 +104,14 @@ public class OrderDTO {
 		this.rest_count = rest_count;
 		
 	}
+
 	
-	public int getFinal_amout() {
-		return final_amout;
+	public int getOrd_amount() {
+		return ord_amount;
 	}
 
-	public void setFinal_amout(int final_amout) {
-		this.final_amout = final_amout;
+	public void setOrd_amount(int ord_amount) {
+		this.ord_amount = ord_amount;
 	}
 
 	public String getShareaddr() {

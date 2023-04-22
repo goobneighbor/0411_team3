@@ -9,6 +9,7 @@
 	.paging_div li{
 		float:left;
 		padding:10px 20px;
+		list-style:none;
 	}
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
@@ -61,6 +62,7 @@
 		<div class="row">
 			<div class="col-12">
 				<!-- 주문내역 리스트 -->
+				
 				<section class="box">
 					<div class="table-wrapper">
 					<form method="post">
@@ -69,9 +71,11 @@
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 					</c:if>
-						<table>
+				
+						<table class="board_list">
 							<thead>
 								<tr>
+									<th><input type="checkbox" id="allCheck"/>전체선택</th>
 									<th>번호</th>
 									<th>이름</th>
 									<th>아이디</th>
@@ -82,11 +86,13 @@
 									<th>신고횟수</th>
 								</tr>
 							</thead>
+							
 							<tbody>
-							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
+							<c:set var="recordNum" value="${1+(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
 								<tr>
-									<td><!-- ${bDTO.rownum } -->${recordNum}</td>
+									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+									<td>${recordNum}</td>
 									<td>${bDTO.username }</td>
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.tel }</td>
@@ -95,7 +101,7 @@
 									<td>${bDTO.writedate }</td>
 									<td>${bDTO.report }</td>
 								</tr>
-								<c:set var="recordNum" value="${recordNum-1}"/>	
+								<c:set var="recordNum" value="${recordNum+1}"/>	
 							</c:forEach>
 							</tbody>
 							<!--<tfoot>
@@ -107,15 +113,19 @@
 						</table>
 					</form>
 					</div>
+					<div>
+						<input type="button" value="영구제명" id="chooseDel"/>
+					</div>
 					<!-- 페이징 -->
-					<div class="paging_div">
+					
+					<div class="paging_div"> 
 						<ul>
 							<!-- 이전 페이지 : nowPage를 기준으로 -->
-							<c:if test="${vo.nowPage==1 }"><!-- 현재 페이지가 첫번째 페이지 일때 -->
+							<c:if test="${vo.nowPage==1}"><!-- 현재 페이지가 첫번째 페이지 일때 -->
 								<li></li>
 							</c:if>
-							<c:if test="${vo.nowPage>1 }"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
-								<li><a href="adUser?nowPage=${vo.nowPage-1 }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">이전</a></li>
+							<c:if test="${vo.nowPage>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
+								<li><a href="adUser?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 							</c:if>
 							<!-- 페이지 번호 -->
 							
@@ -134,14 +144,16 @@
 				         </c:forEach>
 							
 							<!-- 다음 페이지 -->
-							<c:if test="${vo.nowPage<vo.totalPage }"><!-- 다음 페이지가 있을 때 -->
-								<li><a href="adUser?nowPage=${vo.nowPage+1 }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">다음</a></li>
+							<c:if test="${vo.nowPage<vo.totalPage}"><!-- 다음 페이지가 있을 때 -->
+								<li><a href="adUser?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
 							</c:if>
-							<c:if test="${vo.nowPage==vo.totalPage }"><!-- 다음 페이지가 없을 때 -->
+							<c:if test="${vo.nowPage==vo.totalPage}"><!-- 다음 페이지가 없을 때 -->
 								<li></li>
 							</c:if>
 						</ul>
 					</div>
+					
+					
 					<!--검색 -->
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="adUser">

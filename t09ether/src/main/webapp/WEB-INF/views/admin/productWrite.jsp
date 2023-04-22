@@ -20,7 +20,7 @@
 		width:50%;
 	}
 
-	#pro_stock, #pro_price{
+	#pro_stock, #pro_price, #pro_total{
 		text-align:center;
 	}
 	
@@ -187,6 +187,12 @@
 	        	return false;
 	        }
 	        
+	      //상품수량
+	        if($("#pro_total").val()==""){
+	        	alert("상품수량을 입력하세요.");
+	        	return false;
+	        }
+	        
 	        //상품가격
 	        if($("#pro_price").val()==""){
 	        	alert("상품가격을 입력하세요.");
@@ -226,10 +232,12 @@
 	<ul> 
 		<li>상품명</li>
 		<li><input type="text" name="pro_name" id="pro_name"/></li>
+		<li>상품수량</li>
+		<li><input type="number" name="pro_total" id="pro_total" min="10" value="10"/></li>
 		<li>상품가격</li>
-		<li><input type="number" name="pro_price" id="pro_price"/></li>
+		<li><input type="number" name="pro_price" id="pro_price" min="1"  value="1"/></li>
 		<li>재고개수</li>
-		<li><input type="number" name="pro_stock" id="pro_stock"/></li>
+		<li><input type="number" name="pro_stock" id="pro_stock" min="1" value="1"/></li>
 		<li>상품이미지 주소</li>
 		<li>
 			<input type="text" name="image" id="image"/>

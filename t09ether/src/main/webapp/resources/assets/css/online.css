@@ -11,9 +11,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
  
-/*글꼴 적용*/ 
-
-@font-face {
+ /*글꼴 적용*/ 
+ 
+ @font-face {
     font-family: 'KIMM_Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2');
     font-weight: 700;
@@ -22,10 +22,10 @@
 
 *{
 	font-family: 'KIMM_Bold';	
-} 
+}
+
 
 /*글꼴 적용*/ 
-
  
 :root {
   --bs-blue: #0d6efd;

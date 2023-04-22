@@ -41,6 +41,20 @@
 
 <!-- 여기부터 삽입 -->
 <style>
+	
+	/*글꼴 적용*/
+
+	@font-face {
+	    font-family: 'KIMM_Bold';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2');
+	    font-weight: 700;
+	    font-style: normal;
+	} 
+	
+	*{
+		font-family: 'KIMM_Bold';	
+	}
+	
 	nav>div>div {
 		display: inline-block;	
 	}

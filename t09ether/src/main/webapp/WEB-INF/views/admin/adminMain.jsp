@@ -5,6 +5,19 @@
 	footer {
 		display:none;
 	}
+	#alert{
+		 overflow:auto;
+	}
+	#alert li{
+		float:left;
+		width:20%;
+		list-style:none;
+		border:1px solid #ddd;
+		line-height:40px;
+		height:90px;
+		padding: 8px;		
+	}
+	
 </style>
 </head>
 <body>
@@ -13,15 +26,36 @@
 					<section class="box special">
 						<header class="major">
 							<h2>관리자 페이지</h2>
-							<p>김홍렬-사용자관리, 신고관리, 통계<br/>
-								신동민-고객센터관리, 상품관리, 게시글 관리<br/><br/>
+							<p></p>
+						<ul id="alert">
+							<li>가입인원<br/>
+							50명
+							</li>
+							<li>온라인 거래량<br/>
+							1500건
+							</li>
+							<li>오프라인 거래량<br/>
+							2300건
+							</li>
+							<li>신고 접수<br/>
+							150회
+							</li>
+							<li>QnA 등록<br/>
+							250개
+							</li>
+						</ul>
+						</header>
+					</section>
+					
+					<section class="box special">
+						<header class="major">
+							<h2>이부분 제거 예정</h2>
+							<p>신동민-고객센터관리, 상품관리, 게시글 관리<br/><br/>
 								통계는 나중에 메인에 나오게 만들겠습니다.<br/><br/>
-								
-								*관리자의 경우 마이페이지에 '관리자 계정 생성'(회원가입 복붙) 탭 만들어서 새 관리자 등록 가능<br/>
+							*관리자의 경우 마이페이지에 '관리자 계정 생성'(회원가입 복붙) 탭 만들어서 새 관리자 등록 가능<br/>
 								-관리자의 경우 주소 입력 불필요<br/>
-								(관리 계정 생성 만들고 주소 부분 다 value 값 아무거나 넣어서 들어가게 설정)
-								</p>
-								
+								(관리 계정 생성 만들고 주소 부분 다 value 값 아무거나 넣어서 들어가게 설정)</p>
+						
 						</header>
 					</section>
 

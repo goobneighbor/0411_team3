@@ -18,21 +18,22 @@
 				<if test="searchWord!=null">
 					and ${searchKey} like '%${searchWord}%'
 				</if>
+				order by username asc
 			)
 		<![CDATA[ 
-	  		where rownum<=${nowPage*onePageRecord} order by rownum asc
+	  		where rownum<=${nowPage*onePageRecord} order by username desc
 	  		]]>
 	  		)
 	  		
 	  	<choose>
 	  		<when test="nowPage!=totalPage">	
 	  			<![CDATA[
-	  			where rownum<=${onePageRecord} order by rownum asc
+	  			where rownum<=${onePageRecord} order by username asc
 	  			]]>
 	  		</when>
 	  		<when test="nowPage==totalPage">
 	  			<![CDATA[
-	  			where rownum<=${lastPageRecord} order by rownum asc
+	  			where rownum<=${lastPageRecord} order by username asc
 	  			]]>	  		
 	  		</when>
   		</choose>

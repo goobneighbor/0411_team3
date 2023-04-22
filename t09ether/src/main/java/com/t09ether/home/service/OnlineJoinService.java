@@ -14,7 +14,7 @@ public interface OnlineJoinService {
 	//나눔목록지도
 	public List<OrderDTO> getList(int pro_code, String searchWrd);
 	public List<OrderDTO> getSearchList(int pro_code, String searchWrd);
-	public ProductDTO proInfor(int on_no);
+	public ProductDTO proInfor(int pro_code);
 	public int userRank(String userid);
 	public int orderInsert(OrderDTO dto);
 	public int restUpdate(OrderDTO dto);

@@ -32,6 +32,7 @@ public class OnlineController {
 		dto.setOn_no(on_no);
 		dto.setRest_count(rest_count);
 		dto.setPro_code(pro_code);
+		System.out.println("onlineJoin"+dto);
 		mav.addObject("dto", dto);
 		mav.addObject("pdto", dto);
 		mav.setViewName("online/onlineJoinForm"); 
@@ -86,10 +87,10 @@ public class OnlineController {
 		System.out.println(" :-"+pdto);
 		
 		//ord_no select
-		dto.setOrd_no(service.ordNoSelect(dto));
-		System.out.println(":::"+pdto);
+		//dto.setOrd_no(service.ordNoSelect(dto));
+		//System.out.println(":::"+pdto);
 		
-		pdto = service.proInfor(dto.getOrd_no());
+		pdto = service.proInfor(dto.getPro_code());
 		
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
 		dto.setRank(service.userRank(dto.getUserid()));

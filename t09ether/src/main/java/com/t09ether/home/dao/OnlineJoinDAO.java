@@ -19,7 +19,7 @@ public interface OnlineJoinDAO {
 	public List<OrderDTO> getSearchList(@Param("pro_code")int pro_code, @Param("searchWrd")String searchWrd);
 	
 	//주문상품정보가져오기
-	public ProductDTO proInfor(int on_no);
+	public ProductDTO proInfor(int pro_code);
 	
 	//회원 rank
 	public int userRank(String userid);

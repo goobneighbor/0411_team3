@@ -70,7 +70,7 @@
 	var sum;
 $(function(){
 	var IMP = window.IMP; 
-    IMP.init("imp"); 
+    IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
     var all_amount = document.getElementById("final_amount").value;;
@@ -133,7 +133,6 @@ $(function(){
 				<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
 				
 				<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no} }"/></li>
-				<li><input type="hidden" name="delivery_fee" id="delivery_fee" value="500" readonly/></li>
 				<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
 					
 			</ul>

@@ -69,19 +69,6 @@
 <script>
 	var sum;
 $(function(){
-	
-		var num = document.getElementById("final_amount").value;
-		num = Math.ceil(num);
-		var cnt = document.getElementById("ord_count").value;
-		sum = (num*cnt)+500;
-		
-		document.getElementById("final_amount").value = sum;
-		
-
-	
-	
-	
-	
 	var IMP = window.IMP; 
     IMP.init("imp01658864"); 
     
@@ -106,7 +93,7 @@ $(function(){
             buyer_addr : addr,
             buyer_postcode : zipcode
         }, function (rsp) { // callback
-            if (rsp.success) {
+        	if (rsp.success) {
                 console.log(rsp);
                 console.log(rsp.imp_uid);
                 let data = {
@@ -123,6 +110,7 @@ $(function(){
     				dataType:"json",
     				success: function(result) {
     					alert("결제검증 완료");
+    					location.href="";
     					
     				},
     				error: function(result){
@@ -135,7 +123,7 @@ $(function(){
                 alert(rsp.error_msg);
                 console.log(rsp);
             }
-        }); //requestPay
+        });
     }
     
     $("#lastsubmit").click(function(){
@@ -167,7 +155,7 @@ $(function(){
 				<li>할인 금액</li>
 				<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
 				<li>전체 가격 </li>
-				<li><input type="number" name="final_amount" id="final_amount" value="${sdto.pro_price/sdto.pro_total}" readonly/> 원</li>
+				<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
 				
 				<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no} }"/></li>
 				<li><input type="hidden" name="delivery_fee" id="delivery_fee" value="500" readonly/></li>

@@ -37,17 +37,15 @@ public class OrderDTO {
 	private String addrdetail;
 	private String rank;
 	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "OrderDTO [ord_no=" + ord_no + ", pro_code=" + pro_code + ", userid=" + userid + ", ord_count="
-				+ ord_count + ", status=" + status + ", on_count=" + on_count + ", rest_count=" + rest_count
-				+ ", pro_total=" + pro_total + ", pro_name=" + pro_name + ", pro_price=" + pro_price + ", pro_stock="
-				+ pro_stock + ", image=" + image + ", detailed=" + detailed + ", userpwd=" + userpwd + ", username="
-				+ username + ", tel=" + tel + ", email=" + email + ", zipcode=" + zipcode + ", addr=" + addr
-				+ ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
+				+ ord_count + ", status=" + status + ", on_no=" + on_no + ", on_count=" + on_count + ", rest_count="
+				+ rest_count + ", ord_amount=" + ord_amount + ", shareaddr=" + shareaddr + ", sharedetail="
+				+ sharedetail + ", pro_total=" + pro_total + ", pro_name=" + pro_name + ", pro_price=" + pro_price
+				+ ", pro_stock=" + pro_stock + ", image=" + image + ", detailed=" + detailed + ", userpwd=" + userpwd
+				+ ", username=" + username + ", tel=" + tel + ", email=" + email + ", zipcode=" + zipcode + ", addr="
+				+ addr + ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
 	}
 	
 	public int getOrd_no() {

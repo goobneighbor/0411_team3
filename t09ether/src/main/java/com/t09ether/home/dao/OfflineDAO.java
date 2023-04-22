@@ -30,6 +30,8 @@ public interface OfflineDAO {
 	public int participantInsert(OfflineParticipantDTO opDTO);
 	// 공구번호(off_no)에 해당하는 참가자들 정보 불러오기(List)
 	public List<OfflineParticipantDTO> participantList(int off_no);
-	// 공구참여-> 현재인원 1 증가
-	public void currentNumCount(int off_no);
+	// 공구참여인원수
+	public int currentNumCount(int off_no);
+	// 공구참여자들의 아이디만 뽑아오기
+	public List<String> getIds(int off_no);
 }

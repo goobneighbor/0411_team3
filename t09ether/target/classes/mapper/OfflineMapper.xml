@@ -66,7 +66,10 @@
 	<select id="participantList" resultType="com.t09ether.home.dto.OfflineParticipantDTO">
 		select * from off_participant where off_no=${param1}
 	</select>
-	<update id="currentNumCount">
-		update off_gb set current_num = current_num + 1 where off_no=${param1}
-	</update>
+	<select id="currentNumCount" resultType="int">
+		select count(userid) num from off_participant where off_no=${param1}
+	</select>
+	<select id="getIds" resultType="String">
+		select userid from off_participant where off_no=${param1}
+	</select>
 </mapper>

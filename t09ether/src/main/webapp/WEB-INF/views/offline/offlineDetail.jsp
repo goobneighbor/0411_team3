@@ -18,12 +18,13 @@
 		color:tomato;
 	}	
 	.goComment{
+		margin:10px auto;
 		width:220px;
 		font-size: 1.6em;
 		border:1px solid tomato;
 		border-radius: 10px;
 		background-color:#FFD777;
-		color: red;
+		color: white;
 		
 	}
 	table {
@@ -32,10 +33,11 @@
 	  width: 100%;
 	  text-align: center;
 	}
-
+	.theader th{
+		text-align: center;
+	}
 	td, th {
 	  border: 1px solid #dddddd;
-	  text-align: left;
 	  padding: 8px;
 	}
 
@@ -52,8 +54,9 @@
 	<!-- Header-->
 	<header class="bg-tomato py-5">
 		<div class="container px-4 px-lg-5 my-5">
-			<div class="text-center text-white">
+			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
+	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>
 	        </div>
 	    </div>
 	</header>
@@ -66,22 +69,21 @@
 		<li>현재인원 : ${dto.current_num}</li>			
 		<li>모집마감일 : ${dto.deaddate}</li>				
 		<li>만남시간 : ${dto.app_time}</li>					
-		<li>상세정보 : ${dto.off_content}</li>	
-		<li class="goComment"><a href="offlineComment?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">일정조율하러가기</a></li>		
+		<li>상세정보 : ${dto.off_content}</li>		
 		<li class="participantInfo">참가자 정보</li>
 	</ul>
 	
 	<div id="participantList" style="border:2px solid orange;">		
 		<table>
-			<tr>
+			<tr class="theader">
 			    <th>번호</th>
 			    <th>아이디</th>
 			    <th>이름</th>
 			    <th>연락처</th>
-			  </tr>
+			</tr>			  
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
-				<td style="width:5%;">[${status.count}]</td>
+				<td style="width:6%; text-align:center;">${status.count}</td>
 				<td>${opDTO.userid}</td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>

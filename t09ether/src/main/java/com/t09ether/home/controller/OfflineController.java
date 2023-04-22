@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
@@ -209,45 +210,48 @@ public class OfflineController {
 		opDTO.setTel(rDTO.getTel());
 		System.out.println("opDTO->"+opDTO.toString());
 		
-		//DB의 offline_participant테이블에 insert한다
-		service.participantInsert(opDTO);
-		//현재참가인원증가
-		service.currentNumCount(off_no);
-		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
-		mav.addObject("list", list);
-		
-		/*
-		if() {//이미 참여한 사람이면 따로 등록 X
-			
+		List<String> idList = service.getIds(off_no);
+		if(idList.contains(userid)) {//이미 참여한 사람이면 따로 등록 X
+			System.out.println("이미 등록된 회원->처리는 어떻게?");
 		}else { //등록되어있지 않은 사람인 경우
-			
+			//DB의 offline_participant테이블에 insert한다
+			service.participantInsert(opDTO);
 		}
-		*/
-		mav.addObject("dto", dto);
+		dto.setCurrent_num(service.currentNumCount(off_no));
+		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
+		RegisterDTO firstDTO = service.getParticipant(dto.getUserid());//방장의 정보
+		
+		mav.addObject("firstDTO", firstDTO);//방장정보
+		mav.addObject("list", list);// 공구참여자정보 List<OfflineParticipantDTO>
+		mav.addObject("dto", dto); //원글정보
 		mav.setViewName("/offline/offlineDetail");
 		return mav;
 	}
 	
-	
-	@GetMapping("/offlineAjax")
-	@ResponseBody
-	public OfflineParticipantDTO offlineAjax(HttpServletRequest request) {
-		String userid = (String)request.getSession().getAttribute("logId");
-		System.out.println("로그인아이디="+userid);
+	//일정조율페이지로 넘어가기(댓글)
+	@GetMapping("/offlineComment")
+	public ModelAndView offlineComment(int off_no) {
+		ModelAndView mav = new ModelAndView();
+		OfflineDTO dto = service.offlineSelect(off_no);	
 		
-		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
-		//opDTO.setOff_no(off_no);
-		opDTO.setUserid(userid);
-		opDTO.setUsername(service.getParticipant(userid).getUsername());
-		opDTO.setTel(service.getParticipant(userid).getTel());
-		System.out.println(opDTO.toString());
-		
-		return opDTO;
+		mav.addObject("dto", dto);
+		mav.setViewName("/offline/offlineComment");
+		return mav;
 	}
 	
-	@RequestMapping(value="/ajaxData", method= {RequestMethod.POST})
-	public void ajaxData(@RequestParam("userid")String userid) {
-		System.out.println();
+	//댓글목록
+	/*
+	@GetMapping("/commentList")
+	public List<OfflineCommentDTO> commentList(int off_no){
+		List<OfflineCommentDTO> list;
+		
+		return list;
 	}
+	*/
+	
+	
+	
+	
+	
 	
 }

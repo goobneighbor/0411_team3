@@ -71,8 +71,13 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public void currentNumCount(int off_no) {
-		dao.currentNumCount(off_no);
+	public int currentNumCount(int off_no) {
+		return dao.currentNumCount(off_no);
+	}
+
+	@Override
+	public List<String> getIds(int off_no) {
+		return dao.getIds(off_no);
 	}
 
 	

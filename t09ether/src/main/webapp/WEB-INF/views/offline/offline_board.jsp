@@ -149,7 +149,8 @@
 			<li>마감일</li>
 			<!-- 시작번호 설정       :                 총 레코드 수       현재페이지        한페이지레코드수-->	
 			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord}"/>
-			<c:forEach var="offDTO" items="${list}">				
+
+			<c:forEach var="offDTO" items="${list}">			
 				<li>${offDTO.off_no}</li>
 				<li>${offDTO.location}</li>
 				<li>${offDTO.current_num}/${offDTO.group_num}</li>

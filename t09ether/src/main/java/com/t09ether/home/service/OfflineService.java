@@ -19,6 +19,7 @@ public interface OfflineService {
 	public RegisterDTO getParticipant(String userid);
 	public int participantInsert(OfflineParticipantDTO opDTO);
 	public List<OfflineParticipantDTO> participantList(int off_no);
-	public void currentNumCount(int off_no);
+	public int currentNumCount(int off_no);
+	public List<String> getIds(int off_no);
 	
 }

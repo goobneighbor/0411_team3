@@ -67,22 +67,10 @@
    }
 </style>
 <script>
-   var sum;
+	var sum;
 $(function(){
-   
-      var num = document.getElementById("final_amount").value;
-      num = Math.ceil(num);
-      var cnt = document.getElementById("ord_count").value;
-      sum = (num*cnt)+500;
-      
-      document.getElementById("final_amount").value = sum;
-      
+	var IMP = window.IMP; 
 
-   
-   
-   
-   
-   var IMP = window.IMP; 
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
@@ -91,13 +79,16 @@ $(function(){
     var username = document.getElementById("username").value;
     var tel = document.getElementById("tel").value;
     var addr = document.getElementById("addr").value+" "+ document.getElementById("addrdetail").value;
-    var zipcode = document.getElementById("zipcode").value;
-
+    var zipcode = parseInt(document.getElementById("zipcode").value);
+	var discount_amount = parseInt(document.getElementById("discount_amount").value);
+	var total_amount = parseInt(document.getElementById("total_amount").value);
+	var ord_no = parseInt(document.getElementById("ord_no").value);
+	
     function requestPay() {
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
-            merchant_uid: "merchant-"+ new Date().getTime(), 
+            merchant_uid: "t09ether-"+new Date().getTime(), 
             name : pro_name,
             amount : all_amount,
             buyer_email : email,
@@ -106,70 +97,111 @@ $(function(){
             buyer_addr : addr,
             buyer_postcode : zipcode
         }, function (rsp) { // callback
-            if (rsp.success) {
-                console.log(rsp);
-            } else {
-                console.log(rsp);
-            }
-        });
+
+        	if (rsp.success) {
+        		let data = {
+        				imp_uid:rsp.imp_uid,
+        				final_amount:rsp.paid_amount,
+        				discount_amount:discount_amount,
+        				ord_no:ord_no,
+        				total_amount:total_amount
+        				
+        			};
+                    //결제 검증
+                    $.ajax({
+        				type:"POST",
+        				url:"<%=request.getContextPath() %>/pay/verifyIamport",
+        				data: JSON.stringify(data),        			  
+        				contentType:"application/json; charset=utf-8",
+        				dataType:"json",
+        				success: function(result) {
+        					console.log(result);
+        					alert("결재 성공");
+        					location.replace("/home/mypage/myOrder");
+        					//self.close();
+        				},
+        				error: function(result){
+        					console.log(result);
+        				}
+        			});
+        			
+                } else {// 결제 실패 시 로직
+        			alert("결재 실패");
+        			alert(rsp.error_msg);
+        			console.log(rsp);         
+        			location.replace("<%=request.getContextPath() %>/pay/paycancel");
+                }
+        	});
     }
     
+    
     $("#lastsubmit").click(function(){
-       requestPay();
-       
+    	requestPay();
+    	
     });
     
 });
-   
-      
+	
+		
 </script>
 <div class="container">
-   <section id="main" class="container">
-      <header>
-         <h2>온라인 공동구매 결제하기</h2>
-         <p>공동 구매 주문 확인 및 결제 </p>
-      </header>
-   </section>
-   <form method="post" id="onlineGBPayForm" >
-      <div>
-         <ul id="firstul">
-            <li><h3>주문상품</h3></li>
-            <!-- 상품이미지가져와야함 -->
-            <li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
-            <li>상품명</li>
-            <li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
-            <li>수량</li>
-            <li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
-            <li>할인 금액</li>
-            <li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
-            <li>전체 가격 </li>
-            <li><input type="number" name="final_amount" id="final_amount" value="${sdto.pro_price/sdto.pro_total}" readonly/> 원</li>
-            
-            <li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no} }"/></li>
-            <li><input type="hidden" name="delivery_fee" id="delivery_fee" value="500" readonly/></li>
-            <li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
-               
-         </ul>
-         <ul>         
-            <li><h3>주문자</h3></li> 
-            <li>주문자명</li> <!-- 주문자명가져와야함 -->
-            <li><input type="text" id="username" name="username" value="${sdto.username }" readonly/></li>
-            <li>전화번호</li>
-            <li><input type="text" id="tel" name="tel" value="${sdto.tel }" readonly/></li>
-            <li>이메일</li>
-            <li><input type="email" id="email" name="email" value="${sdto.email }" readonly/></li>
-         </ul>   
-         <ul>   
-            <li><h3>배송지</h3></li>
-            <li>배송 주소</li>
-            <li>
-               <input type="hidden" name="zipcode" id="zipcode" value="${sdto.zipcode }" readonly/>
-               <input type="text" name="addr" id="addr" value="${sdto.addr }" readonly/>
-            </li>
-            <!-- 상세주소가져와야함 -->
-            <li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
-         </ul>
-         <input type="button" value="결제하기" id="lastsubmit"/>
-      </div>
-   </form>
+	<section id="main" class="container">
+		<header>
+			<h2>온라인 공동구매 결제하기</h2>
+			<p>공동 구매 주문 확인 및 결제 </p>
+		</header>
+	</section>
+	<form method="post" id="onlineGBPayForm" >
+		<div class="container" style="margin-bottom:50px;">
+			<div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-6">
+
+                        <ul id="firstul">
+							<li><h3>주문상품</h3></li>
+							<!-- 상품이미지가져와야함 -->
+							<li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
+							<li>상품명</li>
+							<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
+							<li>수량</li>
+							<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
+							<li>할인 금액</li>
+							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
+							<li>전체 가격 </li>
+							<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
+							
+							<li><input type="hidden" name="total_amount" id="total_amount" value="${sdto.pro_total} }"/></li>
+							<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no }"/></li>
+							<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
+								
+						</ul>
+                </div>
+            <!-- Side widgets-->
+                
+            <div class="col-lg-6">  
+			<ul>			
+				<li><h3>주문자</h3></li> 
+				<li>주문자명</li> <!-- 주문자명가져와야함 -->
+				<li><input type="text" id="username" name="username" value="${sdto.username }" readonly/></li>
+				<li>전화번호</li>
+				<li><input type="text" id="tel" name="tel" value="${sdto.tel }" readonly/></li>
+				<li>이메일</li>
+				<li><input type="email" id="email" name="email" value="${sdto.email }" readonly/></li>
+			</ul>	
+			<ul>	
+				<li><h3>배송지</h3></li>
+				<li>배송 주소</li>
+				<li>
+					<input type="hidden" name="zipcode" id="zipcode" value="${sdto.zipcode }" readonly/>
+					<input type="text" name="addr" id="addr" value="${sdto.addr }" readonly/>
+				</li>
+				<!-- 상세주소가져와야함 -->
+				<li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
+			</ul>
+			<input type="button" value="결제하기" id="lastsubmit"/>
+			</div>
+		</div>
+		</div>
+	</form>
 </div>
+

@@ -84,6 +84,7 @@ $(function(){
 let on_no=[];
 let rest_count=[];
 let pro_code=[];
+let userid=[];
 $(function(){
 	$("#searchForm").submit(function(){
 		event.preventDefault();
@@ -111,8 +112,9 @@ function listView(result) {
 		on_no.push(lDTO.on_no); // [3, 6,  9]
 		rest_count.push(lDTO.rest_count);
 		pro_code.push(lDTO.pro_code);
+		userid.push(lDTO.userid);
 		
-		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'></span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+		tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 		
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	
@@ -164,12 +166,21 @@ function listView(result) {
                    <div class="card-header">참여하기</div>
                    <div class="card-body">
                    <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
-                       <div class="input-group">
-                       <form method="get" name="searchForm" id="searchForm" >
-                       	<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
-                           <input id="searchWrd" name="searchWrd" value="${vo.searchWrd }" class="form-control" type="text" placeholder="지역명을 입력해주세요!" aria-label="지역명" aria-describedby="button-search" />
-                           <button class="btn btn-primary" id="button-search" type="submit" >검색</button>
+                      <!--  <div class="input-group"> -->
+                       <form method="get" name="searchForm" id="searchForm">
+                       	<div class=" col-lg-10"> 
+	                       	<div class="input-group">
+			                <!-- <mx-auto> -->
+			                
+			               		<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>		
+			                    <input  id="searchWrd" name="searchWrd" value="${vo.searchWrd }" type="text" class="form-control" placeholder="지역명을 입력해주세요!" aria-label="search" aria-describedby="button-addon2">
+			                	
+			               <!--  </mx-auto>	 -->	
+			                <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+			                </div>
+		                </div>	
                        </form>
+                        	<p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소</span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/남은갯수</button></p><hr/>
                            	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
 			  					<ul id="locationList" style="list-style-type:none"></ul>
 							</div>

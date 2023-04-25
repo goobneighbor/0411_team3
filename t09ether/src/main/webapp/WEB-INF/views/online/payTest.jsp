@@ -110,55 +110,7 @@ $(function(){
 	
 		
 </script>
-<div class="container">
-	<section id="main" class="container">
-		<header>
-			<h2>온라인 공동구매 결제하기</h2>
-			<p>공동 구매 주문 확인 및 결제 </p>
-		</header>
-	</section>
-	<form method="post" id="onlineGBPayForm" >
-		<div>
-			<ul id="firstul">
-				<li><h3>주문상품</h3></li>
-				<!-- 상품이미지가져와야함 -->
-				<li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
-				<li>상품명</li>
-				<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
-				<li>수량</li>
-				<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
-				<li>할인 금액</li>
-				<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
-				<li>전체 가격 </li>
-				<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
-				
-				<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no} }"/></li>
-				<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
-					
-			</ul>
-			<ul>			
-				<li><h3>주문자</h3></li> 
-				<li>주문자명</li> <!-- 주문자명가져와야함 -->
-				<li><input type="text" id="username" name="username" value="${sdto.username }" readonly/></li>
-				<li>전화번호</li>
-				<li><input type="text" id="tel" name="tel" value="${sdto.tel }" readonly/></li>
-				<li>이메일</li>
-				<li><input type="email" id="email" name="email" value="${sdto.email }" readonly/></li>
-			</ul>	
-			<ul>	
-				<li><h3>배송지</h3></li>
-				<li>배송 주소</li>
-				<li>
-					<input type="hidden" name="zipcode" id="zipcode" value="${sdto.zipcode }" readonly/>
-					<input type="text" name="addr" id="addr" value="${sdto.addr }" readonly/>
-				</li>
-				<!-- 상세주소가져와야함 -->
-				<li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
-			</ul>
-			<input type="button" value="결제하기" id="lastsubmit"/>
-		</div>
-	</form>
-</div>
+
 
 
     

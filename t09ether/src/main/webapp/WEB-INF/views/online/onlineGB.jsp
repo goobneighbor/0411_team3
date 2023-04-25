@@ -57,8 +57,8 @@
 	}
 	#plus, #minus{
 		text-align:center;
-		width:42px;
-		height:35px;
+		
+		height:30px;
 	}
 </style>
 <script>
@@ -143,7 +143,7 @@
 		</header>
 	</section>
 
-		<div class="container" >
+		<div class="container" style="margin-bottom:50px;">
         <div class="row">
                 <!-- Blog entries-->
                 <div class="col-lg-6">
@@ -153,9 +153,10 @@
                     </div>
                 </div>
                 <!-- Side widgets-->
+                
                 <div class="col-lg-6">
                     <!-- Search widget-->
-                    <div class="card mb-6">
+                    <div class="card mb-4">
                     	<form method="post" id="onlineGBForm">
 						
 						<ul id="firstul">
@@ -185,9 +186,10 @@
 							</li>
 							<li><input type="text" name="sharedetail" id="sharedetail" value="" placeholder="나눔상세주소입력" onfocus="this.placeholder=''"/></li>
 							<li><input type="hidden" name="rest_count" id="rest_count" value="${dto.pro_total-1 }"/></li>
-							<li><input type="submit" value="등록하기" id="lastsubmit"/></li>	
+								
 					</ul>
-                    </form>  
+					<input type="submit" value="등록하기" id="lastsubmit"/>
+                    </form>
                     </div>		    							                     
                   </div>  
               </div>

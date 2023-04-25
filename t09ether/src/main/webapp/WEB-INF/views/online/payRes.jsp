@@ -78,13 +78,16 @@ $(function(){
     var username = document.getElementById("username").value;
     var tel = document.getElementById("tel").value;
     var addr = document.getElementById("addr").value+" "+ document.getElementById("addrdetail").value;
-    var zipcode = document.getElementById("zipcode").value;
-
+    var zipcode = parseInt(document.getElementById("zipcode").value);
+	var discount_amount = parseInt(document.getElementById("discount_amount").value);
+	var total_amount = parseInt(document.getElementById("total_amount").value);
+	var ord_no = parseInt(document.getElementById("ord_no").value);
+	
     function requestPay() {
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
-            merchant_uid: "merchant-"+ new Date().getTime(), 
+            merchant_uid: "t09ether-"+new Date().getTime(), 
             name : pro_name,
             amount : all_amount,
             buyer_email : email,
@@ -94,37 +97,41 @@ $(function(){
             buyer_postcode : zipcode
         }, function (rsp) { // callback
         	if (rsp.success) {
-                console.log(rsp);
-                console.log(rsp.imp_uid);
-                let data = {
-                		imp_uid:rsp.imp_uid,
-        				amount:rsp.paid_amount,
-        				ord_no:$("#ord_no").val()
-                };
-                
-                $.ajax({
-                	type:"POST",
-    				url:"/pay/verifyIamport",
-    				data:JSON.stringify(data),
-    				contentType:"application/json; charset=utf-8",
-    				dataType:"json",
-    				success: function(result) {
-    					alert("결제검증 완료");
-    					location.href="";
-    					
-    				},
-    				error: function(result){
-    					alert(result.responseText);
-    					cancelPayments(rsp);
-    				}
-                });
-            } else {
-                alert("결재실패");
-                alert(rsp.error_msg);
-                console.log(rsp);
-            }
-        });
+        		let data = {
+        				imp_uid:rsp.imp_uid,
+        				final_amount:rsp.paid_amount,
+        				discount_amount:discount_amount,
+        				ord_no:ord_no,
+        				total_amount:total_amount
+        				
+        			};
+                    //결제 검증
+                    $.ajax({
+        				type:"POST",
+        				url:"<%=request.getContextPath() %>/pay/verifyIamport",
+        				data: JSON.stringify(data),        			  
+        				contentType:"application/json; charset=utf-8",
+        				dataType:"json",
+        				success: function(result) {
+        					console.log(result);
+        					alert("결재 성공");
+        					location.replace("/home/mypage/myOrder");
+        					//self.close();
+        				},
+        				error: function(result){
+        					console.log(result);
+        				}
+        			});
+        			
+                } else {// 결제 실패 시 로직
+        			alert("결재 실패");
+        			alert(rsp.error_msg);
+        			console.log(rsp);         
+        			location.replace("<%=request.getContextPath() %>/pay/paycancel");
+                }
+        	});
     }
+    
     
     $("#lastsubmit").click(function(){
     	requestPay();
@@ -143,25 +150,33 @@ $(function(){
 		</header>
 	</section>
 	<form method="post" id="onlineGBPayForm" >
-		<div>
-			<ul id="firstul">
-				<li><h3>주문상품</h3></li>
-				<!-- 상품이미지가져와야함 -->
-				<li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
-				<li>상품명</li>
-				<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
-				<li>수량</li>
-				<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
-				<li>할인 금액</li>
-				<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
-				<li>전체 가격 </li>
-				<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
-				
-				<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no} }"/></li>
-				<li><input type="hidden" name="delivery_fee" id="delivery_fee" value="500" readonly/></li>
-				<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
-					
-			</ul>
+		<div class="container" style="margin-bottom:50px;">
+			<div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-6">
+
+                        <ul id="firstul">
+							<li><h3>주문상품</h3></li>
+							<!-- 상품이미지가져와야함 -->
+							<li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
+							<li>상품명</li>
+							<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
+							<li>수량</li>
+							<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
+							<li>할인 금액</li>
+							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
+							<li>전체 가격 </li>
+							<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
+							
+							<li><input type="hidden" name="total_amount" id="total_amount" value="${sdto.pro_total} }"/></li>
+							<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no }"/></li>
+							<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
+								
+						</ul>
+                </div>
+            <!-- Side widgets-->
+                
+            <div class="col-lg-6">  
 			<ul>			
 				<li><h3>주문자</h3></li> 
 				<li>주문자명</li> <!-- 주문자명가져와야함 -->
@@ -182,9 +197,10 @@ $(function(){
 				<li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
 			</ul>
 			<input type="button" value="결제하기" id="lastsubmit"/>
+			</div>
+		</div>
 		</div>
 	</form>
 </div>
-
 
     

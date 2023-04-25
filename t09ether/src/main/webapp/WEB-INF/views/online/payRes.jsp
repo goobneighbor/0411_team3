@@ -36,18 +36,21 @@
 	#addrdetail, #shareaddrDetail{
 		width:90%;
 	}
+	#button1{
+		float:left;
+		color:#red;
+	}
+	#allbutton{
+		margin: auto;
+	}
 	
-	#lastsubmit{
-		width:150px;
-        margin:auto;
-		display:block;
+	#button1, #button2{
+		margin-left:10px;	
+		margin-right:10px;
 	}
 	
 	#test{
 		float:left;
-	}
-	#imagetest{
-		
 	}
 	#ord_count, #discount_amount, #final_amount{
 		text-align:center;
@@ -240,27 +243,33 @@ $(function(){
             <!-- Side widgets-->
                 
             <div class="col-lg-6">  
-			<ul>			
-				<li><h3>주문자</h3></li> 
-				<li>주문자명</li> <!-- 주문자명가져와야함 -->
-				<li><input type="text" id="username" name="username" value="${sdto.username }" readonly/></li>
-				<li>전화번호</li>
-				<li><input type="text" id="tel" name="tel" value="${sdto.tel }" readonly/></li>
-				<li>이메일</li>
-				<li><input type="email" id="email" name="email" value="${sdto.email }" readonly/></li>
-			</ul>	
-			<ul>	
-				<li><h3>배송지</h3></li>
-				<li>배송 주소</li>
-				<li>
-					<input type="hidden" name="zipcode" id="zipcode" value="${sdto.zipcode }" readonly/>
-					<input type="text" name="addr" id="addr" value="${sdto.addr }" readonly/>
-				</li>
-				<!-- 상세주소가져와야함 -->
-				<li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
-			</ul>
-			<input type="button" value="취소하기" id="cancelsubmit"/>
-			<input type="button" value="결제하기" id="lastsubmit"/>
+				<ul>			
+					<li><h3>주문자</h3></li> 
+					<li>주문자명</li> <!-- 주문자명가져와야함 -->
+					<li><input type="text" id="username" name="username" value="${sdto.username }" readonly/></li>
+					<li>전화번호</li>
+					<li><input type="text" id="tel" name="tel" value="${sdto.tel }" readonly/></li>
+					<li>이메일</li>
+					<li><input type="email" id="email" name="email" value="${sdto.email }" readonly/></li>
+				</ul>	
+				<ul>	
+					<li><h3>배송지</h3></li>
+					<li>배송 주소</li>
+					<li>
+						<input type="hidden" name="zipcode" id="zipcode" value="${sdto.zipcode }" readonly/>
+						<input type="text" name="addr" id="addr" value="${sdto.addr }" readonly/>
+					</li>
+					<!-- 상세주소가져와야함 -->
+					<li><input type="text" name="addrdetail" id="addrdetail" value="${sdto.addrdetail }" readonly/></li>
+				</ul>
+				<div id="allbutton">
+					<div id="button1">
+						<input type="button" value="취소하기" id="cancelsubmit"/>
+					</div>
+					<div id="button2">
+						<input type="button" value="결제하기" id="lastsubmit"/>
+					</div>
+				</div>	
 			</div>
 		</div>
 		</div>

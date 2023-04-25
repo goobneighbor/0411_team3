@@ -15,8 +15,9 @@ public interface OnlineJoinService {
 	public List<OrderDTO> getList(int pro_code, String searchWrd);
 	public List<OrderDTO> getSearchList(int pro_code, String searchWrd);
 	public ProductDTO proInfor(int pro_code);
-	public int userRank(String userid);
+	public OrderDTO userInfor(String userid);
 	public int orderInsert(OrderDTO dto);
 	public int restUpdate(OrderDTO dto);
 	public int ordNoSelect(OrderDTO dto);
+	public int statusUpdate(OrderDTO dto);
 }

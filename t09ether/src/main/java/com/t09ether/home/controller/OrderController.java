@@ -22,84 +22,52 @@ import com.t09ether.home.service.OrderService;
 @RequestMapping("/order")
 public class OrderController {
 
-	@Autowired
-	OrderService service;
-	
+   @Autowired
+   OrderService service;
+   
+   
+   @PostMapping("/paytestInfo")
+   public ModelAndView payTest(OrderDTO dto, OnlineDTO odto, HttpSession session) {
+      ModelAndView mav = new ModelAndView();
+      //ResponseEntity<String> entity = null;
+      //HttpHeaders headers = new HttpHeaders();
+      //headers.add("Content-Type", "text/html; charset=utf-8");
 
-//	@PostMapping("/paytestInfo")
-//	public ResponseEntity<String> payTest(OrderDTO dto, OnlineDTO odto, HttpSession session) {
-//		ResponseEntity<String> entity = null;
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("Content-Type", "text/html; charset=utf-8");
-//		System.out.println((String)session.getAttribute("logId"));
-//		dto.setUserid((String)session.getAttribute("logId"));
-//		odto.setUserid((String)session.getAttribute("logId"));
-//		//dto.setRest_count(dto.getRest_count()- dto.getOrd_count()); -> update문 메소드
-//		System.out.println(dto.toString());
-//		System.out.println(odto.toString());
-//		
-//		//상품등록 실패하면 예외발생
-//		try {
-//			service.orderInsert(dto);
-//			service.onlineInsert(odto);
-//			//service.orderSelect(dto.getPro_code());
-//			String htmlTag = "<script>location.href='/home/online/payRes';</script>";
-//			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			String htmlTag = "<script>"; 
-//			htmlTag += "alert('상품이 등록되지 않았습니다.');";
-//			htmlTag += "history.back();";
-//			htmlTag += "</script>";
-//			entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.BAD_REQUEST);
-//		}
-//		return entity; 
-//		
-//	}
-
-	
-	@PostMapping("/paytestInfo")
-	public ModelAndView payTest(OrderDTO dto, OnlineDTO odto, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		//ResponseEntity<String> entity = null;
-		//HttpHeaders headers = new HttpHeaders();
-		//headers.add("Content-Type", "text/html; charset=utf-8");
-
-		System.out.println((String)session.getAttribute("logId"));
-		dto.setUserid((String)session.getAttribute("logId"));
-		odto.setUserid((String)session.getAttribute("logId"));
-		//dto.setRest_count(dto.getRest_count()- dto.getOrd_count()); -> update문 메소드
-		System.out.println(dto.toString());
-		System.out.println(odto.toString());
-		int pro_code = dto.getPro_code();
-		String userid = dto.getUserid();
-		
-		
-		//상품등록 실패하면 예외발생
-		try {
-			service.onlineInsert(odto);
-			int on_no = odto.getOn_no() - 1;
-			System.out.println(on_no);
-			dto.setOn_no(on_no);
-			service.orderInsert(dto);
-			
-			OrderDTO sdto = service.orderSelect(pro_code, on_no, userid);
-			mav.addObject("sdto", sdto);
-			mav.setViewName("online/payRes");
-			//service.orderSelect(dto.getPro_code());
-			//String htmlTag = "<script>location.href='/home/online/payRes';</script>";
-			//entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			//String htmlTag = "<script>"; 
-			//htmlTag += "alert('상품이 등록되지 않았습니다.');";
-			//htmlTag += "history.back();";
-			//htmlTag += "</script>";
-			//entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.BAD_REQUEST);
-		}
-		return mav; 
-		
-	}
+      System.out.println((String)session.getAttribute("logId"));
+      dto.setUserid((String)session.getAttribute("logId"));
+      odto.setUserid((String)session.getAttribute("logId"));
+      //dto.setRest_count(dto.getRest_count()- dto.getOrd_count()); -> update문 메소드
+      System.out.println(dto.toString());
+      System.out.println(odto.toString());
+      int pro_code = dto.getPro_code();
+      String userid = dto.getUserid();
+      
+      
+      //상품등록 실패하면 예외발생
+      try {
+         service.onlineInsert(odto);
+         int on_no = odto.getOn_no() - 1;
+         System.out.println(on_no);
+         dto.setOn_no(on_no);
+         service.orderInsert(dto);
+         
+         OrderDTO sdto = service.orderSelect(pro_code, on_no, userid);
+         mav.addObject("sdto", sdto);
+         mav.setViewName("online/payTest");
+         System.out.println("요기까지");
+         //service.orderSelect(dto.getPro_code());
+         //String htmlTag = "<script>location.href='/home/online/payRes';</script>";
+         //entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
+         
+      }catch(Exception e) {
+         e.printStackTrace();
+         //String htmlTag = "<script>"; 
+         //htmlTag += "alert('상품이 등록되지 않았습니다.');";
+         //htmlTag += "history.back();";
+         //htmlTag += "</script>";
+         //entity = new ResponseEntity<String>(htmlTag, headers, HttpStatus.BAD_REQUEST);
+      }
+      return mav; 
+      
+   }
 }

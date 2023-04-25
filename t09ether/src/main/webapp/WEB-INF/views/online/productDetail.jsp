@@ -132,45 +132,50 @@ function listView(result) {
                         <div class="card-body" style="font-size:1.2em">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 공구목록에서 가까운 나눔위치를 확인하고 <button type='button'class='btn btn-primary'>참여/남은갯수</button>을 클릭해 공구에 참여해보세요!</div>
             </div>
             
-                <!-- Blog entries-->
-                <div class="col-lg-6">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <img src="${dto.image }" />
-                        <div class="card-body">
-                            <div class="small text-muted"></div>
-                            <div id="review">리뷰</div>
-                            <h2 class="card-title">${dto.pro_name }</h2>
-                            <p class="card-text" style="font-size:1.4em; float:right">가격/할인적용시가격</p>
-                            <br/>
-                            <hr/>
-                            <p class="card-text">${dto.detailed }</p>
-                            <a class="btn btn-primary" style="float:right" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
-
-                        </div>
-                    </div>
-
+            <!-- Blog entries-->
+            <div class="col-lg-6">
+                <!-- Featured blog post-->
+                <div class="card mb-6">
+                    <img src="${dto.image }" />
+                    
                 </div>
-                <!-- Side widgets-->
-                <div class="col-lg-6">
-                    <!-- Search widget-->
-                    <div class="card mb-6">
-                        <div class="card-header">참여하기</div>
-                        <div class="card-body">
-                        <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
-                            <div class="input-group">
-                            <form method="get" name="searchForm" id="searchForm" >
-                            	<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
-                                <input id="searchWrd" name="searchWrd" value="${vo.searchWrd }" class="form-control" type="text" placeholder="지역명을 입력해주세요!" aria-label="지역명" aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="submit" >검색</button>
-                            </form>
-                                <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 620px; padding: 10px;">
-								  <ul id="locationList" style="list-style-type:none"></ul>
-								</div>
-                            </div>
-                        </div>
-                    </div>		    							                     
-                  </div>
+
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-6">
+                <div class="card mb-6">
+               		<div class="card-header">상품상세</div>
+               		<div class="card-body">
+                        <button class="btn btn-primary" id="button-search" style="float:right">리뷰</button>
+                        <h2 class="card-title">${dto.pro_name }</h2>
+                        <p class="card-text" style="font-size:1.4em; float:right">가격/할인적용시가격</p>
+                      
+                        <br/>
+                        <hr/>
+                        <p class="card-text">${dto.detailed }</p>
+                        <a class="btn btn-primary" style="float:right" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
+
+                    </div>  
+                </div>		    							                     
+              </div>
+       		<hr/>
+                  <!-- 참여하기 -->
+             <div class="card mb-4">
+                   <div class="card-header">참여하기</div>
+                   <div class="card-body">
+                   <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
+                       <div class="input-group">
+                       <form method="get" name="searchForm" id="searchForm" >
+                       	<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
+                           <input id="searchWrd" name="searchWrd" value="${vo.searchWrd }" class="form-control" type="text" placeholder="지역명을 입력해주세요!" aria-label="지역명" aria-describedby="button-search" />
+                           <button class="btn btn-primary" id="button-search" type="submit" >검색</button>
+                       </form>
+                           	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
+			  					<ul id="locationList" style="list-style-type:none"></ul>
+							</div>
+                       </div>
+                   </div>
+            </div>
                     
                     
               </div>

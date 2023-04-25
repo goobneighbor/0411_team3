@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,10 +92,14 @@ public class OnlineController {
 		//System.out.println(":::"+pdto);
 		
 		pdto = service.proInfor(dto.getPro_code());
-		
+		System.out.println("새로넣은"+pdto);
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
-		dto.setRank(service.userRank(dto.getUserid()));
+		dto.setRank(service.userInfor(dto.getUserid()).getRank());
+		dto.setUsername(service.userInfor(dto.getUserid()).getUsername());
+		dto.setEmail(service.userInfor(dto.getUserid()).getEmail());
+		dto.setTel(service.userInfor(dto.getUserid()).getTel());
 		dto.setPro_code(pdto.getPro_code());
+		System.out.println(dto.getUsername());
 		
 		//주문DB등록
 		service.orderInsert(dto);
@@ -104,7 +109,7 @@ public class OnlineController {
 		dto.setRest_count(newRest);
 		service.restUpdate(dto);
 		
-		System.out.println(" :"+dto);
+		System.out.println(" :"+dto.getOrd_no());
 		System.out.println(" :"+pdto);
 		mav.addObject("dto", dto);
 		mav.addObject("pdto",pdto);
@@ -113,5 +118,22 @@ public class OnlineController {
 		
 	}
 	
+	@PostMapping("/paymentSuc")
+	public ModelAndView paymentSuc(OrderDTO dto, ProductDTO pdto) {
+		System.out.println(":::"+pdto);
+		System.out.println(":::"+dto.getOn_no());
+		ModelAndView mav = new ModelAndView();
+		System.out.println(dto.getRest_count());
+		int restNum = dto.getRest_count();
+		
+		if(restNum==0) {
+			//모든 공구참여자 status update
+			dto.setStatus(service.statusUpdate(dto));	
+		}
+		mav.addObject("dto",dto);
+		mav.addObject("pdto", pdto);
+		mav.setViewName("/online/paymentSuc");
+		return mav;
+	}
 	
 }

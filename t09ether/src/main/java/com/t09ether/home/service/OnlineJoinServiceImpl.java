@@ -36,8 +36,8 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 	}
 
 	@Override
-	public int userRank(String userid) {
-		return dao.userRank(userid);
+	public OrderDTO userInfor(String userid) {
+		return dao.userInfor(userid);
 	}
 
 	@Override
@@ -54,6 +54,12 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 	public int ordNoSelect(OrderDTO dto) {
 		return dao.ordNoSelect(dto);
 	}
+
+	@Override
+	public int statusUpdate(OrderDTO dto) {
+		return dao.statusUpdate(dto);
+	}
+
 
 	
 }

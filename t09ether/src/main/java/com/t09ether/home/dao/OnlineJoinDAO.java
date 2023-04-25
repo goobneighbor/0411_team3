@@ -21,8 +21,8 @@ public interface OnlineJoinDAO {
 	//주문상품정보가져오기
 	public ProductDTO proInfor(int pro_code);
 	
-	//회원 rank
-	public int userRank(String userid);
+	//회원정보
+	public OrderDTO userInfor(String userid);
 	
 	//ord_no select
 	public int ordNoSelect(OrderDTO dto);
@@ -32,4 +32,7 @@ public interface OnlineJoinDAO {
 	
 	//rest_count update
 	public int restUpdate(OrderDTO dto);
+	
+	//status update
+	public int statusUpdate(OrderDTO dto);
 }

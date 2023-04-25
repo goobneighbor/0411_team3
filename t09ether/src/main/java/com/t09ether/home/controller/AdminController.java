@@ -32,10 +32,10 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		
 		vo.setTotalRecord(service.totalRecord(vo));
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		
 		List<RegisterDTO> list = service.pageSelect(vo);
-		System.out.println(list);
+		//System.out.println(list);
 		
 		mav.addObject("vo",vo);
 		mav.addObject("list", list);

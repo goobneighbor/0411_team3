@@ -23,4 +23,74 @@
 		update registerinfo set userpwd=#{userpwd1}, tel=#{tel}, email=#{email}, zipcode=#{zipcode}, addr=#{addr}, addrdetail=#{addrdetail}
 		where userid=#{userid} and userpwd=#{userpwd}
 	</update>
+	
+	
+	<!-- 온라인 공구내역 게시판 리스트 + 페이징  -->
+	<select id="totalRecord" resultType="int">
+		select count(ord_no) ord_no from order09
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if> 
+	</select>
+	<select id="pageSelect" resultType="com.t09ether.home.dto.OrderDTO">
+	select * from
+		(select * from
+			(
+				select o.ord_no, o.pro_code, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
+				from order09 o join product_detail pd on o.on_no=pd.on_no 
+				<if test="searchWord!=null">
+					where ${searchKey} like '%${searchWord}%' 
+				</if>
+				order by ord_no desc 
+			)
+		<![CDATA[ 
+	  		where rownum<=${nowPage*onePageRecord} order by ord_no asc 
+	  		]]>
+	  		)
+	  		
+	  	<choose>
+	  		<when test="nowPage!=totalPage">	
+	  			<![CDATA[
+	  			where rownum<=${onePageRecord} order by ord_no desc 
+	  			]]>
+	  		</when>
+	  		<when test="nowPage==totalPage">
+	  			<![CDATA[
+	  			where rownum<=${lastPageRecord} order by ord_no desc 
+	  			]]>	  		
+	  		</when>
+  		</choose>
+	</select>
+	
+	<!-- 오프라인 공구 게시물 페이징  -->
+	<select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
+	select * from
+		(select * from
+			(
+				select op.off_j_no, op.off_no, op.userid, op.username, op.tel, og.status 
+				from off_participant op join off_gb og on op.off_no=og.off_no
+				<if test="searchWord!=null">
+					where ${searchKey} like '%${searchWord}%' 
+				</if>
+				order by off_no desc
+			)
+		<![CDATA[ 
+	  		where rownum<=${nowPage*onePageRecord} order by off_no asc 
+	  		]]>
+	  		)
+	  		
+	  	<choose>
+	  		<when test="nowPage!=totalPage">	
+	  			<![CDATA[
+	  			where rownum<=${onePageRecord} order by off_no desc 
+	  			]]>
+	  		</when>
+	  		<when test="nowPage==totalPage">
+	  			<![CDATA[
+	  			where rownum<=${lastPageRecord} order by off_no desc 
+	  			]]>	  		
+	  		</when>
+  		</choose>
+	</select>
+	
 </mapper>

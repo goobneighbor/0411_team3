@@ -6,8 +6,8 @@ public class OrderDTO {
 	private String userid;
 	private int ord_count; //내가주문한상품수
 	private int status;
-	private String shareaddr;
-	private String sharedetail;
+	private int on_no;
+	private String orderdate;
 //////////////////////////////////
 	//만들어낸 변수
 	private int on_count;//상품총주문개수
@@ -35,17 +35,14 @@ public class OrderDTO {
 	private String addrdetail;
 	private String rank;
 	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "OrderDTO [ord_no=" + ord_no + ", pro_code=" + pro_code + ", userid=" + userid + ", ord_count="
-				+ ord_count + ", status=" + status + ", on_count=" + on_count + ", rest_count=" + rest_count
-				+ ", pro_total=" + pro_total + ", pro_name=" + pro_name + ", pro_price=" + pro_price + ", pro_stock="
-				+ pro_stock + ", image=" + image + ", detailed=" + detailed + ", userpwd=" + userpwd + ", username="
-				+ username + ", tel=" + tel + ", email=" + email + ", zipcode=" + zipcode + ", addr=" + addr
-				+ ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
+				+ ord_count + ", status=" + status + ", on_no=" + on_no + ", orderdate=" + orderdate + ", on_count="
+				+ on_count + ", rest_count=" + rest_count + ", pro_total=" + pro_total + ", pro_name=" + pro_name
+				+ ", pro_price=" + pro_price + ", pro_stock=" + pro_stock + ", image=" + image + ", detailed="
+				+ detailed + ", userpwd=" + userpwd + ", username=" + username + ", tel=" + tel + ", email=" + email
+				+ ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
 	}
 	
 	public int getOrd_no() {
@@ -77,6 +74,18 @@ public class OrderDTO {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getOn_no() {
+		return on_no;
+	}
+	public void setOn_no(int on_no) {
+		this.on_no = on_no;
+	}
+	public String getOrderdate() {
+		return orderdate;
+	}
+	public void setOrderdate(String orderdate) {
+		this.orderdate = orderdate;
 	}
 	public int getOn_count() {
 		return on_count;
@@ -174,7 +183,4 @@ public class OrderDTO {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-	
-	
-	
 }

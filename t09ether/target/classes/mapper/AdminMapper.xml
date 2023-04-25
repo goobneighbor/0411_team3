@@ -11,29 +11,29 @@
 	</select>
 	<select id="pageSelect" resultType="com.t09ether.home.dto.RegisterDTO">
 	select * from
-		(select * from 
+		(select * from
 			(
-				select rownum, a.username, a.userid, a.tel, a.email, a.rank, a.writedate, a.report 
-				from (select username, userid, tel, email, rank, writedate, report from registerinfo order by username) a
+				select rownum, a.username, a.userid, a.tel, a.email, a.rank, to_char(a.writedate,'MM-DD HH:MI') writedate, a.report 
+				from (select username, userid, tel, email, rank, writedate, report from registerinfo order by username) a 
 				<if test="searchWord!=null">
-					and ${searchKey} like '%${searchWord}%'
+					where ${searchKey} like '%${searchWord}%' 
 				</if>
-				order by username asc
+				order by username asc 
 			)
 		<![CDATA[ 
-	  		where rownum<=${nowPage*onePageRecord} order by username desc
+	  		where rownum<=${nowPage*onePageRecord} order by username desc 
 	  		]]>
 	  		)
 	  		
 	  	<choose>
 	  		<when test="nowPage!=totalPage">	
 	  			<![CDATA[
-	  			where rownum<=${onePageRecord} order by username asc
+	  			where rownum<=${onePageRecord} order by username asc 
 	  			]]>
 	  		</when>
 	  		<when test="nowPage==totalPage">
 	  			<![CDATA[
-	  			where rownum<=${lastPageRecord} order by username asc
+	  			where rownum<=${lastPageRecord} order by username asc 
 	  			]]>	  		
 	  		</when>
   		</choose>

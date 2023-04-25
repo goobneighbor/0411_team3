@@ -47,17 +47,7 @@
 						</header>
 					</section>
 					
-					<section class="box special">
-						<header class="major">
-							<h2>이부분 제거 예정</h2>
-							<p>신동민-고객센터관리, 상품관리, 게시글 관리<br/><br/>
-								통계는 나중에 메인에 나오게 만들겠습니다.<br/><br/>
-							*관리자의 경우 마이페이지에 '관리자 계정 생성'(회원가입 복붙) 탭 만들어서 새 관리자 등록 가능<br/>
-								-관리자의 경우 주소 입력 불필요<br/>
-								(관리 계정 생성 만들고 주소 부분 다 value 값 아무거나 넣어서 들어가게 설정)</p>
-						
-						</header>
-					</section>
+					
 
 					<section class="box special features">
 						<div class="features-row">

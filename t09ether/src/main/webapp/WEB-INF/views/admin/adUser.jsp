@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+	#wrapper {
+		display: grid;
+		place-items: center;
+		min-height: 10vh;
+	}
+	#searchForm{
+		text-align:center;
+	}
+	#searchKey, #searchWord, #search{
+		display:inline-block;
+	}
+	#searchKey { /*제목임*/
+		width:15%;
+		margin: auto;
+	}
+	#searchWord { /*검색칸*/
+		width:40%;
+		margin: auto;
+	}
 	.searchDiv{
-		clear:left;
 		padding:10px;
-		text-align: center;		
+		text-align: center;
+		width:100%;	
 	}
 	.paging_div li{
 		float:left;
@@ -117,7 +136,7 @@
 						<input type="button" value="영구제명" id="chooseDel"/>
 					</div>
 					<!-- 페이징 -->
-					
+					<div  id="wrapper">
 					<div class="paging_div"> 
 						<ul>
 							<!-- 이전 페이지 : nowPage를 기준으로 -->
@@ -157,7 +176,7 @@
 					<!--검색 -->
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="adUser">
-							<select name = "searchKey">
+							<select name = "searchKey" id="searchKey">
 								<option value="username">이름</option>
 								<option value="userid">아이디</option>
 								<option value="rank">등급</option>
@@ -165,6 +184,7 @@
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search"/>
 						</form>
+					</div>
 					</div>
 				</section>
 			</div>

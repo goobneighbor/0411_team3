@@ -39,14 +39,12 @@
 
 </style>
 <script>
-$(function() {
-	$("#searchForm").submit(function() {
-		if($("#searchWord").val()=="") {
-			alert("검색어를 입력하세요..");
-			return false;
-		}
-		return true;
-	});
+$("#isuserequal").click(function() {
+		alert("아이디가 일치할때 조회 가능합니다.");
+		return false;
+	})
+	
+})
 
 </script>
 </head>
@@ -64,7 +62,7 @@ $(function() {
 <section class="box">
 
    <div class="table-wrapper">
-   <h2 style="text-align:left; padding:20px;">자주 묻는 질문</h2>
+   <h2 style="text-align:left; padding:20px;">Q&A 게시판</h2>
       <table>
          <thead>
             <tr>
@@ -72,7 +70,6 @@ $(function() {
                <th>제목</th>
                <th>작성자</th>
                <th>등록일</th>
-               <th>등급</th>
             </tr>
          </thead>
             <tbody>
@@ -80,11 +77,10 @@ $(function() {
                  <tr>
                   <td><c:out value="${CustomerCenterDTO.cus_b_num}"/></td>
                   <td>
-                  	<a href="faqlist?cus_b_num=${CustomerCenterDTO.cus_b_num }"><c:out value="${CustomerCenterDTO.subject }"/></a>
+                  		<a href="faqlist?cus_b_num=${CustomerCenterDTO.cus_b_num }"><c:out value="${CustomerCenterDTO.subject }"/></a>
                   </td>
                   <td>${CustomerCenterDTO.userid}</td>
                   <td>${CustomerCenterDTO.writedate}</td>
-                  <td>${CustomerCenterDTO.rank }</td>
                  </tr>
                </c:forEach> 
             </tbody>
@@ -141,15 +137,38 @@ $(function() {
 	
 	</div>	
 
-	<!--  1:1 문의 만들기 -->
-      <h2 style="text-align:left; padding:20px;">1:1문의</h2>
-
-      
+	<!--  문의하기 만들기 -->
+      	<h2 style="text-align:left; padding:20px;">문의하기</h2>
+		<section class="box special features">
+						<div class="features-row">
+							<section>
+								<img src="../resources/images/checklist.png" style="width:80px; height:80px;"/>
+								<p></p>
+								<p></p>
+								<c:if test="${logStatus == 'Y' }">
+									<h3><a href="<%=request.getContextPath()%>/customer/csBoardWrite">Q&A 문의글 작성하기</a></h3>
+									<p>최대한 빠른 시일 내에 답변드리겠습니다.</p>
+								</c:if>
+									<c:if test="${logStatus != 'Y' }">
+									<h3><a href="<%=request.getContextPath()%>/loginForm">로그인 하러가기</a></h3>
+								<p>먼저 로그인을 해주세요. 클릭하시면 이동합니다.</p>
+								</c:if>
+								
+								
+							</section>
+							<section>
+								<img src="../resources/images/support.png" style="width:80px; height:80px;"/>
+								<p></p>
+								<h3>1588-1577</h3>
+								<p>전문 상담원이 고객님의 궁금증을 해결해 드리겠습니다.</p>
+							</section>
+						</div>
+      </section>
       </div>
       </section>
       </div>
       
    </div>
-      </section>
+</section>
 </body>
 </html>

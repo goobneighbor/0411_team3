@@ -36,8 +36,9 @@
 	select * from
 		(select * from
 			(
-				select o.ord_no, o.pro_code, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
+				select o.ord_no, o.pro_code, p.pro_name, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
 				from order09 o join product_detail pd on o.on_no=pd.on_no 
+				join product p on o.pro_code=p.pro_code 
 				<if test="searchWord!=null">
 					where ${searchKey} like '%${searchWord}%' 
 				</if>
@@ -67,7 +68,7 @@
 	select * from
 		(select * from
 			(
-				select op.off_j_no, op.off_no, op.userid, op.username, op.tel, og.status 
+				select op.off_j_no, op.off_no, og.off_subject, op.userid, op.username, op.tel, og.status 
 				from off_participant op join off_gb og on op.off_no=og.off_no
 				<if test="searchWord!=null">
 					where ${searchKey} like '%${searchWord}%' 
@@ -91,6 +92,13 @@
 	  			]]>	  		
 	  		</when>
   		</choose>
+	</select>
+	
+	<select id="boardSelect" resultType="com.t09ether.home.dto.OffPartDTO">
+		select og.off_no, og.off_subject, og.off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'MM-DD HH:MI') app_time, 
+		to_char(og.deaddate, 'MM-DD HH:MI') deaddate, to_char(og.writedate, 'MM-DD HH:MI') writedate, og.status, og.userid, op.userid
+		from off_participant op join off_gb og on op.off_no=og.off_no
+		and og.off_no=#{param1}
 	</select>
 	
 </mapper>

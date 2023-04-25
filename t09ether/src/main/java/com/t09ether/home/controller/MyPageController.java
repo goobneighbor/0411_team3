@@ -64,6 +64,20 @@ public class MyPageController {
 		return mav;
 	}
 	
+	@GetMapping("/myPostView")
+	public ModelAndView myPostView(int no, AdminPagingVO vo) {
+		
+		OffPartDTO dto = service.boardSelect(no);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("dto", dto);
+		mav.addObject("vo", vo);
+		mav.setViewName("mypage/myPostView");
+		
+		return mav;
+	}
+	
 	@GetMapping("/myPersInfo")
 	public ModelAndView myPersInfo() {
 		ModelAndView mav = new ModelAndView();

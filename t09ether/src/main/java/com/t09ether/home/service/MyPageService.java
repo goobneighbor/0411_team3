@@ -20,5 +20,7 @@ public interface MyPageService {
 	
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
+	
+	public OffPartDTO boardSelect(int no);
 }
 

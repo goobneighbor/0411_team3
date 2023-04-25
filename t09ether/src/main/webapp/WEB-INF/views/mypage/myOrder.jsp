@@ -97,6 +97,7 @@
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
+									<th>상품명</th>
 									<th>공구장</th>
 									<th>주문 개수</th>
 									<th>주문 날짜</th>
@@ -112,6 +113,7 @@
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
+									<td>${bDTO.pro_name }</td>
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.orderdate }</td>
@@ -210,6 +212,7 @@
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
+									<th>상품명</th>
 									<th>공구장</th>
 									<th>주문 개수</th>
 									<th>주문 날짜</th>
@@ -225,6 +228,7 @@
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
+									<td>${bDTO.pro_name }</td>
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.orderdate }</td>

@@ -60,6 +60,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.offPageSelect(vo);
 	}
 
+	@Override
+	public OffPartDTO boardSelect(int no) {
+		return dao.boardSelect(no);
+	}
+
 	
 
 }

@@ -90,6 +90,12 @@
 	<ul id="view">
 		<li>번호 : ${dto.off_no}</li>	
 		<li>제목 : ${dto.off_subject}</li>
+		<li>처리상태 : (status=${dto.status})
+			<c:choose>
+				<c:when test="${dto.status==1}">진행중</c:when>
+				<c:otherwise>종료</c:otherwise>
+			</c:choose>
+		</li>	
 		<li>등록일 : ${dto.writedate}</li>	
 		<li>작성자 : ${dto.userid}</li>		
 		<li>조회수 : ${dto.off_hit}</li>	

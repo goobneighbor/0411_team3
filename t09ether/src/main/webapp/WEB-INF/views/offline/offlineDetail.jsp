@@ -63,7 +63,13 @@
 	
 <div class="container">	
 	<ul id="view">		
-		<li>제목 : ${dto.off_subject}</li>			
+		<li>제목 : ${dto.off_subject}</li>
+		<li>처리상태 : 
+			<c:choose>
+				<c:when test="${dto.status==1}">진행중</c:when>
+				<c:otherwise>종료</c:otherwise>
+			</c:choose>
+		</li>			
 		<li>작성자 : ${dto.userid}</li>			
 		<li>모집인원 : ${dto.group_num}</li>
 		<li>현재인원 : ${dto.current_num}</li>			
@@ -84,7 +90,7 @@
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
 				<td style="width:6%; text-align:center;">${status.count}</td>
-				<td>${opDTO.userid}</td>
+				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
 			</tr>

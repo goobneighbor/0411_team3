@@ -4,9 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.t09ether.home.dao.OfflineDAO">
 	<insert id="offlineInsert">
-		insert into	off_gb(off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate)
+		insert into	off_gb(off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate, status)
 		values(off_no_sq.nextval,#{userid},#{off_subject},#{off_content},
-		#{location},${group_num},${current_num},to_date(#{app_time},'MM-DD'),to_date(#{deaddate},'MM-DD'),${off_hit}, sysdate)
+		#{location},${group_num},${current_num},to_date(#{app_time},'MM-DD'),to_date(#{deaddate},'MM-DD'),${off_hit}, sysdate, 1)
 	</insert>
 	<select id="totalRecord" resultType="int">
 		select count(off_no) totalRecord from off_gb		
@@ -17,7 +17,7 @@
 				(
 					 select b.off_no, b.userid, b.off_subject, b.off_content, b.location, b.current_num,
 					 b.group_num, to_char(b.app_time, 'MM-DD') app_time, to_char(b.deaddate, 'MM-DD') deaddate, 
-					 r.username, b.off_hit, to_char(b.writedate,'MM-DD') writedate  
+					 r.username, b.off_hit, to_char(b.writedate,'MM-DD') writedate , b.status 
 					 from off_gb b join registerinfo r on b.userid=r.userid 
 					 <if test="searchWord != null"><!-- 검색어가 있을 경우 -->
 					 	and ${searchKey} like '%${searchWord}%'
@@ -41,7 +41,7 @@
 		</choose>
 	</select>
 	<select id="offlineSelect" resultType="com.t09ether.home.dto.OfflineDTO">
-		select off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate
+		select off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate, status
 		from off_gb where off_no=${param1}
 	</select>
 	<update id="offlineHitCount">

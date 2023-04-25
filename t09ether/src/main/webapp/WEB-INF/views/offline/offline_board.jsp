@@ -70,7 +70,7 @@
 		width:50%;
 		float:left;
 		padding:10px 0;
-		background :#ff6347;
+		background :orange;
 	}
 	.pHeader>div:last-child{
 		text-align: right;
@@ -104,6 +104,14 @@
      	min-height: 5vh;
      	margin:0 auto;
 	}
+	.text-center2{
+		width: 100px;
+		margin:0 auto;
+		text-align:center;
+		border : 1px solid #ddd;
+		border-radius: 10px;
+		background-color: orange;
+	}
 </style>
 <script>
 	$(function(){
@@ -120,7 +128,8 @@
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
-            <p class="lead fw-normal text-white-75 mb-0">공동구매를 시작하거나 참여해보세요.</p>
+            <p class="lead fw-normal text-white-75 mb-0">같이 쇼핑할 사람들을 찾아보세요!</p>
+            <a href="<%=request.getContextPath()%>/offlineGB">오프라인 갤러리 게시판(테스트)</a>
         </div>
     </div>
 </header>
@@ -137,38 +146,45 @@
 			<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 		</c:if>	
 	
-	<div class="listDiv">
-		<ul class="board_list">			
-			<li>번호</li>
-			<li>지역</li>
-			<li>인원</li>
-			<li>제목</li>
-			<li>작성자</li>
-			<li>조회수</li>
-			<li>등록일</li>
-			<li>마감일</li>
-			<!-- 시작번호 설정       :                 총 레코드 수       현재페이지        한페이지레코드수-->	
-			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord}"/>
-
-			<c:forEach var="offDTO" items="${list}">			
-				<li>${offDTO.off_no}</li>
-				<li>${offDTO.location}</li>
-				<li>${offDTO.current_num}/${offDTO.group_num}</li>
-				<!-- 글내용보기 : 레코드번호, 현재페이지, 검색어가 있다면 검색키와 검색어 가지고 뷰페이지로 이동하여야 
-				다시 목록으로 올 때 해당 검색과 페이지도 이동할 수 있다-->
-				<li><a href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${offDTO.off_subject}</a></li>
-				<li>${offDTO.userid }</li>
-				<li>${offDTO.off_hit }</li>
-				<li>${offDTO.writedate}</li>
-				<li>${offDTO.deaddate}</li>
-				<c:set var="recordNum" value="${recordNum-1}"/>
-			</c:forEach>
-		</ul>
-	</div>
-	
-	<!-- 페이징 -->	
-	
-	<div class="pagingDiv" id="wrapper">
+	<!-- Section-->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
+  			<!-- 시작번호 설정 -->
+			<c:set var="recordNum" value="${vo.totalRecord -(vo.nowPage -1)*vo.onePageRecord }"></c:set>
+        	<c:forEach var="offDTO" items="${list}">
+	        	<div class="col mb-5">
+	            	<div class="card h-100">
+	                	<!-- Product image-->
+	                    <img class="card-img-top" src="./resources/images/cart1jpg.jpg" alt="image" />
+	                    	
+	                    	<!-- details-->
+	                        <div class="card-body p-4">
+	                        	<div class="text-center">
+	                            	<!-- name-->
+	                                <h5 class="fw-bolder">${offDTO.off_subject}</h5>
+	                                <!-- details-->	                                
+	                                <div>${offDTO.location}</div>
+	                                <div>${offDTO.current_num}명/${offDTO.group_num}명</div>
+	                                <c:choose>
+										<c:when test="${offDTO.status==1}"><li style="color:green;">모집중</li></c:when>
+										<c:otherwise><li style="color:red;">마감</li></c:otherwise>				
+									</c:choose>	
+	                            </div>
+	                        </div>
+	                        <!-- Product actions-->
+	                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                        	<div class="text-center2"><a href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">참여하기</a></div>
+	                        </div>
+	                 </div>
+	            </div>
+	            <c:set var="recordNum" value="${recordNum-1 }"></c:set>
+            </c:forEach>
+     <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
+        </div>
+    </div>
+    <div class="pagingDiv" id="wrapper">
 		<div id="item">
 		<ul>
 			<!-- nowPage -->
@@ -207,20 +223,6 @@
 		</ul>
 		</div>	
 	</div>
-	<!--검색 -->
-	<div class ="searchDiv">
-		<form method="get" id="searchForm" action="offline_board">
-			<select name = "searchKey" id="searchKey">
-				<option value="subject">제목</option>
-				<option value="username">작성자</option>
-				<option value="content">글내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="submit" value="Search" id="searchSubmit"/>
-		</form>
-	
-	</div>
-
 </div>
 
 </body>

@@ -25,7 +25,6 @@ import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
-import com.t09ether.home.dto.OfflinePartyDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineService;
 
@@ -107,6 +106,7 @@ public class OfflineController {
 	public ModelAndView boardView(int off_no, OfflinePagingVO vo) {
 		//조회수증가
 		service.offlineHitCount(off_no);
+		//해당글(off_no)담기
 		OfflineDTO dto = service.offlineSelect(off_no);
 		
 		ModelAndView mav = new ModelAndView();		
@@ -117,6 +117,7 @@ public class OfflineController {
 		mav.setViewName("offline/offlineView");
 		return mav;
 	}
+	
 	//수정폼으로 이동
 	@GetMapping("/offlineEdit")
 	public ModelAndView boardEdit(int off_no, OfflinePagingVO vo) {
@@ -250,7 +251,22 @@ public class OfflineController {
 	*/
 	
 	
-	
+	//게시판목록(갤러리형)
+	@GetMapping("/offlineGB")
+	public ModelAndView offlineGallery(OfflinePagingVO vo) {		
+		ModelAndView mav = new ModelAndView();			
+		//총레코드수
+		vo.setTotalRecord(service.totalRecord(vo));
+			
+		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
+		list = service.offList(vo);
+			
+		//해당페이지 레코드 선택하기
+		mav.addObject("list", service.offList(vo));		
+		mav.addObject("vo", vo);
+		mav.setViewName("offline/offlineGB");
+		return mav;
+	}
 	
 	
 	

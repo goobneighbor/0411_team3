@@ -7,7 +7,7 @@ public class OfflineParticipantDTO {
 	private int off_no;//원글번호
 	private String userid; // 참가자 아이디
 	private String username;//참가자 이름
-	private String tel;//참가자 연락처
+	private String tel;//참가자 연락처	
 	
 	public int getOff_j_no() {
 		return off_j_no;
@@ -39,11 +39,15 @@ public class OfflineParticipantDTO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "OfflineParticipantDTO [off_j_no=" + off_j_no + ", off_no=" + off_no + ", userid=" + userid
-				+ ", username=" + username + ", tel=" + tel + "]";
+				+ ", username=" + username + ", tel=" + tel  + "]";
 	}
+	
 	
 	
 }

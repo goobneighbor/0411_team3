@@ -26,8 +26,11 @@
 </style>
 <script>
 $(function(){
-	$("#onlineJoinForm").on('click', function(){
-
+	$(document).on('click',"#onlineJoinForm", function(){
+		console.log($(this).parent().parent())
+	
+		var idx = $("#locationList>li").index($(this).parent().parent());
+		console.log(idx)
 		var _width = '500';
 	    var _height = '248';
 	   
@@ -35,12 +38,14 @@ $(function(){
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
 
-	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm', 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx]+'&pro_code='+pro_code[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
 
 function openPopup() {
+	
+
 	 
     var _width = '730';
     var _height = '750';
@@ -76,8 +81,10 @@ $(function(){
 		
 	})
 	
-
-
+let on_no=[];
+let rest_count=[];
+let pro_code=[];
+let userid=[];
 $(function(){
 	$("#searchForm").submit(function(){
 		event.preventDefault();
@@ -101,7 +108,13 @@ $(function(){
 function listView(result) {
 	var tag = "";
 	$(result).each(function(i, lDTO){
-		tag += "<li><p>"+lDTO.shareaddr+"<span style='font-size:0.8em; float:right'></span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+	
+		on_no.push(lDTO.on_no); // [3, 6,  9]
+		rest_count.push(lDTO.rest_count);
+		pro_code.push(lDTO.pro_code);
+		userid.push(lDTO.userid);
+		
+		tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	
 	});
@@ -117,45 +130,62 @@ function listView(result) {
         <div class="row">
         	<div class="card mb-4">
                         <div class="card-header">온라인 공동구매 시작하세요!</div>
-                        <div class="card-body">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 인근 위치의 공구목록에서 공구에 참여해보세요!</div>
+                        <div class="card-body" style="font-size:1.2em">'내가 공구만들기'시, 공구장이되어 집으로 물품이 배송됩니다! 공구장이 되어 등급을 올리세요! <br/>'참여하기'에서 공구목록에서 가까운 나눔위치를 확인하고 <button type='button'class='btn btn-primary'>참여/남은갯수</button>을 클릭해 공구에 참여해보세요!</div>
             </div>
             
-                <!-- Blog entries-->
-                <div class="col-lg-6">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <img src="${dto.image }" />
-                        <div class="card-body">
-                            <div class="small text-muted"></div>
-                            <div id="review">리뷰</div>
-                            <h2 class="card-title">${dto.pro_name }</h2>
-                            <p class="card-text">${dto.detailed }</p>
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
-
-                        </div>
-                    </div>
-
+            <!-- Blog entries-->
+            <div class="col-lg-6">
+                <!-- Featured blog post-->
+                <div class="card mb-6">
+                    <img src="${dto.image }" />
+                    
                 </div>
-                <!-- Side widgets-->
-                <div class="col-lg-6">
-                    <!-- Search widget-->
-                    <div class="card mb-6">
-                        <div class="card-header">참여하기</div>
-                        <div class="card-body">
-                        <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
-                            <div class="input-group">
-                            <form method="get" name="searchForm" id="searchForm" >
-                            	<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
-                                <input id="searchWrd" name="searchWrd" value="${vo.searchWrd }" class="form-control" type="text" placeholder="지역명" aria-label="지역명" aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="submit" >검색</button>
-                            </form>
-                                <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 400px; padding: 10px;">
-								  <ul id="locationList" style="list-style-type:none"></ul>
-								</div>
-                            </div>
-                        </div>
-                    </div>		    							                     
-                  </div>
+
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-6">
+                <div class="card mb-6">
+               		<div class="card-header">상품상세</div>
+               		<div class="card-body">
+                        <button class="btn btn-primary" id="button-search" style="float:right">리뷰</button>
+                        <h2 class="card-title">${dto.pro_name }</h2>
+                        <p class="card-text" style="font-size:1.4em; float:right">가격/할인적용시가격</p>
+                      
+                        <br/>
+                        <hr/>
+                        <p class="card-text">${dto.detailed }</p>
+                        <a class="btn btn-primary" style="float:right" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
+
+                    </div>  
+                </div>		    							                     
+              </div>
+       		<hr/>
+                  <!-- 참여하기 -->
+             <div class="card mb-4">
+                   <div class="card-header">참여하기</div>
+                   <div class="card-body">
+                   <button class="btn btn-primary" id="button-search" type="button" style="float:right; margin:5px" onclick="openPopup()">지도로 찾아보기</button>
+                      <!--  <div class="input-group"> -->
+                       <form method="get" name="searchForm" id="searchForm">
+                       	<div class=" col-lg-10"> 
+	                       	<div class="input-group">
+			                <!-- <mx-auto> -->
+			                
+			               		<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>		
+			                    <input  id="searchWrd" name="searchWrd" value="${vo.searchWrd }" type="text" class="form-control" placeholder="지역명을 입력해주세요!" aria-label="search" aria-describedby="button-addon2">
+			                	
+			               <!--  </mx-auto>	 -->	
+			                <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+			                </div>
+		                </div>	
+                       </form>
+                        	<p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소</span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/남은갯수</button></p><hr/>
+                           	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
+			  					<ul id="locationList" style="list-style-type:none"></ul>
+							</div>
+                       </div>
+                   </div>
+            </div>
                     
                     
               </div>

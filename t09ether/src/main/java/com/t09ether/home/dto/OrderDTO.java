@@ -1,13 +1,11 @@
 package com.t09ether.home.dto;
 
 public class OrderDTO {
-	private int ord_no;
-	private int pro_code;
-	private String userid;
-	private int ord_count; //내가주문한상품수
-	private int status;
-	
-//////////////////////////////////
+   private int ord_no;
+   private int pro_code;
+   private String userid;
+   private int ord_count; //내가주문한상품수
+   private int status;
 	
 	private int on_no;
 	private int on_count;//상품총주문개수
@@ -211,8 +209,5 @@ public class OrderDTO {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
-	}
-	
-	
-	
+	}   
 }

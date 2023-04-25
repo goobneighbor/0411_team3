@@ -30,4 +30,14 @@ public class OrderServiceImpl implements OrderService {
 		return dao.orderSelect(pro_code, on_no, userid);
 	}
 
+	@Override
+	public int orderDelete(int ord_no) {
+		return dao.orderDelete(ord_no);
+	}
+
+	@Override
+	public int product_detailDelete(int on_no) {
+		return dao.product_detailDelete(on_no);
+	}
+
 }

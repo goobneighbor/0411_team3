@@ -96,7 +96,6 @@
 				var total = (num*c_cnt);
 				document.getElementById("ord_amount").value = total;
 				document.getElementById("rest_count").value = parseInt(document.getElementById("rest_count").value) + 1;
-
 			}
 		});
 		
@@ -195,4 +194,3 @@
               </div>
             </div>
 </div>
-

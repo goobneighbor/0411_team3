@@ -75,8 +75,8 @@ header,footer{
 		 
 		<div>
 			<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
-		    <input type="text" class="text" id="searchWrd" name="searchWrd" placeholder="검색어를 입력해주세요" style="width: 300px;"   value="${vo.searchWrd }" /> 
-		    <input type="submit" value="Search"/>
+		    <input type="text" class="text" id="searchWrd" name="searchWrd" placeholder="지역명을 입력해주세요!" style="width: 300px;"   value="${vo.searchWrd }" /> 
+		    <input type="submit" value="검색"/>
 		</div>
 		 
 	</form>

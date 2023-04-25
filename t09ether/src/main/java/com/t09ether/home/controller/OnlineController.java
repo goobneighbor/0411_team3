@@ -2,24 +2,20 @@ package com.t09ether.home.controller;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.SearchVO;
 import com.t09ether.home.service.OnlineJoinService;
-
-import net.sf.json.JSONArray;
 
 
 
@@ -31,8 +27,15 @@ public class OnlineController {
 	
 
 	@GetMapping("/onlineJoinForm") 
- 	public ModelAndView onlineJoin() {
+ 	public ModelAndView onlineJoin(int on_no, int rest_count, int pro_code) {
 		ModelAndView mav = new ModelAndView(); 
+		OrderDTO dto = new OrderDTO();
+		dto.setOn_no(on_no);
+		dto.setRest_count(rest_count);
+		dto.setPro_code(pro_code);
+		System.out.println("onlineJoin"+dto);
+		mav.addObject("dto", dto);
+		mav.addObject("pdto", dto);
 		mav.setViewName("online/onlineJoinForm"); 
 		return mav; 
 	}
@@ -58,7 +61,16 @@ public class OnlineController {
 	@GetMapping("/locationList")
 	public List<OrderDTO> locationList(int pro_code) {
 		System.out.println(service.locationListSelect(pro_code).toString());
-		return service.locationListSelect(pro_code);
+		List<OrderDTO> list = service.locationListSelect(pro_code);
+		
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setPro_code(pro_code);
+		}
+
+		System.out.println("list: " + list);
+		
+		return list;
+
 	}
 	
 	//상품+검색어에 해당하는 리스트
@@ -68,5 +80,60 @@ public class OnlineController {
 		return service.getSearchList(pro_code, searchWrd);
 	}
 	
+	@PostMapping("/orderForm")
+	public ModelAndView orderForm(OrderDTO dto, ProductDTO pdto, HttpServletRequest request) {
+		System.out.println(request.getSession());
+		ModelAndView mav = new ModelAndView();
+		System.out.println(" :-"+dto);
+		System.out.println(" :-"+pdto);
+		
+		//ord_no select
+		//dto.setOrd_no(service.ordNoSelect(dto));
+		//System.out.println(":::"+pdto);
+		
+		pdto = service.proInfor(dto.getPro_code());
+		System.out.println("새로넣은"+pdto);
+		dto.setUserid((String)request.getSession().getAttribute("logId"));
+		dto.setRank(service.userInfor(dto.getUserid()).getRank());
+		dto.setUsername(service.userInfor(dto.getUserid()).getUsername());
+		dto.setEmail(service.userInfor(dto.getUserid()).getEmail());
+		dto.setTel(service.userInfor(dto.getUserid()).getTel());
+		dto.setPro_code(pdto.getPro_code());
+		System.out.println(dto.getUsername());
+		
+		//주문DB등록
+		service.orderInsert(dto);
+		
+		//rest_count update
+		int newRest = dto.getRest_count()-dto.getOrd_count();
+		dto.setRest_count(newRest);
+		service.restUpdate(dto);
+		
+		System.out.println(" :"+dto.getOrd_no());
+		System.out.println(" :"+pdto);
+		mav.addObject("dto", dto);
+		mav.addObject("pdto",pdto);
+		mav.setViewName("/online/orderForm");
+		return mav;
+		
+	}
+	
+	@PostMapping("/paymentSuc")
+	public ModelAndView paymentSuc(OrderDTO dto, ProductDTO pdto) {
+		System.out.println(":::"+pdto);
+		System.out.println(":::"+dto.getOn_no());
+		ModelAndView mav = new ModelAndView();
+		System.out.println(dto.getRest_count());
+		int restNum = dto.getRest_count();
+		
+		if(restNum==0) {
+			//모든 공구참여자 status update
+			dto.setStatus(service.statusUpdate(dto));	
+		}
+		mav.addObject("dto",dto);
+		mav.addObject("pdto", pdto);
+		mav.setViewName("/online/paymentSuc");
+		return mav;
+	}
 	
 }

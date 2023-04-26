@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -34,6 +36,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.PaymentDTO;
 import com.t09ether.home.dto.RefundDTO;
 import com.t09ether.home.service.OrderService;
@@ -47,7 +50,7 @@ import com.siot.IamportRestClient.response.*;
 
 @RestController
 @RequestMapping("/pay")
-public class PaymentController {
+public class PaymentController extends SmsSend {
 	
 	@Autowired
 	PaymentService service;
@@ -110,7 +113,8 @@ public class PaymentController {
 	        @RequestParam(value = "reason") String reason,
 	        @RequestParam(value = "ord_no") int ord_no,
 	        @RequestParam(value = "total_amount") int total_amount,
-	        @RequestParam(value = "on_no") int on_no) {
+	        @RequestParam(value = "on_no") int on_no,
+			@RequestParam(value = "ord_count") int ord_count){
 		
 		System.out.println("환불컨트롤러까지는 오나요?");
 		RefundDTO dto = new RefundDTO();
@@ -136,8 +140,46 @@ public class PaymentController {
 	        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
 	        	service.refundInsert(ord_no, amount, total_amount);
 	        	service.payDelete(impUid);
-	        	service.ordUpdate(ord_no, on_no);
-	        	service.prodetailUpdate(on_no);
+	        	
+	        	System.out.println(service.leaderSelect(on_no)+"-공구장:나-"+service.selfSelect(ord_no));
+	        	
+	        	//공구장유무 파악
+	        	if(service.leaderSelect(on_no).equals(service.selfSelect(ord_no))) {//공구장임
+		        	service.ordUpdate(ord_no, on_no); //order09 status->5
+		        	service.prodetailUpdate(on_no); //product_detail status->2
+		        	
+		        	ArrayList<Integer> ordList = service.ordNoSelect(on_no);
+		        	//공구장 제외하고 공구원들만 적용되게 수정해야함
+		        	System.out.println(ordList.toString());
+		        	for(Integer num : ordList) {
+		        		//결제 pay_no select
+		        		String pay_code = service.payNoSelect(num);
+		        		System.out.println("pay_code:"+pay_code);
+		        		
+		        	
+		        	}
+		        	/*
+		        	//공구 취소 문자
+		        	//모든 공구참여자 register정보
+					List<OrderDTO> list = service.selectInfor(on_no);
+				
+					for(OrderDTO odto : list) {
+						String tel = odto.getTel().replaceAll("-", "");
+						String username = odto.getUsername();
+						System.out.println(tel);
+						//문자보내기
+						String content = "["+username+"]님, 공구장님의 취소로 전체 공구가 취소되었습니다! 새로운 공구에 참여하세요![t09ther]";
+						super.send_msg(tel, username, content);
+					}
+					*/
+	        	}else {//공구장 아님
+	        		service.ordUpdateJoin(ord_no); //order09 status->5
+	        	
+	        		//rest_count update //파라미터에 ord_count넣었습니다아아
+	        		int newRest = service.restCountSelect(on_no) + ord_count;
+	        		service.restCountUpdate(newRest, on_no);
+	        	}
+	        	
 	        	
 	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
 	        	

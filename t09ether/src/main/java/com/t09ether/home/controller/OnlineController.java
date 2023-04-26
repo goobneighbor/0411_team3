@@ -36,7 +36,7 @@ import com.t09ether.home.service.OnlineJoinService;
 
 @RestController
 @RequestMapping("/online")
-public class OnlineController {
+public class OnlineController extends SmsSend {
 	@Autowired
 	OnlineJoinService service;
 	
@@ -157,7 +157,8 @@ public class OnlineController {
 				String username = odto.getUsername();
 				System.out.println(tel);
 				//문자보내기
-				send_msg(tel, username);
+				String content = "["+username+"]님, 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요![t09ther]";
+				super.send_msg(tel, username, content);
 			}
 			
 		}
@@ -167,6 +168,7 @@ public class OnlineController {
 		return mav;
 	}
 	
+	/*
 	public void send_msg(String tel, String username) {
         // 호스트 URL
         String hostNameUrl = "https://sens.apigw.ntruss.com";
@@ -245,7 +247,7 @@ public class OnlineController {
             } else {  // 에러 발생
                 //br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
             }
-            /*
+            ////////////
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = br.readLine()) != null) {
@@ -255,12 +257,13 @@ public class OnlineController {
             br.close();
             
             System.out.println(response.toString());
-             */
+            ///////
+            
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-	
+	 
 	//헤더 구성
     public static String makeSignature(
         String url, 
@@ -298,5 +301,5 @@ public class OnlineController {
 
 	  return encodeBase64String;
 	}
-	
+	*/
 }

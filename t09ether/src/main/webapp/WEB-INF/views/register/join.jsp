@@ -76,7 +76,7 @@
 			var reg = /^[A-Za-z]{1}\w{7,14}$/
 			
 			if(!reg.test($("#userid").val()) ){ //유효한 값이면 true, 잘못된 데이터면 false
-				alert("아이디 첫번째 문자는 영어대소문자로 시작해야 하며, \n 영어대소문자,숫자,_가능, 아이디 길이는 8~15글자까지 가능");
+				alert("아이디 첫번째 문자는 영어대소문자로 시작해야 하며, \n 영어대소문자, 숫자 가능, 아이디 길이는 8~15글자까지 가능");
 				return false;
 			}
 			if($("#idStatus").val()=="N") {
@@ -136,13 +136,13 @@
 			</li>
 			
 			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15"/></li>
+			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15" placeholder="비밀번호는 8자이상 15자 이하로 설정해 주세요"/></li>
 			
 			<li>비밀번호확인</li>
-			<li><input type="password" name="userpwd2" id="userpwd2" value="12345678"/></li>
+			<li><input type="password" name="userpwd2" id="userpwd2" placeholder="입력하신 비밀번호를 다시한번 입력해 주세요"/></li>
 			
 			<li>이름</li>
-			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>
+			<li><input type="text" name="username" id="username" minlength="2" maxlength="10" placeholder="이름은 2자이상 10자 이하로 입력해주세요"/></li>
 			
 			<li>연락처</li>
 			<li>
@@ -157,19 +157,19 @@
 				<input style="width:43.5%; float:left; margin:0;" type="text" name="tel3" id="tel3" maxlength="4" value="5678"/>		
 			</li>
 			<li>이메일</li>
-			<li><input type="text" name="email" id="email"/></li>
+			<li><input type="text" name="email" id="email" placeholder="이메일은 6자 이상 15자 이하로 입력해 주세요"/></li>
 			<li>우편번호</li>
 			<li>
 				<input style="width:78%; float:left; margin:2px;" type="text" name="zipcode" id="txtPostCodeC"/>
 				<input style="width:20%; float:right; margin:2px;" type="button" value="우편번호찾기" id="zipcodeSearch"/>
 			</li>
 			<li>주소</li>
-			<li><input type="text" name="addr" id="txtAddressC"/></li>
+			<li><input type="text" name="addr" id="txtAddressC" placeholder="우편번호찾기를 눌러 주소를 입력해 주세요"/></li>
 			<li>상세주소</li>
 			<li><input type="text" name="addrdetail"/></li>
 
 			<!-- 등급 -->
-			<li><input type="hidden" name="rank" id="rank" value="1"/><li>
+			<li><input type="hidden" name="rank" id="rank" value='admin'/><li>
 			<!-- 신고당한횟수 -->
 			<li><input type="hidden" name="report" id="report" value="0"/><li>
 			<br/><br/>

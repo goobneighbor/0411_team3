@@ -1,6 +1,9 @@
 package com.t09ether.home.controller;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +31,19 @@ public class OfflineController {
 	//게시판목록
 	@GetMapping("/offline_board")
 	public ModelAndView offline(OfflinePagingVO vo) {
-		ModelAndView mav = new ModelAndView();		
-		
-		vo.setTotalRecord(service.totalRecord(vo));
-		System.out.println(vo.getTotalRecord());
-		mav.addObject("offDTO", service.offList(vo));
+		ModelAndView mav = new ModelAndView();				
+		vo.setTotalRecord(service.totalRecord(vo)); //총레코드수
+		System.out.println("totalRecord="+vo.getTotalRecord() );
+		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
+		list = service.offList(vo);
+		System.out.println("list->"+list.toArray());
+		mav.addObject("list", service.offList(vo));		
 		mav.addObject("vo", vo);
 		mav.setViewName("offline/offline_board");
 		return mav;
 	}
 	
-	//�۾���
+	//글작성폼으로이동
 	@GetMapping("/offlineWrite")
 	public ModelAndView offlineWrite() {
 		ModelAndView mav = new ModelAndView();
@@ -57,7 +62,7 @@ public class OfflineController {
 		String htmlTag="<script>";
 		try {
 			int result = service.offlineInsert(dto);
-			htmlTag += "location.href='/home/offline/offline_board';";
+			htmlTag += "location.href='offline';";
 		}catch(Exception e) {
 			e.printStackTrace();
 			htmlTag += "alert('글이등록되지않았습니다.');";
@@ -69,13 +74,14 @@ public class OfflineController {
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		System.out.println(dto.toString());
+		System.out.println("여기까진 실행됨.....");
 		//                        내용
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 		
 	}
 	
 	//글내용보기
-	@GetMapping("/boardView")
+	@GetMapping("/offlineView")
 	public ModelAndView boardView(int no, OfflinePagingVO vo) {
 		//조회수증가
 		//service.boardHitCount(no);

@@ -102,17 +102,22 @@ public class OnlineController {
 		System.out.println(" :-"+dto);
 		System.out.println(" :-"+pdto);
 		
+		
 		//ord_no select
 		//dto.setOrd_no(service.ordNoSelect(dto));
 		//System.out.println(":::"+pdto);
 		
 		pdto = service.proInfor(dto.getPro_code());
 		System.out.println("새로넣은"+pdto);
+		//최종가격
+		int ord_amount = dto.getOrd_count()*(pdto.getPro_price()/pdto.getPro_total());
+		
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
 		dto.setRank(service.userInfor(dto.getUserid()).getRank());
 		dto.setUsername(service.userInfor(dto.getUserid()).getUsername());
 		dto.setEmail(service.userInfor(dto.getUserid()).getEmail());
 		dto.setTel(service.userInfor(dto.getUserid()).getTel());
+		dto.setOrd_amount(ord_amount);
 		dto.setPro_code(pdto.getPro_code());
 		System.out.println(dto.getUsername());
 		

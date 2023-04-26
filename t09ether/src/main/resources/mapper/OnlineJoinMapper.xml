@@ -5,11 +5,11 @@
 <mapper namespace="com.t09ether.home.dao.OnlineJoinDAO">
 	<select id="locationListSelect" resultType="com.t09ether.home.dto.OrderDTO">
  		select shareaddr, sharedetail, rest_count, on_no, userid
-		from product_detail where pro_code = ${pro_code} and rest_count != 0
+		from product_detail where pro_code = ${pro_code} and rest_count != 0 and status=1
  	</select>
  	<select id="getList" resultType="com.t09ether.home.dto.OrderDTO">
 		select shareaddr, sharedetail, rest_count, on_no, userid
-		from product_detail where pro_code = ${pro_code} and rest_count != 0
+		from product_detail where pro_code = ${pro_code} and rest_count != 0 and status=1
 		<if test="searchWrd != null">
 			and
 		    shareaddr like '%${searchWrd}%' 
@@ -17,7 +17,7 @@
 	</select>
 	<select id="getSearchList" resultType="com.t09ether.home.dto.OrderDTO">
 		select shareaddr, sharedetail, rest_count, on_no, userid
-		from product_detail where pro_code = ${pro_code} and rest_count != 0
+		from product_detail where pro_code = ${pro_code} and rest_count != 0 and status=1
 		<if test="searchWrd != null">
 		and shareaddr like '%${searchWrd}%' 
 		</if>
@@ -34,7 +34,7 @@
 		<selectKey keyProperty="ord_no" resultType="int" order="AFTER">
          select ord_no_sq.currval from dual
     	</selectKey>
-	 	insert into order09(ord_no, pro_code, userid, ord_count, status, on_no) values(ord_no_sq.nextval, #{pro_code}, #{userid}, #{ord_count}, 1, #{on_no})
+	 	insert into order09(ord_no, pro_code, userid, ord_count, status, on_no, ord_amount) values(ord_no_sq.nextval, #{pro_code}, #{userid}, #{ord_count}, 1, #{on_no}, #{ord_amount})
 	</insert>
 	
 	<update id="restUpdate">

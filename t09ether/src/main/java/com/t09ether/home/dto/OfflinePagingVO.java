@@ -1,17 +1,17 @@
 package com.t09ether.home.dto;
 
 public class OfflinePagingVO {
-	//ÆäÀÌÂ¡Ã³¸®½Ã ÇÊ¿äÇÑ º¯¼öµé
-		private int nowPage = 1; //ÇöÀçÆäÀÌÁö
-		private int onePageRecord = 10;//ÇÑÆäÀÌÁö¿¡ Ç¥½ÃÇÒ ·¹ÄÚµå ¼ö
-		private int totalRecord;//ÃÑ·¹ÄÚµå¼ö
-		private int totalPage;//ÃÑÆäÀÌÁö¼ö
-		private int lastPageRecord;//¸¶Áö¸· ÆäÀÌÁö¿¡ ³²¾ÆÀÖ´Â ·¹ÄÚµå ¼ö
+	   //í˜ì´ì§•ì²˜ë¦¬ì‹œ í•„ìš”í•œ ë³€ìˆ˜ë“¤
+		private int nowPage = 1; //í˜„ì¬í˜ì´ì§€
+		private int onePageRecord = 10;//í•œí˜ì´ì§€ì— í‘œì‹œí•  ë ˆì½”ë“œ ìˆ˜
+		private int totalRecord;//ì´ë ˆì½”ë“œìˆ˜
+		private int totalPage;//ì´í˜ì´ì§€ìˆ˜
+		private int lastPageRecord;//ë§ˆì§€ë§‰ í˜ì´ì§€ì— ë‚¨ì•„ìˆëŠ” ë ˆì½”ë“œ ìˆ˜
 		
-		private int onePageNumCount=5;//ÇÑÆäÀÌÁö´ç ÆäÀÌÁö °¹¼ö
+		private int onePageNumCount=5;//í•œí˜ì´ì§€ë‹¹ í˜ì´ì§€ ê°¯ìˆ˜
 		private int startPageNum=1;
 		
-		//°Ë»ö¿¡ ÇÊ¿äÇÑ º¯¼öµé
+		//ê²€ìƒ‰
 		private String searchKey;
 		private String searchWord;
 		

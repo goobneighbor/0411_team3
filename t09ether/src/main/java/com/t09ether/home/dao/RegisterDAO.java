@@ -8,7 +8,7 @@ import com.t09ether.home.dto.ZipcodeDTO;
 public interface RegisterDAO {
 	//추상메소드
 	public RegisterDTO loginOk(String userid, String userpwd);
-	//아이디 중복검사 - 아이디의 갯수를 구함. 0아니면 1이 리턴되겠지
+	//아이디 중복검사
 	public int idCheckCount(String userid);
 	//도로명 검색
 	public List<ZipcodeDTO> zipSearch(String doroname);
@@ -20,6 +20,5 @@ public interface RegisterDAO {
 	public int registerEditOk(RegisterDTO dto);
 	//이름과 이메일로 아이디 검색
 	public String idSearch(String username, String email);
-	
-	public RegisterDTO rSelect(String userid);
+
 }

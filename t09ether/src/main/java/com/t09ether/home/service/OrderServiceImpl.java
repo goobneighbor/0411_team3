@@ -33,4 +33,25 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+	@Override
+	public int orderDelete(int ord_no) {
+		return dao.orderDelete(ord_no);
+	}
+
+	@Override
+	public int product_detailDelete(int on_no) {
+		return dao.product_detailDelete(on_no);
+	}
+
+	@Override
+	public int restCountSelect(int on_no) {
+		return dao.restCountSelect(on_no);
+	}
+
+	@Override
+	public int restCountUpdate(int on_no, int rest_count) {
+		return dao.restCountUpdate(on_no, rest_count);
+	}
+
+
 }

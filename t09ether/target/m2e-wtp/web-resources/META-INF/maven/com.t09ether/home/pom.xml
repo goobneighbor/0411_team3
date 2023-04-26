@@ -168,7 +168,7 @@
 		    <artifactId>gson</artifactId>
 		    <version>2.9.1</version>
 		</dependency>	
-		
+		<!-- org.json추가 for 문자구현 -->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 		    <groupId>org.json</groupId>
@@ -203,6 +203,7 @@
 	    
 	    <classifier>jdk15</classifier>
 		</dependency>
+		
 		<dependency>
 	    <groupId>com.github.iamport</groupId>
 	    <artifactId>iamport-rest-client-java</artifactId>

@@ -144,13 +144,15 @@ public class OnlineController {
 		if(restNum==0) {
 			//모든 공구참여자 status update
 			dto.setStatus(service.statusUpdate(dto));
+			//모든 공구참여자 register정보
 			List<OrderDTO> list = service.selectInfor(dto.getOn_no());
-			
+		
 			for(OrderDTO odto : list) {
 				String tel = odto.getTel().replaceAll("-", "");
+				String username = odto.getUsername();
 				System.out.println(tel);
 				//문자보내기
-				send_msg(tel);
+				send_msg(tel, username);
 			}
 			
 		}
@@ -160,7 +162,7 @@ public class OnlineController {
 		return mav;
 	}
 	
-	public void send_msg(String tel) {
+	public void send_msg(String tel, String username) {
         // 호스트 URL
         String hostNameUrl = "https://sens.apigw.ntruss.com";
         // 요청 URL
@@ -190,12 +192,14 @@ public class OnlineController {
         toJson.put("to",tel);
        
         toArr.put(toJson); //messages
+        
 	    
         // 메시지 Type (sms)
+        String content = "["+username+"]님 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요![t09ther]";
         bodyJson.put("type","sms");
         bodyJson.put("contentType","COMM");
         bodyJson.put("countryCode","82");
-        bodyJson.put("content","${dto.username}님 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요!");
+        bodyJson.put("content", content);
         // 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.
         bodyJson.put("from","01029561335");		
         bodyJson.put("messages", toArr);		

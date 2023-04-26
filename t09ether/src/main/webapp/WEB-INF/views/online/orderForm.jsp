@@ -42,6 +42,9 @@
             alert("로그인 후 이용할 수 있습니다.");
             return;
         } */
+        
+
+        
 $(function(){      
 	var IMP = window.IMP; 
     IMP.init("imp01658864"); 
@@ -52,18 +55,27 @@ $(function(){
     var username = document.getElementById("username").value;
     var tel = document.getElementById("tel").value;
 
+    var discount_amount = parseInt(document.getElementById("discount_amount").value);
+    var ord_no = parseInt(document.getElementById("ord_no").value);
+    var on_no = parseInt(document.getElementById("on_no").value);
+    
+    var image = document.getElementById("image").value;
+	var ord_count = total_amount = document.getElementById("ord_count").value;
+	var final_amount = document.getElementById("final_amount").value;
+	var rank = document.getElementById("rank").value;
+	
     function requestPay() {
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card',
-            merchant_uid: "merchant-"+ new Date().getTime(), 
+            merchant_uid: "t09ether-"+ new Date().getTime(), 
             name : pro_name,
             amount : all_amount,
             buyer_email : email,
             buyer_name : username,
             buyer_tel : tel
         }, function (rsp) { // callback
-            if (rsp.success) {
+            <%-- if (rsp.success) {
                 //form의 action
                 $("#payment_form").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
              	 //form에 정보담아 submit
@@ -72,12 +84,91 @@ $(function(){
                  var msg = '결제에 실패하였습니다.';
                  msg += '에러내용 : ' + rsp.error_msg;
                  alert(msg);
-             }
+             } --%>
+            if (rsp.success) {
+            	
+        		let data = {
+        				imp_uid:rsp.imp_uid,
+        				final_amount:rsp.paid_amount,
+        				r_merchant_uid:rsp.merchant_uid,
+        				discount_amount:discount_amount,
+        				ord_no:ord_no,
+        				total_amount:total_amount
+        				
+        			};
+                    //결제 검증
+                    $.ajax({
+        				type:"POST",
+        				url:"<%=request.getContextPath() %>/pay/verifyIamport",
+        				data: JSON.stringify(data),        			  
+        				contentType:"application/json; charset=utf-8",
+        				dataType:"json",
+        				success: function(result) {
+        					console.log(result);
+        					alert("결재 성공");
+        					$("#payment_form").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
+        	             	 //form에 정보담아 submit
+        	                document.getElementById('payment_form').submit();
+        					//self.close();
+        				},
+        				error: function(result){
+        					alert("결재 실패");
+        					console.log(result);
+        					orderDelete();
+        				}
+        			});
+        			
+                } else {// 결제 실패 시 로직
+        			alert("결재 실패");
+        			//alert(rsp.error_msg);
+        			console.log(rsp);         
+        			orderDelete();
+                }
 
         });
     }
     
-    $("#payment").click(function(){
+    function orderDelete(){
+    	let data = {
+    			pro_name:pro_name,
+    			image:image,
+    			ord_count:ord_count,
+    			final_amount:final_amount,
+    			discount_amount:discount_amount,
+    			total_amount:total_amount,
+    			ord_no:ord_no,
+    			rank:rank,
+    			on_no:on_no,
+    			username:username,
+    			tel:tel
+    			/* email:email,
+    			zipcode:zipcode,
+    			addr:addr,
+    			addrdetail:addrdetail */
+			
+			};
+            //주문 취소
+            $.ajax({
+				type:"POST",
+				url:"<%=request.getContextPath() %>/order/orderDeleteJoin",
+				data: JSON.stringify(data),        			  
+				contentType:"application/json; charset=utf-8",
+				dataType:"json",
+				success: function(result) {
+					console.log(result);
+					alert("취소 성공");
+					location.href="/home/product/onlineHome";
+					//self.close();
+				},
+				error: function(result){
+					alert("취소 실패");
+					console.log(result);
+				}
+			});
+    }
+    
+    
+    $("#lastsubmit").click(function(){
        requestPay();
        
     });
@@ -89,14 +180,14 @@ $(function(){
 	<section id="main" class="container">
 		<header>
 			<h2>주문하기</h2>
-			<p><span id="username">${logName }</span> 님은 현재 <span id="rank">${dto.rank}</span> 등급입니다! <br/>할인을 확인하시고 결제진행해주세요!</p>
+			<p><span id="username">${logName }</span> 님은 현재 <span id="rankinfo">${dto.rank}</span> 등급입니다! <br/>할인을 확인하시고 결제진행해주세요!</p>
 		</header>
 		<div class="container">
 	        <div class="row">
 				 <div class="col-lg-6">
 		             <!-- Featured blog post-->
 		             <div class="card mb-6">
-		                 <img src="${pdto.image }" />	                 
+		                 <img id="image" name="image" src="${pdto.image }" />	                 
 		        	</div>
 		         </div>
 							 <!-- Side widgets-->
@@ -110,9 +201,9 @@ $(function(){
 					            <li>수량</li>
 					            <li><input type="text" name="ord_count" id="ord_count" value="${dto.ord_count }" readonly/></li>
 					            <li>금액</li>
-					            <li><input type="text" name="ord_count" id="first_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count }" readonly/></li>
+					            <li><input type="text" name="first_count" id="first_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count }" readonly/></li>
 								<li>총금액 * 할인율 = 할인금액</li>
-								<li><input type="text" name="ord_count" id="discount_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count } * 10% = ${Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li>
+								<li><input type="text" name="discount_amount" id="discount_amount" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count } * 10% = ${Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li>
 								<li>총금액 - 할인금액 = 최종금액</li>
 								<li><input type="text" name="final_count" id="final_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count } - ${Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) } = ${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count - Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li>
 								<input type="hidden" id="final_amount" name="final_amount" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count - Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }"/>
@@ -123,13 +214,22 @@ $(function(){
 								<input type="hidden" id="ord_no" name="ord_no" value="${dto.ord_no}"/>
 								<input type="hidden" id="rest_count" name="rest_count" value="${dto.rest_count }"/>
 								<input type="hidden" id="on_no" name="on_no" value="${dto.on_no}"/>
+								<input type="hidden" id="rank" name="rank" value="${dto.rank}"/>
 							</div>
 							</form>
 						</div>
-		             </div>		    							                     
+		             </div>	
+		             <div id="allbutton">
+						<div id="button1">
+							<input type="button" value="취소하기" id="cancelsubmit"/>
+						</div>
+						<div id="button2">
+							<input type="button" value="결제하기" id="lastsubmit"/>
+						</div>
+					</div>		    							                     
 		     </div>
 	       	<hr/>
 	       	<br/>
 		</div>
-		<input type="button" value="결제하기" id="payment"/>
+		
 	</section>

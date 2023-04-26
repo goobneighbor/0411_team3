@@ -7,6 +7,7 @@ public class OrderDTO {
    private String userid;
    private int ord_count; //내가주문한상품수
    private int status;
+
 	
 	private int on_no;
 	private String orderdate;
@@ -211,6 +212,8 @@ public class OrderDTO {
 	public void setRank(String rank) {
 		this.rank = rank;
 
+
 	}   
 }
+
 

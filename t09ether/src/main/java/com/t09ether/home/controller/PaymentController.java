@@ -138,6 +138,7 @@ public class PaymentController {
 	        	service.payDelete(impUid);
 	        	service.ordUpdate(ord_no, on_no);
 	        	service.prodetailUpdate(on_no);
+	        	
 	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
 	        	
 	            // ...

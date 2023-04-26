@@ -100,4 +100,32 @@ public class OrderController {
 	        return new ResponseEntity<Map<String, Object>>(result, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
+   
+   @PostMapping("/orderDeleteJoin")
+   public ResponseEntity<Map<String, Object>> orderDelectJoin(@RequestBody OrderDTO data) {
+	    Map<String, Object> result = new HashMap<String, Object>();
+	    System.out.println(data.toString());
+	    try {
+	        //product_detail의 rest_count update
+	    	data.setRest_count(service.restCountSelect(data.getOn_no()));
+	        service.restCountUpdate(data.getOn_no(), data.getRest_count());
+	    	//order09 DB삭제
+	        int deleteOrderResult = service.orderDelete(data.getOrd_no());
+	        
+	        if(deleteOrderResult >0) {
+	        	result.put("success", true);
+	        	result.put("message", "주문 및 상세 정보 삭제 완료");
+	        	return new ResponseEntity<Map<String, Object>>(result, HttpStatus.OK);
+	        }else {
+	            result.put("success", false);
+	            result.put("message", "주문 및 상세 정보 삭제 실패");
+	            return new ResponseEntity<Map<String, Object>>(result, HttpStatus.BAD_REQUEST);
+	        } 
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	        result.put("success", false);
+	        result.put("message", "서버 오류: " + e.getMessage());
+	        return new ResponseEntity<Map<String, Object>>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+   }
 }

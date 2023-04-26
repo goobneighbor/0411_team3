@@ -4,7 +4,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
-<<<<<<< HEAD
+
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
   		-webkit-appearance: none;
@@ -71,7 +71,7 @@
 	var sum;
 $(function(){
 	var IMP = window.IMP; 
-=======
+
    input::-webkit-outer-spin-button,
    input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -151,7 +151,7 @@ $(function(){
    
    
    var IMP = window.IMP; 
->>>>>>> 658733a3382693e6447af54c64e1b405538339fb
+
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
@@ -184,7 +184,7 @@ $(function(){
     }
     
     $("#lastsubmit").click(function(){
-<<<<<<< HEAD
+
     	requestPay();
     	
     });
@@ -196,8 +196,6 @@ $(function(){
 
 
 
-    
-=======
        requestPay();
        
     });
@@ -256,4 +254,4 @@ $(function(){
       </div>
    </form>
 </div>
->>>>>>> 658733a3382693e6447af54c64e1b405538339fb
+

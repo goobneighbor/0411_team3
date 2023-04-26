@@ -58,6 +58,9 @@ header,footer{
 				dataType:'json',
 				success:function(result){
 					console.log(result);
+					// 지도에 표시되고 있는 마커를 제거
+				    removeMarker();
+					// 지도에 새로 마커를 표시
 					localList(result);
 				},error:function(e){
 					console.log(e.responseText);
@@ -67,11 +70,99 @@ header,footer{
 		
 	});
 	
+	let on_no=[];
+	let rest_count=[];
+	let pro_code=[];
+	let userid=[];
+
+	$(function(){
+		//onlineJoinForm으로 이동
+		$(document).on('click',"#onlineJoinForm", function(){
+			console.log($(this).parent().parent())
+		
+			var idx = $("#locationList>li").index($(this).parent().parent());
+			console.log(idx)
+			var _width = '500';
+		    var _height = '290';
+		   
+
+		    window.resizeTo(_width,_height);
+		    $(location).attr('href','<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx]+'&pro_code='+pro_code[idx]);
+		    <%-- window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx]+'&pro_code='+pro_code[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ); --%>
+		});
+		
+	});
+	
+	$(function(){
+		//지역목록뿌리기
+			function locationList(){
+				$.ajax({
+					url:"<%=request.getContextPath()%>/online/locationList", //onlineController에 있어
+					data:{
+						pro_code:${dto.pro_code}
+					},
+					success:function(locationList){//서버에서 정상적으로 데이터를 가져왔을때
+						console.log(locationList);
+						listView(locationList)
+					},error:function(e){
+						console.log(e.responseText);
+					}
+				});
+			}
+
+			//제일마지막에 실행** 
+			//뿌려주기 ===>처음에 상품상세보기로 오면 지역 보여주기
+			locationList();//호출
+			
+			
+		})
+		
+
+	$(function(){
+		$("#searchForm").submit(function(){
+			event.preventDefault();
+			let params = $("#searchForm").serialize();
+			
+			$.ajax({
+				url:"/home/online/searchList", //onlineController에 있어
+				type:"GET",		//서버서 가져온데이터
+				data:params,
+				success:function(searchresult){
+					console.log(searchresult);
+					listView(searchresult)
+				},error:function(e){
+					console.log(e.responseText);
+				}
+			});
+		});
+		
+	});
+		
+	function listView(result) {
+		var tag = "";
+		$(result).each(function(i, lDTO){
+			//전역변수 배열에 값 넣기
+			on_no.push(lDTO.on_no); // [3, 6,  9]
+			rest_count.push(lDTO.rest_count);
+			pro_code.push(lDTO.pro_code);
+			userid.push(lDTO.userid);
+			
+			tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+lDTO.sharedetail+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+			
+			tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
+		
+		});
+		
+		$("#locationList").html(tag);
+		
+	}
+		
+	
 </script>
 </head>
 <body>
 
-	<form method="get" name="searchForm" id="searchForm" >
+	<%-- <form method="get" name="searchForm" id="searchForm" >
 		 
 		<div>
 			<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>
@@ -79,7 +170,7 @@ header,footer{
 		    <input type="submit" value="검색"/>
 		</div>
 		 
-	</form>
+	</form> --%>
  
 	<div>
 	      <div class="map_wrap">
@@ -87,7 +178,30 @@ header,footer{
 	   	</div>
 	    
 	</div>
-	 
+	<!-- 참여하기 목록 스크롤 -->
+	 <div class="card mb-4">
+                   <div class="card-header">참여하기</div>
+                   <div class="card-body">
+                      <!--  <div class="input-group"> -->
+                       <form method="get" name="searchForm" id="searchForm">
+                       	<div class=" col-lg-10"> 
+	                       	<div class="input-group">
+			                <!-- <mx-auto> -->
+			                
+			               		<input id="pro_code" name="pro_code" value="${dto.pro_code }" type="hidden"/>		
+			                    <input  id="searchWrd" name="searchWrd" value="${vo.searchWrd }" type="text" class="form-control" placeholder="지역명을 입력해주세요!" aria-label="search" aria-describedby="button-addon2">
+			                	
+			               <!--  </mx-auto>	 -->	
+			                <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+			                </div>
+		                </div>	
+                       </form>
+                        	<p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소</span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><button type='button' style='float:right' class='btn btn-primary'>참여/남은갯수</button></p><hr/>
+                           	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 200px; padding: 10px;">
+			  					<ul id="locationList" style="list-style-type:none"></ul>
+							</div>
+                       </div>
+                   </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6252bd7f72ed64a20b2f8cca3afb7204&libraries=services"></script>
 
@@ -101,6 +215,9 @@ header,footer{
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	var geocoder = new kakao.maps.services.Geocoder();
+	// 지도에 표시된 마커, 인포윈도우 객체를 가지고 있을 배열
+	var markers = [];
+	var infowindows = [];
 	////////////////////////////////////////////
 	if(document.getElementById("searchWrd").value==""){
 	if (navigator.geolocation) {
@@ -149,14 +266,30 @@ header,footer{
 	    infowindow.open(map, marker);
 	    
 	    // 지도 중심좌표를 접속위치로 변경합니다
-	    map.setCenter(locPosition);      
+	    map.setCenter(locPosition);  
+	    
+	 	// 생성된 마커를 배열에 추가합니다
+	    markers.push(marker);
+	 	infowindows.push(infowindow);
 		}
+		
 	}
+	
+	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+	function removeMarker() {
+	    for ( var i = 0; i < markers.length; i++ ) {
+	        markers[i].setMap(null);
+	    }   
+	    markers = [];
+	    for(var i=0; i<infowindows.length; i++){
+	    	infowindows[i].close();
+	    } 
+	}
+
 	
 	//////////////////////////////////////////////////////////////////////
 	function localList(result) {
-	
-		 //주소-좌표 변환 객체를 생성합니다
+		
 		
 		//주소 리스트 
 		result.map(function(addr, index){
@@ -172,6 +305,7 @@ header,footer{
 		            var content = '<div class="overlay_info">';
 		            content += '    <a><strong>' + addr.shareaddr +'</strong></a>';
 		            content += '</div>';
+		            
 		            // 결과값으로 받은 위치를 마커로 표시합니다.
 		            displayMarker(coords, content);
 		

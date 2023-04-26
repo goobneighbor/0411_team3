@@ -24,4 +24,10 @@
 	<delete id="product_detailDelete">
 		delete from product_detail where on_no=${on_no}
 	</delete>
+	<select id="restCountSelect" resultType="int">
+		select rest_count from product_detail where on_no=#{on_no}
+	</select>
+	<update id="restCountUpdate">
+		update product_detail set rest_count=#{rest_count} where on_no=#{on_no}
+	</update>
 </mapper>

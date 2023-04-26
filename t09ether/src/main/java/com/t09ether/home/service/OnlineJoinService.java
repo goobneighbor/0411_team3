@@ -20,4 +20,5 @@ public interface OnlineJoinService {
 	public int restUpdate(OrderDTO dto);
 	public int ordNoSelect(OrderDTO dto);
 	public int statusUpdate(OrderDTO dto);
+	public List<OrderDTO> selectInfor(int on_no);
 }

@@ -72,16 +72,17 @@
 	var sum;
 $(function(){
 	var IMP = window.IMP; 
+
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
     var all_amount = document.getElementById("final_amount").value;;
     var email = document.getElementById("email").value;
     var username = document.getElementById("username").value;
-    var tel = document.getElementById("tel").value;
+    var tel = document.getElementById("tel").value;   
     var addr = document.getElementById("addr").value+" "+ document.getElementById("addrdetail").value;
     var zipcode = parseInt(document.getElementById("zipcode").value);
-	var discount_amount = parseInt(document.getElementById("discount_amount").value);
+    var discount_amount = parseInt(document.getElementById("discount_amount").value);
 	var total_amount = parseInt(document.getElementById("total_amount").value);
 	var ord_no = parseInt(document.getElementById("ord_no").value);
 	var on_no = parseInt(document.getElementById("on_no").value);
@@ -104,6 +105,7 @@ $(function(){
             buyer_addr : addr,
             buyer_postcode : zipcode
         }, function (rsp) { // callback
+
         	if (rsp.success) {
         		let data = {
         				imp_uid:rsp.imp_uid,
@@ -276,3 +278,4 @@ $(function(){
 		</div>
 	</form>
 </div>
+

@@ -33,6 +33,11 @@ public class OfflineServiceImpl implements OfflineService {
 		return dao.offlineSelect(no);
 	}
 
+	@Override
+	public void offlineHitCount(int off_no) {
+		dao.offlineHitCount(off_no);
+	}
+
 	
 
 	

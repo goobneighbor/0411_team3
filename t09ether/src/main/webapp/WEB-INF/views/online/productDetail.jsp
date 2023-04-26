@@ -8,7 +8,6 @@
 .container{
 	margin:0 auto;
 	padding:20px;
-
 .card-img-top{
 	width:600px;
 	height:350px;
@@ -22,7 +21,6 @@
  	padding-right:30px;
  	text-align:center;
  	}
-
 </style>
 <script>
 $(function(){
@@ -37,15 +35,12 @@ $(function(){
 		// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 	    var _left = Math.ceil(( window.screen.width - _width )/2);
 	    var _top = Math.ceil(( window.screen.height - _height )/2); 
-
 	    window.open('<%=request.getContextPath()%>/online/onlineJoinForm?on_no='+on_no[idx]+'&rest_count='+rest_count[idx]+'&pro_code='+pro_code[idx], 'join', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 	});
 	
 });
-
 function openPopup() {
 	
-
 	 
     var _width = '730';
     var _height = '750';
@@ -53,10 +48,8 @@ function openPopup() {
     // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
     var _left = Math.ceil(( window.screen.width - _width )/2);
     var _top = Math.ceil(( window.screen.height - _height )/2); 
-
     window.open('<%=request.getContextPath()%>/online/kakaomap?pro_code=${dto.pro_code}', '위치 찾기', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
 }
-
 $(function(){
 	//지역목록뿌리기
 		function locationList(){
@@ -73,7 +66,6 @@ $(function(){
 				}
 			});
 		}
-
 		//제일마지막에 실행** 
 		//뿌려주기 ===>처음에 상품상세보기로 오면 지역 보여주기
 		locationList();//호출
@@ -190,4 +182,3 @@ function listView(result) {
                     
               </div>
             </div>
-

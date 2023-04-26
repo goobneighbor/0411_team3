@@ -47,22 +47,61 @@ function kakaoLogout() {
 
 </script>
 <style>
+	header, footer { 
+		display: none;
+	}
+	h2 {
+		 color:tomato; 
+		 font-size:45px; 
+		 text-align:center;
+	}
+	#wrapper {
+	  display: grid;
+	  place-items: center;
+	  min-height: 100vh;
+	}
 	#logFrm input{
-		width:100%;	
+		margin:0 auto;
+		width:70%;	
 	}
-	#logFrm li:nth-child(2n) {
-		padding-bottom:30px;
+	#logFrm div{
+		width: 580px;
+		height: 430px;
+		border: 1px solid #ddd;
+		margin: 0 auto;
+		padding: 0;
+		position:relative;
 	}
+	#logFrm ul{
+		width: 700px;
+		height: 400px;
+		margin-left:-370px;
+		margin-top:-220px;
+		left:50%;
+		top:50%;
+		position:absolute;
+	}
+	#logFrm li:first-child {
+		margin:65px 0 0 0;
+	}
+	
+	#logFrm li:nth-child(5n) {
+		padding-bottom:20px;
+	}
+	
 	#logFrm li {
-		list-style:none;	
+		padding-bottom:18px;
+		text-align:center;
+		list-style:none;
+		margin: 0 auto;	
 	}
 	#threestyle {
-		width:100%;
-		background-color:#E2D2D2;
-		margin:20px;
-		padding:30px;
+		font-size:13px;
+		width:80%;
+		margin:0 auto;
+		padding:20px;
 		text-align:center;
-		word-spacing: 40px;
+		word-spacing: 80px;
 	}
 	a { 
 		text-decoration: none; 
@@ -82,32 +121,30 @@ function kakaoLogout() {
     }
 </style>
 
-<div class="container">
-<section id="main" class="container">
-	<header>
-		<h2>로그인</h2>
-		<p>함께 만드는 t09ether에 오신것을 환영합니다.<br/>
-		로그인 하시면 보다 편리하게 서비스를 이용하실 수 있습니다.</p>
-	</header>
-</section>
+<div class="container" id="wrapper">
+	<div>
+	<section id="main" class="container" style="padding:0;">
+		<div style="margin:0 auto;">
+			<h2><a href="<%=request.getContextPath()%>">t09ether</a></h2><br/>
+		</div>
+	</section>
 	<form method="post" action="loginOk" id="logFrm">
+	<div>
 		<ul>
-			<li>아이디</li>
-			<li><input type="text" name="userid" id="userid"/></li>
-			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd"/></li>
+			<li><input type="text" name="userid" id="userid" placeholder="t09ether 아이디"/></li>
+			<li><input type="password" name="userpwd" id="userpwd" placeholder="비밀번호"/></li>
 			<li><input type="submit" value="LOGIN"/></li>
-		</ul>
-		<ul>
-	<!-- <li onclick="kakaoLogin();"> 
+			<li style="font-size:13px;">───────────────── 또는 ─────────────────</li>
+			<!-- <li onclick="kakaoLogin();"> 
       <a href="javascript:void(0)">-->
           <li><img src="resources/images/kakao_login.png" onclick="kakaoLogin()" alt=""/></li>
+		<li id="threestyle" >
+			<a href="join">회원가입</a>
+			<a href="idSearchForm">아이디찾기</a>
+			<a href="pwdSearchForm">비밀번호찾기</a>
+		</li>	
 		</ul>
-
+	</div>
 	</form>
-	<div id="threestyle" >
-		<a href="join">회원가입</a>
-		<a href="idSearchForm">아이디찾기</a>
-		<a href="pwdSearchForm">비밀번호찾기</a>
 	</div>
 </div>

@@ -10,4 +10,5 @@ public interface OfflineService {
 	public int totalRecord(OfflinePagingVO vo);
 	public List<OfflineDTO> offList(OfflinePagingVO vo);
 	public OfflineDTO offlineSelect(int no);
+	public void offlineHitCount(int off_no);
 }

@@ -6,14 +6,15 @@ public class CustomerCenterDTO {
 	private String subject; // 제목
 	private String content; // 내용
 	private String writedate; // 작성일
+
 	
 	
+
 	@Override
 	public String toString() {
 		return "CustomerCenterDTO [cus_b_num=" + cus_b_num + ", userid=" + userid + ", subject=" + subject
 				+ ", content=" + content + ", writedate=" + writedate + "]";
 	}
-
 
 	public int getCus_b_num() {
 		return cus_b_num;
@@ -63,4 +64,6 @@ public class CustomerCenterDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
+	
+
 }

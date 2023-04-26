@@ -1,6 +1,7 @@
 package com.t09ether.home.dto;
 
 public class OrderDTO {
+
    private int ord_no;
    private int pro_code;
    private String userid;
@@ -8,6 +9,9 @@ public class OrderDTO {
    private int status;
 	
 	private int on_no;
+	private String orderdate;
+//////////////////////////////////
+	//만들어낸 변수
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
 	private int ord_amount; // 배달비 + 개당*수량
@@ -35,16 +39,7 @@ public class OrderDTO {
 	private String addrdetail;
 	private String rank;
 	
-	@Override
-	public String toString() {
-		return "OrderDTO [ord_no=" + ord_no + ", pro_code=" + pro_code + ", userid=" + userid + ", ord_count="
-				+ ord_count + ", status=" + status + ", on_no=" + on_no + ", on_count=" + on_count + ", rest_count="
-				+ rest_count + ", ord_amount=" + ord_amount + ", shareaddr=" + shareaddr + ", sharedetail="
-				+ sharedetail + ", pro_total=" + pro_total + ", pro_name=" + pro_name + ", pro_price=" + pro_price
-				+ ", pro_stock=" + pro_stock + ", image=" + image + ", detailed=" + detailed + ", userpwd=" + userpwd
-				+ ", username=" + username + ", tel=" + tel + ", email=" + email + ", zipcode=" + zipcode + ", addr="
-				+ addr + ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
-	}
+
 	
 	public int getOrd_no() {
 		return ord_no;
@@ -76,6 +71,12 @@ public class OrderDTO {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getOrderdate() {
+		return orderdate;
+	}
+	public void setOrderdate(String orderdate) {
+		this.orderdate = orderdate;
 	}
 	public int getOn_count() {
 		return on_count;
@@ -209,5 +210,7 @@ public class OrderDTO {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
+
 	}   
 }
+

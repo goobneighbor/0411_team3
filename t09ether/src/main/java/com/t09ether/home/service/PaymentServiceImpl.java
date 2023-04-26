@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.PaymentDAO;
 import com.t09ether.home.dto.PaymentDTO;
+import com.t09ether.home.dto.RefundDTO;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -13,8 +14,18 @@ public class PaymentServiceImpl implements PaymentService {
 	PaymentDAO dao;
 	
 	@Override
-	public int payInsert(String imp_uid, int final_amount, int discount_amount, int ord_no, int total_amount) {
-		return dao.payInsert(imp_uid, final_amount, discount_amount, ord_no, total_amount);
+	public int payInsert(String imp_uid, String merchant_uid,int final_amount, int discount_amount, int ord_no, int total_amount) {
+		return dao.payInsert(imp_uid, merchant_uid, final_amount, discount_amount, ord_no, total_amount);
+	}
+
+	@Override
+	public PaymentDTO paymentSelect(int ord_no) {
+		return dao.paymentSelect(ord_no);
+	}
+
+	@Override
+	public int redundInsert(RefundDTO dto) {
+		return dao.redundInsert(dto);
 	}
 
 }

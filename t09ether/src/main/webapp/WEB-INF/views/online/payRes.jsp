@@ -108,6 +108,7 @@ $(function(){
         		let data = {
         				imp_uid:rsp.imp_uid,
         				final_amount:rsp.paid_amount,
+        				r_merchant_uid:rsp.merchant_uid,
         				discount_amount:discount_amount,
         				ord_no:ord_no,
         				total_amount:total_amount

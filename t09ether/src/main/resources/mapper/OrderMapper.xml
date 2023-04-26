@@ -7,7 +7,7 @@
       <selectKey keyProperty="on_no" resultType="int" order="AFTER">
          SELECT on_no_sq.nextval FROM dual
       </selectKey>
-       insert into product_detail(on_no, pro_code, userid, on_count, hit, shareaddr, sharedetail, rest_count) values(on_no_sq.nextval, #{pro_code}, #{userid}, #{on_count}, 0, #{shareaddr}, #{sharedetail}, #{rest_count})
+       insert into product_detail(on_no, pro_code, userid, on_count, hit, shareaddr, sharedetail, rest_count, status) values(on_no_sq.nextval, #{pro_code}, #{userid}, #{on_count}, 0, #{shareaddr}, #{sharedetail}, #{rest_count}, 1)
    </insert>
    
    

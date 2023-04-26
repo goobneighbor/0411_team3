@@ -2,7 +2,9 @@ package com.t09ether.home.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -27,29 +29,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
 import com.t09ether.home.dto.PaymentDTO;
+import com.t09ether.home.dto.RefundDTO;
 import com.t09ether.home.service.OrderService;
 import com.t09ether.home.service.PaymentService;
 import com.t09ether.home.service.ProductService;
 
-import okhttp3.Response;
+import retrofit2.Response;
+
+import com.siot.IamportRestClient.response.*;
+
 
 @RestController
 @RequestMapping("/pay")
 public class PaymentController {
 	
 	@Autowired
-	PaymentService paymentservice;
-	
-	@Autowired
-	OrderService orderService;
-
-	@Autowired
-	ProductService productService;
+	PaymentService service;
 	
 	@PostMapping("/verifyIamport")
 	public ResponseEntity<Map<String, Object>> verifyIamport(@RequestBody PaymentDTO data) {
@@ -75,7 +76,7 @@ public class PaymentController {
 	    	}
 	        
 	        // DB에 결제 정보 삽입
-	    	paymentservice.payInsert(imp_uid,r_merchant_uid, final_amount, discount_amount, ord_no, total_amount);
+	    	service.payInsert(imp_uid,r_merchant_uid, final_amount, discount_amount, ord_no, total_amount);
 	        
 	        Map<String, Object> result = new HashMap<String, Object>();
 	        result.put("success", true);
@@ -95,45 +96,63 @@ public class PaymentController {
 	@GetMapping("/payCancel")
 	public ModelAndView payCancel(int ord_no) {
 		ModelAndView mav = new ModelAndView();
-		PaymentDTO dto = paymentservice.paymentSelect(ord_no);
+		PaymentDTO dto = service.paymentSelect(ord_no);
 		mav.addObject("dto",dto);
 		mav.setViewName("online/payCancel");
 		return mav;
 	}
 	
 	@PostMapping("payCancelOk")
-	public ResponseEntity<?> payCancel(HttpServletRequest request,
-            @RequestParam(value = "imp_uid") String impUid,
-            @RequestParam(value = "merchant_uid") String merchantUid,
-            @RequestParam(value = "amount") int amount,
-            @RequestParam(value = "reason") String reason) {
-		try {
-			// 아임포트 API 클라이언트 생성
-			IamportClient iamportClient = new IamportClient("your_api_key", "your_api_secret");
-			
-			// 결제 취소 데이터 생성
-			CancelData cancelData = new CancelData(impUid, true, amount); // 전액 환불
-			((Object) cancelData)).setAmount(amount);
-			cancelData.setReason(reason);s
-			
-			// 결제 취소 요청
-			IamportResponse<Response<CancelPayment>> cancelResponse = iamportClient.cancelPaymentByImpUid(cancelData);
-			
-			// 결제 취소 결과 확인
-			if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
-			// 환불 성공 시 DB에서 데이터 삭제 처리
-			// ...
-			return ResponseEntity.ok().body("{\"code\":\"1\"}");
-			
-			} else {
-			// 환불 실패 시 처리할 코드 작성
-			return ResponseEntity.ok().body("{\"code\":\"0\"}");
-			
-			}
-			} catch (Exception e) {
-			// 오류 발생 시 처리할 코드 작성
-			return ResponseEntity.ok().body("{\"code\":\"0\"}");
-			}
+	public ResponseEntity<String> payCancelOk(HttpServletRequest request,
+	        @RequestParam(value = "imp_uid") String impUid,
+	        @RequestParam(value = "merchant_uid") String merchantUid,
+	        @RequestParam(value = "amount") int amount,
+	        @RequestParam(value = "reason") String reason,
+	        @RequestParam(value = "ord_no") int ord_no,
+	        @RequestParam(value = "total_amount") int total_amount,
+	        @RequestParam(value = "on_no") int on_no) {
+		
+		System.out.println("환불컨트롤러까지는 오나요?");
+		RefundDTO dto = new RefundDTO();
+		dto.setPay_no(impUid);
+		dto.setRefund_amount(amount);
+		dto.setRefund_count(amount);
+		
+	    try {
+	        // 아임포트 API 클라이언트 생성
+	        IamportClient iamportClient = new IamportClient("1456485756545636", "723XBRqRiIMZsO65ZY90OLJ1gGExsyrz70PAs7ZgOJRSyJanoUfv4StVHkXkxv10XDWABUK9eOB8ibnu");
+
+	        // 결제 정보 조회
+	        Payment payment = iamportClient.paymentByImpUid(impUid).getResponse();
+
+	        // 결제 취소 데이터 생성
+	        CancelData cancelData = new CancelData(impUid, true); // 전액 환불
+	        cancelData.setReason(reason);
+
+	        // 결제 취소 요청
+	        IamportResponse<Payment> cancelResponse = iamportClient.cancelPaymentByImpUid(cancelData);
+
+	        // 결제 취소 결과 확인
+	        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
+	        	service.refundInsert(ord_no, amount, total_amount);
+	        	service.payDelete(impUid);
+	        	service.ordUpdate(ord_no, on_no);
+	        	service.prodetailUpdate(on_no);
+	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
+	        	
+	            // ...
+	            return ResponseEntity.ok().body("{\"code\":\"1\"}");
+
+	        } else {
+	            // 환불 실패 시 처리할 코드 작성
+	            return ResponseEntity.ok().body("{\"code\":\"0\"}");
+
+	        }
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	        // 오류 발생 시 처리할 코드 작성
+	        return ResponseEntity.ok().body("{\"code\":\"0\"}");
+	    }
 	}
 	 
 }

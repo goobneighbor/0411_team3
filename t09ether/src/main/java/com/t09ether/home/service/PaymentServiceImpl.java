@@ -24,8 +24,24 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int redundInsert(RefundDTO dto) {
-		return dao.redundInsert(dto);
+	public int refundInsert(int ord_no, int amount, int total_amount) {
+		return dao.refundInsert(ord_no, amount, total_amount);
 	}
+
+	@Override
+	public int payDelete(String pay_no) {
+		return dao.payDelete(pay_no);
+	}
+
+	@Override
+	public int ordUpdate(int ord_no, int on_no) {
+		return dao.ordUpdate(ord_no, on_no);
+	}
+
+	@Override
+	public int prodetailUpdate(int on_no) {
+		return dao.prodetailUpdate(on_no);
+	}
+
 
 }

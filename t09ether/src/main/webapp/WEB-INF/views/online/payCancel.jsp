@@ -51,9 +51,9 @@ $(function(){
 	var imp_uid = document.getElementById("imp_uid").value;
 	var merchant_uid = document.getElementById("r_merchant_uid").value;
 	var amount = document.getElementById("final_amount").value;
-	var reason = document.getElementById("reason").value;
-	
-	
+	var ord_no = parseInt(document.getElementById("ord_no").value);
+	var total_amount = parseInt(document.getElementById("total_amount").value);
+	var on_no = parseInt(document.getElementById("on_no").value);
 	
     function payCancel(){
     	$.ajax({
@@ -64,11 +64,15 @@ $(function(){
     		    imp_uid: imp_uid, // 환불 대상 결제 건의 imp_uid를 입력합니다.
     		    merchant_uid: merchant_uid, // 환불 대상 결제 건의 merchant_uid를 입력합니다.
     		    amount: amount, // 환불할 금액을 입력합니다.
-    		    reason: reason // 환불 사유를 입력합니다.
+    		    reason: "환불요청", // 환불 사유를 입력합니다.
+    		    ord_no: ord_no, // 취소할 주문
+    		    total_amount: total_amount, //취소수량
+    		    on_no:on_no  //취소할 공구
     		  },
     		  success: function(response) {
     		    if (response.code === '1') {
     		      alert('환불이 완료되었습니다.');
+    		      location.href="/home/mypage/myOrder";
     		      // 환불 완료 후 처리할 코드를 입력합니다.
     		    } else {
     		      alert('환불 처리 중 오류가 발생했습니다.');
@@ -85,8 +89,9 @@ $(function(){
     		});
     }
     
-  
-    
+    $("#cancelbutton").click(function(){
+    	payCancel();
+    });
 });
 	
 		
@@ -130,10 +135,8 @@ $(function(){
 							<li><input type="hidden" name="on_no" id="on_no" value="${dto.on_no }"/></li>
 							<li><input type="hidden" name="imp_uid" id="imp_uid" value="${dto.pay_no }"/></li>
 							<li><input type="hidden" name="r_merchant_uid" id="r_merchant_uid" value="${dto.r_merchant_uid}"/></li>		
-							<li>환불 사유</li>
-							<li><input type="text" name="reason" id="reason" value="" placeholder="결제 취소 및 환불 사유를 입력하세요." onfocus="this.placeholder=''"></li>
 						</ul>
-						<div id="buttoncancel"><input type="button" id="cancelbutton" onclick="payCancel()" value="결제취소"/></div>
+						<div id="buttoncancel"><input type="button" id="cancelbutton" value="결제취소"/></div>
                     </form>
                     </div>		    							                     
                   </div>  

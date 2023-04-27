@@ -113,7 +113,8 @@ $(function(){
         				r_merchant_uid:rsp.merchant_uid,
         				discount_amount:discount_amount,
         				ord_no:ord_no,
-        				total_amount:total_amount
+        				total_amount:total_amount,
+        				ord_count:ord_count
         				
         			};
                     //결제 검증

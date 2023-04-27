@@ -1,5 +1,7 @@
 package com.t09ether.home.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -24,8 +26,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int refundInsert(int ord_no, int amount, int total_amount) {
-		return dao.refundInsert(ord_no, amount, total_amount);
+	public int refundInsert(int ord_no, int amount, int ord_count) {
+		return dao.refundInsert(ord_no, amount, ord_count);
 	}
 
 	@Override
@@ -41,6 +43,16 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int prodetailUpdate(int on_no) {
 		return dao.prodetailUpdate(on_no);
+	}
+
+	@Override
+	public String masterSelect(int on_no) {
+		return dao.masterSelect(on_no);
+	}
+	
+	@Override
+	public List<PaymentDTO> paySubSelect(int on_no) {
+		return dao.paySubSelect(on_no);
 	}
 
 

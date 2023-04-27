@@ -52,7 +52,7 @@ $(function(){
 	var merchant_uid = document.getElementById("r_merchant_uid").value;
 	var amount = document.getElementById("final_amount").value;
 	var ord_no = parseInt(document.getElementById("ord_no").value);
-	var total_amount = parseInt(document.getElementById("total_amount").value);
+	var total_amount = parseInt(document.getElementById("ord_count").value);
 	var on_no = parseInt(document.getElementById("on_no").value);
 	
     function payCancel(){

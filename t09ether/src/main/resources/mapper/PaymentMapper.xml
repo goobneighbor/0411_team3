@@ -12,7 +12,7 @@
 		on p.pro_code=o.pro_code
 	</select>
 	<insert id="refundInsert">
-		insert into refund(refund_no, ord_no, refund_amount, refund_count) values(refund_no_sq.nextval, #{ord_no}, #{amount}, #{total_amount})
+		insert into refund(refund_no, ord_no, refund_amount, refund_count) values(refund_no_sq.nextval, #{ord_no}, #{amount}, #{ord_count})
 	</insert>
 	<delete id="payDelete">
 		delete from payment where pay_no=#{pay_no}
@@ -23,4 +23,10 @@
 	<update id="prodetailUpdate">
 		update product_detail set status=2 where on_no=#{on_no}
 	</update>
+	<select id="masterSelect" resultType="String">
+		select distinct p.userid from product_detail p join order09 o on p.on_no=o.on_no and o.on_no=#{param1}
+	</select>
+	<select id="paySubSelect" resultType="com.t09ether.home.dto.PaymentDTO">
+		select p.pay_no, p.final_amount, p.total_amount, o.ord_no, o.on_no from payment p join order09 o on p.ord_no=o.ord_no and on_no=#{param1}
+	</select>
 </mapper>

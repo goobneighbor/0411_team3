@@ -8,4 +8,5 @@ import com.t09ether.home.dto.RegisterDTO;
 public interface AdminDAO {
 	public int totalRecord(AdminPagingVO vo);
 	public List<RegisterDTO> pageSelect(AdminPagingVO vo);
+	public List<RegisterDTO> userSelect();
 }

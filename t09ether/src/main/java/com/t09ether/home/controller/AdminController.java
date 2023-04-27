@@ -20,8 +20,11 @@ public class AdminController {
 	AdminService service;
 	
 	@GetMapping("/adminMain")
-	public ModelAndView adminMain() {
+	public ModelAndView adminMain(RegisterDTO dto) {
 		ModelAndView mav = new ModelAndView();
+		List<RegisterDTO> list = service.userSelect();
+		
+		mav.addObject("list", list);
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}

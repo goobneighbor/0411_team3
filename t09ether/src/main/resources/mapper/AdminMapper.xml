@@ -38,4 +38,10 @@
 	  		</when>
   		</choose>
 	</select>
+	<select id="userSelect" resultType="com.t09ether.home.dto.RegisterDTO">
+		select userid, username, tel, email, writedate, rank from registerinfo 
+		<![CDATA[
+		where rank>=1
+		]]>	
+	</select>
 </mapper>

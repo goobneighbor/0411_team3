@@ -2,17 +2,18 @@ package com.t09ether.home.dto;
 
 public class ProductDTO {
 	private int pro_code;
+	private int pro_total;
 	private String pro_name;
 	private int pro_price;
 	private String pro_stock;
 	private String image;
 	private String detailed;
 	
-
 	@Override
 	public String toString() {
-		return "ProductDTO [pro_code=" + pro_code + ", pro_name=" + pro_name + ", pro_price=" + pro_price
-				+ ", pro_stock=" + pro_stock + ", image=" + image + ", detailed=" + detailed + "]";
+		return "ProductDTO [pro_code=" + pro_code + ", pro_total=" + pro_total + ", pro_name=" + pro_name
+				+ ", pro_price=" + pro_price + ", pro_stock=" + pro_stock + ", image=" + image + ", detailed="
+				+ detailed + "]";
 	}
 	
 	public int getPro_code() {
@@ -21,6 +22,15 @@ public class ProductDTO {
 	public void setPro_code(int pro_code) {
 		this.pro_code = pro_code;
 	}
+	
+	public int getPro_total() {
+		return pro_total;
+	}
+
+	public void setPro_total(int pro_total) {
+		this.pro_total = pro_total;
+	}
+
 	public String getPro_name() {
 		return pro_name;
 	}
@@ -51,6 +61,5 @@ public class ProductDTO {
 	public void setDetailed(String detailed) {
 		this.detailed = detailed;
 	}
-	
 	
 }

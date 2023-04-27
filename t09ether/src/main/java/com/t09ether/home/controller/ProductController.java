@@ -2,9 +2,8 @@ package com.t09ether.home.controller;
 
 import java.nio.charset.Charset;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.t09ether.home.dto.OnlineDTO;
 import com.t09ether.home.dto.OnlinePagingVO;
 import com.t09ether.home.dto.ProductDTO;
+import com.t09ether.home.dto.SearchVO;
+import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.ProductService;
 
 @RestController
@@ -59,6 +59,15 @@ public class ProductController {
 		
 	}
 	
+	@GetMapping("/onlineGB")
+	public ModelAndView onlineGB(int pro_code, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String userid = (String)session.getAttribute("userid");
+		ProductDTO dto = service.productDetailSelect(pro_code);
+		mav.addObject("dto", dto); //선택 레코드
+		mav.setViewName("online/onlineGB");
+		return mav;
+	}
 	
 	@GetMapping("/onlineHome")
 	public ModelAndView online(OnlinePagingVO vo) {
@@ -76,20 +85,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productDetail")
-	public ModelAndView productDetail(int pro_code) {
+	public ModelAndView productDetail(int pro_code, HttpSession session ,SearchVO vo) {
 		ModelAndView mav = new ModelAndView();
+		String userid = (String)session.getAttribute("logId");
 		ProductDTO dto = service.productDetailSelect(pro_code);
+
 		mav.addObject("dto", dto); //선택 레코드
+		mav.addObject("vo", vo);//검색어
 		mav.setViewName("online/productDetail");
-		return mav;
-	}
-	
-	@GetMapping("/onlineGB")
-	public ModelAndView onlineGB(int pro_code) {
-		ModelAndView mav = new ModelAndView();
-		ProductDTO dto = service.productDetailMakeSelect(pro_code);
-		mav.addObject("dto", dto); //선택 레코드
-		mav.setViewName("online/onlineGB");
 		return mav;
 	}
 }

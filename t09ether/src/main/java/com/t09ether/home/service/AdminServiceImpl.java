@@ -24,4 +24,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<RegisterDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
+
+	@Override
+	public List<RegisterDTO> userSelect() {
+		return dao.userSelect();
+	}
 }

@@ -2,32 +2,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
-	#boardForm{
-		padding: 10px 0px;		
+	#csBoardForm li {
+		padding:10px 0px;
+		list-style:none;	
 	}
-	#boardForm li{
-		list-style-type: none;
+	#subject {
+		width:95%;
 	}
-	#subject{
-		width:100%;		
-	}
-	.button{
-		background: #ff6347;
-	}
-	/*CKEDITOR*/
-	.ck-editor__editable[role="textbox"] {
-      /* editing area */
-      min-height: 200px;
-      max-width: 100%;
-    }
-    .ck-content .image {
-      /* block images */
-      max-width: 100%;
-      margin: 20px auto;
-     }
+	
+	 .ck-editor__editable[role="textbox"] {
+                /* editing area */
+                min-height: 200px;
+            }
+            .ck-content .image {
+                /* block images */
+                max-width: 80%;
+                margin: 20px auto;
+            }
 </style>
 <script>
-	$(function(){
+	$(function() {
 		CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
@@ -71,7 +65,7 @@
                 ]
             },
             // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
-            
+            placeholder: '',
             // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
             fontFamily: {
                 options: [
@@ -167,44 +161,33 @@
                 // from a local file system (file://) - load this site via HTTP server if you enable MathType
                 'MathType'
             ]
-        });//CKEDITOR
+        }); //ck editor end..
 		
-		//폼 유효성검사
-		$("#boardForm").submit(function(){
-			if($("#off_subject").val()==""){
-				alert("제목을 입력하세요...");
+		//폼 유효성 검사
+		$("#csboardForm").submit(function() {
+			if($("#subject").val()=="") {
+				alert("제목을 입력하세요.");
 				return false;
 			}
+			return true;
+			
 		});
-		
 	});
 </script>
 <div class="container">
-	<h1>오프라인 공구모집 글 수정하기</h1>
-	<form method="post" action="offlineEditOk" id="boardForm">
-	<input type="hidden" name="off_no" value="${dto.off_no}"/>
+	<h1>Q&A게시판 글쓰기</h1>
+	<form method="post" action="csBoardWriteOk" id="csBoardForm">
 		<ul>
 			<li>제목</li>
-			<li><input type="text" name="off_subject" id="off_subject" value ="${dto.off_subject }"/></li>
-			<li>모집인원 : <input type="text" name="group_num" value="${dto.group_num }"/></li>
-			<li>글내용</li>				
+			<li><input type="text" name="subject" id="subject"/></li>
+			<li>글내용</li>
 			<li>
 				<!-- 에디터 -->
-				<textarea name="off_content" id="off_content">${dto.off_content}</textarea>
+				<textarea name="content" id="content"></textarea>
 			</li>
 			<li>
-				<input type="submit" value="글수정하기" class="button"/>
+				<input type="submit" value="글등록하기"/>
 			</li>
-			
 		</ul>
-	<!-- 페이지정보, 검색어, 검색키 -->
-	<input type="hidden" name ="nowPage" value="${vo.nowPage}"/>
-		<c:if test="${vo.searchWord!=null }">
-			<input type="hidden" name ="searchKey" value="${vo.searchKey}"/>
-			<input type="hidden" name ="searchWord" value="${vo.searchWord}"/>
-		</c:if>
 	</form>
-	<p style="background-color:#ff6347; padding:30px;">
-		<a href="boardList?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">리스트로 돌아가기</a>
-	</p>
 </div>

@@ -20,8 +20,11 @@ public class AdminController {
 	AdminService service;
 	
 	@GetMapping("/adminMain")
-	public ModelAndView adminMain() {
+	public ModelAndView adminMain(RegisterDTO dto) {
 		ModelAndView mav = new ModelAndView();
+		List<RegisterDTO> list = service.userSelect();
+		
+		mav.addObject("list", list);
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}
@@ -31,10 +34,13 @@ public class AdminController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		/*vo.setTotalRecord(service.totalRecord(vo));*/
+		vo.setTotalRecord(service.totalRecord(vo));
+		//System.out.println(vo.toString());
 		
 		List<RegisterDTO> list = service.pageSelect(vo);
+		//System.out.println(list);
 		
+		mav.addObject("vo",vo);
 		mav.addObject("list", list);
 		mav.setViewName("admin/adUser");
 		return mav;

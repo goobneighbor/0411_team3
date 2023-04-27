@@ -39,15 +39,18 @@ public class RegisterController {
 		
 		ModelAndView mav = new ModelAndView();
 		if(dto!=null) { //성공
+			int rank = service.rankSelect(dto.getUserid());
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
 			session.setAttribute("logStatus", "Y");
+			session.setAttribute("logRank", rank);
 			
 			//나오는지 확인 후 삭제해야 합니다! 잘나오는데 왜 안돼.................................
-			System.out.println("logId: "+dto.getUserid());
-			System.out.println("logName: "+dto.getUsername());
-			String tempo = (String)session.getAttribute("logStatus");
-			System.out.println("logStatus: "+tempo);
+			//System.out.println("logId: "+dto.getUserid());
+			//System.out.println("logName: "+dto.getUsername());
+			//String tempo = (String)session.getAttribute("logStatus");
+			//System.out.println("logStatus: "+tempo);
+			//System.out.println("register rank: "+dto.getRank());
 			
 			mav.setViewName("redirect:/");
 			
@@ -103,6 +106,7 @@ public class RegisterController {
 			//회원가입 성공 시 - 로그인폼으로 보내기
 			if(result==1) {
 				mav.setViewName("redirect:loginForm");
+				
 			//회원가입 실패 시 - 다시쓰게하기
 			}else {
 				mav.addObject("msg", "회원등록하는데 실패했습니다.");

@@ -1,5 +1,7 @@
 package com.t09ether.home.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
-import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.OffPartDTO;
+import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.service.MyPageService;
-import com.t09ether.home.service.RegisterService;
 
 @RestController
 @RequestMapping("/mypage")
@@ -30,17 +33,47 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myOrder")
-	public ModelAndView myOrder() {
+	public ModelAndView myOrder(AdminPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myOrder");
+		String userid = (String)session.getAttribute("logId");
+		vo.setTotalRecord(service.totalRecord(vo));
+		//System.out.println(vo.toString());
 		
+		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		//System.out.println(list);
+		
+		mav.addObject("vo", vo);
+		mav.addObject("list", list);		
+		mav.setViewName("mypage/myOrder");
 		return mav;
 	}
 	
 	@GetMapping("/myPost")
-	public ModelAndView myPost() {
+	public ModelAndView myPost(AdminPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.totalRecord(vo));
+		//System.out.println(vo.toString());
+		
+		List<OffPartDTO> list = service.offPageSelect(vo);
+		//System.out.println(list);
+		
+		mav.addObject("vo", vo);
+		mav.addObject("list", list);	
 		mav.setViewName("mypage/myPost");
+		return mav;
+	}
+	
+	@GetMapping("/myPostView")
+	public ModelAndView myPostView(int no, AdminPagingVO vo) {
+		
+		OffPartDTO dto = service.boardSelect(no);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("dto", dto);
+		mav.addObject("vo", vo);
+		mav.setViewName("mypage/myPostView");
 		
 		return mav;
 	}

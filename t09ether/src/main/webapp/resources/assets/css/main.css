@@ -122,14 +122,6 @@
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
->>>>>>> a618469f4b60f18e341e87976951934191dbdd70
-=======
->>>>>>> deb10c3a2bd0e82c1e95e097600f81ce8ed46671
-=======
->>>>>>> 4e36a9922aa08176e048ed4c4251c46b428b65ab
 		color: #e89980;
 		text-decoration: none;
 	}
@@ -2091,7 +2083,7 @@
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
-		appearance: none;
+		appearance: none; 
 		background-color: #f8f8f8;
 		border-radius: 6px;
 		border: solid 1px #e5e5e5;
@@ -3372,6 +3364,22 @@
 		#cta .formerize-placeholder {
 			color: rgba(255, 255, 255, 0.75) !important;
 		}
+		
+		input[type=password] {font-family:'Malgun gothic', dotum, sans-serif;}
+		
+		::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+		  font-family: 'NanumSquare', sans-serif;
+		  color: #888
+		  opacity: 1; /* Firefox */
+		  }
+		
+		  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+		    color: #888;
+		  }  
+		
+		  ::-ms-input-placeholder { /* Microsoft Edge */
+		    color: #888;
+		  }
 
 /* Wide */
 

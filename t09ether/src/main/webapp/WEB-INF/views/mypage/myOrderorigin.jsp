@@ -94,6 +94,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
+									<th><input type="checkbox" id="allCheck"/>전체선택</th>
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
@@ -110,6 +111,7 @@
 							<c:forEach var="bDTO" items="${list}">
 								<c:if test="${bDTO.status==1}">
 								<tr>
+									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
@@ -131,6 +133,9 @@
 							</tfoot>  -->
 						</table>
 					</form>
+					</div>
+					<div>
+						<input type="button" value="영구제명" id="chooseDel"/>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -206,6 +211,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
+									<th><input type="checkbox" id="allCheck"/>전체선택</th>
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
@@ -222,6 +228,7 @@
 							<c:forEach var="bDTO" items="${list}">
 								<c:if test="${bDTO.status==2}">
 								<tr>
+									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
@@ -242,6 +249,9 @@
 							</tfoot>  -->
 						</table>
 					</form>
+					</div>
+					<div>
+						<input type="button" value="영구제명" id="chooseDel"/>
 					</div>
 					<!-- 페이징 -->
 					<div id="wrapper"> 

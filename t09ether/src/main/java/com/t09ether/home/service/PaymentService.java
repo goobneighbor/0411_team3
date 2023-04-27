@@ -18,6 +18,7 @@ public interface PaymentService {
 	public int prodetailUpdate(int on_no);
 	public String leaderSelect(int on_on);
 	public String selfSelect(int ord_on);
+	/////////////추가
 	public int ordUpdateJoin(int ord_no);
 	public List<OrderDTO> selectInfor(int on_on);
 	public ArrayList<Integer> ordNoSelect(int on_no);

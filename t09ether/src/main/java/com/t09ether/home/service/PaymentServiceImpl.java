@@ -56,7 +56,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public String selfSelect(int ord_on) {
 		return dao.selfSelect(ord_on);
 	}
-
+////////////////추가
 	@Override
 	public int ordUpdateJoin(int ord_no) {
 		

@@ -140,7 +140,7 @@ public class PaymentController extends SmsSend {
 	        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
 	        	service.refundInsert(ord_no, amount, total_amount);
 	        	service.payDelete(impUid);
-	        	
+	        	//////////////추가한부분
 	        	System.out.println(service.leaderSelect(on_no)+"-공구장:나-"+service.selfSelect(ord_no));
 	        	
 	        	//공구장유무 파악
@@ -179,7 +179,7 @@ public class PaymentController extends SmsSend {
 	        		int newRest = service.restCountSelect(on_no) + ord_count;
 	        		service.restCountUpdate(newRest, on_no);
 	        	}
-	        	
+	        	///////////////////////////////
 	        	
 	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
 	        	

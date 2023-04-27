@@ -54,6 +54,7 @@ $(function(){
 	var ord_no = parseInt(document.getElementById("ord_no").value);
 	var total_amount = parseInt(document.getElementById("total_amount").value);
 	var on_no = parseInt(document.getElementById("on_no").value);
+	/////////////추가
 	var ord_count = document.getElementById("ord_count").value;
 	
     function payCancel(){
@@ -69,6 +70,7 @@ $(function(){
     		    ord_no: ord_no, // 취소할 주문
     		    total_amount: total_amount, //취소수량
     		    on_no:on_no,  //취소할 공구
+    		    ///////추가
     		    ord_count:ord_count //주문수량
     		  },
     		  success: function(response) {

@@ -17,6 +17,7 @@ public interface PaymentDAO {
 	public int prodetailUpdate(int on_no);
 	public String leaderSelect(int on_no);
 	public String selfSelect(int ord_no);
+	//////////////////////////////추가
 	public int ordUpdateJoin(int ord_no);
 	public List<OrderDTO> selectInfor(int on_no);
 	public ArrayList<Integer> ordNoSelect(int on_no);

@@ -27,6 +27,15 @@
 		select distinct p.userid from product_detail p join order09 o on p.on_no=o.on_no and o.on_no=#{param1}
 	</select>
 	<select id="paySubSelect" resultType="com.t09ether.home.dto.PaymentDTO">
-		select p.pay_no, p.final_amount, p.total_amount, o.ord_no, o.on_no from payment p join order09 o on p.ord_no=o.ord_no and on_no=#{param1}
+		select p.pay_no, p.final_amount, p.total_amount, o.ord_no, o.on_no, o.ord_count from payment p join order09 o on p.ord_no=o.ord_no and on_no=#{param1}
 	</select>
+	<update id="ordUpdateJoin">
+		update order09 set status=5 where ord_no=#{ord_no}
+	</update>
+	<select id="restCountSelect" resultType="int">
+		select rest_count from product_detail where on_no=#{on_no}
+	</select>
+	<update id="restCountUpdate">
+		update product_detail set rest_count=#{newRest} where on_no=#{on_no}
+	</update>
 </mapper>

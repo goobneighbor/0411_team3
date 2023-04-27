@@ -55,5 +55,20 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.paySubSelect(on_no);
 	}
 
+	@Override
+	public int ordUpdateJoin(int ord_no) {
+		return dao.ordUpdateJoin(ord_no);
+	}
+
+	@Override
+	public int restCountSelect(int on_no) {
+		return dao.restCountSelect(on_no);
+	}
+
+	@Override
+	public int restCountUpdate(int newRest, int on_no) {
+		return dao.restCountUpdate(newRest, on_no);
+	}
+
 
 }

@@ -16,4 +16,7 @@ public interface PaymentService {
 	public int prodetailUpdate(int on_no);
 	public String masterSelect(int on_no);
 	public List<PaymentDTO> paySubSelect(int on_no);
+	public int ordUpdateJoin(int ord_no);
+	public int restCountSelect(int on_no);
+	public int restCountUpdate(@Param("newRest")int newRest, @Param("on_no")int on_no);
 }

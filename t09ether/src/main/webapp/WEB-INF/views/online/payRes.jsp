@@ -69,14 +69,12 @@
 	}
 </style>
 <script>
-	var sum;
 $(function(){
 	var IMP = window.IMP; 
 
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
-    var all_amount = document.getElementById("final_amount").value;;
     var email = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var tel = document.getElementById("tel").value;   
@@ -89,8 +87,44 @@ $(function(){
 	var image = document.getElementById("image").value;
 	var ord_count = document.getElementById("ord_count").value;
 	var final_amount = document.getElementById("final_amount").value;
-	var rank = document.getElementById("rank").value;
+	var rank = parseInt(document.getElementById("rank").value);
 	var addrdetail = document.getElementById("addrdetail").value;
+	
+	switch (rank) {
+	  case 2:
+	    discount_amount = parseInt(final_amount * 0.01);
+	    var sum = final_amount - discount_amount;
+	    final_amount = sum;
+	    document.getElementById("discount_amount").value = discount_amount;
+	    document.getElementById("final_amount").value = sum;
+	    break;
+	  case 3:
+	    discount_amount = parseInt(final_amount * 0.02);
+	    var sum = parseInt(final_amount - discount_amount);
+	    final_amount = sum;
+	    document.getElementById("discount_amount").value = discount_amount;
+	    document.getElementById("final_amount").value = sum;
+	    break;
+	  case 4:
+	    discount_amount = parseInt(final_amount * 0.03);
+	    var sum = parseInt(final_amount - discount_amount);
+	    final_amount = sum;
+	    document.getElementById("discount_amount").value = discount_amount;
+	    document.getElementById("final_amount").value = sum;
+	    break;
+	  case 5:
+	    discount_amount = parseInt(final_amount * 0.04);
+	    var sum = parseInt(final_amount - discount_amount);
+	    final_amount = sum;
+	    document.getElementById("discount_amount").value = discount_amount;
+	    document.getElementById("final_amount").value = sum;
+	    break;
+	  default:
+	    // 실행할 코드
+	    break;
+	}
+	
+	var all_amount = document.getElementById("final_amount").value;
 	
     function requestPay() {
         IMP.request_pay({

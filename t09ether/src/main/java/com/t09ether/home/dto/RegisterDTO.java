@@ -17,7 +17,7 @@ public class RegisterDTO {
 	private String zipcode;
 	private String addr;
 	private String addrdetail;
-	private String rank;
+	private int rank;
 	private String writedate;
 	private int report;
 	
@@ -106,10 +106,11 @@ public class RegisterDTO {
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
 	}
-	public String getRank() {
+	
+	public int getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 	public String getWritedate() {

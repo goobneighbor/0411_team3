@@ -138,12 +138,18 @@ public class PaymentController {
 	        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
 	        	service.refundInsert(ord_no, amount, total_amount);
 	        	service.payDelete(impUid);
-	        	service.ordUpdate(ord_no, on_no);
-	        	service.prodetailUpdate(on_no);
 	        	
 	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
 	        	if(userid.equals(service.masterSelect(on_no))) {
+	        		service.ordUpdate(ord_no, on_no);
+	        		service.prodetailUpdate(on_no);
 	        		payCancelSub(on_no);
+	        	}else {
+	        		service.ordUpdateJoin(ord_no); //order09 status->5
+		        	
+	        		//rest_count update //파라미터에 ord_count넣었습니다아아
+	        		int newRest = service.restCountSelect(on_no) + total_amount;
+	        		service.restCountUpdate(newRest, on_no);
 	        	}
 	            // ...
 	            return ResponseEntity.ok().body("{\"code\":\"1\"}");
@@ -171,6 +177,8 @@ public class PaymentController {
 			int ord_no = tmpdto.getOrd_no();
 			int amount = tmpdto.getFinal_amount();
 			int total_amount = tmpdto.getTotal_amount();
+			int ord_count = tmpdto.getOrd_count();
+			System.out.println(ord_count);
 			try {
 		        // 아임포트 API 클라이언트 생성
 		        IamportClient iamportClient = new IamportClient("1456485756545636", "723XBRqRiIMZsO65ZY90OLJ1gGExsyrz70PAs7ZgOJRSyJanoUfv4StVHkXkxv10XDWABUK9eOB8ibnu");
@@ -188,7 +196,7 @@ public class PaymentController {
 	
 		        // 결제 취소 결과 확인
 		        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
-		        	service.refundInsert(ord_no, amount, total_amount);
+		        	service.refundInsert(ord_no, amount, ord_count);
 		        	service.payDelete(impUid);
 		        	
 		        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가

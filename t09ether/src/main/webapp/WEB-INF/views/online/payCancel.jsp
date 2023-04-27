@@ -90,7 +90,12 @@ $(function(){
     }
     
     $("#cancelbutton").click(function(){
-    	payCancel();
+    	var answer = confirm("결제를 취소하시겠습니까?");
+    	if(answer){
+    		payCancel();
+    	}else{
+    		return false;
+    	}
     });
 });
 	

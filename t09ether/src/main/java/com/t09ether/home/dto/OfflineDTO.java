@@ -10,7 +10,7 @@ public class OfflineDTO {
 	private String off_content;//글내용
 	private String location;//위치
 	private int group_num;//모집인원
-	private int current_num;//현재인완
+	private int current_num;//현재인원
 	private String app_time;//만남시간
 	private String deaddate;//모집마감일
 	private int off_hit;//조회수

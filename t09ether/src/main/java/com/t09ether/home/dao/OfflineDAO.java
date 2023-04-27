@@ -2,6 +2,7 @@ package com.t09ether.home.dao;
 
 import java.util.List;
 
+import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
@@ -32,6 +33,11 @@ public interface OfflineDAO {
 	public List<OfflineParticipantDTO> participantList(int off_no);
 	// 공구참여인원수
 	public int currentNumCount(int off_no);
+	// 공구참여인원 1증가
+	public void currentNumPlus(int off_no);
 	// 공구참여자들의 아이디만 뽑아오기
 	public List<String> getIds(int off_no);
+	// 공구 마감(status 2로변경)
+	public void offlineClose(int off_no);
+	
 }

@@ -6,18 +6,19 @@
 			border-bottom:1px solid #ddd;
 			list-style-type: none;
 		}
-	.boardSubMenu{
+	.boardSubMenu{			
 		background: #fff;
-		padding:50px 0;
+		padding:0 0 10px 30px;;
 	}
-	#commentList>li{
-			padding:10px;
-			border-bottom:1px solid #ddd;
-		}
-	#coment{
-			width:50%;
-			height:80px;
-		}
+	.boardSubMenu a{
+		border:1px solid #FEE8B0;
+		border-radius :10px;
+		background:#F79540;
+		color:#FEE8B0;
+		font-size:1.2em;
+		padding: 10px;
+		
+	}	
 	.bg-tomato py-5{
 		margin:0;
 		padding:0;
@@ -26,14 +27,7 @@
 	.jr{
 		list-style-type: none;
 	}
-	.join{
-		width:110px;
-		border:1px solid tomato;
-		border-radius: 10px;
-		background-color : yellow;	
-		float:left;	
-		
-	}
+	
 	.report{
 		width:100px;
 		border:1px solid tomato;
@@ -45,12 +39,15 @@
 	}
 	#offlineJoin{
 		margin:0 auto;
-		float:left;
 		text-align: center;
+	}
+	#joinButton{
+		margin:0 auto;
 	}
 	
 </style>
 <script>
+	
 	function offlineDel(){
 		if(confirm("정말 삭제하시겠습니까?")){
 			location.href="offlineDel?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>";
@@ -60,8 +57,7 @@
 	$(function(){
 		var userid = '<%=session.getAttribute("logId")%>';	
 		console.log("userid="+userid);
-		$("#joinButton").click(function(){
-			
+		$("#joinButton").click(function(){			
 				if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
 					//아니오 -> 참여안함
 					alert("공동구매 참여가 취소되었습니다.");
@@ -69,14 +65,12 @@
 				}else{//예 -> 참여함
 					if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
 						alert("정원이 가득 찼습니다");
-						//return false;
+						return false;
 					}	
 				}
-			}
+			});
 		});
-			
-		
-	});
+
 </script>
 <div class="container">
 	<!-- Header-->
@@ -90,10 +84,10 @@
 	<ul id="view">
 		<li>번호 : ${dto.off_no}</li>	
 		<li>제목 : ${dto.off_subject}</li>
-		<li>처리상태 : (status=${dto.status})
+		<li>처리상태 : 
 			<c:choose>
 				<c:when test="${dto.status==1}">진행중</c:when>
-				<c:otherwise>종료</c:otherwise>
+				<c:otherwise>마감</c:otherwise>
 			</c:choose>
 		</li>	
 		<li>등록일 : ${dto.writedate}</li>	
@@ -108,13 +102,21 @@
 		<li class="report"><a href="">신고하기</a></li>
 			
 	</ul>
-	<form method="post" action="offlineJoin" id="offlineJoin">
+	
+	<c:if test="${logStatus=='Y'&& dto.status==1}">
+		<form method="post" action="offlineJoin" id="offlineJoin">
+				<input type="hidden" name="off_no" value="${dto.off_no}"/>
+				<input type="submit" value="지금참여하기" id="joinButton"/>					
+		</form>
+	</c:if>		
+	<c:if test="${logStatus=='Y'&& dto.status==2}">
+		<form method="post" action="offlineClose" id="offlineClose">
 			<input type="hidden" name="off_no" value="${dto.off_no}"/>
-			<c:if test="${logStatus=='Y'}">
-			<input type="submit" value="지금참여하기" id="joinButton"/>	
-			</c:if>
-	</form>
-			
+			<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
+		</form>
+	</c:if>
+	
+	<br/>	
 	<div class="boardSubMenu">		
 		<!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
 		<c:if test="${logId==dto.userid}">

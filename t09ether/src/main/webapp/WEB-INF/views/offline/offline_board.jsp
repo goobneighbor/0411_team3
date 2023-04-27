@@ -4,12 +4,15 @@
 	li{
 		list-style-type: none;
 	}
+	.container px-4 px-lg-5 my-5{
+		padding:0 !important;
+	}
 	.board_header{
-		margin:30px;
+		margin:30px auto;;
 		padding:20px;
 		width:350px;
 		height:70px;
-		background-color:tomato;
+		background-color:#F7D060;
 		text-align: center;
 		border-radius: 10px;
 	}
@@ -66,6 +69,9 @@
 		text-overflow:ellipsis;	
 	}
 	
+	.pHeader{
+		margin:10px;
+	}
 	.pHeader>div{	
 		width:50%;
 		float:left;
@@ -75,9 +81,9 @@
 	.pHeader>div:last-child{
 		text-align: right;
 	}
+	
 	.pagingDiv{		
-		text-align: center;
-		border:1px solid orange;
+		text-align: center;		
 	}
 	.pagingDiv li{
 		float:left;
@@ -112,6 +118,26 @@
 		border-radius: 10px;
 		background-color: orange;
 	}
+	#searchForm{
+      text-align:center;
+   }
+   #searchKey, #searchWord, #search{
+      display:inline-block;
+   }
+   #searchKey { /*제목임*/
+      width:15%;
+      margin: auto;
+   }
+   #searchWord { /*검색칸*/
+      width:40%;
+      margin: auto;
+   }
+   .searchDiv{
+      padding:10px;
+      text-align: center;
+      width:100%;   
+   }
+	
 </style>
 <script>
 	$(function(){
@@ -129,12 +155,11 @@
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
             <p class="lead fw-normal text-white-75 mb-0">같이 쇼핑할 사람들을 찾아보세요!</p>
-            <a href="<%=request.getContextPath()%>/offlineGB">오프라인 갤러리 게시판(테스트)</a>
+            <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
         </div>
     </div>
 </header>
-<div class="container">	
-	<div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h2></div>
+<div class="container">		
 	<div class = "pHeader">
 		<div>진행중인 공구 : ${vo.totalRecord }건 </div>
 		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>			
@@ -154,22 +179,23 @@
   			<!-- 시작번호 설정 -->
 			<c:set var="recordNum" value="${vo.totalRecord -(vo.nowPage -1)*vo.onePageRecord }"></c:set>
         	<c:forEach var="offDTO" items="${list}">
-	        	<div class="col mb-5">
+	        	<div class="col mb-5" style="width:350px;">
 	            	<div class="card h-100">
 	                	<!-- Product image-->
 	                    <img class="card-img-top" src="./resources/images/cart1jpg.jpg" alt="image" />
 	                    	
 	                    	<!-- details-->
-	                        <div class="card-body p-4">
+	                        <div class="card-body p-4" >
 	                        	<div class="text-center">
 	                            	<!-- name-->
-	                                <h5 class="fw-bolder">${offDTO.off_subject}</h5>
+	                                <h5 class="fw-bolder" style="color:tomato;">${offDTO.off_subject}</h5>
 	                                <!-- details-->	                                
-	                                <div>${offDTO.location}</div>
-	                                <div>${offDTO.current_num}명/${offDTO.group_num}명</div>
+	                                <div style="color:#5F9DF7">${offDTO.location}</div>
+	                                <div style="color:#1746A2">모집마감일 : ${offDTO.deaddate}</div>
+	                                <div>${offDTO.current_num}명/${offDTO.group_num}명</div>	                            
 	                                <c:choose>
 										<c:when test="${offDTO.status==1}"><li style="color:green;">모집중</li></c:when>
-										<c:otherwise><li style="color:red;">마감</li></c:otherwise>				
+										<c:when test="${offDTO.status==2}"><li style="color:red;">마감</li></c:when>				
 									</c:choose>	
 	                            </div>
 	                        </div>
@@ -184,7 +210,10 @@
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>
     </div>
-    <div class="pagingDiv" id="wrapper">
+    
+    <!-- 페이징 -->
+    <div class="pagingDiv">
+    <div id="wrapper">
 		<div id="item">
 		<ul>
 			<!-- nowPage -->
@@ -223,6 +252,21 @@
 		</ul>
 		</div>	
 	</div>
-</div>
+		<!--검색 -->	
+		<div class ="searchDiv">
+			<form method="get" id="searchForm" action="offline_board">
+				<select name = "searchKey" id="searchKey">
+					<option value="subject">제목</option>
+					<option value="username">작성자</option>
+					<option value="content">글내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord"/>
+				<input type="submit" value="Search"/>
+			</form>
+		
+		</div>
+	</div>
+
+</section>
 
 </body>

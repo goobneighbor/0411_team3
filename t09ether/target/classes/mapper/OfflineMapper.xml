@@ -72,4 +72,7 @@
 	<select id="getIds" resultType="String">
 		select userid from off_participant where off_no=${param1}
 	</select>
+	<update id="offlineClose">
+		update off_gb set status=2 where off_no=${param1}
+	</update>
 </mapper>

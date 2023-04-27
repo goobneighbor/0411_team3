@@ -39,9 +39,11 @@ public class RegisterController {
 		
 		ModelAndView mav = new ModelAndView();
 		if(dto!=null) { //성공
+			int rank = service.rankSelect(dto.getUserid());
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
 			session.setAttribute("logStatus", "Y");
+			session.setAttribute("logRank", rank);
 			
 			//나오는지 확인 후 삭제해야 합니다! 잘나오는데 왜 안돼.................................
 			//System.out.println("logId: "+dto.getUserid());

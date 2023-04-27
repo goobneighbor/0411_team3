@@ -63,7 +63,7 @@
 		insert into off_participant(off_j_no, off_no, userid, username, tel)
 		values (off_j_no_sq.nextval, #{off_no}, #{userid}, #{username}, #{tel})
 	</insert>
-	<select id="participantList" resultType="com.t09ether.home.dto.OfflineParticipantDTO">
+	<select id="participantList" resultType="com.t09ether.home.dto.OffPartDTO">
 		select * from off_participant where off_no=${param1}
 	</select>
 	<select id="currentNumCount" resultType="int">

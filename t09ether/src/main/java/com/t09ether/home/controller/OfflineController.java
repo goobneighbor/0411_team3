@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineCommentService;
 import com.t09ether.home.service.OfflineService;
@@ -98,7 +98,7 @@ public class OfflineController {
 		
 		
 		//글등록성공하면 자동으로 off_participant에 추가
-		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();		
+		OffPartDTO opDTO = new OffPartDTO();		
 		//userid를 이용해 참가하는 회원의 정보를 가져와
 		RegisterDTO rDTO = service.getParticipant(userid);  
 		//DB의 offline_participant테이블에 insert한다
@@ -225,8 +225,8 @@ public class OfflineController {
 		OfflineDTO dto = service.offlineSelect(off_no);	
 		String userid = (String)request.getSession().getAttribute("logId");
 		
-		List<OfflineParticipantDTO> list=service.participantList(off_no);
-		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
+		List<OffPartDTO> list=service.participantList(off_no);
+		OffPartDTO opDTO = new OffPartDTO();
 		//userid를 이용해 참가하는 회원의 정보를 가져오기
 		RegisterDTO rDTO = service.getParticipant(userid);
 		opDTO.setOff_no(off_no);
@@ -261,7 +261,7 @@ public class OfflineController {
 	public ModelAndView offlineClose(int off_no) {
 		ModelAndView mav = new ModelAndView();
 		OfflineDTO dto = service.offlineSelect(off_no);
-		List<OfflineParticipantDTO> list=service.participantList(off_no);
+		List<OffPartDTO> list=service.participantList(off_no);
 		
 		service.offlineClose(off_no);//status변경(마감)
 		mav.addObject("list", list);

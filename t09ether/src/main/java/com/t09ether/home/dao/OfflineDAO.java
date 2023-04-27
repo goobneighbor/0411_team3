@@ -2,10 +2,10 @@ package com.t09ether.home.dao;
 
 import java.util.List;
 
+import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 
 public interface OfflineDAO {
@@ -28,9 +28,9 @@ public interface OfflineDAO {
 	//공구참여시 -> userid 를 이용해참여자의 정보(RegisterDTO)불러오기
 	public RegisterDTO getParticipant(String userid);	
 	// 참여자 정보를 off_participant 테이블에 추가하기
-	public int participantInsert(OfflineParticipantDTO opDTO);
+	public int participantInsert(OffPartDTO opDTO);
 	// 공구번호(off_no)에 해당하는 참가자들 정보 불러오기(List)
-	public List<OfflineParticipantDTO> participantList(int off_no);
+	public List<OffPartDTO> participantList(int off_no);
 	// 공구참여인원수
 	public int currentNumCount(int off_no);
 	// 공구참여인원 1증가

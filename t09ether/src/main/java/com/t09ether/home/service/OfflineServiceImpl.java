@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.OfflineDAO;
+import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 @Service
 public class OfflineServiceImpl implements OfflineService {
@@ -62,12 +62,12 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public int participantInsert(OfflineParticipantDTO opDTO) {
+	public int participantInsert(OffPartDTO opDTO) {
 		return dao.participantInsert(opDTO);
 	}
 
 	@Override
-	public List<OfflineParticipantDTO> participantList(int off_no) {
+	public List<OffPartDTO> participantList(int off_no) {
 		return dao.participantList(off_no);
 	}
 

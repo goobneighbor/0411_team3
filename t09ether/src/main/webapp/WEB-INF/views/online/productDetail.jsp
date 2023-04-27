@@ -129,6 +129,9 @@ function listView(result) {
                         <div class="card-body">
                             <div class="small text-muted"></div>
                             <div id="review">리뷰</div>
+                            <h2 class="card-title">상품명</h2>
+                            <p class="card-text">상세설명<br/><br/><br/><br/></p>
+                            <a class="btn btn-primary" href="" style="float:right">내가 공구만들기</a>
                             <h2 class="card-title">${dto.pro_name }</h2>
                             <p class="card-text">${dto.detailed }</p>
                             <a class="btn btn-primary" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>

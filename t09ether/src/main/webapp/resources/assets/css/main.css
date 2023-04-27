@@ -73,9 +73,9 @@
 
 	input, select, textarea {
 		-moz-appearance: none;
-		-webkit-appearance: none;
+		-webkit-appearance: block;
 		-ms-appearance: none;
-		appearance: none;
+		appearance: block;
 	}
 
 /* Basic */
@@ -2149,13 +2149,13 @@
 	input[type="checkbox"],
 	input[type="radio"] {
 		-moz-appearance: none;
-		-webkit-appearance: none;
+		-webkit-appearance: block;
 		-ms-appearance: none;
-		appearance: none;
+		appearance: block;
 		display: block;
 		float: left;
 		margin-right: -2em;
-		opacity: 0;
+		opacity: 1;
 		width: 1em;
 		z-index: -1;
 	}

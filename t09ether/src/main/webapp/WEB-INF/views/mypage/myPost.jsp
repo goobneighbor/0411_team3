@@ -33,6 +33,9 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+	thead tr th, tbody{
+		text-align:center;
+	}
 </style>
 <script>
 	$(function(){
@@ -45,17 +48,42 @@
 		});
 		
 		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
-		$("#allCheck").click(function(){
-			$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
+		$("#allCheck1").click(function(){
+			$(".board_list input[name=noList1]").prop("checked", $("#allCheck1").prop("checked"));
 			
 		});
 		
 		//선택 삭제 버튼 클릭하면
-		$("#chooseDel").click(function(){
+		$("#chooseDel1").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
 			
 			var checkCount = 0;
-			$(".board_list input[name=noList]").each(function(idx, obj){
+			$(".board_list input[name=noList1]").each(function(idx, obj){
+				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
+					checkCount++;
+				}
+			});
+			
+			if(checkCount>0){
+				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
+					$("#delList").submit();
+				}
+			}else{
+				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
+			}
+		});
+		
+		$("#allCheck2").click(function(){
+			$(".board_list input[name=noList2]").prop("checked", $("#allCheck2").prop("checked"));
+			
+		});
+		
+		//선택 삭제 버튼 클릭하면
+		$("#chooseDel2").click(function(){
+			// 최소 1개 이상 삭제를 선택했을 때
+			
+			var checkCount = 0;
+			$(".board_list input[name=noList2]").each(function(idx, obj){
 				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
 					checkCount++;
 				}
@@ -93,30 +121,36 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th><input type="checkbox" id="allCheck1"/></th>
 									<th>번호</th>
 									<th>일련번호</th>
 									<th>원글번호</th>
-									<th>아이디</th>
-									<th>이름</th>
-									<th>연락처</th>
+									<th>공구제목</th>
+									<th>공구장</th>
+									<th>만남장소</th>
+									<th>약속시간</th>
+									<th>모집마감일</th>
+									<th>현재인원/모집 인원</th>
 								</tr>
 							</thead>
 							
 							<tbody>
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
-								<c:if test="${bDTO.status==1}">
-								<tr>
-									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
-									<td>${recordNum}</td>
-									<td>${bDTO.off_j_no }</td>
-									<td>${bDTO.off_no }</td>
-									<td>${bDTO.userid }</td>
-									<td>${bDTO.username }</td>
-									<td>${bDTO.tel }</td>
-								</tr>
-								</c:if>
+									<c:if test="${bDTO.status==1}">
+									<tr>
+										<td><input type="checkbox" name="noList1" value="${bDTO.username}"/></td>
+										<td>${recordNum}</td>
+										<td>${bDTO.off_j_no }</td>
+										<td>${bDTO.off_no }</td>
+										<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
+										<td>${bDTO.username }</td>
+										<td>${bDTO.location }</td>
+										<td>${bDTO.app_time }</td>
+										<td>${bDTO.deaddate }</td>
+										<td>${bDTO.current_num}/${bDTO.group_num}</td>
+									</tr>
+									</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
 							</c:forEach>
 							</tbody>
@@ -130,7 +164,7 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="영구제명" id="chooseDel"/>
+						<input type="button" value="영구제명" id="chooseDel1"/>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -206,13 +240,16 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
-									<th>글번호</th>
-									<th>주문번호</th>
-									<th>상품코드</th>
+									<th><input type="checkbox" id="allCheck2"/></th>
+									<th>번호</th>
+									<th>일련번호</th>
+									<th>원글번호</th>
+									<th>공구제목</th>
 									<th>공구장</th>
-									<th>주문 개수</th>
-									<th>주문 날짜</th>
+									<th>만남장소</th>
+									<th>약속시간</th>
+									<th>모집마감일</th>
+									<th>현재인원/모집 인원</th>
 								</tr>
 							</thead>
 							
@@ -221,13 +258,16 @@
 							<c:forEach var="bDTO" items="${list}">
 								<c:if test="${bDTO.status==2}">
 								<tr>
-									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+									<td><input type="checkbox" name="noList2" value="${bDTO.username}"/></td>
 									<td>${recordNum}</td>
 									<td>${bDTO.off_j_no }</td>
 									<td>${bDTO.off_no }</td>
-									<td>${bDTO.userid }</td>
+									<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
 									<td>${bDTO.username }</td>
-									<td>${bDTO.tel }</td>
+									<td>${bDTO.location }</td>
+									<td>${bDTO.app_time }</td>
+									<td>${bDTO.deaddate }</td>
+									<td>${bDTO.current_num}/${bDTO.group_num}</td>
 								</tr>
 								</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -243,7 +283,7 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="영구제명" id="chooseDel"/>
+						<input type="button" value="영구제명" id="chooseDel2"/>
 					</div>
 					<!-- 페이징 -->
 					<div id="wrapper"> 

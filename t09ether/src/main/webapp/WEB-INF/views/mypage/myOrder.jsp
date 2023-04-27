@@ -45,17 +45,17 @@
 		});
 		
 		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
-		$("#allCheck").click(function(){
-			$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
+		$("#allCheck1").click(function(){
+			$(".board_list input[name=noList1]").prop("checked", $("#allCheck1").prop("checked"));
 			
 		});
 		
 		//선택 삭제 버튼 클릭하면
-		$("#chooseDel").click(function(){
+		$("#chooseDel1").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
 			
 			var checkCount = 0;
-			$(".board_list input[name=noList]").each(function(idx, obj){
+			$(".board_list input[name=noList1]").each(function(idx, obj){
 				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
 					checkCount++;
 				}
@@ -69,6 +69,32 @@
 				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
 			}
 		});
+		
+		$("#allCheck2").click(function(){
+			$(".board_list input[name=noList2]").prop("checked", $("#allCheck2").prop("checked"));
+			
+		});
+		
+		//선택 삭제 버튼 클릭하면
+		$("#chooseDel2").click(function(){
+			// 최소 1개 이상 삭제를 선택했을 때
+			
+			var checkCount = 0;
+			$(".board_list input[name=noList2]").each(function(idx, obj){
+				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
+					checkCount++;
+				}
+			});
+			
+			if(checkCount>0){
+				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
+					$("#delList").submit();
+				}
+			}else{
+				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
+			}
+		});
+		
 	});
 </script>
 	<!-- Main -->
@@ -93,7 +119,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th><input type="checkbox" id="allCheck1"/></th>
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
@@ -109,7 +135,7 @@
 							<c:forEach var="bDTO" items="${list}">
 								<c:if test="${bDTO.status==1}">
 								<tr>
-									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+									<td><input type="checkbox" name="noList1" value="${bDTO.username}"/></td>
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
@@ -117,6 +143,7 @@
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.orderdate }</td>
+									
 								</tr>
 								</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -132,7 +159,7 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="영구제명" id="chooseDel"/>
+						<input type="button" value="영구제명" id="chooseDel1"/>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -189,7 +216,6 @@
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
-			<h2> </h2>
 			<p>완료 내역</p>
 		</header>
 		<div class="row">
@@ -208,7 +234,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th><input type="checkbox" id="allCheck2"/></th>
 									<th>글번호</th>
 									<th>주문번호</th>
 									<th>상품코드</th>
@@ -224,7 +250,7 @@
 							<c:forEach var="bDTO" items="${list}">
 								<c:if test="${bDTO.status==2}">
 								<tr>
-									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+									<td><input type="checkbox" name="noList2" value="${bDTO.username}"/></td>
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_code }</td>
@@ -232,6 +258,7 @@
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.orderdate }</td>
+									
 								</tr>
 								</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -247,10 +274,10 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="영구제명" id="chooseDel"/>
+						<input type="button" value="영구제명" id="chooseDel2"/>
 					</div>
 					<!-- 페이징 -->
-					<div id="wrapper"> 
+					<div  id="wrapper">
 					<div class="paging_div"> 
 						<ul>
 							<!-- 이전 페이지 : nowPage를 기준으로 -->
@@ -285,8 +312,6 @@
 							</c:if>
 						</ul>
 					</div>
-					
-					
 					<!--검색 -->
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myOrder">
@@ -295,7 +320,7 @@
 								<option value="orderdate">주문날짜</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
-							<input type="submit" value="Search"/>
+							<input type="submit" value="Search" id="search"/>
 						</form>
 					</div>
 					</div>

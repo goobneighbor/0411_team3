@@ -27,10 +27,7 @@
 	}
 	.zipcode{
 		float:left;
-	}
-	.gn{
-		float:left;
-	}
+	}	
 	/*CKEDITOR*/
 	.ck-editor__editable[role="textbox"] {
       /* editing area */
@@ -264,17 +261,11 @@
 			</div>	
 				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>
 				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	
-				<!-- location 어떻게? -->	
-			<div class="gn">	
-				<li>모집인원 : </li>
-				<li><input type="text" name="group_num" id="group_num"/></li>명				
-			</div>	
-			<div>
-				<li>마감일 :</li>
-				<li><input type="text" name="deaddate" id="deaddate"/></li>
-				<li>공구시간 :</li>
-				<li><input type="text" name="app_time" id="app_time"/></li>
-			</div>
+				<!-- location 어떻게? -->					
+				<li>모집인원 : <input type="text" name="group_num" id="group_num" style="width:100px;"/></li>	
+				<li>마감일 :<input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:300px;"/></li>
+				<li>공구시간 :<input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:300px;"/></li>
+			
 			
 			<li>상세 안내</li>				
 			<li>

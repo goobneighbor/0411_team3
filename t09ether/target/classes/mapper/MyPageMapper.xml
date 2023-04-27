@@ -63,13 +63,21 @@
   		</choose>
 	</select>
 	
-	<!-- 오프라인 공구 게시물 페이징  -->
+	<!-- 오프라인 공구 게시물 리스트 + 페이징  -->
+	<select id="mpTotalRecord" resultType="int">
+		select count(off_subject) ord_no from off_gb
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if> 
+	</select>
 	<select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
 	select * from
 		(select * from
 			(
-				select op.off_j_no, op.off_no, og.off_subject, op.userid, op.username, op.tel, og.status 
-				from off_participant op join off_gb og on op.off_no=og.off_no
+				select op.off_j_no, og.off_no, og.off_subject, og.userid, r.username, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+				to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, og.status, og.group_num, og.current_num  
+				from off_gb og  join  (select * from off_participant) op on og.off_no=op.off_j_no
+				join registerinfo r on og.userid=r.userid
 				<if test="searchWord!=null">
 					where ${searchKey} like '%${searchWord}%' 
 				</if>
@@ -95,10 +103,14 @@
 	</select>
 	
 	<select id="boardSelect" resultType="com.t09ether.home.dto.OffPartDTO">
-		select og.off_no, og.off_subject, og.off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'MM-DD HH:MI') app_time, 
-		to_char(og.deaddate, 'MM-DD HH:MI') deaddate, to_char(og.writedate, 'MM-DD HH:MI') writedate, og.status, og.userid, op.userid
-		from off_participant op join off_gb og on op.off_no=og.off_no
+		select og.off_no, og.off_subject, og.off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+		to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, to_char(og.writedate, 'YY-MM-DD HH:MI') writedate, og.status, og.userid, r.username, op.userid
+		from off_participant op join (select * from off_gb) og on og.off_no=op.off_j_no
+		join registerinfo r on r.userid=og.userid
 		and og.off_no=#{param1}
 	</select>
 	
+	<select id="offPartList" resultType="com.t09ether.home.dto.OffPartDTO">
+		select off_no, username from off_participant where off_no=#{param1}
+	</select>
 </mapper>

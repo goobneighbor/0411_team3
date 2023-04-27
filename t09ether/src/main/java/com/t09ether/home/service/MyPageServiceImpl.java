@@ -7,8 +7,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
-import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.AdUserPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
+import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
 
@@ -45,18 +46,23 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	@Override
-	public int totalRecord(AdminPagingVO vo) {
+	public int totalRecord(AdUserPagingVO vo) {
 		return dao.totalRecord(vo);
 	}
 
 	@Override
-	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
 	
 	//오프라인 공구 게시판 페이징
 	@Override
-	public List<OffPartDTO> offPageSelect(AdminPagingVO vo) {
+	public int mpTotalRecord(MyPostPagingVO vo) {
+		return dao.mpTotalRecord(vo);
+	}
+
+	@Override
+	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo) {
 		return dao.offPageSelect(vo);
 	}
 
@@ -65,6 +71,9 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.boardSelect(no);
 	}
 
+	@Override
+	public List<OffPartDTO> offPartList(int no) {
+		return dao.offPartList(no);
+	}
 	
-
 }

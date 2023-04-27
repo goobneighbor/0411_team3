@@ -13,15 +13,22 @@
 	<select id="boardView" parameterType="java.lang.Integer" resultType="com.t09ether.home.dto.CustomerCenterDTO">
 		select cus_b_num, userid, subject, content, to_char(writedate,'YYYY-MM-DD') writedate from cus_center where cus_b_num = #{cus_b_num} 
 	</select>
-	<!--   
-	<select id="csBoardEditSelect" resultType="com.multi.campus.dto.CustomerCenterDTO">
+	<select id="csBoardSelect" resultType="com.t09ether.home.dto.CustomerCenterDTO"> <!-- 여기서 b.userid지움 -->
+		select cus_b_num, c.subject, c.content, r.userid, c.writedate
+		from cus_center c join registerinfo r on c.userid=r.userid
+		and c.cus_b_num=${param1}
+	</select>
+	<select id="csBoardEditSelect" resultType="com.t09ether.home.dto.CustomerCenterDTO">
 		select cus_b_num, subject, content from cus_center where cus_b_num=${param1}
 	</select>
-	 
-	<update id="csBoardUpdate" parameterType="com.multi.campus.dto.CustomerCenterDTO">
-		update cus_center set subject={#subject} content={content} where cus_b_num=${cus_b_num} and userid=#{userid}
+	
+	<update id="csBoardUpdate" parameterType="com.t09ether.home.dto.CustomerCenterDTO">
+		update cus_center set subject=#{subject}, content=#{content} where cus_b_num=${cus_b_num} and userid=#{userid}
 	</update>
-	-->
+	<delete id="csBoardDelete">
+		delete from cus_center where cus_b_num=${cus_b_num} and userid=#{userid}
+	</delete>
+	
 	<select id="totalRecord" resultType="int">
 		select count(cus_b_num) totalRecord from cus_center
 		<if test="searchWord!=null">

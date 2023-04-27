@@ -55,5 +55,15 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 		return dao.csBoardUpdate(cdto);
 	}
 
+	@Override
+	public CustomerCenterDTO csBoardSelect(int cus_b_num) {
+		return dao.csBoardSelect(cus_b_num);
+	}
+
+	@Override
+	public int csBoardDelete(CustomerCenterDTO cdto) {
+		return dao.csBoardDelete(cdto);
+	}
+
 
 }

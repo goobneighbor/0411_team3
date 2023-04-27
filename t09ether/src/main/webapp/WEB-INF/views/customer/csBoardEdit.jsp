@@ -175,19 +175,30 @@
 	});
 </script>
 <div class="container">
-	<h1>Q&A게시판 글쓰기</h1>
+	<h1>Q&A게시판 글 수정하기</h1>
 	<form method="post" action="csBoardEditOk" id="csBoardForm">
+		<input type="hidden" name="cus_b_num" value="${cdto.cus_b_num}"/>
 		<ul>
 			<li>제목</li>
-			<li><input type="text" name="subject" id="subject"/></li>
+			<li><input type="text" name="subject" id="subject" value="${cdto.subject }"/></li>
 			<li>글내용</li>
 			<li>
 				<!-- 에디터 -->
-				<textarea name="content" id="content"></textarea>
+				<textarea name="content" id="content">${cdto.content }</textarea>
 			</li>
 			<li>
-				<input type="submit" value="글등록하기"/>
+				<input type="submit" value="글 수정하기"/>
 			</li>
 		</ul>
+		<!-- 페이지 정보, 검색어, 검색 키 -->
+		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
+		<c:if test="${vo.searchWord!=null }">
+			<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
+			<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
+		</c:if>
+	</form>
+	<p style="background-color:#ddd; padding:30px;">
+		<a href="faqlist?nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">목록</a>
+	</p>
 	</form>
 </div>

@@ -110,7 +110,7 @@
 		</form>
 	</c:if>		
 	<c:if test="${logStatus=='Y'&& dto.status==2}">
-		<form method="post" action="offlineClose" id="offlineClose">
+		<form method="get" action="offlineFinished" id="offlineFinished">
 			<input type="hidden" name="off_no" value="${dto.off_no}"/>
 			<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
 		</form>

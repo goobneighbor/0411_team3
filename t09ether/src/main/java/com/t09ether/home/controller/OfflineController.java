@@ -25,8 +25,10 @@ import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.OfflineReviewDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineCommentService;
+import com.t09ether.home.service.OfflineReviewService;
 import com.t09ether.home.service.OfflineService;
 
 @RestController
@@ -35,6 +37,8 @@ public class OfflineController {
 	OfflineService service;
 	@Autowired
 	OfflineCommentService commentService;
+	@Autowired
+	OfflineReviewService reviewService;
 	//게시판목록
 	@GetMapping("/offline")
 	public ModelAndView offline(OfflinePagingVO vo) {		
@@ -62,28 +66,13 @@ public class OfflineController {
 	
 	//글등록(DB) 
 	@PostMapping("/offlineInsert")	
-	public ResponseEntity<String> offlineInsert(@RequestParam("off_subject")String off_subject,
-												@RequestParam("off_content")String off_content,
-												@RequestParam("location")String location,
-												@RequestParam("group_num")int group_num,
-												@RequestParam("deaddate")String deaddate,
-												@RequestParam("app_time")String app_time,
-												HttpServletRequest request) {
+	public ResponseEntity<String> offlineInsert(OfflineDTO dto, HttpServletRequest request) {
 		
 		//dto.setIp(request.getRemoteAddr());//ip
 		String userid = (String)request.getSession().getAttribute("logId");
-		OfflineDTO dto = new OfflineDTO();
-		
-		dto.setUserid((userid));//로그인한 아이디 구하기
-		dto.setOff_subject(off_subject);
-		dto.setOff_content(off_content);
-		dto.setLocation(location);
-		dto.setGroup_num(group_num);
-		dto.setCurrent_num(1);
-		dto.setDeaddate(deaddate);
-		dto.setApp_time(app_time);
-		dto.setOff_hit(1);			
-		
+		dto.setUserid(userid);		
+		dto.setCurrent_num(1);		
+		dto.setOff_hit(1);					
 		
 		String htmlTag="<script>";
 		try {
@@ -96,9 +85,9 @@ public class OfflineController {
 		}
 		htmlTag += "</script>";
 		
-		
-		//글등록성공하면 자동으로 off_participant에 추가
+		//글등록성공하면 자동으로 작성자를 참가자(off_participant)에 추가
 		OffPartDTO opDTO = new OffPartDTO();		
+		
 		//userid를 이용해 참가하는 회원의 정보를 가져와
 		RegisterDTO rDTO = service.getParticipant(userid);  
 		//DB의 offline_participant테이블에 insert한다
@@ -270,6 +259,21 @@ public class OfflineController {
 		return mav;
 	}
 	
+	//마감된공구 - 리뷰쓰러가기 클릭 => 마감페이지로 이동
+	@GetMapping("/offlineFinished")
+	public ModelAndView offlineFinished(int off_no, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		OfflineDTO dto = service.offlineSelect(off_no);
+		List<OffPartDTO> list=service.participantList(off_no);
+		
+		mav.addObject("list", list);
+		mav.addObject("dto", dto);
+		mav.setViewName("/offline/offlineClose");
+		return mav;
+	}
+	
+	
 	//일정조율페이지로 넘어가기(댓글)
 	@GetMapping("/offlineComment")
 	public ModelAndView offlineComment(int off_no) {
@@ -281,27 +285,59 @@ public class OfflineController {
 		return mav;
 	}
 	
-	//============================리뷰========================//
+	//========================= 리뷰 시작 ========================//
 	//참가자리뷰페이지 넘어가기(
 	//참여자 한명에 대한 리뷰버튼 클릭 => 해당 참여자에 대한 리뷰 등록할 수 있는 글쓰기 폼으로 이동	
 	@PostMapping("/offlineReview")
-	public ModelAndView offlineReview(String userid, int off_no, HttpServletRequest request) {
+	public ModelAndView offlineReview(String target_id, int off_no, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
-		// userid : 리뷰당하는(?) 사람의 아이디(DB-칭찬대상)
+		// target_id : 리뷰당하는(?) 사람의 아이디(DB-칭찬대상)
 		// writer : 리뷰작성하는 사람의 아이디
 		String writer = (String)request.getSession().getAttribute("logId");
-		System.out.println("칭찬대상->"+userid);
+		System.out.println("칭찬대상->"+target_id);
 		System.out.println("리뷰작성자->"+writer);
-		mav.addObject("userid", userid);
+		System.out.println("userid="+target_id);
+		
+		mav.addObject("off_no", off_no);
+		mav.addObject("target_id", target_id);
 		mav.addObject("writer", writer);
 		mav.setViewName("/offline/offlineReviewWrite");
 		return mav;
 	}
-	//============================리뷰========================//
 	
 	
-	//*******************댓글******************//	
+	//리뷰등록
+	@PostMapping("offlineReviewInsertOk")
+	public ResponseEntity<String> offlineReviewInsertOk(OfflineReviewDTO dto, String target_id, HttpServletRequest request){
+		dto.setUserid((String)request.getSession().getAttribute("logId"));//작성자아이디
+		dto.setTarget_id(target_id);
+		//리뷰등록 -> 실패하면 예외발생
+		String htmlTag = "<script>";
+		try {
+			int result = reviewService.offlineReviewInsert(dto);
+			htmlTag += "location.href='offline';";
+		}catch(Exception e) {
+			e.printStackTrace();
+			htmlTag += "alert('글이 등록되지않았습니다.');";
+			htmlTag += "history.back();";
+		}
+		htmlTag += "</script>";
+		//결과
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+		System.out.println("리뷰 등록 성공....");
+		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);		
+	}
+	
+	
+	
+	//=========================== 리뷰 끝========================//
+	
+	
+	//******************* 댓글 시작 ******************//	
 	//댓글목록보여주기
 	@ResponseBody
 	@GetMapping("/commentList")
@@ -335,7 +371,7 @@ public class OfflineController {
 		return String.valueOf(commentService.commentDelete(comment_no, userid));
 	}
 	
-	
+	//******************* 댓글 끝 ******************//	
 	
 	
 }

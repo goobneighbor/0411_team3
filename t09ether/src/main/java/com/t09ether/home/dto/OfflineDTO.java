@@ -1,6 +1,5 @@
 package com.t09ether.home.dto;
 
-import java.util.Date;
 
 public class OfflineDTO {
 	private int off_no; //글번호

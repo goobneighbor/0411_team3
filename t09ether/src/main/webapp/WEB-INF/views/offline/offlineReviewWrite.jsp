@@ -37,6 +37,8 @@
      .conhead{margin:0;}
 </style>
 <script>
+	console.log("${writer}->${target_id}");
+	console.log("off_no = ${off_no}")
 	//=======================에디터 시작=====================//
 	$(function(){
 		CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
@@ -196,22 +198,25 @@
 	<section id="main" class="container">
 		<header class="conhead">
 		<h1>리뷰작성하기</h1>		
-		<p>${useird}님은 어떠셨나요?</p>				
+		<p>${target_id}님은 어떠셨나요?</p>				
 		</header>
 	</section>
 	
 	<!-- 리뷰(DB) : 일련번호,   원글번호,   작성자,   칭찬대상,   제목,   내용,   작성일-->
 	<!--           (시퀀스)   off_no  wirter    userid               (sysdate)  -->
-	<form method="post" action="offlineReviewInsert" id="offlineReviewWriteForm">
+	<form method="post" action="offlineReviewInsertOk" id="offlineReviewWriteForm">
+		<input type="hidden" name="target_id" value="${target_id}"/>
+		<input type="hidden" name="off_no" value="${off_no}"/>
+		<input type="hidden" name="userid" value="${writer}"/>
 		<ul>
 			<li>제목 : </li>
-			<li><input type="text" name="off_subject" id="off_subject"/></li>
+			<li><input type="text" name="subject" id="subject"/></li>
 			<li>리뷰</li>				
 			<li>
 				<!-- 에디터 -->
-				<textarea name="off_content" id="off_content"></textarea>
+				<textarea name="content" id="content"></textarea>
 			</li>
-			<li>
+			<li>				
 				<input type="submit" value="리뷰등록하기"/>
 			</li>
 			

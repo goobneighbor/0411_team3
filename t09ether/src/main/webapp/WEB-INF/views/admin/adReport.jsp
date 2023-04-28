@@ -33,6 +33,7 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+<<<<<<< HEAD
 	thead tr th, tbody{
 		text-align:center;
 	}
@@ -74,7 +75,6 @@
 		});
 	});
 </script>
-<!-- Main -->
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>

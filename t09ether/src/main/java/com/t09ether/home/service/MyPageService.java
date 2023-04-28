@@ -2,7 +2,10 @@ package com.t09ether.home.service;
 
 import java.util.List;
 
+
 import com.t09ether.home.dto.AdUserPagingVO;
+import org.apache.ibatis.annotations.Param;
+
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
@@ -17,11 +20,11 @@ public interface MyPageService {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	public int totalRecord(AdUserPagingVO vo);
-	public List<OrderDTO> pageSelect(AdUserPagingVO vo);
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
 	
 	//오프라인 공구 게시판 페이징
 	public int mpTotalRecord(MyPostPagingVO vo);
-	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo);
+	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
 	
 	public OffPartDTO boardSelect(int no);
 	

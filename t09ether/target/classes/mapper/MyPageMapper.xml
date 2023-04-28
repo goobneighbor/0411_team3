@@ -37,7 +37,7 @@
 		(select * from
 			(
 				select o.ord_no, o.pro_code, p.pro_name, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
-				from order09 o join product_detail pd on o.on_no=pd.on_no 
+				from order09 o join product_detail pd on o.on_no=pd.on_no and o.userid=#{userid} 
 				join product p on o.pro_code=p.pro_code 
 				<if test="searchWord!=null">
 					where ${searchKey} like '%${searchWord}%' 
@@ -74,10 +74,9 @@
 	select * from
 		(select * from
 			(
-				select op.off_j_no, og.off_no, og.off_subject, og.userid, r.username, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+				select op.off_j_no, og.off_no, og.off_subject, og.userid, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
 				to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, og.status, og.group_num, og.current_num  
-				from off_gb og  join  (select * from off_participant) op on og.off_no=op.off_j_no
-				join registerinfo r on og.userid=r.userid
+				from off_gb og  join  (select * from off_participant) op on og.off_no=op.off_j_no and og.userid=#{userid} 
 				<if test="searchWord!=null">
 					where ${searchKey} like '%${searchWord}%' 
 				</if>
@@ -104,13 +103,13 @@
 	
 	<select id="boardSelect" resultType="com.t09ether.home.dto.OffPartDTO">
 		select og.off_no, og.off_subject, og.off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
-		to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, to_char(og.writedate, 'YY-MM-DD HH:MI') writedate, og.status, og.userid, r.username, op.userid
+		to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, to_char(og.writedate, 'YY-MM-DD HH:MI') writedate, og.status, og.userid
 		from off_participant op join (select * from off_gb) og on og.off_no=op.off_j_no
-		join registerinfo r on r.userid=og.userid
 		and og.off_no=#{param1}
 	</select>
 	
 	<select id="offPartList" resultType="com.t09ether.home.dto.OffPartDTO">
-		select off_no, username from off_participant where off_no=#{param1}
+		select op.off_no, r.userid from off_participant op join registerinfo r 
+		on op.username=r.username where off_no=#{param1}
 	</select>
 </mapper>

@@ -8,6 +8,7 @@ import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.dto.ReportDTO;
 
 public interface AdminDAO {
+
 	//회원 관리 게시판 리스트
 	public int totalRecord(AdUserPagingVO vo);
 	public List<RegisterDTO> pageSelect(AdUserPagingVO vo);
@@ -15,4 +16,6 @@ public interface AdminDAO {
 	//신고관리 게시판 리스트
 	public int rpTotalRecord(AdReportPagingVO vo);
 	public List<ReportDTO> reportPageSelect(AdReportPagingVO vo);
+
+	public List<RegisterDTO> userSelect();
 }

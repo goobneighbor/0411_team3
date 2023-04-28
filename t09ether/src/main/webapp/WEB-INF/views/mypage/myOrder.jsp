@@ -94,7 +94,6 @@
 				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
 			}
 		});
-		
 	});
 </script>
 	<!-- Main -->
@@ -127,6 +126,7 @@
 									<th>공구장</th>
 									<th>주문 개수</th>
 									<th>주문 날짜</th>
+									<th>취소</th>
 								</tr>
 							</thead>
 							
@@ -143,7 +143,7 @@
 									<td>${bDTO.userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.orderdate }</td>
-									
+									<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
 								</tr>
 								</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -242,6 +242,7 @@
 									<th>공구장</th>
 									<th>주문 개수</th>
 									<th>주문 날짜</th>
+
 								</tr>
 							</thead>
 							

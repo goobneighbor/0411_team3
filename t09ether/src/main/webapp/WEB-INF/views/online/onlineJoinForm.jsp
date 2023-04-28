@@ -28,11 +28,15 @@ header,footer{
 			}
 		
 			alert("주문이 진행됩니다.");
-			opener.location.href = "orderForm";
+			
+			function sendPost() {
+			    document.joinForm.action = "orderForm";
+			    document.joinForm.target = opener.window.orderForm;
+			    document.joinForm.submit();
+			}
+			 
+			sendPost();	
 			window.close();
-			
-			
-			
 		})
 		
 		
@@ -44,11 +48,11 @@ header,footer{
 
 					<h2>공구 참여하기</h2>
 					<p>수량을 입력시 결제하기가 진행됩니다!</p>
-	<form>
+				<form name="joinForm" method="post">
 					<div class="row gtr-50 gtr-uniform">
 							<div class="col-8 col-12-mobilep">
 							
-								<p id="restCount">12</p>
+								<p id="restCount">${dto.rest_count}</p>
 							
 							</div>
 							<br/>
@@ -59,14 +63,17 @@ header,footer{
 							</div>
 					</div>
 		
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-8 col-12-mobilep">
-								<input type="text" name="ord_count" id="ord_count" placeholder="수량을 입력하세요!" />
-							</div>
-							<div class="col-4 col-12-mobilep">
-								<input type="submit" id="insertbtn" value="입력하기" class="fit" />
-							</div>
+					<div class="row gtr-50 gtr-uniform">
+						<div class="col-8 col-12-mobilep">
+							<input name="on_no" value="${dto.on_no }" type="hidden"/>
+							<input name="rest_count" value="${dto.rest_count}" type="hidden"/>
+							<input name="pro_code" value="${dto.pro_code}" type="hidden"/>
+							<input id="ord_count" name="ord_count" class="form-control" type="text" placeholder="수량을 입력하세요" aria-label="수량을 입력하세요" />
 						</div>
-					</form>
+						<div class="col-4 col-12-mobilep">
+							<input type="submit" id="insertbtn" value="입력하기" class="fit" />
+						</div>
+					</div>
+				</form>
 
 		</section>	

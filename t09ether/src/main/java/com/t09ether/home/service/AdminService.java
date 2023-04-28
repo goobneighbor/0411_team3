@@ -15,4 +15,6 @@ public interface AdminService {
 	public int rpTotalRecord(AdReportPagingVO vo);
 	public List<ReportDTO> reportPageSelect(AdReportPagingVO vo);
 
+	public List<RegisterDTO> userSelect();
+
 }

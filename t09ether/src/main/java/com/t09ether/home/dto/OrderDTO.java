@@ -1,18 +1,23 @@
 package com.t09ether.home.dto;
 
 public class OrderDTO {
-	private int ord_no;
-	private int pro_code;
-	private String userid;
-	private int ord_count; //내가주문한상품수
-	private int status;
+
+   private int ord_no;
+   private int pro_code;
+   private String userid;
+   private int ord_count; //내가주문한상품수
+   private int status;
+
+	
 	private int on_no;
 	private String orderdate;
 //////////////////////////////////
 	//만들어낸 변수
 	private int on_count;//상품총주문개수
 	private int rest_count; //남은상품개수
-	
+	private int ord_amount; // 배달비 + 개당*수량
+	private String shareaddr;
+	private String sharedetail;
 	
 	////상품 
 	private int pro_total;
@@ -35,15 +40,7 @@ public class OrderDTO {
 	private String addrdetail;
 	private String rank;
 	
-	@Override
-	public String toString() {
-		return "OrderDTO [ord_no=" + ord_no + ", pro_code=" + pro_code + ", userid=" + userid + ", ord_count="
-				+ ord_count + ", status=" + status + ", on_no=" + on_no + ", orderdate=" + orderdate + ", on_count="
-				+ on_count + ", rest_count=" + rest_count + ", pro_total=" + pro_total + ", pro_name=" + pro_name
-				+ ", pro_price=" + pro_price + ", pro_stock=" + pro_stock + ", image=" + image + ", detailed="
-				+ detailed + ", userpwd=" + userpwd + ", username=" + username + ", tel=" + tel + ", email=" + email
-				+ ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank + "]";
-	}
+
 	
 	public int getOrd_no() {
 		return ord_no;
@@ -68,18 +65,13 @@ public class OrderDTO {
 	}
 	public void setOrd_count(int ord_count) {
 		this.ord_count = ord_count;
+		
 	}
 	public int getStatus() {
 		return status;
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	public int getOn_no() {
-		return on_no;
-	}
-	public void setOn_no(int on_no) {
-		this.on_no = on_no;
 	}
 	public String getOrderdate() {
 		return orderdate;
@@ -92,13 +84,50 @@ public class OrderDTO {
 	}
 	public void setOn_count(int on_count) {
 		this.on_count = on_count;
+		
 	}
+	
+	public int getOn_no() {
+		return on_no;
+	}
+
+	public void setOn_no(int on_no) {
+		this.on_no = on_no;
+	}
+
 	public int getRest_count() {
 		return rest_count;
 	}
 	public void setRest_count(int rest_count) {
 		this.rest_count = rest_count;
+		
 	}
+
+	
+	public int getOrd_amount() {
+		return ord_amount;
+	}
+
+	public void setOrd_amount(int ord_amount) {
+		this.ord_amount = ord_amount;
+	}
+
+	public String getShareaddr() {
+		return shareaddr;
+	}
+
+	public void setShareaddr(String shareaddr) {
+		this.shareaddr = shareaddr;
+	}
+
+	public String getSharedetail() {
+		return sharedetail;
+	}
+
+	public void setSharedetail(String sharedetail) {
+		this.sharedetail = sharedetail;
+	}
+
 	public int getPro_total() {
 		return pro_total;
 	}
@@ -182,5 +211,9 @@ public class OrderDTO {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
-	}
+
+
+	}   
 }
+
+

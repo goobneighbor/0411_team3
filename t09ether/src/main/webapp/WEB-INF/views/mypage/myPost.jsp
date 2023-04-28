@@ -144,7 +144,7 @@
 										<td>${bDTO.off_j_no }</td>
 										<td>${bDTO.off_no }</td>
 										<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
-										<td>${bDTO.username }</td>
+										<td>${bDTO.userid }</td>
 										<td>${bDTO.location }</td>
 										<td>${bDTO.app_time }</td>
 										<td>${bDTO.deaddate }</td>
@@ -263,7 +263,7 @@
 									<td>${bDTO.off_j_no }</td>
 									<td>${bDTO.off_no }</td>
 									<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
-									<td>${bDTO.username }</td>
+									<td>${bDTO.userid }</td>
 									<td>${bDTO.location }</td>
 									<td>${bDTO.app_time }</td>
 									<td>${bDTO.deaddate }</td>

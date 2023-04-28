@@ -38,5 +38,8 @@ public class AdminServiceImpl implements AdminService {
 		return dao.reportPageSelect(vo);
 	}
 
-	
+	@Override
+	public List<RegisterDTO> userSelect() {
+		return dao.userSelect();
+	}
 }

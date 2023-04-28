@@ -34,13 +34,13 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myOrder")
-	public ModelAndView myOrder(AdUserPagingVO vo) {
+	public ModelAndView myOrder(AdUserPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+		String userid = (String)session.getAttribute("logId");
 		vo.setTotalRecord(service.totalRecord(vo));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.pageSelect(vo);
+		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
@@ -50,13 +50,14 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myPost")
-	public ModelAndView myPost(MyPostPagingVO vo) {
+	public ModelAndView myPost(MyPostPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+
+		String userid = (String)session.getAttribute("logId");
 		vo.setTotalRecord(service.mpTotalRecord(vo));
 		//System.out.println(vo.toString());
 		
-		List<OffPartDTO> list = service.offPageSelect(vo);
+		List<OffPartDTO> list = service.offPageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);

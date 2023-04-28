@@ -38,6 +38,7 @@
 
 
 		<!-- 여기까지 삽입 -->
+		
 
 <!-- 여기부터 삽입 -->
 <style>
@@ -72,7 +73,7 @@
 </head>
 <body>
 <!-- Navigation-->
-	<header>
+	<header id="mainheader">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <div style="margin:0 10px;" class="container px-4 px-lg-5">
@@ -82,8 +83,10 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/product/onlineHome">온라인공구</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/offline">오프라인공구</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/offline/offline_board">오프라인공구</a></li>
+                        <c:if test="${logRank == 0 }">
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/adminMain">관리자</a></li>
+                        </c:if>
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">    
                         <c:if test="${logStatus == 'Y' }">
@@ -116,4 +119,5 @@
             </div>
         </nav>
 	</header>
+
 

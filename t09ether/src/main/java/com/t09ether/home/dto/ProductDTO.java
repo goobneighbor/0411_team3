@@ -9,7 +9,6 @@ public class ProductDTO {
 	private String image;
 	private String detailed;
 	
-	
 	@Override
 	public String toString() {
 		return "ProductDTO [pro_code=" + pro_code + ", pro_total=" + pro_total + ", pro_name=" + pro_name
@@ -62,6 +61,5 @@ public class ProductDTO {
 	public void setDetailed(String detailed) {
 		this.detailed = detailed;
 	}
-	
 	
 }

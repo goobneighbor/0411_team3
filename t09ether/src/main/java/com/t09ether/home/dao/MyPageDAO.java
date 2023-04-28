@@ -3,6 +3,7 @@ package com.t09ether.home.dao;
 import java.util.List;
 
 import com.t09ether.home.dto.AdUserPagingVO;
+import org.apache.ibatis.annotations.Param;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
@@ -17,11 +18,12 @@ public interface MyPageDAO {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	public int totalRecord(AdUserPagingVO vo);
-	public List<OrderDTO> pageSelect(AdUserPagingVO vo);
+	public List<OrderDTO> pageSelect(@Param("vo")AdUserPagingVO vo,@Param("totalPage") int totalPage, @Param("searchKey") String searchKey, @Param("searchWord") String searchWord,  @Param("userid")String userid, @Param("nowPage") int nowPage, @Param("onePageRecord") int onePageRecord, @Param("lastPageRecord") int lastPageRecord);
+
 	
 	//오프라인 공구 게시판 페이징
 	public int mpTotalRecord(MyPostPagingVO vo);
-	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo);
+	public List<OffPartDTO> offPageSelect(@Param("vo")MyPostPagingVO vo,@Param("totalPage") int totalPage, @Param("searchKey") String searchKey, @Param("searchWord") String searchWord,  @Param("userid")String userid, @Param("nowPage") int nowPage, @Param("onePageRecord") int onePageRecord, @Param("lastPageRecord") int lastPageRecord);
 	
 	public OffPartDTO boardSelect(int no);
 	

@@ -80,7 +80,7 @@
 	</ul>
 	<section>
 		<ul id="view2">
-			<li>공구장 <br/>${dto.username}</li>
+			<li>공구장 <br/>${dto.userid}</li>
 			<li>현재인원/모집 인원 <br/>${dto.current_num}/${dto.group_num}</li>
 			<li>만남장소 <br/>${dto.location}</li>
 			<li>약속시간 <br/>${dto.app_time}</li>
@@ -91,7 +91,7 @@
 			<ul id="viewParty">
 				<li>공구원</li><br/>
 					<c:forEach var="bDTO" items="${list}">
-						<li>${bDTO.username}</li>
+						<li>${bDTO.userid}</li>
 					</c:forEach>
 			</ul>
 		

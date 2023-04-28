@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
@@ -51,8 +52,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<OrderDTO> pageSelect(AdUserPagingVO vo) {
-		return dao.pageSelect(vo);
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
 	}
 	
 	//오프라인 공구 게시판 페이징
@@ -62,8 +63,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo) {
-		return dao.offPageSelect(vo);
+	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo, int totalPage, String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.offPageSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
 	}
 
 	@Override
@@ -75,5 +76,8 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OffPartDTO> offPartList(int no) {
 		return dao.offPartList(no);
 	}
+
+	
+	
 	
 }

@@ -1,24 +1,26 @@
 package com.t09ether.home.dto;
 
-
-//오프라인 공동구매 게시판 글 정보
-public class OfflineDTO {
-	private int off_no; //글번호
-	private String userid;//작성자
-	private String off_subject;//글제목
-	private String off_content;//글내용
-	private String location;//위치
-	private int group_num;//모집인원
-	private int current_num;//현재인원
-	private String app_time;//만남시간
-	private String deaddate;//모집마감일
-	private int off_hit;//조회수
-	private String writedate;//작성일
-<<<<<<< HEAD
-	private int status;//처리상태
-=======
-	private int status;//진행상태 (1: 진행중, 그외 : 완료)
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+public class OffGBDTO {
+	private int off_no;
+	private String userid;
+	private String off_subject;
+	private String off_content;
+	private String location;
+	private int group_num;
+	private int current_num;
+	private String app_time;
+	private String deaddate;
+	private int off_hit;
+	private String writedate;
+	private int status;
+	
+	@Override
+	public String toString() {
+		return "OffGBDTO [off_no=" + off_no + ", userid=" + userid + ", off_subject=" + off_subject + ", off_content="
+				+ off_content + ", location=" + location + ", group_num=" + group_num + ", current_num=" + current_num
+				+ ", app_time=" + app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate="
+				+ writedate + ", status=" + status + "]";
+	}
 	
 	public int getOff_no() {
 		return off_no;
@@ -62,7 +64,6 @@ public class OfflineDTO {
 	public void setCurrent_num(int current_num) {
 		this.current_num = current_num;
 	}
-	
 	public String getApp_time() {
 		return app_time;
 	}
@@ -87,31 +88,10 @@ public class OfflineDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	
-	
-<<<<<<< HEAD
-	
-=======
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	public int getStatus() {
 		return status;
 	}
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "OfflineDTO [off_no=" + off_no + ", userid=" + userid + ", off_subject=" + off_subject + ", off_content="
-				+ off_content + ", location=" + location + ", group_num=" + group_num + ", current_num=" + current_num
-				+ ", app_time=" + app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate="
-				+ writedate + ", status=" + status + "]";
-	}
-	
-	
-	
-
-	
-	
-	
-	
 }

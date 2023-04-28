@@ -11,6 +11,7 @@
 	.commentDiv{
 		border: 2px double orange;
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -197,6 +198,11 @@
 		//댓글목록 뿌려주기 -- 처음에 글내용 보기로 오면 댓글 보여주기
 		commentList();
 	});
+=======
+</style>
+<script>
+
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 </script>
 	<!-- Header-->
 	<header class="bg-tomato py-5">
@@ -210,6 +216,7 @@
 	
 <div class="container">	
 	<h1>여기에 댓글구현</h1>
+<<<<<<< HEAD
 	
 	<div class="commentDiv">
 		<ul id="commentList">		
@@ -223,4 +230,13 @@
 	</div>
 	
 
+=======
+	<div class="commentDiv">
+		<form method="post" id="commentForm">
+			<input type="hidden" name="no" value="${dto.off_no}"/> <!-- 원글 번호 -->
+			<textarea name="coment" id="coment"></textarea>
+			<button id="commentInsert">댓글등록</button>
+		</form>
+	</div>
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 </div>

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.AdReportPagingVO;
+import com.t09ether.home.dto.AdUserPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.service.AdminService;
 
 @RestController
@@ -30,7 +32,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adUser")
-	public ModelAndView adUser(AdminPagingVO vo) {
+	public ModelAndView adUser(AdUserPagingVO vo) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -47,8 +49,18 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adReport")
-	public ModelAndView adReport() {
+	public ModelAndView adReport(AdReportPagingVO vo) {
+		
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.rpTotalRecord(vo));
+		//System.out.println(vo.toString());
+		
+		List<ReportDTO> list = service.reportPageSelect(vo);
+		//System.out.println(list);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list", list);
 		mav.setViewName("admin/adReport");
 		return mav;
 	}

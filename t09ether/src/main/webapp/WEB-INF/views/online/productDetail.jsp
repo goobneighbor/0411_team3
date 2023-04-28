@@ -131,7 +131,6 @@ function listView(result) {
                 <!-- Featured blog post-->
                 <div class="card mb-6">
                     <img src="${dto.image }" />
-                    
                 </div>
 
             </div>

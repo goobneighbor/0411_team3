@@ -3,9 +3,22 @@
 <style>
 	#view>li{
 			padding:5px 0;
+<<<<<<< HEAD
+=======
 			border-bottom:1px solid #ddd;
 			list-style-type: none;
 		}
+	.boardSubMenu{
+		background: #fff;
+		padding:50px 0;
+	}
+	#commentList>li{
+			padding:10px;
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+			border-bottom:1px solid #ddd;
+			list-style-type: none;
+		}
+<<<<<<< HEAD
 	.boardSubMenu{			
 		background: #fff;
 		padding:0 0 10px 30px;;
@@ -19,6 +32,12 @@
 		padding: 10px;
 		
 	}	
+=======
+	#coment{
+			width:50%;
+			height:80px;
+		}
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	.bg-tomato py-5{
 		margin:0;
 		padding:0;
@@ -27,7 +46,18 @@
 	.jr{
 		list-style-type: none;
 	}
+<<<<<<< HEAD
 	
+=======
+	.join{
+		width:110px;
+		border:1px solid tomato;
+		border-radius: 10px;
+		background-color : yellow;	
+		float:left;	
+		
+	}
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	.report{
 		width:100px;
 		border:1px solid tomato;
@@ -39,6 +69,7 @@
 	}
 	#offlineJoin{
 		margin:0 auto;
+<<<<<<< HEAD
 		text-align: center;
 	}
 	#joinButton{
@@ -48,6 +79,14 @@
 </style>
 <script>
 	
+=======
+		float:left;
+		text-align: center;
+	}
+	
+</style>
+<script>
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	function offlineDel(){
 		if(confirm("정말 삭제하시겠습니까?")){
 			location.href="offlineDel?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>";
@@ -57,7 +96,12 @@
 	$(function(){
 		var userid = '<%=session.getAttribute("logId")%>';	
 		console.log("userid="+userid);
+<<<<<<< HEAD
 		$("#joinButton").click(function(){			
+=======
+		$("#joinButton").click(function(){
+			
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 				if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
 					//아니오 -> 참여안함
 					alert("공동구매 참여가 취소되었습니다.");
@@ -65,12 +109,23 @@
 				}else{//예 -> 참여함
 					if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
 						alert("정원이 가득 찼습니다");
+<<<<<<< HEAD
 						return false;
 					}	
 				}
 			});
 		});
 
+=======
+						//return false;
+					}	
+				}
+			}
+		});
+			
+		
+	});
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 </script>
 <div class="container">
 	<!-- Header-->
@@ -84,10 +139,17 @@
 	<ul id="view">
 		<li>번호 : ${dto.off_no}</li>	
 		<li>제목 : ${dto.off_subject}</li>
+<<<<<<< HEAD
 		<li>처리상태 : 
 			<c:choose>
 				<c:when test="${dto.status==1}">진행중</c:when>
 				<c:otherwise>마감</c:otherwise>
+=======
+		<li>처리상태 : (status=${dto.status})
+			<c:choose>
+				<c:when test="${dto.status==1}">진행중</c:when>
+				<c:otherwise>종료</c:otherwise>
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 			</c:choose>
 		</li>	
 		<li>등록일 : ${dto.writedate}</li>	
@@ -102,6 +164,7 @@
 		<li class="report"><a href="">신고하기</a></li>
 			
 	</ul>
+<<<<<<< HEAD
 	
 	<c:if test="${logStatus=='Y'&& dto.status==1}">
 		<form method="post" action="offlineJoin" id="offlineJoin">
@@ -117,6 +180,15 @@
 	</c:if>
 	
 	<br/>	
+=======
+	<form method="post" action="offlineJoin" id="offlineJoin">
+			<input type="hidden" name="off_no" value="${dto.off_no}"/>
+			<c:if test="${logStatus=='Y'}">
+			<input type="submit" value="지금참여하기" id="joinButton"/>	
+			</c:if>
+	</form>
+			
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	<div class="boardSubMenu">		
 		<!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
 		<c:if test="${logId==dto.userid}">

@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: rnsjt
+=======
+Built-By: ioq50
+>>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 Build-Jdk: 11.0.17
 Created-By: Maven Integration for Eclipse
 

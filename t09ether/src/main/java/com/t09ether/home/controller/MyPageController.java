@@ -36,7 +36,7 @@ public class MyPageController {
 	public ModelAndView myOrder(AdminPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String userid = (String)session.getAttribute("logId");
-		vo.setTotalRecord(service.totalRecord(vo));
+		vo.setTotalRecord(service.totalOrdRecord(vo));
 		//System.out.println(vo.toString());
 		
 		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
@@ -47,6 +47,7 @@ public class MyPageController {
 		mav.setViewName("mypage/myOrder");
 		return mav;
 	}
+	
 	
 	@GetMapping("/myPost")
 	public ModelAndView myPost(AdminPagingVO vo) {

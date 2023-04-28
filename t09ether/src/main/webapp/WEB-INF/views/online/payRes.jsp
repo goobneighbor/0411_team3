@@ -92,32 +92,36 @@ $(function(){
 	
 	switch (rank) {
 	  case 2:
-	    discount_amount = parseInt(final_amount * 0.01);
-	    var sum = final_amount - discount_amount;
-	    final_amount = sum;
-	    document.getElementById("discount_amount").value = discount_amount;
-	    document.getElementById("final_amount").value = sum;
+		  discount_amount = Math.floor(final_amount * 0.01);
+		  var discount = parseInt(discount_amount/10)*10;
+		  var sum = final_amount - discount;
+		  final_amount = sum;
+		  document.getElementById("discount_amount").value = discount;
+		  document.getElementById("final_amount").value = sum;
 	    break;
 	  case 3:
-	    discount_amount = parseInt(final_amount * 0.02);
-	    var sum = parseInt(final_amount - discount_amount);
-	    final_amount = sum;
-	    document.getElementById("discount_amount").value = discount_amount;
-	    document.getElementById("final_amount").value = sum;
+		  discount_amount = Math.floor(final_amount * 0.02);
+		  var discount = parseInt(discount_amount/10)*10;
+		  var sum = final_amount - discount;
+		  final_amount = sum;
+		  document.getElementById("discount_amount").value = discount;
+		  document.getElementById("final_amount").value = sum;
 	    break;
 	  case 4:
-	    discount_amount = parseInt(final_amount * 0.03);
-	    var sum = parseInt(final_amount - discount_amount);
-	    final_amount = sum;
-	    document.getElementById("discount_amount").value = discount_amount;
-	    document.getElementById("final_amount").value = sum;
+		  discount_amount = Math.floor(final_amount * 0.03);
+		  var discount = parseInt(discount_amount/10)*10;
+		  var sum = final_amount - discount;
+		  final_amount = sum;
+		  document.getElementById("discount_amount").value = discount;
+		  document.getElementById("final_amount").value = sum;
 	    break;
 	  case 5:
-	    discount_amount = parseInt(final_amount * 0.04);
-	    var sum = parseInt(final_amount - discount_amount);
-	    final_amount = sum;
-	    document.getElementById("discount_amount").value = discount_amount;
-	    document.getElementById("final_amount").value = sum;
+		  discount_amount = Math.floor(final_amount * 0.04);
+		  var discount = parseInt(discount_amount/10)*10;
+		  var sum = final_amount - discount;
+		  final_amount = sum;
+		  document.getElementById("discount_amount").value = discount;
+		  document.getElementById("final_amount").value = sum;
 	    break;
 	  default:
 	    // 실행할 코드

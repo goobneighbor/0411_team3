@@ -51,7 +51,7 @@
 		});
 		
 		//선택 삭제 버튼 클릭하면
-		$("#chooseDel").click(function(){
+		$("#nextUp").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
 			
 			var checkCount = 0;
@@ -62,11 +62,11 @@
 			});
 			
 			if(checkCount>0){
-				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
-					$("#delList").submit();
+				if(confirm(checkCount+'개의 내역을 다음으로 진행 하시겠습니까?')){
+					$("#ordNext").submit();
 				}
 			}else{
-				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
+				alert("한 개 이상의 내역을 선택 후 삭제 하세요.");
 			}
 		});
 		
@@ -84,7 +84,7 @@
 				
 				<section class="box">
 					<div class="table-wrapper">
-					<form method="post">
+					<form method="post" action="<%=request.getContextPath() %>/admin/ordMultiUp" id="ordNext">
 					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 					<c:if test="${vo.searchWord!=null}">
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
@@ -94,50 +94,61 @@
 						<table class="board_list">
 							<thead>
 								<tr>
+									<th>선택</th>
 									<th>글번호</th>
-									<th>주문번호</th>
+									<th>공구번호</th>
 									<th>상품코드</th>
 									<th>상품명</th>
 									<th>공구장</th>
-									<th>주문 개수</th>
+									<th>주문 상태</th>
 									<th>주문 날짜</th>
-									<th>취소</th>
 								</tr>
 							</thead>
 							
 							<tbody>
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
-								<c:if test="${bDTO.status<4}">
 								<tr>
+									<c:choose>
+										<c:when test="${bDTO.status==0 }">
+											<td></td>
+										</c:when>
+										<c:when test="${bDTO.status==5 }">
+											<td></td>
+										</c:when>
+										<c:otherwise>
+											<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+										</c:otherwise>
+									</c:choose>
 									<td>${recordNum}</td>
-									<td>${bDTO.ord_no }</td>
+									<td>${bDTO.on_no }</td>
 									<td>${bDTO.pro_code }</td>
 									<td>${bDTO.pro_name }</td>
 									<td>${bDTO.userid }</td>
-									<td>${bDTO.ord_count }</td>
-									<td>${bDTO.orderdate }</td>
 									<c:choose>
-									<c:when test="${bDTO.status==1 }">
-										<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
-									</c:when>
-									<c:otherwise>
-										<td></td>
-									</c:otherwise>
+										<c:when test="${bDTO.status==1 }">
+											<td>결제완료</td>
+										</c:when>
+										<c:when test="${bDTO.status==2 }">
+											<td>배송중</td>
+										</c:when>
+										<c:when test="${bDTO.status==3 }">
+											<td>배송완료</td>
+										</c:when>
+										<c:when test="${bDTO.status==4 }">
+											<td>만남완료</td>
+										</c:when>
 									</c:choose>
+									<td>${bDTO.orderdate }</td>
 								</tr>
-								</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
 							</c:forEach>
 							</tbody>
-							<!--<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>  -->
 						</table>
 					</form>
+					</div>
+					<div>
+						<input type="button" value="다음단계" id="nextUp"/>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -184,119 +195,6 @@
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search" id="search"/>
-						</form>
-					</div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</section>
-	<!-- Main -->
-	<section id="main" class="container">
-		<header>
-			<h2> </h2>
-			<p>완료 내역</p>
-		</header>
-		<div class="row">
-			<div class="col-12">
-				<!-- 주문내역 리스트 -->
-				
-				<section class="box">
-					<div class="table-wrapper">
-					<form method="post">
-					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
-					<c:if test="${vo.searchWord!=null}">
-						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
-						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
-					</c:if>
-				
-						<table class="board_list">
-							<thead>
-								<tr>
-									<th>글번호</th>
-									<th>주문번호</th>
-									<th>상품코드</th>
-									<th>상품명</th>
-									<th>공구장</th>
-									<th>주문 개수</th>
-									<th>주문 날짜</th>
-
-								</tr>
-							</thead>
-							
-							<tbody>
-							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
-							<c:forEach var="bDTO" items="${list}">
-								<c:if test="${bDTO.status==4}">
-								<tr>
-									<td>${recordNum}</td>
-									<td>${bDTO.ord_no }</td>
-									<td>${bDTO.pro_code }</td>
-									<td>${bDTO.pro_name }</td>
-									<td>${bDTO.userid }</td>
-									<td>${bDTO.ord_count }</td>
-									<td>${bDTO.orderdate }</td>
-								</tr>
-								</c:if>
-								<c:set var="recordNum" value="${recordNum-1}"/>	
-							</c:forEach>
-							</tbody>
-							<!--<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>  -->
-						</table>
-					</form>
-					</div>
-					<!-- 페이징 -->
-					<div id="wrapper"> 
-					<div class="paging_div"> 
-						<ul>
-							<!-- 이전 페이지 : nowPage를 기준으로 -->
-							<c:if test="${vo.nowPage==1}"><!-- 현재 페이지가 첫번째 페이지 일때 -->
-								<li></li>
-							</c:if>
-							<c:if test="${vo.nowPage>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
-								<li><a href="myOrder?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
-							</c:if>
-							<!-- 페이지 번호 -->
-							
-				         <c:forEach var="p" begin="${vo.startPageNum}" end="${vo.startPageNum+vo.onePageNumCount-1}">
-				            <c:if test="${p<=vo.totalPage}"><!-- 표시할 페이지 번호가 총 페이지 수보다 작거나 같을 때 페이지 번호 출력.-->
-				               <!-- 현재페이지 표시하기 -->
-				               <c:if test="${p==vo.nowPage}">
-				                  <li style="background:#ddd;">
-				               </c:if>
-				               <c:if test="${p!=vo.nowPage}">
-				                 <li>
-				               </c:if>
-				                  <a href="myOrder?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
-				                  </li>
-				            </c:if>
-				         </c:forEach>
-							
-							<!-- 다음 페이지 -->
-							<c:if test="${vo.nowPage<vo.totalPage}"><!-- 다음 페이지가 있을 때 -->
-								<li><a href="myOrder?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
-							</c:if>
-							<c:if test="${vo.nowPage==vo.totalPage}"><!-- 다음 페이지가 없을 때 -->
-								<li></li>
-							</c:if>
-						</ul>
-					</div>
-					
-					
-					<!--검색 -->
-					<div class ="searchDiv">
-						<form method="get" id="searchForm" action="myOrder">
-							<select name = "searchKey" id="searchKey">
-								<option value="userid">참가자</option>
-								<option value="orderdate">주문날짜</option>
-							</select>
-							<input type="text" name="searchWord" id="searchWord"/>
-							<input type="submit" value="Search"/>
 						</form>
 					</div>
 					</div>

@@ -19,6 +19,6 @@ public interface OnlineJoinService {
 	public int orderInsert(OrderDTO dto);
 	public int restUpdate(OrderDTO dto);
 	public int ordNoSelect(OrderDTO dto);
-	public int statusUpdate(OrderDTO dto);
+	public int statusUpdate(int on_no);
 	public List<OrderDTO> selectInfor(int on_no);
 }

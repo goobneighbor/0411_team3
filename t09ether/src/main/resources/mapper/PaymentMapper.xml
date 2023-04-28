@@ -21,7 +21,7 @@
 		update order09 set status=5 where ord_no=#{ord_no} or on_no=#{on_no}
 	</update>
 	<update id="prodetailUpdate">
-		update product_detail set status=2 where on_no=#{on_no}
+		update product_detail set status=0 where on_no=#{on_no}
 	</update>
 	<select id="masterSelect" resultType="String">
 		select distinct p.userid from product_detail p join order09 o on p.on_no=o.on_no and o.on_no=#{param1}

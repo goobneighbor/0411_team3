@@ -20,3 +20,4 @@ public interface PaymentService {
 	public int restCountSelect(int on_no);
 	public int restCountUpdate(@Param("newRest")int newRest, @Param("on_no")int on_no);
 }
+

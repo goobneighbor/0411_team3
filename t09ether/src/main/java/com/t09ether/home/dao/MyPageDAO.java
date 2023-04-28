@@ -18,8 +18,8 @@ public interface MyPageDAO {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	public int totalRecord(AdminPagingVO vo);
+	public int totalOrdRecord(AdminPagingVO vo);
 	public List<OrderDTO> pageSelect(@Param("vo")AdminPagingVO vo,@Param("totalPage") int totalPage, @Param("searchKey") String searchKey, @Param("searchWord") String searchWord,  @Param("userid")String userid, @Param("nowPage") int nowPage, @Param("onePageRecord") int onePageRecord, @Param("lastPageRecord") int lastPageRecord);
-	
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
 	

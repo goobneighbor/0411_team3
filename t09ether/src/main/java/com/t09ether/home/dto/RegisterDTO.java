@@ -106,7 +106,6 @@ public class RegisterDTO {
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
 	}
-	
 	public int getRank() {
 		return rank;
 	}

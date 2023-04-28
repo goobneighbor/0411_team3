@@ -65,13 +65,13 @@
 	$(function(){
 		$("#ord_amount").ready(function(){
 		    var num = document.getElementById("ord_amount").value
-		    num = Math.ceil(num);
+		    num = Math.floor(num/10)*10;
 		    document.getElementById("ord_amount").value = num;
 	    });
 		
 		$("#o_price").ready(function(){
 		    var num = document.getElementById("o_price").value
-		    num = Math.ceil(num);
+		    num = Math.floor(num/10)*10;
 		    document.getElementById("o_price").value = num;
 	    });
 		

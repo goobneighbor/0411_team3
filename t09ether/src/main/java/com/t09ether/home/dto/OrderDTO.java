@@ -1,5 +1,7 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
+
 public class OrderDTO {
 
    private int ord_no;
@@ -7,9 +9,11 @@ public class OrderDTO {
    private String userid;
    private int ord_count; //내가주문한상품수
    private int status;
+   private int pd_status; //product_detail 상태
 
 	
 	private int on_no;
+	private String writedate;
 	private String orderdate;
 //////////////////////////////////
 	//만들어낸 변수
@@ -40,6 +44,9 @@ public class OrderDTO {
 	private String addrdetail;
 	private String rank;
 	
+	
+	private List<Integer> on_noList;
+	private List<Integer> statusList;
 
 	
 	public int getOrd_no() {
@@ -72,6 +79,18 @@ public class OrderDTO {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getPd_status() {
+		return pd_status;
+	}
+	public void setPd_status(int pd_status) {
+		this.pd_status = pd_status;
+	}
+	public String getWritedate() {
+		return writedate;
+	}
+	public void setWritedate(String writedate) {
+		this.writedate = writedate;
 	}
 	public String getOrderdate() {
 		return orderdate;
@@ -211,9 +230,20 @@ public class OrderDTO {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
-
-
+	}
+	public List<Integer> getOn_noList() {
+		return on_noList;
+	}
+	public void setOn_noList(List<Integer> on_noList) {
+		this.on_noList = on_noList;
+	}
+	public List<Integer> getStatusList() {
+		return statusList;
+	}
+	public void setStatusList(List<Integer> statusList) {
+		this.statusList = statusList;
 	}   
+	
 }
 
 

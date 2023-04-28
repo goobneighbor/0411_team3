@@ -66,6 +66,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.boardSelect(no);
 	}
 
+	@Override
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
+	}
+
 	
 
 }

@@ -23,6 +23,8 @@
  	}
 </style>
 <script>
+
+
 $(function(){
 	$(document).on('click',"#onlineJoinForm", function(){
 		console.log($(this).parent().parent())

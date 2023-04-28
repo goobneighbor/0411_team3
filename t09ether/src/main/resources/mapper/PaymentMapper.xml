@@ -29,10 +29,6 @@
 	<select id="selfSelect" resultType="String">
 		select userid from order09 where ord_no=#{ord_no}
 	</select>
-	
-	
-	
-	
 	<update id="ordUpdateJoin">
 		update order09 set status=5 where ord_no=#{ord_no}
 	</update>

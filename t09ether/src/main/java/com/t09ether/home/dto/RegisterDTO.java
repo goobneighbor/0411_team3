@@ -1,7 +1,9 @@
 package com.t09ether.home.dto;
 
 public class RegisterDTO {
-
+	
+	private int rownum;
+	
 	private String userid;
 	private String userpwd;
 	private String username;
@@ -15,16 +17,22 @@ public class RegisterDTO {
 	private String zipcode;
 	private String addr;
 	private String addrdetail;
-	private String rank;
+	private int rank;
 	private String writedate;
 	private int report;
 	
 	@Override
 	public String toString() {
-		return "RegisterDTO [userid=" + userid + ", userpwd=" + userpwd + ", username="
+		return "RegisterDTO [rownum=" + rownum + ", userid=" + userid + ", userpwd=" + userpwd + ", username="
 				+ username + ", tel=" + tel + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email="
 				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
 				+ ", writedate=" + writedate + ", report=" + report + "]";
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	public String getUserid() {
 		return userid;
@@ -98,10 +106,10 @@ public class RegisterDTO {
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
 	}
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
-	public void setRank(String rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 	public String getWritedate() {

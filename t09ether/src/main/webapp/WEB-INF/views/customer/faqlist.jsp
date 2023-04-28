@@ -15,6 +15,7 @@
 	}
 	#uldesign li:nth-child(2) {
 		float:right;
+		width:70%;
 		
 	}
 	#uldesign li:nth-child(3) {
@@ -149,20 +150,20 @@
 			var params = $(this).parent().serialize(); // c_no=34&coment=test
 			var url ="/home/replyEdit";
 			
-			$.ajax({
-				url: url,
-				data: params,
-				type: "POST",
-				success : function(result) {
-					//console.log(result);
-					
-					//댓글목록 다시 뿌려주기
-					replyList();
-				},error : function(e) {
-					console.log(e.responseText);
-				}
-			});
-			
+			if(confirm("댓글을 수정하시겠습니까?")) {
+				$.ajax({
+					url: url,
+					data: params,
+					type: "POST",
+					success : function(result) {
+						//console.log(result);
+						//댓글목록 다시 뿌려주기
+						replyList();
+					},error : function(e) {
+						console.log(e.responseText);
+					}
+				});
+			}
 			return false;
 		});
 		//댓글 삭제

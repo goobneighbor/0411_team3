@@ -55,7 +55,6 @@ function kakaoLogout() {
 		 font-size:45px; 
 		 text-align:center;
 	}
-	
 	#wrapper {
 	  display: grid;
 	  place-items: center;
@@ -123,7 +122,7 @@ function kakaoLogout() {
 </style>
 
 <div class="container" id="wrapper">
-	<div id="item">
+	<div>
 	<section id="main" class="container" style="padding:0;">
 		<div style="margin:0 auto;">
 			<h2><a href="<%=request.getContextPath()%>">t09ether</a></h2><br/>

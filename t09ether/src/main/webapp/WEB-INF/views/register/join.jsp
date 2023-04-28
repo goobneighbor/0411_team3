@@ -169,7 +169,7 @@
 			<li><input type="text" name="addrdetail"/></li>
 
 			<!-- 등급 -->
-			<li><input type="hidden" name="rank" id="rank" value='admin'/><li>
+			<li><input type="hidden" name="rank" id="rank" value='0'/><li>
 			<!-- 신고당한횟수 -->
 			<li><input type="hidden" name="report" id="report" value="0"/><li>
 			<br/><br/>

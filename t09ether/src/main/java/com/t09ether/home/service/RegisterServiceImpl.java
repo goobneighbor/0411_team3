@@ -52,4 +52,11 @@ public class RegisterServiceImpl implements RegisterService {
 		return dao.idSearch(username, email);
 	}
 
+	@Override
+	public int rankSelect(String userid) {
+		return dao.rankSelect(userid);
+	}
+
+	
+	
 }

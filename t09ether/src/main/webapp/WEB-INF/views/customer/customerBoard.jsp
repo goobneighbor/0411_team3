@@ -51,7 +51,6 @@
 			<h2>고객 센터</h2>
 			<p>작은 목소리도 크게 귀담아 듣겠습니다.</p>
 		</header>
-
 		<div class="row">
 			<div class="col-12">
 				<section class="box">
@@ -111,8 +110,6 @@
 										</li>
 									</c:if>
 								</c:forEach>
-
-
 								<!-- 다음페이지 -->
 								<c:if test="${vo.nowPage==vo.totalPage}">
 									<!-- 현재페이지가 마지막일때 -->

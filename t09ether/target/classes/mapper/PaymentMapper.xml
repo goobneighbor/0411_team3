@@ -12,7 +12,7 @@
 		on p.pro_code=o.pro_code
 	</select>
 	<insert id="refundInsert">
-		insert into refund(refund_no, ord_no, refund_amount, refund_count) values(refund_no_sq.nextval, #{ord_no}, #{amount}, #{total_amount})
+		insert into refund(refund_no, ord_no, refund_amount, refund_count) values(refund_no_sq.nextval, #{ord_no}, #{amount}, #{ord_count})
 	</insert>
 	<delete id="payDelete">
 		delete from payment where pay_no=#{pay_no}
@@ -21,26 +21,17 @@
 		update order09 set status=5 where ord_no=#{ord_no} or on_no=#{on_no}
 	</update>
 	<update id="prodetailUpdate">
-		update product_detail set status=2 where on_no=#{on_no}
+		update product_detail set status=0 where on_no=#{on_no}
 	</update>
-	<select id="leaderSelect" resultType="String">
-		select userid from product_detail where on_no=#{on_no}
+	<select id="masterSelect" resultType="String">
+		select distinct p.userid from product_detail p join order09 o on p.on_no=o.on_no and o.on_no=#{param1}
 	</select>
-	<select id="selfSelect" resultType="String">
-		select userid from order09 where ord_no=#{ord_no}
+	<select id="paySubSelect" resultType="com.t09ether.home.dto.PaymentDTO">
+		select p.pay_no, p.final_amount, p.total_amount, o.ord_no, o.on_no, o.ord_count from payment p join order09 o on p.ord_no=o.ord_no and on_no=#{param1}
 	</select>
 	<update id="ordUpdateJoin">
 		update order09 set status=5 where ord_no=#{ord_no}
 	</update>
-	<select id="selectInfor" resultType="com.t09ether.home.dto.OrderDTO">
-		select r.userid, r.username, r.tel, r.email from registerinfo r join order09 o on r.userid=o.userid and o.on_no=${on_no}
-	</select>
-	<select id="ordNoSelect" resultType="Integer">
-		select ord_no from order09 where on_no=#{on_no}
-	</select>
-	<select id="payNoSelect" resultType="String">
-		select ord_no from order09 where ord_no=#{ord_no}
-	</select>
 	<select id="restCountSelect" resultType="int">
 		select rest_count from product_detail where on_no=#{on_no}
 	</select>

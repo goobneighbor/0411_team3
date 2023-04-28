@@ -44,4 +44,5 @@ public interface OnlineJoinDAO {
 	
 	//할인 가격으로 DB업데이트
 	public int updatePrice(@Param("finalNum")int finalNum, @Param("ord_on")int ord_no);
+
 }

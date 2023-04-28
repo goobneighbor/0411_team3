@@ -32,13 +32,19 @@
          where ${searchKey} like '%${searchWord}%'
       </if> 
    </select>
+   <select id="totalOrdRecord" resultType="int">
+      select count(ord_no) ord_no from order09 where status<![CDATA[< ]]>5
+      <if test="searchWord!=null">
+         and ${searchKey} like '%${searchWord}%'
+      </if> 
+   </select>
    <select id="pageSelect" resultType="com.t09ether.home.dto.OrderDTO">
    select * from
       (select * from
          (
             select o.ord_no, o.pro_code, p.pro_name, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
-            from order09 o join product_detail pd on o.on_no=pd.on_no and o.userid=#{userid} 
-            join product p on o.pro_code=p.pro_code 
+            from order09 o join product_detail pd on o.on_no=pd.on_no  
+            join product p on o.pro_code=p.pro_code and o.userid=#{userid}
             <if test="searchWord!=null">
                where ${searchKey} like '%${searchWord}%' 
             </if>
@@ -62,7 +68,6 @@
            </when>
         </choose>
    </select>
-   
    <!-- 오프라인 공구 게시물 페이징  -->
    <select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
    select * from

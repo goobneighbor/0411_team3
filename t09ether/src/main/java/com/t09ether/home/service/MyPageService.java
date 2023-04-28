@@ -18,8 +18,8 @@ public interface MyPageService {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	public int totalRecord(AdminPagingVO vo);
+	public int totalOrdRecord(AdminPagingVO vo);
 	public List<OrderDTO> pageSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
-	
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
 	

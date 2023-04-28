@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
+	
 </script>
 <style>
 	.pagingDiv li{
@@ -49,7 +50,7 @@
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
 	                                <div>총&nbsp;${proDTO.pro_price }&nbsp;원</div>
-	                                <div>개당&nbsp;${ Math.ceil(proDTO.pro_price/proDTO.pro_total) }&nbsp;원</div>
+	                                <div>개당&nbsp;${ Math.floor(proDTO.pro_price/proDTO.pro_total) }&nbsp;원</div>
 	                            </div>
 	                        </div>
 	                        <!-- Product actions-->

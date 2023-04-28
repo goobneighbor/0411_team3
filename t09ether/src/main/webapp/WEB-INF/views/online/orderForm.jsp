@@ -5,27 +5,28 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 #main, #finalPayment{
-	list-style-type:none;
-	float:center;
-	text-align:left; 
-	margin:0 auto;
-	padding:10px;
-	width:80%;
+   list-style-type:none;
+   float:center;
+   text-align:left; 
+   margin:0 auto;
+   padding:10px;
+   width:80%;
 }
 #finalPayment li{
-	margin:0 auto;
-	padding:5px;
-	float:center;
-	font-size:1em;
-	color:#646464;
-	
-	/* line-height:10px; */
+   margin:0 auto;
+   padding:5px;
+   float:center;
+   font-size:1.2em;
+   color:#646464;
+   
+   /* line-height:10px; */
+
 }
 #finalPayment li>:nth-child(2n+1){
     float:center;
     font-size:1em;
     padding:10px;
-	margin:5px;
+   margin:5px;
 
 }
 #finalPayment li:last-child{
@@ -33,7 +34,7 @@
 }   
 
 #username, #rank{
-	font-weight:bold;
+   font-weight:bold;
 }
 .finalDiv{
 	border:3px;
@@ -44,17 +45,18 @@
 </style>
 
 <script>
-window.name="orderForm";
+   window.name="orderForm"
 
-		/* if (!isLogin) {
+
+      /* if (!isLogin) {
             alert("로그인 후 이용할 수 있습니다.");
             return;
         } */
         
-
+          
         
-$(function(){      
-	var IMP = window.IMP; 
+$(function(){ 
+   var IMP = window.IMP; 
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
@@ -68,6 +70,7 @@ $(function(){
     var on_no = parseInt(document.getElementById("on_no").value);
     
     var image = document.getElementById("image").value;
+
 	var ord_count = total_amount = document.getElementById("ord_count").value;
 	
 	var rank = document.getElementById("rank").value;
@@ -122,7 +125,7 @@ $(function(){
             <%-- if (rsp.success) {
                 //form의 action
                 $("#payment_form").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
-             	 //form에 정보담아 submit
+                 //form에 정보담아 submit
                 document.getElementById('payment_form').submit();
              } else {
                  var msg = '결제에 실패하였습니다.';
@@ -130,85 +133,86 @@ $(function(){
                  alert(msg);
              } --%>
             if (rsp.success) {
-        		let data = {
-        				imp_uid:rsp.imp_uid,
-        				final_amount:rsp.paid_amount,
-        				r_merchant_uid:rsp.merchant_uid,
-        				discount_amount:discount_amount,
-        				ord_no:ord_no,
-        				total_amount:total_amount
-        				
-        			};
-            	console.log(data);
+               
+              let data = {
+                    imp_uid:rsp.imp_uid,
+                    final_amount:rsp.paid_amount,
+                    r_merchant_uid:rsp.merchant_uid,
+                    discount_amount:discount_amount,
+                    ord_no:ord_no,
+                    total_amount:total_amount
+                    
+                 };
+
                     //결제 검증
                     $.ajax({
-        				type:"POST",
-        				url:"<%=request.getContextPath() %>/pay/verifyIamport",
-        				data: JSON.stringify(data),        			  
-        				contentType:"application/json; charset=utf-8",
-        				dataType:"json",
-        				success: function(result) {
-        					console.log(result);
-        					alert("결재 성공");
-        					$("#payment_form").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
-        	             	 //form에 정보담아 submit
-        	                document.getElementById('payment_form').submit();
-        					//self.close();
-        				},
-        				error: function(result){
-        					alert("결재 실패");
-        					console.log(result);
-        					orderDelete();
-        				}
-        			});
-        			
+                    type:"POST",
+                    url:"<%=request.getContextPath() %>/pay/verifyIamport",
+                    data: JSON.stringify(data),                   
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"json",
+                    success: function(result) {
+                       console.log(result);
+                       alert("결재 성공");
+                       $("#payment_form").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
+                            //form에 정보담아 submit
+                           document.getElementById('payment_form').submit();
+                       //self.close();
+                    },
+                    error: function(result){
+                       alert("결재 실패");
+                       console.log(result);
+                       orderDelete();
+                    }
+                 });
+                 
                 } else {// 결제 실패 시 로직
-        			alert("결재 실패");
-        			//alert(rsp.error_msg);
-        			console.log(rsp);         
-        			orderDelete();
+                 alert("결재 실패");
+                 //alert(rsp.error_msg);
+                 console.log(rsp);         
+                 orderDelete();
                 }
 
         });
     }
     
     function orderDelete(){
-    	let data = {
-    			pro_name:pro_name,
-    			image:image,
-    			ord_count:ord_count,
-    			final_amount:final_amount,
-    			discount_amount:discount_amount,
-    			total_amount:total_amount,
-    			ord_no:ord_no,
-    			rank:rank,
-    			on_no:on_no,
-    			username:username,
-    			tel:tel
-    			/* email:email,
-    			zipcode:zipcode,
-    			addr:addr,
-    			addrdetail:addrdetail */
-			
-			};
+       let data = {
+             pro_name:pro_name,
+             image:image,
+             ord_count:ord_count,
+             final_amount:final_amount,
+             discount_amount:discount_amount,
+             total_amount:total_amount,
+             ord_no:ord_no,
+             rank:rank,
+             on_no:on_no,
+             username:username,
+             tel:tel
+             /* email:email,
+             zipcode:zipcode,
+             addr:addr,
+             addrdetail:addrdetail */
+         
+         };
             //주문 취소
             $.ajax({
-				type:"POST",
-				url:"<%=request.getContextPath() %>/order/orderDeleteJoin",
-				data: JSON.stringify(data),        			  
-				contentType:"application/json; charset=utf-8",
-				dataType:"json",
-				success: function(result) {
-					console.log(result);
-					alert("취소 성공");
-					location.href="/home/product/onlineHome";
-					//self.close();
-				},
-				error: function(result){
-					alert("취소 실패");
-					console.log(result);
-				}
-			});
+            type:"POST",
+            url:"<%=request.getContextPath() %>/order/orderDeleteJoin",
+            data: JSON.stringify(data),                   
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(result) {
+               console.log(result);
+               alert("취소 성공");
+               location.href="/home/product/onlineHome";
+               //self.close();
+            },
+            error: function(result){
+               alert("취소 실패");
+               console.log(result);
+            }
+         });
     }
     
     function insertDB(){
@@ -222,7 +226,7 @@ $(function(){
     
 });
 </script>
-		
+
 	<section id="main" class="container">
 		<header>
 			<h2>주문하기</h2>
@@ -293,3 +297,4 @@ $(function(){
 		</div>
 		
 	</section>
+

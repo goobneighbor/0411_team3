@@ -148,12 +148,13 @@ public class OnlineController extends SmsSend {
 		dto.setPro_code(pdto.getPro_code());
 		int restNum = dto.getRest_count();
 		
-		//주문DB등록 할인가격으로 update
-		int finalNum = service.finalSelect(dto.getOrd_no());
-		service.updatePrice(finalNum, dto.getOrd_no());
-				
+		/*
+		 * //주문DB등록 할인가격으로 update int finalNum = service.finalSelect(dto.getOrd_no());
+		 * service.updatePrice(finalNum, dto.getOrd_no());
+		 */
 		if(restNum==0) {
-			//product_detail status update
+
+			//모든 공구참여자 status update
 			service.statusUpdate(dto.getOn_no());
 			//모든 공구참여자 register정보
 			List<OrderDTO> list = service.selectInfor(dto.getOn_no());
@@ -163,8 +164,10 @@ public class OnlineController extends SmsSend {
 				String username = odto.getUsername();
 				System.out.println(tel);
 				//문자보내기
-				String content = "["+username+"]님, 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요![t09ther]";
-				//super.send_msg(tel, username, content);
+				String content = "["+username+"]님, 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요![t09ether]";
+
+				super.send_msg(tel, username, content);
+
 			}
 			
 		}

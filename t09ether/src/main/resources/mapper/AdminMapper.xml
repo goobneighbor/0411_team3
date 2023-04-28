@@ -9,6 +9,43 @@
 			where ${searchKey} like '%${searchWord}%'
 		</if> 
 	</select>
+	<select id="totalOrderRecord" resultType="int">
+		select count(on_no) totalRecord from product_detail where status<![CDATA[> ]]>1
+		<if test="searchWord!=null">
+			and ${searchKey} like '%${searchWord}%'
+		</if> 
+	</select>
+	<select id="mgtPageSelect" resultType="com.t09ether.home.dto.OrderDTO">
+   select * from
+      (select * from
+         (
+            select pd.on_no, pd.pro_code, p.pro_name, pd.userid, pd.status as pd_status,o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate,to_char(pd.writedate, 'MM-DD HH:MI') writedate from product_detail pd join product p on pd.pro_code=p.pro_code and pd.status=2 join order09 o on pd.on_no=o.on_no and pd.userid=o.userid 
+            <if test="searchWord!=null">
+               where ${searchKey} like '%${searchWord}%' 
+            </if>
+            order by on_no desc 
+         )
+      <![CDATA[ 
+           where rownum<=${nowPage*onePageRecord} order by on_no asc 
+           ]]>
+           )
+           
+        <choose>
+           <when test="nowPage!=totalPage">   
+              <![CDATA[
+              where rownum<=${onePageRecord} order by on_no desc 
+              ]]>
+           </when>
+           <when test="nowPage==totalPage">
+              <![CDATA[
+              where rownum<=${lastPageRecord} order by on_no desc 
+              ]]>           
+           </when>
+        </choose>
+   </select>
+   <update id="ordMultiUpdate">
+   		update product_detail set status=status+1 where on_no=#{on_no}
+   </update>
 	<select id="pageSelect" resultType="com.t09ether.home.dto.RegisterDTO">
 	select * from
 		(select * from

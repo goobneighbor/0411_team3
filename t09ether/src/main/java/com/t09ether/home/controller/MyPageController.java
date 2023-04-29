@@ -61,7 +61,7 @@ public class MyPageController {
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
-		mav.addObject("list", list);	
+		mav.addObject("list", list);
 		mav.setViewName("mypage/myPost");
 		return mav;
 	}

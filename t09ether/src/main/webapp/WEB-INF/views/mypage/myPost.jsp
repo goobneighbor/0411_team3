@@ -117,7 +117,6 @@
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 					</c:if>
-				
 						<table class="board_list">
 							<thead>
 								<tr>

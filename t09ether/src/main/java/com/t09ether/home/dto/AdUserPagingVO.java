@@ -2,7 +2,7 @@ package com.t09ether.home.dto;
 
 public class AdUserPagingVO {
 	private int nowPage = 1; // 현재 페이지
-	private int onePageRecord=5; // 한 페이지에 표시할 레코드 수
+	private int onePageRecord=4; // 한 페이지에 표시할 레코드 수
 	private int totalRecord; // 총 레코드 수
 	private int totalPage; // 총 페이지 수
 	
@@ -15,12 +15,14 @@ public class AdUserPagingVO {
 	private String searchKey;
 	private String searchWord;
 	
+	private String userid;	
+	
 	@Override
 	public String toString() {
-		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
+		return "AdUserPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
+				+ totalRecord + ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
 				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
-				+ searchWord + "]";
+				+ searchWord + ", userid=" + userid + "]";
 	}
 	
 	public int getNowPage() {
@@ -104,4 +106,13 @@ public class AdUserPagingVO {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	
 }

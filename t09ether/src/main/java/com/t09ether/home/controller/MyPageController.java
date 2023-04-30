@@ -37,6 +37,8 @@ public class MyPageController {
 	public ModelAndView myOrder(AdUserPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String userid = (String)session.getAttribute("logId");
+		
+		vo.setUserid((String)session.getAttribute("logId"));
 		vo.setTotalRecord(service.totalRecord(vo));
 		//System.out.println(vo.toString());
 		

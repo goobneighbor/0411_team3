@@ -45,28 +45,35 @@
 		});
 		
 		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
-		$("#allCheck").click(function(){
-			$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
+		//$("#allCheck").click(function(){
+		//	$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
 			
-		});
+		//});
+		
+		$('input[type="checkbox"][name="on_no"]').click(function(){
+			if($(this).prop('checked')){
+				$('input[type="checkbox"][name="on_no"]').prop('checked',false);
+				$(this).prop('checked',true);
+    		}
+   		});
 		
 		//선택 삭제 버튼 클릭하면
 		$("#nextUp").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
 			
 			var checkCount = 0;
-			$(".board_list input[name=noList]").each(function(idx, obj){
+			$(".board_list input[name=on_no]").each(function(idx, obj){
 				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
 					checkCount++;
 				}
 			});
 			
 			if(checkCount>0){
-				if(confirm(checkCount+'개의 내역을 다음으로 진행 하시겠습니까?')){
+				if(confirm('해당 내역을 다음 주문 상태로 진행 하시겠습니까?')){
 					$("#ordNext").submit();
 				}
 			}else{
-				alert("한 개 이상의 내역을 선택 후 삭제 하세요.");
+				alert("내역을 선택 후 진행 하세요.");
 			}
 		});
 		
@@ -110,14 +117,14 @@
 							<c:forEach var="bDTO" items="${list}">
 								<tr>
 									<c:choose>
-										<c:when test="${bDTO.status==0 }">
+										<c:when test="${bDTO.status==4 }">
 											<td></td>
 										</c:when>
 										<c:when test="${bDTO.status==5 }">
 											<td></td>
 										</c:when>
 										<c:otherwise>
-											<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+											<td><input type="checkbox" name="on_no" value="${bDTO.on_no}"/></td>
 										</c:otherwise>
 									</c:choose>
 									<td>${recordNum}</td>
@@ -145,10 +152,10 @@
 							</c:forEach>
 							</tbody>
 						</table>
-					</form>
-					</div>
 					<div>
-						<input type="button" value="다음단계" id="nextUp"/>
+					<input type="button" value="다음단계" id="nextUp"/>
+					</div>
+					</form>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -190,7 +197,7 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myOrder">
 							<select name = "searchKey" id="searchKey">
-								<option value="userid">참가자</option>
+								<option value="userid">공구장</option>
 								<option value="orderdate">주문날짜</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>

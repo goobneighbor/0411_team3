@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
@@ -33,17 +34,21 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myOrder")
-	public ModelAndView myOrder(AdminPagingVO vo, HttpSession session) {
+	public ModelAndView myOrder(AdminPagingVO vo, AdminOrderPagingVO vo2,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String userid = (String)session.getAttribute("logId");
-		vo.setTotalRecord(service.totalOrdRecord(vo));
+		vo.setTotalRecord(service.totalOrdRecord(vo,vo.getSearchKey(), vo.getSearchWord(),userid));
+		vo2.setTotalRecord(service.totalOrdSucRecord(vo2, vo2.getSearchKey2(), vo2.getSearchWord2(), userid));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OrderDTO> list = service.pageOrdSelect(vo, vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2, vo2.getTotalPage2(), vo2.getSearchKey2(), vo2.getSearchWord2(), userid, vo2.getNowPage2(), vo2.getLastPageRecord2(), vo2.getOnePageRecord2());
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
-		mav.addObject("list", list);		
+		mav.addObject("vo2", vo2);
+		mav.addObject("list", list);
+		mav.addObject("list2",list2);
 		mav.setViewName("mypage/myOrder");
 		return mav;
 	}

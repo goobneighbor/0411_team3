@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
@@ -67,10 +68,26 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int totalOrdRecord(AdminPagingVO vo) {
-		return dao.totalOrdRecord(vo);
+	public int totalOrdRecord(AdminPagingVO vo, String searchKey, String searchWord, String userid) {
+		return dao.totalOrdRecord(vo, searchKey, searchWord, userid);
 	}
 
-	
+	@Override
+	public int totalOrdSucRecord(AdminOrderPagingVO vo2, String searchKey2, String searchWord2, String userid) {
+		return dao.totalOrdSucRecord(vo2, searchKey2, searchWord2, userid);
+	}
 
+	@Override
+	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord,
+			String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.pageOrdSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	}
+
+	@Override
+	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2, int totalPage2, String searchKey2,
+			String searchWord2, String userid, int nowPage2, int onePageRecord2, int lastPageRecord2) {
+		return dao.pageOrdSucSelect(vo2, totalPage2, searchKey2, searchWord2, userid, nowPage2, onePageRecord2, lastPageRecord2);
+	}
+	
+	
 }

@@ -42,7 +42,7 @@
 		
 	</update>
 	<update id="statusUpdate">
-		update order09 set status=2 where on_no=${on_no}
+		update product_detail set status=2 where on_no=${on_no}
 	</update> 
 	<select id="selectInfor" resultType="com.t09ether.home.dto.OrderDTO">
 		select r.userid, r.username, r.tel, r.email from registerinfo r join order09 o on r.userid=o.userid and o.on_no=${on_no}

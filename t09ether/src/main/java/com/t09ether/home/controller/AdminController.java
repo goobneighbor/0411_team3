@@ -103,24 +103,32 @@ public class AdminController {
 	
 	@PostMapping("/ordMultiUp")
 	public ModelAndView boardMultiDel(OrderDTO dto, AdminPagingVO vo) {
-		
-//		List<Integer> status = dto.getStatusList();
-//		for(int i=0; i<status.size(); i++) {
-//			if(status.get(i)>0 && status.get(i)<5) {
-//				status.set(i, status.get(i)+1);
-//			}
-//		}
-//		dto.getOn_noList()		
-		int result = service.ordMultiUpdate(dto.getOn_no()); //주문 상태 업데이트
-		
-		ModelAndView  mav =  new ModelAndView();
-		mav.addObject("nowPage", vo.getNowPage());
-		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {
-			mav.addObject("searchKey", vo.getSearchKey());
-			mav.addObject("searchWord", vo.getSearchWord());	
-		}
-		mav.setViewName("redirect:myOrderorigin");
-		return mav;
+	    ModelAndView mav = new ModelAndView();
+	    System.out.println(dto.getOn_no());
+	    mav.addObject("nowPage", vo.getNowPage());
+	    if (vo.getSearchWord() != null && !vo.getSearchWord().equals("")) {
+	        mav.addObject("searchKey", vo.getSearchKey());
+	        mav.addObject("searchWord", vo.getSearchWord());
+	    }
+
+	    try {
+	        if (dto.getStatus() < 4) {
+	            int result = service.ordMultiUpdate(dto.getOn_no()); //주문 상태 업데이트
+	            if(result>0) {
+		            mav.addObject("errorMsg", "주문상태 업데이트 성공");
+		            mav.setViewName("admin/adOrdStatus");
+	            }else {
+	            	mav.addObject("errorMsg", "주문상태 업데이트 실패");
+		            mav.setViewName("admin/adOrdStatus");
+	            }
+	        }
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	        mav.addObject("errorMsg", "주문상태 업데이트 실패");
+	        mav.setViewName("admin/adOrdStatus");
+	    }
+
+	    return mav;
 	}
 	
 }

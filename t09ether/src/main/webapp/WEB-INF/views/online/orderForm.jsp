@@ -20,23 +20,33 @@
    color:#646464;
    
    /* line-height:10px; */
+
 }
 #finalPayment li>:nth-child(2n+1){
     float:center;
-    font-size:1.2em;
+    font-size:1em;
     padding:10px;
    margin:5px;
 
 }
-   
+#finalPayment li:last-child{
+   font-size:1.4em;
+}   
 
 #username, #rank{
    font-weight:bold;
+}
+.finalDiv{
+   border:3px;
+   border-coloer:#646464;
+   color:#646464;
+   border-radius:20px;
 }
 </style>
 
 <script>
    window.name="orderForm"
+
 
       /* if (!isLogin) {
             alert("로그인 후 이용할 수 있습니다.");
@@ -50,19 +60,56 @@ $(function(){
     IMP.init("imp01658864"); 
     
     var pro_name = document.getElementById("pro_name").value;
-    var all_amount = document.getElementById("final_amount").value;;
+   
     var email = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var tel = document.getElementById("tel").value;
 
-    var discount_amount = parseInt(document.getElementById("discount_amount").value);
+    var discount_amount = discountAmount;
     var ord_no = parseInt(document.getElementById("ord_no").value);
     var on_no = parseInt(document.getElementById("on_no").value);
     
     var image = document.getElementById("image").value;
+
    var ord_count = total_amount = document.getElementById("ord_count").value;
-   var final_amount = document.getElementById("final_amount").value;
+   
    var rank = document.getElementById("rank").value;
+   
+   if(${dto.rank > 1}){
+      firstCount = setnum('firstnum', 'first_count', 'first', 'firstfin');
+      discountAmount = setnum('discountnum', 'discount_amount', 'discount', 'discountfin');
+      
+      function setnum(a,b,c,d){
+         var a = document.getElementById(b).value;
+         a = Math.floor(a/10)*10;
+         e = a.toLocaleString()
+          document.getElementById(b).value = e;
+         document.getElementById(c).innerHTML = e;
+         document.getElementById(d).innerHTML = e;
+         console.log(a);
+         
+         return a
+      }
+   
+   }else{
+      
+      var firstCount= document.getElementById('first_count').value; 
+      firstCount = Math.floor(firstCount/10)*10; 
+      var firstView = firstCount.toLocaleString() 
+       document.getElementById('first_count').value = firstView; 
+      var discountAmount = parseInt(document.getElementById('discount_amount').value);
+   }
+
+   var finalnum = firstCount - discountAmount;
+    console.log(firstCount);
+    console.log(discountAmount);
+    console.log(finalnum);
+   document.getElementById('final_amount').value = finalnum;
+   finalnum=finalnum.toLocaleString()
+   document.getElementById('final').innerHTML = finalnum;
+   
+   var final_amount = document.getElementById("final_amount").value;
+   var all_amount = document.getElementById("final_amount").value;
    
     function requestPay() {
         IMP.request_pay({
@@ -96,6 +143,7 @@ $(function(){
                     total_amount:total_amount
                     
                  };
+
                     //결제 검증
                     $.ajax({
                     type:"POST",
@@ -167,6 +215,9 @@ $(function(){
          });
     }
     
+    function insertDB(){
+       
+    }
     
     $("#lastsubmit").click(function(){
        requestPay();
@@ -175,8 +226,7 @@ $(function(){
     
 });
 </script>
-;
-      
+
    <section id="main" class="container">
       <header>
          <h2>주문하기</h2>
@@ -201,12 +251,28 @@ $(function(){
                            <li>수량</li>
                            <li><input type="text" name="ord_count" id="ord_count" value="${dto.ord_count }" readonly/></li>
                            <li>금액</li>
-                           <li><input type="text" name="first_count" id="first_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count }" readonly/></li>
-                        <li>총금액 * 할인율 = 할인금액</li>
-                        <li><input type="text" name="discount_amount" id="discount_amount" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count } * ${logRank }% = ${Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li>
-                        <li>총금액 - 할인금액 = 최종금액</li>
-                        <li><input type="text" name="final_count" id="final_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count } - ${Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) } = ${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count - Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li>
+                           <li><input type="text" name="first_count" id="first_count" value="${(pdto.pro_price/pdto.pro_total)*dto.ord_count }" readonly/></li>
+                        <c:choose>
+                           <c:when test = "${dto.rank > 1}">
+                              <li>총금액 * 할인율 = 할인금액</li>
+                              <li><div><p><span id="first">총금액</span> * ${dto.rank-1 }% = <span id="discount">할인금액</span></p></div>
+                                 <input type="hidden" name="discount_amount" id="discount_amount" value="${pdto.pro_price/pdto.pro_total*dto.ord_count*(dto.rank-1)*0.01 }"/></li>
+                              <li>총금액 - 할인금액 = 최종금액</li>
+                              <li><div class="finalDiv"><p><span id="firstfin">총금액</span>  -  <span id="discountfin">할인금액</span>  =  <span id="final">최종금액</span> 원</p></div>
+                                 <%-- <input type="text" name="final_count" id="final_count" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count - Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }" readonly/></li> --%>
+                           </c:when>
+                           <c:otherwise>
+                              <li></li>
+                              <li><div><p>할인이 적용되지 않는 등급입니다!<br/>공구장이되거나 리뷰를 써서 등급을 올리세요!<div><p>
+                                 <input type="hidden" name="discount_amount" id="discount_amount" value="0"/></li>
+                              </li>
+                              <li>최종금액</li>
+                              <li><div class="finalDiv"><p><span id="final">최종금액</span> 원</p></div></li>
+                           </c:otherwise>
+                        
+                        </c:choose>
                         <input type="hidden" id="final_amount" name="final_amount" value="${Math.ceil(pdto.pro_price/pdto.pro_total)*dto.ord_count - Math.ceil(pdto.pro_price/pdto.pro_total*dto.ord_count*0.1) }"/>
+                        
                         <input type="hidden" id="username" name="username" value="${dto.username }"/>
                         <input type="hidden" id="email" name="email" value="${dto.email}"/>
                         <input type="hidden" id="tel" name="tel" value="${dto.tel}"/>
@@ -219,16 +285,14 @@ $(function(){
                      </form>
                   </div>
                    </div>   
-                   <div id="allbutton">
-                  <div id="button1">
-                     <input type="button" value="취소하기" id="cancelsubmit"/>
-                  </div>
-                  <div id="button2">
+                  <hr/>
+                  
+               </div>
+                  <div style="margin:0 auto">
                      <input type="button" value="결제하기" id="lastsubmit"/>
-                  </div>
-               </div>                                                    
+                  </div>                                                    
            </div>
-             <hr/>
+             
              <br/>
       </div>
       

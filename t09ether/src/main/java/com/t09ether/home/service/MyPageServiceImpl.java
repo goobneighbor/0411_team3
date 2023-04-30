@@ -52,8 +52,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<OrderDTO> pageSelect(AdminPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
-		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
+		return dao.pageSelect(vo);
 	}
 	
 	//오프라인 공구 게시판 페이징
@@ -68,26 +68,26 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public int totalOrdRecord(AdminPagingVO vo, String searchKey, String searchWord, String userid) {
-		return dao.totalOrdRecord(vo, searchKey, searchWord, userid);
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
 	}
 
 	@Override
-	public int totalOrdSucRecord(AdminOrderPagingVO vo2, String searchKey2, String searchWord2, String userid) {
-		return dao.totalOrdSucRecord(vo2, searchKey2, searchWord2, userid);
+	public int totalOrdSucRecord(AdminOrderPagingVO vo2) {
+		return dao.totalOrdSucRecord(vo2);
 	}
 
 	@Override
-	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord,
-			String userid, int nowPage, int onePageRecord, int lastPageRecord) {
-		return dao.pageOrdSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo) {
+		return dao.pageOrdSelect(vo);
 	}
 
 	@Override
-	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2, int totalPage2, String searchKey2,
-			String searchWord2, String userid, int nowPage2, int onePageRecord2, int lastPageRecord2) {
-		return dao.pageOrdSucSelect(vo2, totalPage2, searchKey2, searchWord2, userid, nowPage2, onePageRecord2, lastPageRecord2);
+	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2) {
+		return dao.pageOrdSucSelect(vo2);
 	}
+
+	
 	
 	
 }

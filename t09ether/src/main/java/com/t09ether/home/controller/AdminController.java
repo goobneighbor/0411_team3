@@ -88,15 +88,14 @@ public class AdminController {
 	@GetMapping("/myOrderorigin")
 	public ModelAndView myOrderorigin(AdminPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String userid = (String)session.getAttribute("logId");
 		vo.setTotalRecord(service.totalOrderRecord(vo));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.mgtPageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OrderDTO> list = service.mgtPageSelect(vo);
 		//System.out.println(list);
 		
-		mav.addObject("vo", vo);
 		mav.addObject("list", list);		
+		mav.addObject("vo", vo);
 		mav.setViewName("admin/myOrderorigin");
 		return mav;
 	}

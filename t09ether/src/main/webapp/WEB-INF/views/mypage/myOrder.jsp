@@ -147,7 +147,7 @@
 									<td>${recordNum}</td>
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_name }</td>
-									<td>${bDTO.userid }</td>
+									<td>${bDTO.pd_userid }</td>
 									<td>${bDTO.ord_count }</td>
 									<c:choose>
 										<c:when test="${bDTO.status==1 }">
@@ -158,6 +158,9 @@
 										</c:when>
 										<c:when test="${bDTO.status==3 }">
 											<td>배송완료</td>
+										</c:when>
+										<c:when test="${bDTO.status==4 }">
+											<td>만남완료</td>
 										</c:when>
 									</c:choose>
 									<td>${bDTO.orderdate }</td>
@@ -281,7 +284,7 @@
 									<<td>${bDTO2.pro_name }</td>
 									</c:otherwise>
 									</c:choose>
-									<td>${bDTO2.userid }</td>
+									<td>${bDTO2.pd_userid }</td>
 									<td>${bDTO2.ord_count }</td>
 									<c:choose>
 										<c:when test="${bDTO2.status==4 }">

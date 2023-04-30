@@ -101,6 +101,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
+									
 									<th>선택</th>
 									<th>글번호</th>
 									<th>공구번호</th>
@@ -166,7 +167,7 @@
 								<li></li>
 							</c:if>
 							<c:if test="${vo.nowPage>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
-								<li><a href="myOrder?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
+								<li><a href="myOrderorigin?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 							</c:if>
 							<!-- 페이지 번호 -->
 							
@@ -179,14 +180,14 @@
 				               <c:if test="${p!=vo.nowPage}">
 				                 <li>
 				               </c:if>
-				                  <a href="myOrder?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
+				                  <a href="myOrderorigin?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
 				                  </li>
 				            </c:if>
 				         </c:forEach>
 							
 							<!-- 다음 페이지 -->
 							<c:if test="${vo.nowPage<vo.totalPage}"><!-- 다음 페이지가 있을 때 -->
-								<li><a href="myOrder?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
+								<li><a href="myOrderorigin?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
 							</c:if>
 							<c:if test="${vo.nowPage==vo.totalPage}"><!-- 다음 페이지가 없을 때 -->
 								<li></li>
@@ -195,7 +196,7 @@
 					</div>
 					<!--검색 -->
 					<div class ="searchDiv">
-						<form method="get" id="searchForm" action="myOrder">
+						<form method="get" id="searchForm" action="myOrderorigin">
 							<select name = "searchKey" id="searchKey">
 								<option value="userid">공구장</option>
 								<option value="orderdate">주문날짜</option>

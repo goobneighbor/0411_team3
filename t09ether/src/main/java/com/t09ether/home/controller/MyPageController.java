@@ -36,13 +36,17 @@ public class MyPageController {
 	@GetMapping("/myOrder")
 	public ModelAndView myOrder(AdminPagingVO vo, AdminOrderPagingVO vo2,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String userid = (String)session.getAttribute("logId");
-		vo.setTotalRecord(service.totalOrdRecord(vo,vo.getSearchKey(), vo.getSearchWord(),userid));
-		vo2.setTotalRecord(service.totalOrdSucRecord(vo2, vo2.getSearchKey2(), vo2.getSearchWord2(), userid));
+		vo.setUserid((String)session.getAttribute("logId"));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
+		System.out.println(vo.getUserid());
+		System.out.println(vo2.getUserid());
+		vo.setTotalRecord(service.totalOrdRecord(vo));
+		vo2.setTotalRecord(service.totalOrdSucRecord(vo2));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.pageOrdSelect(vo, vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
-		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2, vo2.getTotalPage2(), vo2.getSearchKey2(), vo2.getSearchWord2(), userid, vo2.getNowPage2(), vo2.getLastPageRecord2(), vo2.getOnePageRecord2());
+		List<OrderDTO> list = service.pageOrdSelect(vo);
+		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2);
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);

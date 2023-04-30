@@ -2,7 +2,7 @@ package com.t09ether.home.dto;
 
 public class AdminOrderPagingVO {
 	private int nowPage2 = 1; // 현재 페이지
-	private int onePageRecord2=5; // 한 페이지에 표시할 레코드 수
+	private int onePageRecord2=3; // 한 페이지에 표시할 레코드 수
 	private int totalRecord2; // 총 레코드 수
 	private int totalPage2; // 총 페이지 수
 	
@@ -14,7 +14,7 @@ public class AdminOrderPagingVO {
 	//검색에 필요한 변수들
 	private String searchKey2;
 	private String searchWord2;
-	
+	private String userid;
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage2=" + nowPage2 + ", onePageRecord2=" + onePageRecord2 + ", totalRecord2=" + totalRecord2
@@ -23,6 +23,27 @@ public class AdminOrderPagingVO {
 				+ searchWord2 + "]";
 	}
 	
+	
+	
+
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+
+
+
+
+	public void setTotalRecord2(int totalRecord2) {
+		this.totalRecord2 = totalRecord2;
+	}
+
+
 	public int getNowPage2() {
 		return nowPage2;
 	}

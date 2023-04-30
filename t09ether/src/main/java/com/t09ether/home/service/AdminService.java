@@ -11,7 +11,7 @@ public interface AdminService {
 	public int totalOrderRecord(AdminPagingVO vo);
 	public List<RegisterDTO> pageSelect(AdminPagingVO vo);
 	public List<RegisterDTO> userSelect();
-	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
+	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo);
 	public int ordMultiUpdate(int on_no); //List<Integer> on_noList, List<Integer> status
 
 }

@@ -64,13 +64,16 @@
    </select>
    
    <select id="totalOrdRecord" resultType="int">
-      select count(ord_no) from (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code) where userid=#{userid} and status<![CDATA[<]]>4
+      select count(ord_no) from 
+      (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code)
+       where userid=#{userid} and status<![CDATA[<]]>4
       <if test="searchWord!=null">
          and ${searchKey} like '%${searchWord}%'
       </if> 
    </select>
    <select id="totalOrdSucRecord" resultType="int">
-      select count(ord_no) from (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code) where userid=#{userid} and status<![CDATA[>]]>3 
+      select count(ord_no) from (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code) 
+      where userid=#{userid} and status<![CDATA[>]]>3 
       <if test="searchWord2!=null">
          and ${searchKey2} like '%${searchWord2}%'
       </if> 
@@ -80,7 +83,8 @@
    select * from
       (select * from
          (
-            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[<]]>4
+             select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from 
+            (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[<]]>4
             <if test="searchWord!=null">
                and ${searchKey} like '%${searchWord}%' 
             </if>
@@ -110,7 +114,7 @@
    select * from
       (select * from
          (
-            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[>]]>3
+            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[>]]>3
             <if test="searchWord2!=null">
                and ${searchKey2} like '%${searchWord2}%' 
             </if>

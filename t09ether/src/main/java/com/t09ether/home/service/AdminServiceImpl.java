@@ -32,9 +32,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord,
-			String userid, int nowPage, int onePageRecord, int lastPageRecord) {
-		return dao.mgtPageSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo) {
+		return dao.mgtPageSelect(vo);
 	}
 
 	@Override

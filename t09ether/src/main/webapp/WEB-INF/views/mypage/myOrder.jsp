@@ -79,6 +79,7 @@
 			return true;
 		});
 		
+		
 		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
 		//$("#allCheck").click(function(){
 		//	$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
@@ -165,12 +166,24 @@
 									</c:choose>
 									<td>${bDTO.orderdate }</td>
 									<c:choose>
-									<c:when test="${bDTO.pd_status==1 }">
-										<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
-									</c:when>
-									<c:otherwise>
-										<td>취소불가</td>
-									</c:otherwise>
+										<c:when test="${bDTO.pd_status==1}">
+											<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${bDTO.status==3}">
+													<c:choose>
+														<c:when test="${bDTO.userid==bDTO.pd_userid }">
+														<td><input type="button" id="joinUp" onclick="location.href='<%=request.getContextPath() %>/mypage/joinSuc?on_no=${bDTO.on_no}'" value="만남 완료"/></td>
+														</c:when>
+														<c:when test="${bDTO.userid!=bDTO.pd_userid }">
+															<td>취소불가</td>
+														</c:when>
+													</c:choose>
+												</c:when>
+												<c:otherwise><td>취소불가</td></c:otherwise>
+											</c:choose>
+										</c:otherwise>
 									</c:choose>
 								</tr>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -255,7 +268,6 @@
 						<input type="hidden" name="searchKey2" value="${vo2.searchKey2 }"/>
 						<input type="hidden" name="searchWord2" value="${vo2.searchWord2 }"/>
 					</c:if>
-				
 						<table class="board_list">
 							<thead>
 								<tr>
@@ -277,12 +289,12 @@
 									<td>${recordNum2}</td>
 									<td>${bDTO2.ord_no }</td>
 									<c:choose>
-									<c:when test="${bDTO2.status==5 }">
-										<td><span class="text-muted text-decoration-line-through">${bDTO2.pro_name }</span></td>
-									</c:when>
-									<c:otherwise>
-									<<td>${bDTO2.pro_name }</td>
-									</c:otherwise>
+										<c:when test="${bDTO2.status==5 }">
+											<td><span class="text-muted text-decoration-line-through">${bDTO2.pro_name }</span></td>
+										</c:when>
+										<c:otherwise>
+										<td>${bDTO2.pro_name }</td>
+										</c:otherwise>
 									</c:choose>
 									<td>${bDTO2.pd_userid }</td>
 									<td>${bDTO2.ord_count }</td>
@@ -299,12 +311,6 @@
 								<c:set var="recordNum2" value="${recordNum2-1}"/>	
 							</c:forEach>
 							</tbody>
-							<!--<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>  -->
 						</table>
 					</form>
 					</div>

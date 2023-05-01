@@ -87,6 +87,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.pageOrdSucSelect(vo2);
 	}
 
+	@Override
+	public int myOrderSucUpdate(int on_no) {
+		return dao.myOrderSucUpdate(on_no);
+	}
+
 	
 	
 	

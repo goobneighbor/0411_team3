@@ -27,6 +27,8 @@ public interface MyPageService {
 	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo);
 	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2);
 	
+	public int myOrderSucUpdate(int on_no);
+	
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
 	

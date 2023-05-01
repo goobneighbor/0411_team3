@@ -57,6 +57,31 @@ public class MyPageController {
 		return mav;
 	}
 	
+	@GetMapping("/joinSuc")
+	public ModelAndView myOrderSuc(AdminPagingVO vo, AdminOrderPagingVO vo2, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String)session.getAttribute("logId"));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
+		System.out.println(vo.getOn_no());
+		
+		try {
+			int result = service.myOrderSucUpdate(vo.getOn_no());
+			if(result>0) {
+				mav.addObject("errorMsg", "만남완료 업데이트 성공");
+				mav.setViewName("mypage/joinStatus");
+			}else {
+				mav.addObject("errorMsg", "만남완료 업데이트 실패");
+				mav.setViewName("mypage/joinStatus");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			mav.addObject("errorMsg", "만남완료 업데이트 실패");
+			mav.setViewName("mypage/joinStatus");
+		}
+		return mav;
+	}
+	
 	
 	@GetMapping("/myPost")
 	public ModelAndView myPost(AdminPagingVO vo) {

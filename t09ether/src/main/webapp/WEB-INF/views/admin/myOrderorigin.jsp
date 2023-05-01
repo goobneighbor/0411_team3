@@ -117,11 +117,9 @@
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
 								<tr>
+									
 									<c:choose>
-										<c:when test="${bDTO.status==4 }">
-											<td></td>
-										</c:when>
-										<c:when test="${bDTO.status==5 }">
+										<c:when test="${bDTO.status>2 }">
 											<td></td>
 										</c:when>
 										<c:otherwise>

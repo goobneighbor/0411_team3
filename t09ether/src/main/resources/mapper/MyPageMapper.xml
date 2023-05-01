@@ -139,6 +139,11 @@
         </choose>
    </select>
    
+   <update id="myOrderSucUpdate">
+   		update order09 set status=4 where on_no=#{on_no}
+   </update>
+   
+   
    
    <!-- 오프라인 공구 게시물 페이징  -->
    <select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">

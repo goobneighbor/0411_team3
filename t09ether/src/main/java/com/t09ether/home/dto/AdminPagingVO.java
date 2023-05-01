@@ -15,6 +15,7 @@ public class AdminPagingVO {
    private String searchKey;
    private String searchWord;
    private String userid;
+   private int on_no;
    
    @Override
    public String toString() {
@@ -24,9 +25,24 @@ public class AdminPagingVO {
             + searchWord + "]";
    }
    
-   
-   
-   public String getUserid() {
+  
+
+
+public int getOn_no() {
+	return on_no;
+}
+
+
+
+
+public void setOn_no(int on_no) {
+	this.on_no = on_no;
+}
+
+
+
+
+public String getUserid() {
 	return userid;
 }
 

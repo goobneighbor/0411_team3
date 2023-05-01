@@ -1,11 +1,15 @@
 package com.t09ether.home.controller;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,5 +61,21 @@ public class OnlineReviewController {
 		
 		return mav;
 		
+	}
+	//리뷰 DB등록
+	@PostMapping("/reviewOk")
+	public int reviewOk(OnlineReviewDTO dto, HttpServletRequest req ){
+		dto.setUserid((String)req.getSession().getAttribute("logId"));
+		System.out.println(dto.content);
+		System.out.println("등록준비");
+		return service.reviewInsert(dto);
+	}
+	
+	//리뷰 삭제
+	@GetMapping("/reviewDel")
+	public int reviewDel(int on_r_no) {
+		return service.reviewDel(on_r_no);
+		//System.out.println("리뷰제거 성공");
+		//return service.proCodeSelect(on_r_no);
 	}
 }

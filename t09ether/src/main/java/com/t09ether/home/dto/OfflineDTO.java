@@ -9,11 +9,12 @@ public class OfflineDTO {
 	private String off_content;//글내용
 	private String location;//위치
 	private int group_num;//모집인원
-	private int current_num;//현재인완
+	private int current_num;//현재인원
 	private String app_time;//만남시간
 	private String deaddate;//모집마감일
 	private int off_hit;//조회수
 	private String writedate;//작성일
+	private int status;//처리상태
 	
 	public int getOff_no() {
 		return off_no;
@@ -82,13 +83,23 @@ public class OfflineDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
+	
+	
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "OfflineDTO [off_no=" + off_no + ", userid=" + userid + ", off_subject=" + off_subject + ", off_content="
 				+ off_content + ", location=" + location + ", group_num=" + group_num + ", current_num=" + current_num
 				+ ", app_time=" + app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate="
-				+ writedate + "]";
+				+ writedate + ", status=" + status + "]";
 	}
+	
 	
 	
 

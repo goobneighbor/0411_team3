@@ -3,7 +3,7 @@ package com.t09ether.home.dto;
 public class OfflinePagingVO {
 	   //페이징처리시 필요한 변수들
 		private int nowPage = 1; //현재페이지
-		private int onePageRecord = 10;//한페이지에 표시할 레코드 수
+		private int onePageRecord = 12;//한페이지에 표시할 레코드 수
 		private int totalRecord;//총레코드수
 		private int totalPage;//총페이지수
 		private int lastPageRecord;//마지막 페이지에 남아있는 레코드 수
@@ -22,6 +22,10 @@ public class OfflinePagingVO {
 		}
 		public void setNowPage(int nowPage) {
 			this.nowPage = nowPage;
+			
+			//출력할 페이지
+			//((현재페이지-1)/표시할페이지수)*표시할페이지수+1		
+			startPageNum = ((nowPage-1)/onePageNumCount)*onePageNumCount+1;
 		}
 		public int getOnePageRecord() {
 			return onePageRecord;
@@ -34,6 +38,19 @@ public class OfflinePagingVO {
 		}
 		public void setTotalRecord(int totalRecord) {
 			this.totalRecord = totalRecord;
+			
+			//총 레코드 수를 이용하여 총 페이지 수를 구하기
+			totalPage = (int)Math.ceil((double)totalRecord/onePageRecord);
+			
+			//마지막페이지에 남아있는 레코드 수
+			lastPageRecord = onePageRecord; 
+			if(nowPage==totalPage) {
+				if(totalRecord%onePageRecord ==0){//나머지가 0일 경우는 lastPageRecord  <- onePageRecord
+					lastPageRecord = onePageRecord;
+				}else {//나머지가 있을 경우 남아있는 레코드 수를 lastPageRecord			
+					lastPageRecord = totalRecord%onePageRecord;
+				}
+			}
 		}
 		public int getTotalPage() {
 			return totalPage;

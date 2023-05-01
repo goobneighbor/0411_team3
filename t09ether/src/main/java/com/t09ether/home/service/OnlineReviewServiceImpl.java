@@ -29,5 +29,20 @@ public class OnlineReviewServiceImpl implements OnlineReviewService{
 	public List<String> userList(int pro_code) {
 		return dao.userList(pro_code);
 	}
+
+	@Override
+	public int reviewInsert(OnlineReviewDTO dto) {
+		return dao.reviewInsert(dto);
+	}
+
+	@Override
+	public int reviewDel(int on_r_no) {
+		return dao.reviewDel(on_r_no);
+	}
+
+	@Override
+	public int proCodeSelect(int on_r_no) {
+		return dao.proCodeSelect(on_r_no);
+	}
 	
 }

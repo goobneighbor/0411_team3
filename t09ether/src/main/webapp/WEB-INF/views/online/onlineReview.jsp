@@ -9,7 +9,7 @@
 </style>
 <script>
 $(function(){
-	$("#submitRev").submit(function(){
+	$("#submitRev").on("click", function () {
 		event.preventDefault();
 		
 		let rate = $('#rate').val();
@@ -25,10 +25,48 @@ $(function(){
         	$('#content').focus();
             return false;
         }
-        
-        
+       
+      //form태그의 action속성 설정
+		<%-- $("#reviewForm").attr("action","<%=request.getContextPath() %>/online/reviewOk"); --%>
+		let params = $("#reviewForm").serialize();
+		console.log(params);
+		$.ajax({
+			type:"POST",
+			url:"/home/online/reviewOk",
+			data:params,
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			success:function(result){
+				console.log(result); 
+				alert('리뷰가 등록되었습니다.');
+				location.href="/home/online/onlineReview?pro_code="+${dto.pro_code};
+			},error:function(error){
+				console.log(error.responseText); 
+			}
+		});//ajax
         
 	});
+	
+	$("#deleteRev").on("click", function () {
+		event.preventDefault();
+		if(confirm("리뷰를 삭제할까요?")){
+			var params = "on_r_no="+ $(this).attr("title");
+			console.log(params);
+			$.ajax({
+				url:"/home/online/reviewDel",
+				data:params,
+				success:function(result){
+					console.log(result); 
+					if(result>0){
+						 alert('리뷰가 삭제되었습니다.');
+						 location.href="/home/online/onlineReview?pro_code="+${dto.pro_code};
+					}
+				},error:function(error){
+					console.log(error.responseText); 
+				}
+			});//ajax
+		}//if문
+		});		
+	
 });
 </script>
 <section id="main" class="container">
@@ -59,7 +97,8 @@ $(function(){
               		<div class="card-header">리뷰 </div>
               		<div class="card-body"> 
               		<span class='star-rating'><span style = "width:70%"></span></span>                      
-                      	<form>
+                      	<form method="get" id="reviewForm">
+                      		<input type="hidden" name="pro_code" value="${dto.pro_code }">
                       		<select name="rate" id="rate">
             						<option value="">평점을 선택해주세요★</option>
 						     <c:forEach var="i" items="${rating}">
@@ -92,9 +131,11 @@ $(function(){
 				            <!-- 평점 기준 별표시 출력 -->
 				            <tr>
 				                <td><c:forEach var="rating" items="${rating}" varStatus="status" begin="1" end="${ i.rate }">★</c:forEach></td>
+				                <%-- <td><input type="hidden" name="on_r_no" value="${i.on_r_no }"><td> --%>
 				                <td>${i.userid }</td>
 				                <td>${i.content }</td>
-				                <td>${i.writedate }</td>
+				                <td>${i.writedate }<c:if test="${logId == i.userid }"><button id="deleteRev" title='${i.on_r_no  }'>X</button></c:if></td>
+				               
 				            </tr>
 				        </c:forEach>
 				    </tbody>

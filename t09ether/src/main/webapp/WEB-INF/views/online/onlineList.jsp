@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
-	
+$(function(){ 
+		var totalprice=document.getElementById('totalprice').innerHTML; 
+		totalprice = Math.floor(totalprice/10)*10; 
+		totalprice= totalprice.toLocaleString() 
+		document.getElementById('totalprice').innerHTML = totalprice; 
+		
+		var oneprice=document.getElementById('oneprice').innerHTML; 
+		oneprice = Math.floor(oneprice/10)*10; 
+		oneprice = oneprice.toLocaleString() 
+		document.getElementById('oneprice').innerHTML = oneprice; 
+});
 </script>
 <style>
 	.pagingDiv li{
@@ -49,8 +59,8 @@
 	                                <!-- 원래 가격 줄그어서 세일 표시하는 스타일
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
-	                                <div>총&nbsp;${proDTO.pro_price }&nbsp;원</div>
-	                                <div>개당&nbsp;${ Math.floor(proDTO.pro_price/proDTO.pro_total) }&nbsp;원</div>
+	                                <div>총&nbsp;<span id="totalprice">${proDTO.pro_price }</span>&nbsp;원</div>
+	                                <div>개당&nbsp;<span id="oneprice">${ Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10 }</span>&nbsp;원</div>
 	                            </div>
 	                        </div>
 	                        <!-- Product actions-->

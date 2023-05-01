@@ -77,4 +77,14 @@ public class AdminServiceImpl implements AdminService {
 	public int productUpdate(ProductDTO dto) {
 		return dao.productUpdate(dto);
 	}
+
+	@Override
+	public List<OrderDTO> totalOrdSelect(AdminPagingVO vo) {
+		return dao.totalOrdSelect(vo);
+	}
+
+	@Override
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
+	}
 }

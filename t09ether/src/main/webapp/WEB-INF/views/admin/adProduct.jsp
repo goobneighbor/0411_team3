@@ -88,7 +88,7 @@
 						<table class="productList">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck">전체선택</th>
+									<th>선택</th>
 									<th>글번호</th>
 									<th>상품번호</th>
 									<th>상품명</th>

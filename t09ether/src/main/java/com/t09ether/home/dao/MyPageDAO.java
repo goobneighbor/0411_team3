@@ -9,6 +9,7 @@ import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ReportDTO;
 
 public interface MyPageDAO {
 	public MyPageDTO loginOk(String userid, String userpwd);
@@ -27,7 +28,8 @@ public interface MyPageDAO {
 	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2);
 	
 	public int myOrderSucUpdate(int on_no);
-	
+	public int reportInsert(ReportDTO dto);
+	public int reportRegisterUpdate(String target_id);
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
 	

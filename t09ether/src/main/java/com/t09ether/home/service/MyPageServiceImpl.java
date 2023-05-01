@@ -13,6 +13,7 @@ import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ReportDTO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -90,6 +91,16 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int myOrderSucUpdate(int on_no) {
 		return dao.myOrderSucUpdate(on_no);
+	}
+
+	@Override
+	public int reportInsert(ReportDTO dto) {
+		return dao.reportInsert(dto);
+	}
+
+	@Override
+	public int reportRegisterUpdate(String target_id) {
+		return dao.reportRegisterUpdate(target_id);
 	}
 
 	

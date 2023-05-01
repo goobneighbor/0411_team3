@@ -278,6 +278,7 @@
 									<th>주문개수</th>
 									<th>주문상태</th>
 									<th>주문날짜</th>
+									<th>신고하기</th>
 
 								</tr>
 							</thead>
@@ -307,6 +308,21 @@
 										</c:when>
 									</c:choose>
 									<td>${bDTO2.orderdate }</td>
+									<c:choose>
+									<c:when test="${bDTO2.status==4}">
+										<c:choose>
+											<c:when test="${bDTO2.userid==bDTO2.pd_userid }">
+												<td>신고불가</td>
+											</c:when>
+											<c:when test="${bDTO2.userid!=bDTO2.pd_userid }">
+												<td><input type="button" id="reportWrite" onclick="location.href='<%=request.getContextPath() %>/mypage/reportWrite?pd_userid=${bDTO2.pd_userid}'" value="공구장신고"/></td>
+											</c:when>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										<td>신고불가</td>
+									</c:otherwise>
+									</c:choose>
 								</tr>
 								<c:set var="recordNum2" value="${recordNum2-1}"/>	
 							</c:forEach>

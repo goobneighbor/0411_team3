@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.t09ether.home.dto.AdUserPagingVO;
+
+import com.t09ether.home.dto.AdminOrderPagingVO;
+import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.MyPostPagingVO;
+import com.t09ether.home.dto.MyPostPagingVO2;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.service.MyPageService;
@@ -34,36 +37,49 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myOrder")
-	public ModelAndView myOrder(AdUserPagingVO vo, HttpSession session) {
+	public ModelAndView myOrder(AdminPagingVO vo, AdminOrderPagingVO vo2,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String userid = (String)session.getAttribute("logId");
-		
 		vo.setUserid((String)session.getAttribute("logId"));
-		vo.setTotalRecord(service.totalRecord(vo));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
+//		System.out.println(vo.getUserid());
+//		System.out.println(vo2.getUserid());
+		vo.setTotalRecord(service.totalOrdRecord(vo));
+		vo2.setTotalRecord(service.totalOrdSucRecord(vo2));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OrderDTO> list = service.pageOrdSelect(vo);
+		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2);
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
-		mav.addObject("list", list);		
+		mav.addObject("vo2", vo2);
+		mav.addObject("list", list);
+		mav.addObject("list2",list2);
 		mav.setViewName("mypage/myOrder");
 		return mav;
 	}
 	
+	
 	@GetMapping("/myPost")
-	public ModelAndView myPost(MyPostPagingVO vo, HttpSession session) {
+	public ModelAndView myPost(MyPostPagingVO vo, MyPostPagingVO2 vo2, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 
-		String userid = (String)session.getAttribute("logId");
+		vo.setUserid((String)session.getAttribute("logId"));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
 		vo.setTotalRecord(service.mpTotalRecord(vo));
+		vo2.setTotalRecord(service.mpTotalSucRecord(vo2));
 		//System.out.println(vo.toString());
 		
-		List<OffPartDTO> list = service.offPageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OffPartDTO> list = service.offPageSelect(vo);
+		List<OffPartDTO> list2 = service.offPageSucSelect(vo2);
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
+		mav.addObject("vo2", vo2);
 		mav.addObject("list", list);
+		mav.addObject("list2",list2);
 		mav.setViewName("mypage/myPost");
 		return mav;
 	}

@@ -34,8 +34,10 @@ public interface OnlineJoinDAO {
 	public int restUpdate(OrderDTO dto);
 	
 	//status update
-	public int statusUpdate(OrderDTO dto);
+	public int statusUpdate(int on_no);
 	
 	//tel가져오기
 	public List<OrderDTO> selectInfor(int on_no);
+	
+	
 }

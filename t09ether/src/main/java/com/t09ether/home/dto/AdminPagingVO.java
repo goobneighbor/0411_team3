@@ -1,6 +1,6 @@
 package com.t09ether.home.dto;
 
-public class MyPostPagingVO {
+public class AdminPagingVO {
 	private int nowPage = 1; // 현재 페이지
 	private int onePageRecord=5; // 한 페이지에 표시할 레코드 수
 	private int totalRecord; // 총 레코드 수
@@ -15,15 +15,16 @@ public class MyPostPagingVO {
 	private String searchKey;
 	private String searchWord;
 	
-	private String userid;
+	private String userid;	
 	
 	@Override
 	public String toString() {
-		return "MyPostPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
+		return "AdUserPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
 				+ totalRecord + ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
 				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
 				+ searchWord + ", userid=" + userid + "]";
 	}
+	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -59,20 +60,17 @@ public class MyPostPagingVO {
 				lastPageRecord = totalRecord % onePageRecord;
 			}
 		}
+	
 	}
-
 	public int getTotalPage() {
 		return totalPage;
 	}
-
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
-
 	public int getLastPageRecord() {
 		return lastPageRecord;
 	}
-
 	public void setLastPageRecord(int lastPageRecord) {
 		this.lastPageRecord = lastPageRecord;
 	}
@@ -118,4 +116,3 @@ public class MyPostPagingVO {
 	}
 	
 }
-	

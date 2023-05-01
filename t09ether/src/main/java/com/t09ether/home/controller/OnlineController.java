@@ -166,7 +166,7 @@ public class OnlineController extends SmsSend {
 				//문자보내기
 				String content = "["+username+"]님, 공구가 성공했습니다! 마이페이지를 통해 공구장과 일정을 조율하세요![t09ether]";
 
-				super.send_msg(tel, username, content);
+				//super.send_msg(tel, username, content);
 
 			}
 			

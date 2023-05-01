@@ -10,6 +10,7 @@ public class OrderDTO {
    private int ord_count; //내가주문한상품수
    private int status;
    private int pd_status; //product_detail 상태
+   private String pd_userid;
 
 	
 	private int on_no;
@@ -47,8 +48,13 @@ public class OrderDTO {
 	
 	private List<Integer> on_noList;
 	private List<Integer> statusList;
-
 	
+	public String getPd_userid() {
+		return pd_userid;
+	}
+	public void setPd_userid(String pd_userid) {
+		this.pd_userid = pd_userid;
+	}
 	public int getOrd_no() {
 		return ord_no;
 	}

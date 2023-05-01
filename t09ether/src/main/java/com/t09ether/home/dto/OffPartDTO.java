@@ -7,6 +7,7 @@ public class OffPartDTO {
 	private String username;
 	private String tel;
 	private String off_subject;
+
     private String off_content;
     private String location;
     private int group_num;
@@ -16,6 +17,8 @@ public class OffPartDTO {
     private int off_hit;
     private String writedate;
     private int status;
+
+	
 	
 	public String getOff_subject() {
 		return off_subject;
@@ -107,11 +110,6 @@ public class OffPartDTO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	@Override
-	public String toString() {
-		return "OffPartDTO [off_j_no=" + off_j_no + ", off_no=" + off_no + ", userid=" + userid + ", username="
-				+ username + ", tel=" + tel + "]";
-	}
-	
+
 	
 }

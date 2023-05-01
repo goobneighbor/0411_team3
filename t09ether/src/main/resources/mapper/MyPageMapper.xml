@@ -32,17 +32,11 @@
          where ${searchKey} like '%${searchWord}%'
       </if> 
    </select>
-   <select id="totalOrdRecord" resultType="int">
-      select count(ord_no) ord_no from order09 where status<![CDATA[< ]]>5
-      <if test="searchWord!=null">
-         and ${searchKey} like '%${searchWord}%'
-      </if> 
-   </select>
    <select id="pageSelect" resultType="com.t09ether.home.dto.OrderDTO">
    select * from
       (select * from
          (
-            select o.ord_no, o.pro_code, p.pro_name, pd.userid, o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
+            select o.ord_no, o.pro_code, p.pro_name, pd.userid, pd.status as pd_status,o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
             from order09 o join product_detail pd on o.on_no=pd.on_no  
             join product p on o.pro_code=p.pro_code and o.userid=#{userid}
             <if test="searchWord!=null">
@@ -68,6 +62,89 @@
            </when>
         </choose>
    </select>
+   
+   <select id="totalOrdRecord" resultType="int">
+      select count(ord_no) from 
+      (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code)
+       where userid=#{userid} and status<![CDATA[<]]>4
+      <if test="searchWord!=null">
+         and ${searchKey} like '%${searchWord}%'
+      </if> 
+   </select>
+   <select id="totalOrdSucRecord" resultType="int">
+      select count(ord_no) from (select o.ord_no, o.pro_code, o.userid, o.ord_count, o.status, o.on_no, o.orderdate, o.ord_amount, p.pro_name from order09 o join product p on o.pro_code=p.pro_code) 
+      where userid=#{userid} and status<![CDATA[>]]>3 
+      <if test="searchWord2!=null">
+         and ${searchKey2} like '%${searchWord2}%'
+      </if> 
+   </select>
+   
+   <select id="pageOrdSelect" resultType="com.t09ether.home.dto.OrderDTO">
+   select * from
+      (select * from
+         (
+             select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from 
+            (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[<]]>4
+            <if test="searchWord!=null">
+               and ${searchKey} like '%${searchWord}%' 
+            </if>
+            order by ord_no desc 
+         )
+      <![CDATA[ 
+           where rownum<=${nowPage*onePageRecord} order by ord_no asc 
+           ]]>
+           )
+           
+        <choose>
+           <when test="nowPage!=totalPage">   
+              <![CDATA[
+              where rownum<=${onePageRecord} order by ord_no desc 
+              ]]>
+           </when>
+           <when test="nowPage==totalPage">
+              <![CDATA[
+              where rownum<=${lastPageRecord} order by ord_no desc 
+              ]]>           
+           </when>
+        </choose>
+   </select>
+   
+   
+   <select id="pageOrdSucSelect" resultType="com.t09ether.home.dto.OrderDTO">
+   select * from
+      (select * from
+         (
+            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[>]]>3
+            <if test="searchWord2!=null">
+               and ${searchKey2} like '%${searchWord2}%' 
+            </if>
+            order by ord_no desc 
+         )
+      <![CDATA[ 
+           where rownum<=${nowPage2*onePageRecord2} order by ord_no asc 
+           ]]>
+           )
+           
+        <choose>
+           <when test="nowPage2!=totalPage2">   
+              <![CDATA[
+              where rownum<=${onePageRecord2} order by ord_no desc 
+              ]]>
+           </when>
+           <when test="nowPage2==totalPage2">
+              <![CDATA[
+              where rownum<=${lastPageRecord2} order by ord_no desc 
+              ]]>           
+           </when>
+        </choose>
+   </select>
+   
+   <update id="myOrderSucUpdate">
+   		update order09 set status=4 where on_no=#{on_no}
+   </update>
+   
+   
+   
    <!-- 오프라인 공구 게시물 페이징  -->
    <select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
    select * from

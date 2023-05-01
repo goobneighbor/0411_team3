@@ -30,17 +30,19 @@
 
 }
 #finalPayment li:last-child{
-	font-size:1.4em;
+   font-size:1.4em;
+
 }   
 
 #username, #rank{
    font-weight:bold;
 }
 .finalDiv{
-	border:3px;
-	border-coloer:#646464;
-	color:#646464;
-	border-radius:20px;
+   border:3px;
+   border-coloer:#646464;
+   color:#646464;
+   border-radius:20px;
+
 }
 </style>
 
@@ -70,6 +72,7 @@ $(function(){
     var on_no = parseInt(document.getElementById("on_no").value);
     
     var image = document.getElementById("image").value;
+
 
 	var ord_count = total_amount = document.getElementById("ord_count").value;
 	
@@ -216,7 +219,7 @@ $(function(){
     }
     
     function insertDB(){
-    	
+
     }
     
     $("#lastsubmit").click(function(){
@@ -297,4 +300,5 @@ $(function(){
 		</div>
 		
 	</section>
+
 

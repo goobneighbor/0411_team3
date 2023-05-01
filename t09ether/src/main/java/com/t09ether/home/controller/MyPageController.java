@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
@@ -33,18 +34,51 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myOrder")
-	public ModelAndView myOrder(AdminPagingVO vo, HttpSession session) {
+	public ModelAndView myOrder(AdminPagingVO vo, AdminOrderPagingVO vo2,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		String userid = (String)session.getAttribute("logId");
+		vo.setUserid((String)session.getAttribute("logId"));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
+		System.out.println(vo.getUserid());
+		System.out.println(vo2.getUserid());
 		vo.setTotalRecord(service.totalOrdRecord(vo));
+		vo2.setTotalRecord(service.totalOrdSucRecord(vo2));
 		//System.out.println(vo.toString());
 		
-		List<OrderDTO> list = service.pageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
+		List<OrderDTO> list = service.pageOrdSelect(vo);
+		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2);
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
-		mav.addObject("list", list);		
+		mav.addObject("vo2", vo2);
+		mav.addObject("list", list);
+		mav.addObject("list2",list2);
 		mav.setViewName("mypage/myOrder");
+		return mav;
+	}
+	
+	@GetMapping("/joinSuc")
+	public ModelAndView myOrderSuc(AdminPagingVO vo, AdminOrderPagingVO vo2, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String)session.getAttribute("logId"));
+		vo2.setUserid((String)session.getAttribute("logId"));
+		
+		System.out.println(vo.getOn_no());
+		
+		try {
+			int result = service.myOrderSucUpdate(vo.getOn_no());
+			if(result>0) {
+				mav.addObject("errorMsg", "만남완료 업데이트 성공");
+				mav.setViewName("mypage/joinStatus");
+			}else {
+				mav.addObject("errorMsg", "만남완료 업데이트 실패");
+				mav.setViewName("mypage/joinStatus");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			mav.addObject("errorMsg", "만남완료 업데이트 실패");
+			mav.setViewName("mypage/joinStatus");
+		}
 		return mav;
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.t09ether.home.dao.AdminDAO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.RegisterDTO;
 
 @Service
@@ -32,9 +33,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo, int totalPage, String searchKey, String searchWord,
-			String userid, int nowPage, int onePageRecord, int lastPageRecord) {
-		return dao.mgtPageSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo) {
+		return dao.mgtPageSelect(vo);
 	}
 
 	@Override
@@ -46,5 +46,35 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int totalOrderRecord(AdminPagingVO vo) {
 		return dao.totalOrderRecord(vo);
+	}
+
+	@Override
+	public int totalProductRecord(AdminPagingVO vo) {
+		return dao.totalProductRecord(vo);
+	}
+
+	@Override
+	public List<RegisterDTO> pageProductSelect(AdminPagingVO vo) {
+		return dao.pageProductSelect(vo);
+	}
+
+	@Override
+	public int productInsert(ProductDTO dto) {
+		return dao.productInsert(dto);
+	}
+
+	@Override
+	public int productDel(List<Integer> list) {
+		return dao.productDel(list);
+	}
+
+	@Override
+	public ProductDTO proInfor(int pro_code) {
+		return dao.proInfor(pro_code);
+	}
+
+	@Override
+	public int productUpdate(ProductDTO dto) {
+		return dao.productUpdate(dto);
 	}
 }

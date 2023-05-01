@@ -46,4 +46,14 @@ public class AdminServiceImpl implements AdminService {
 	public int totalOrderRecord(AdminPagingVO vo) {
 		return dao.totalOrderRecord(vo);
 	}
+
+	@Override
+	public List<OrderDTO> totalOrdSelect(AdminPagingVO vo) {
+		return dao.totalOrdSelect(vo);
+	}
+
+	@Override
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
+	}
 }

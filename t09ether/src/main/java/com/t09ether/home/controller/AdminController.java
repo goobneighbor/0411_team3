@@ -130,4 +130,20 @@ public class AdminController {
 	    return mav;
 	}
 	
+	@GetMapping("/adOrderList")
+	public ModelAndView totalOrdSelect(AdminPagingVO vo) {
+		ModelAndView mav = new ModelAndView();
+		vo.setTotalRecord(service.totalOrdRecord(vo));
+		//System.out.println(vo.toString());
+		
+		List<OrderDTO> list = service.totalOrdSelect(vo);
+		//System.out.println(list);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list", list);
+		mav.setViewName("admin/adOrderList");
+		return mav;
+	}
+	
+	
 }

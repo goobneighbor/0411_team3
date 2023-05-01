@@ -1,11 +1,16 @@
 package com.t09ether.home.controller;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +22,7 @@ import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.service.MyPageService;
 
 @RestController
@@ -192,7 +198,43 @@ public class MyPageController {
 		return mav;
 	}
 	
+	@GetMapping("/reportWrite")
+	public ModelAndView reportWrite(String pd_userid) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pd_userid", pd_userid);
+		mav.setViewName("mypage/reportWrite");
+		return mav;
+	}
 	
+	@PostMapping("/reportWriteOk")
+	public ResponseEntity<String> reportWriteOk(ReportDTO dto, HttpSession session){
+		dto.setMem_id((String)session.getAttribute("logId"));
+		System.out.println(dto.toString());
+		String htmlTag = "<script>";
+		try {
+			int result = service.reportInsert(dto);
+			int result2 = service.reportRegisterUpdate(dto.getTarget_id());
+			if(result>0 && result2>0) {
+				htmlTag += "alert('신고가 등록되었습니다.');";
+				htmlTag += "location.href='myOrder';";
+			}else {
+				htmlTag += "alert('신고가 등록되지 않았습니다.');";
+				htmlTag += "history.back();";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			htmlTag += "alert('신고가 등록되지 않았습니다.');";
+			htmlTag += "history.back();";
+		}
+		htmlTag += "</script>";
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charser=UTF-8");
+		
+		//                       내용
+		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
+	}
 	
 	/*@Autowired
 	�¶��ΰ�������Service service;

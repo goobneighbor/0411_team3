@@ -151,6 +151,11 @@
    		update registerinfo set report=report+1 where userid=#{target_id}
    </update>
    
+   <update id="orderStatusUpdate">
+   		update order09 set status=10 where ord_no=#{ord_no}
+   </update>
+   
+   
    <!-- 오프라인 공구 게시물 페이징  -->
    <select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
    select * from

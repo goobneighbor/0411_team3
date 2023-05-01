@@ -8,13 +8,24 @@ public class ReportDTO {
 	private String report_content;
 	private String writedate;
 	
+	private int ord_no;
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "ReportDTO [report_no=" + report_no + ", mem_id=" + mem_id + ", target_id=" + target_id + ", taget_type="
-				+ target_type + ", report_content=" + report_content + ", writedate=" + writedate + "]";
+		return "ReportDTO [report_no=" + report_no + ", mem_id=" + mem_id + ", target_id=" + target_id
+				+ ", target_type=" + target_type + ", report_content=" + report_content + ", writedate=" + writedate
+				+ ", ord_no=" + ord_no + "]";
 	}
 	
-	
+	public int getOrd_no() {
+		return ord_no;
+	}
+	public void setOrd_no(int ord_no) {
+		this.ord_no = ord_no;
+	}
 	public int getReport_no() {
 		return report_no;
 	}

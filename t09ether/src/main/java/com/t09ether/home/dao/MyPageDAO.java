@@ -30,6 +30,7 @@ public interface MyPageDAO {
 	public int myOrderSucUpdate(int on_no);
 	public int reportInsert(ReportDTO dto);
 	public int reportRegisterUpdate(String target_id);
+	public int orderStatusUpdate(int ord_no);
 	//오프라인 공구 게시판 페이징
 	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
 	

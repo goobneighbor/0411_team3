@@ -202,6 +202,7 @@
 </section>
 <form method="post" action="reportWriteOk" id="reportForm">
 	<ul> 
+		<li><input type="hidden" name="ord_no" id="ord_no" value="${ord_no }"/></li>
 		<li>신고대상</li>
 		<li><input type="text" name="target_id" id="target_id" value="${pd_userid }" readonly/></li>
 		<li>신고종류</li>

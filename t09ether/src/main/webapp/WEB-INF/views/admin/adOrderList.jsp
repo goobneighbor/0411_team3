@@ -194,7 +194,7 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myOrderorigin">
 							<select name = "searchKey" id="searchKey">
-								<option value="userid">주문자</option>
+								<option value="ord_no">주문번호</option>
 								<option value="orderdate">주문날짜</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>

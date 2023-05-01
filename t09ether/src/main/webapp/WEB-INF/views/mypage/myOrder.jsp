@@ -306,6 +306,9 @@
 										<c:when test="${bDTO2.status==5 }">
 											<td>환불</td>
 										</c:when>
+										<c:when test="${bDTO2.status==10 }">
+											<td>만남완료</td>
+										</c:when>
 									</c:choose>
 									<td>${bDTO2.orderdate }</td>
 									<c:choose>
@@ -315,9 +318,12 @@
 												<td>신고불가</td>
 											</c:when>
 											<c:when test="${bDTO2.userid!=bDTO2.pd_userid }">
-												<td><input type="button" id="reportWrite" onclick="location.href='<%=request.getContextPath() %>/mypage/reportWrite?pd_userid=${bDTO2.pd_userid}'" value="공구장신고"/></td>
+												<td><input type="button" id="reportWrite" onclick="location.href='<%=request.getContextPath() %>/mypage/reportWrite?pd_userid=${bDTO2.pd_userid}&ord_no=${bDTO2.ord_no }'" value="공구장신고"/></td>
 											</c:when>
 										</c:choose>
+									</c:when>
+									<c:when test="${bDTO2.status==10}">
+											<td>신고완료</td>
 									</c:when>
 									<c:otherwise>
 										<td>신고불가</td>

@@ -103,6 +103,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.reportRegisterUpdate(target_id);
 	}
 
+	@Override
+	public int orderStatusUpdate(int ord_no) {
+		return dao.orderStatusUpdate(ord_no);
+	}
+
 	
 	
 	

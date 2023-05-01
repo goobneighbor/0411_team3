@@ -199,8 +199,9 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/reportWrite")
-	public ModelAndView reportWrite(String pd_userid) {
+	public ModelAndView reportWrite(String pd_userid, int ord_no) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("ord_no", ord_no);
 		mav.addObject("pd_userid", pd_userid);
 		mav.setViewName("mypage/reportWrite");
 		return mav;
@@ -213,8 +214,12 @@ public class MyPageController {
 		String htmlTag = "<script>";
 		try {
 			int result = service.reportInsert(dto);
+			//select
 			int result2 = service.reportRegisterUpdate(dto.getTarget_id());
-			if(result>0 && result2>0) {
+			
+			int result3= service.orderStatusUpdate(dto.getOrd_no());
+			
+			if(result>0 && result2>0 && result3>0) {
 				htmlTag += "alert('신고가 등록되었습니다.');";
 				htmlTag += "location.href='myOrder';";
 			}else {

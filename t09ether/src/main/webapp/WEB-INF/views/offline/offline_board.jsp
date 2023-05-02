@@ -13,7 +13,7 @@
 		padding:20px;
 		width:350px;
 		height:70px;
-		background-color:#666/* #F7D060 */;
+		background-color:#e9ddcd      /*#666*//* #F7D060 */;
 		text-align: center;
 		border-radius: 10px;
 	}
@@ -155,8 +155,6 @@
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
             <p style="color:#7d7b7a">같이 쇼핑할 사람들을 찾아보세요!</p>
-            <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
-
         </div>
     </div>
 </header>
@@ -167,6 +165,11 @@
 		<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 		<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 	</c:if>	
+	
+	
+	
+	<!-- Section-->
+	<section class="py-5" >
 	<!--검색 -->	
 	<div class ="searchDiv">
 		<form method="get" id="searchForm" action="offline">
@@ -180,8 +183,6 @@
 			<input type="submit" value="Search"/>
 		</form>	
 	</div>
-	<!-- Section-->
-	<section class="py-5" >
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
@@ -192,7 +193,7 @@
 	        		<div class="col mb-5" style="width:350px;">
 	            		<div class="card h-100">
 	                		<!-- Product image-->
-	                    	<img class="card-img-top" src="./resources/images/cart1jpg.jpg" alt="image" />
+	                    	<img class="card-img-top" src="<%=request.getContextPath() %>/resources/images/offline_test.jpg" alt="image" />
 	                    	
 	                    	<!-- details-->
 
@@ -222,8 +223,9 @@
         	</div>
     	</div>
     <!-- 페이징 -->
+    <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
     <div class="pagingDiv" id="wrapper">
-
+		
 		<div id="item">
 			<ul>
 				<!-- nowPage -->

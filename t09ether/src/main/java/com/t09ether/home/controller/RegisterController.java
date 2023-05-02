@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.RegisterDTO;
-import com.t09ether.home.dto.ZipcodeDTO;
 import com.t09ether.home.service.RegisterService;
 
 @Controller

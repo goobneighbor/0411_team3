@@ -234,9 +234,10 @@
 		<li>글 번호 : ${CustomerCenterDTO.cus_b_num }</li>
 		-->
 		<li> ${CustomerCenterDTO.subject }</li>
+		<li> ${CustomerCenterDTO.category }</li>
 		<li> ${CustomerCenterDTO.writedate }</li>
 		<li> ${CustomerCenterDTO.userid }</li>
-		<li> ${CustomerCenterDTO.category }</li>
+		
 	</ul>
 		<br><br>
 	<hr/>
@@ -253,15 +254,24 @@
 		<a href="csBoardEdit?cus_b_num=${CustomerCenterDTO.cus_b_num }&nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="javascript:csBoardDel()">삭제</a>
 		</c:if>
-		<p>
-		</p>
-		<hr/>
 	</div>
-
+	
+		<!-- 댓글 -->
+	<hr/>
+	<div>
+		<c:if test="${logStatus == 'Y' }"><!-- 로그인한 경우만 댓글 보고 작성할수있게 -->
+			<form method="post" id="replyForm">
+				<input type="hidden" name="cus_b_num" value="${CustomerCenterDTO.cus_b_num }"/><!-- 원글 글번호 -->
+				<textarea name="content" id="content"></textarea>
+	
+					<button type="submit">댓글등록</button>
+				
+			</form>
+		</c:if>
 		<ul id="replyList">
 		<hr/>
 		</ul>
-	
+	</div>
 
 </section>
 </body>

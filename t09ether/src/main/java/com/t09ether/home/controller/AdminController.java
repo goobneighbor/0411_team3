@@ -10,7 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
+import com.t09ether.home.dto.CustomerCenterDTO;
+import com.t09ether.home.dto.CustomerCenterPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.ReplyDTO;
 import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.service.AdminService;
 
@@ -29,6 +32,20 @@ public class AdminController {
 		mav.addObject("list", list);
 		mav.setViewName("admin/adminMain");
 		return mav;
+	}
+	
+	@GetMapping("/faqlistAdmin")
+	public ModelAndView faqlist(int cus_b_num, CustomerCenterDTO ccdto, CustomerCenterPagingVO vo) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		ccdto = service.csBoardSelect(cus_b_num);
+		mav.addObject("CustomerCenterDTO",ccdto);
+		mav.addObject("vo",vo);
+		mav.setViewName("admin/faqlistAdmin");
+
+		return mav;
+		
 	}
 	
 	@GetMapping("/adUser")
@@ -65,6 +82,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	
 	@GetMapping("/adStat")
 	public ModelAndView adStat() {
 		ModelAndView mav = new ModelAndView();
@@ -73,8 +91,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adQna")
-	public ModelAndView adQna() {
+	public ModelAndView adQna(CustomerCenterPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.csTotalRecord(vo));
+		
+		List<CustomerCenterDTO> list = service.csPageSelect(vo);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list",list);
 		mav.setViewName("admin/adQna");
 		return mav;
 	}

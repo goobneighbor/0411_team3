@@ -8,6 +8,7 @@
 .container{
 	margin:0 auto;
 	padding:20px;
+	}
 .card-img-top{
 	width:600px;
 	height:350px;
@@ -20,7 +21,20 @@
  	widh:100px; 
  	padding-right:30px;
  	text-align:center;
- 	}
+}
+#price{
+	float:right;
+	font-size:1.5em;
+	margin: 20px 20px;
+	padding:5px;
+	text-align:right;
+	
+}
+#detailed{
+	font-size:1.2em;
+	margin: 20px 20px;
+	padding:5px;
+}
 </style>
 <script>
 
@@ -117,6 +131,24 @@ function listView(result) {
 	$("#locationList").html(tag);
 	
 }
+
+$(function(){ 
+	var totalprice=document.getElementById('totalprice').innerHTML; 
+	totalprice = Math.floor(totalprice/10)*10; 
+	totalprice= totalprice.toLocaleString() 
+	document.getElementById('totalprice').innerHTML = totalprice; 
+	
+	var oneprice=document.getElementById('oneprice').innerHTML; 
+	oneprice = Math.floor(oneprice/10)*10; 
+	oneprice = oneprice.toLocaleString() 
+	document.getElementById('oneprice').innerHTML = oneprice;
+	
+	var discountprice=document.getElementById('discountprice').innerHTML; 
+	discountprice = Math.floor(discountprice/10)*10; 
+	discountprice = discountprice.toLocaleString() 
+	document.getElementById('discountprice').innerHTML = discountprice; 
+});
+
 	
 </script>
  
@@ -143,11 +175,17 @@ function listView(result) {
                		<div class="card-body">
                         <button class="btn btn-primary" id="button-search" style="float:right" onclick="location.href='/home/online/onlineReview?pro_code=${dto.pro_code}'">리뷰</button>
                         <h2 class="card-title">${dto.pro_name }</h2>
-                        <p class="card-text" style="font-size:1.4em; float:right">가격/할인적용시가격</p>
-                      
+                        <div id="price">
+                        <div>총&nbsp;&nbsp;<span id="totalprice">${dto.pro_price }</span>&nbsp;원</div>
+	                    <div>개당&nbsp;&nbsp;<span id="oneprice">${dto.pro_price/dto.pro_total }</span>&nbsp;원</div>
+	                    
+                      	</div>
                         <br/>
-                        <hr/>
-                        <p class="card-text">${dto.detailed }</p>
+                        <div class="card-body" style="margin:20px">
+                        <br/>
+                        <p id="detailed">${dto.detailed }</p>
+                        <br/>
+                        </div>
                         <a class="btn btn-primary" style="float:right" href="<%=request.getContextPath()%>/product/onlineGB?pro_code=${dto.pro_code }">내가 공구만들기</a>
 
                     </div>  

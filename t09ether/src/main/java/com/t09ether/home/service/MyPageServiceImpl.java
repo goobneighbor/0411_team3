@@ -122,6 +122,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.orderStatusUpdate(ord_no);
 	}
 
+
 	@Override
 	public int expUpdate(String userid) {
 		return dao.expUpdate(userid);

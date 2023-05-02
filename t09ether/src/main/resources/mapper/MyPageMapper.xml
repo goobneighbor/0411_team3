@@ -159,6 +159,7 @@
    <update id="orderStatusUpdate">
    		update order09 set status=10 where ord_no=#{ord_no}
    </update>
+   
 	
 	<!-- 오프라인 공구 게시물 리스트 + 페이징  -->
 	<select id="mpTotalRecord" resultType="int">
@@ -217,4 +218,5 @@
 	<update id="rankUpdate">
 		update registerinfo set rank=rank+1 where userid=#{userid}
 	</update>
+
 </mapper>

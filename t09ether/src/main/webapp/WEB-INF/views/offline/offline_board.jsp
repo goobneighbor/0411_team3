@@ -158,7 +158,9 @@
         </div>
     </div>
 </header>
-<div>		
+
+	
+
 	<!-- 페이지번호, 검색어, 검색키 -->
 	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 	<c:if test="${vo.searchWord!=null}">
@@ -265,6 +267,6 @@
 		</div>	
 	</div>
 	</section>
-</div>
+
 </body>
 

@@ -36,7 +36,7 @@
 				success:function(result) {
 					if(result=='Y') {
 						alert("이메일로 아이디를 전송했습니다.");
-						location.href="/campus/loginForm";
+						location.href="/home/loginForm";
 					}else {
 						alert("존재하지 않는 정보입니다.");
 					}

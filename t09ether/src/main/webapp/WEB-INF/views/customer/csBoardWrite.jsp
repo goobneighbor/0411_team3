@@ -178,6 +178,13 @@
 	<h1>Q&A게시판 글쓰기</h1>
 	<form method="post" action="csBoardWriteOk" id="csBoardForm">
 		<ul>
+			<li>말머리</li>
+			<select name="category" size="1">
+				<option value="온라인 문의">온라인 문의</option>
+				<option value="오프라인 문의">오프라인 문의</option>
+				<option value="배송 문의">배송 문의</option>
+				<option value="기타 문의">기타 문의</option>
+			</select>
 			<li>제목</li>
 			<li><input type="text" name="subject" id="subject"/></li>
 			<li>글내용</li>

@@ -9,33 +9,66 @@
 <style>
 	#uldesign {
 		list-style:none;
+		border-bottom:2px solid #ddd;
+		border-right:1px solid #ddd;
+	}
+	#uldesign li:nth-child(3), #uldesign li:nth-child(4) { /* 폰트 컬러 */
+		font-color: #black;
+	}
+	#uldesign li:nth-child(1) { /* 제목 */
 		font-size:30px;
-		width:75%;
+		float:left;
+		width:40%;
+		text-align:center;
 		padding:15px;
 	}
-	#uldesign li:nth-child(2) {
+	#uldesign li:nth-child(2) { /* 분류 */
 		float:right;
-		width:70%;
-		
+		width:20%;
+		text-align:center;
+		padding-top:30px;
 	}
-	#uldesign li:nth-child(3) {
+	#uldesign li:nth-child(3) { /* 작성자 */
 		float:right;
+		width:20%;
+		text-align:center;
+		padding-top:30px;
 	}
+	#uldesign li:nth-child(4) { /* 등록일 */
+		float:right;
+		width:20%;
+		text-align:center;
+		padding-top:30px;
+	}
+	<!-- 
+	#uldesign li:nth-child(5) { /* 글 내용 */
+		padding-top:30px;
+		font-size:30px;
+		border :1px solid #ddd;
+		width: 100%;
+	}
+	-->
+	#contentdesign>li {
+		width:100%;
+		list-style:none;
+		border: 1px solid:#ddd;
+	}
+	/* 이거쓰면 수직정렬됨
 	#wrappertwo {
 		display: grid;
 		place-items: center;
 		min-height: 10vh;
 	}
-	<!--
-	#uldesign>li:nth-child(0n) {
-		border:1px solid #ddd;
+	*/
+	.boardSubMenu {
+		text-align: center;
 	}
-	#uldesign>li:nth-child(2n) {
-		border:1px solid #ddd;
-	}
-	-->
+	
 	#replyList {
 		list-style:none;
+	}
+	#replyList>li:first-child {
+		border-top:1px solid #ddd;
 	}
 	#replyList>li {
 		border-bottom:1px solid #ddd;	
@@ -102,7 +135,7 @@
 		}
 		//댓글쓰기--------------------------
 		$("#replyForm").submit(function() {
-			
+			//관리자만 댓글달기 가능하게
 			//코멘트가 있을 때 ajax실행
 			if($("#content").val()=="") {
 				alert("댓글을 입력 후 등록하세요.");
@@ -195,43 +228,40 @@
 <section id="main" class="container">
 <header>
    <h2>Q&A 게시판</h2>
-   
 </header>
 	<ul id="uldesign">
+		<!--  
 		<li>글 번호 : ${CustomerCenterDTO.cus_b_num }</li>
-		<li>작성자 : ${CustomerCenterDTO.userid }</li>
-		<br/>
-		<li>제목</li>
-		<li>${CustomerCenterDTO.subject }</li>
-		<li>글 내용</li>
+		-->
+		<li> ${CustomerCenterDTO.subject }</li>
+		<li> ${CustomerCenterDTO.writedate }</li>
+		<li> ${CustomerCenterDTO.userid }</li>
+		<li> ${CustomerCenterDTO.category }</li>
+	</ul>
+		<br><br>
+	<hr/>
+	<ul id="contentdesign">	
 		<li>${CustomerCenterDTO.content }</li>
-		<li>등록일</li>
-		<li>${CustomerCenterDTO.writedate }</li>
 	</ul>
 	
-	<div class="boardSubMenu" id="wrappertwo">
-		<a href="customerBoard?nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">글목록</a>
+	
+	<hr/>
+	<div class="boardSubMenu">
+		<a href="customerBoard?nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">글목록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
 		<c:if test="${logId == CustomerCenterDTO.userid }">
-		<a href="csBoardEdit?cus_b_num=${CustomerCenterDTO.cus_b_num }&nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a>
+		<a href="csBoardEdit?cus_b_num=${CustomerCenterDTO.cus_b_num }&nowPage=${vo.nowPage }<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="javascript:csBoardDel()">삭제</a>
 		</c:if>
+		<p>
+		</p>
+		<hr/>
 	</div>
-	
-		<!-- 댓글 -->
-	<hr/>
-	<div>
-		<c:if test="${logStatus == 'Y' }"><!-- 로그인한 경우만 댓글 보고 작성할수있게 -->
-			<form method="post" id="replyForm">
-				<input type="hidden" name="cus_b_num" value="${CustomerCenterDTO.cus_b_num }"/><!-- 원글 글번호 -->
-				<textarea name="content" id="content"></textarea>
-				<button type="submit">댓글등록</button>		
-			</form>
-		</c:if>
+
 		<ul id="replyList">
 		<hr/>
 		</ul>
-	</div>
+	
 
 </section>
 </body>

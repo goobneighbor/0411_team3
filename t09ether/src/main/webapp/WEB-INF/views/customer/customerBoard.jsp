@@ -60,6 +60,7 @@
 							<thead>
 								<tr>
 									<th>글 번호</th>
+									<th>분류</th>
 									<th>제목</th>
 									<th>작성자</th>
 									<th>등록일</th>
@@ -69,6 +70,7 @@
 								<c:forEach var="CustomerCenterDTO" items="${list}">
 									<tr>
 										<td><c:out value="${CustomerCenterDTO.cus_b_num}" /></td>
+										<td><c:out value="${CustomerCenterDTO.category }"/></td>
 										<td><a
 											href="faqlist?cus_b_num=${CustomerCenterDTO.cus_b_num }"><c:out
 													value="${CustomerCenterDTO.subject }" /></a></td>

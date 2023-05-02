@@ -33,6 +33,9 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+	thead tr th, tbody{
+		text-align:center;
+	}
 </style>
 <script>
 	$(function(){
@@ -94,7 +97,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th><input type="checkbox" id="allCheck"/></th>
 									<th>번호</th>
 									<th>이름</th>
 									<th>아이디</th>

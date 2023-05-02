@@ -8,10 +8,13 @@ public class ReplyDTO {
 	private String writedate;
 	
 	
+	
+
+
 	@Override
 	public String toString() {
 		return "ReplyDTO [reply_num=" + reply_num + ", cus_b_num=" + cus_b_num + ", userid=" + userid + ", content="
-				+ content + ", writedate=" + writedate + "]";
+				+ content + ", writedate=" + writedate + "W]";
 	}
 
 

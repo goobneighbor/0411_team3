@@ -32,4 +32,7 @@ public interface AdminService {
 	
 	public int totalReportRecord(AdminPagingVO vo);
 	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo);
+	public int reportDel(List<Integer> list);
+	public List<String> targetSelect(List<Integer> list);
+	public int targetUpdate(String userid);
 }

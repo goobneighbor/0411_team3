@@ -234,12 +234,12 @@
 	select * from
 		(select * from
 			(
-				select report_no, mem_id, target_id, report_content, to_char(writedate,'MM-DD HH:MI') writedate
-                from report
+				select r.report_no, r.mem_id, r.target_id, r.report_content, to_char(r.writedate,'MM-DD HH:MI') writedate, u.report 
+				from report r join registerinfo u on r.target_id = u.userid
 					<if test="searchWord!=null"> 
-						where ${searchKey} like '%${searchWord}%'
+						and ${searchKey} like '%${searchWord}%'
 					</if>
-					order by report_no desc)
+					order by r.report_no desc)
 		
 				<![CDATA[
 				where rownum<=${onePageRecord*nowPage} order by report_no asc
@@ -259,5 +259,19 @@
 					
 				</choose>
 	</select>
-	
+	<delete id="reportDel">
+		delete from report
+		<foreach item="item" collection="list" open="where report_no in (" separator=", " close=")">
+			#{item}
+		</foreach>
+	</delete>
+	<select id="targetSelect" resultType="String">
+		select target_id from report
+		<foreach item="item" collection="list" open="where report_no in (" separator=", " close=")">
+			#{item}
+		</foreach>
+	</select>
+	<update id="targetUpdate">
+		update registerinfo set report=report+1 where userid=#{userid}
+	</update>
 </mapper>

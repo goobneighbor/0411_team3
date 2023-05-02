@@ -21,6 +21,7 @@ import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.dto.TempDTO;
 import com.t09ether.home.service.AdminService;
 
@@ -61,7 +62,7 @@ public class AdminController {
 		mav.setViewName("admin/adUser");
 		return mav;
 	}
-	
+	//임시정지
 	@PostMapping("/tempStop")
 	public ModelAndView tempStop(AdminPagingVO vo, RegisterDTO dto) {
 		ModelAndView mav = new ModelAndView();
@@ -70,7 +71,7 @@ public class AdminController {
 		System.out.println(result);
 		
 		mav.addObject("nowPage", vo.getNowPage());
-		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {//자바니깐 공백도 물어봐야(equals("")
+		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {
 			mav.addObject("searchKey", vo.getSearchKey());
 			mav.addObject("searchWord", vo.getSearchWord());
 		}
@@ -79,7 +80,7 @@ public class AdminController {
 		return mav;
 		
 	}
-	
+	//정지해제
 	@PostMapping("/unStop")
 	public ModelAndView unStop(AdminOrderPagingVO vo2, TempDTO dto) {
 		ModelAndView mav = new ModelAndView();
@@ -113,6 +114,52 @@ public class AdminController {
 		mav.addObject("list", list);
 		mav.setViewName("admin/adReport");
 		return mav;
+	}
+	
+	@PostMapping("/reportDel")
+	public ModelAndView reportDel(AdminPagingVO vo, ReportDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		
+		int result = service.reportDel(dto.getNoList());
+		System.out.println(result);
+		
+		mav.addObject("nowPage", vo.getNowPage());
+		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {
+			mav.addObject("searchKey", vo.getSearchKey());
+			mav.addObject("searchWord", vo.getSearchWord());
+		}
+		
+		mav.setViewName("redirect:adReport");
+		return mav;
+		
+	}
+	
+	@PostMapping("/reportAccept")
+	public ModelAndView reportAccept(AdminPagingVO vo, ReportDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		
+		//target_id select
+		List<String> tarlist = service.targetSelect(dto.getNoList());
+		System.out.println(tarlist);
+		
+		//target_id update
+		for(String userid : tarlist) {
+			int result = service.targetUpdate(userid);
+			System.out.println(result+" "+userid);
+		}
+		//신고테이블에서 삭제
+		int resultDel = service.reportDel(dto.getNoList());
+		System.out.println(resultDel);
+		
+		mav.addObject("nowPage", vo.getNowPage());
+		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {
+			mav.addObject("searchKey", vo.getSearchKey());
+			mav.addObject("searchWord", vo.getSearchWord());
+		}
+		
+		mav.setViewName("redirect:adReport");
+		return mav;
+		
 	}
 	
 	@GetMapping("/adStat")

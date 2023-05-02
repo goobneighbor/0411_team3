@@ -1,5 +1,7 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
+
 public class ReportDTO {
 	private int report_no;
 	private String mem_id;
@@ -9,6 +11,9 @@ public class ReportDTO {
 	private String writedate;
 	
 	private int ord_no;
+	private int report;
+
+	private List<Integer> noList;
 	
 	
 	
@@ -17,9 +22,8 @@ public class ReportDTO {
 	public String toString() {
 		return "ReportDTO [report_no=" + report_no + ", mem_id=" + mem_id + ", target_id=" + target_id
 				+ ", target_type=" + target_type + ", report_content=" + report_content + ", writedate=" + writedate
-				+ ", ord_no=" + ord_no + "]";
+				+ ", ord_no=" + ord_no + ", report=" + report + ", noList=" + noList + "]";
 	}
-	
 	public int getOrd_no() {
 		return ord_no;
 	}
@@ -66,6 +70,22 @@ public class ReportDTO {
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
+	}
+
+	public List<Integer> getNoList() {
+		return noList;
+	}
+
+	public void setNoList(List<Integer> noList) {
+		this.noList = noList;
+	}
+
+	public int getReport() {
+		return report;
+	}
+
+	public void setReport(int report) {
+		this.report = report;
 	}
 	
 	

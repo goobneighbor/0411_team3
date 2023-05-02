@@ -118,4 +118,19 @@ public class AdminServiceImpl implements AdminService {
 	public int tempStopDel(List<String> list) {
 		return dao.tempStopDel(list);
 	}
+
+	@Override
+	public int reportDel(List<Integer> list) {
+		return dao.reportDel(list);
+	}
+
+	@Override
+	public List<String> targetSelect(List<Integer> list) {
+		return dao.targetSelect(list);
+	}
+
+	@Override
+	public int targetUpdate(String userid) {
+		return dao.targetUpdate(userid);
+	}
 }

@@ -59,7 +59,8 @@
 			
 			if(checkCount>0){
 				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
-					$("#delList").submit();
+					$("#reportForm").attr("action","<%=request.getContextPath() %>/admin/reportDel");
+					$("#reportForm").submit();
 				}
 			}else{
 				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
@@ -79,7 +80,8 @@
 			
 			if(checkCount>0){
 				if(confirm(checkCount+'개의 신고를 승인하시겠습니까?')){
-					$("#delList").submit();
+					$("#reportForm").attr("action","<%=request.getContextPath() %>/admin/reportAccept");
+					$("#reportForm").submit();
 				}
 			}else{
 				alert("한 개 이상의 글을 선택하세요.");
@@ -117,6 +119,7 @@
 									<th>신고대상</th>
 									<th>신고내용</th>
 									<th>신고날짜</th>
+									<th>신고수(대상)</th>
 								</tr>
 							</thead>
 							
@@ -131,6 +134,7 @@
 									<td>${bDTO.target_id }</td>
 									<td>${bDTO.report_content }</td>
 									<td>${bDTO.writedate }</td>
+									<td>${bDTO.report }</td>
 								</tr>
 								<c:set var="recordNum" value="${recordNum+1}"/>	
 							</c:forEach>

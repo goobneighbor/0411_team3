@@ -6,6 +6,7 @@ import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 
 public interface OfflineDAO {
@@ -28,16 +29,16 @@ public interface OfflineDAO {
 	//공구참여시 -> userid 를 이용해참여자의 정보(RegisterDTO)불러오기
 	public RegisterDTO getParticipant(String userid);	
 	// 참여자 정보를 off_participant 테이블에 추가하기
-	public int participantInsert(OffPartDTO opDTO);
+	public int participantInsert(OfflineParticipantDTO opDTO);
 	// 공구번호(off_no)에 해당하는 참가자들 정보 불러오기(List)
-	public List<OffPartDTO> participantList(int off_no);
+	public List<OfflineParticipantDTO> participantList(int off_no);
 	// 공구참여인원수
 	public int currentNumCount(int off_no);
-	// 공구참여인원 1증가
-	public void currentNumPlus(int off_no);
 	// 공구참여자들의 아이디만 뽑아오기
 	public List<String> getIds(int off_no);
 	// 공구 마감(status 2로변경)
 	public void offlineClose(int off_no);
-	
+	// 공구 인원수(current_num)업데이트
+	public void currentNumUpdate(int off_no);
+
 }

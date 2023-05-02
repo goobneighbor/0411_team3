@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
+
 import com.t09ether.home.dto.MyPageDTO;
+import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ReportDTO;
@@ -76,6 +79,17 @@ public class MyPageController {
 			if(result>0) {
 				int result2 = service.expUpdate(vo.getUserid());
 				if(result2>0) {
+					int exp = service.expSelect(vo.getUserid());
+					if(exp==10) {
+						service.rankUpdate(vo.getUserid());
+					}else if(exp==30) {
+						service.rankUpdate(vo.getUserid());
+					}else if(exp==60) {
+						service.rankUpdate(vo.getUserid());
+					}else if(exp==100) {
+						service.rankUpdate(vo.getUserid());
+					}
+					
 					mav.addObject("errorMsg", "만남완료 및 경험치 업데이트 성공");
 					mav.setViewName("mypage/joinStatus");
 				}else {
@@ -96,13 +110,14 @@ public class MyPageController {
 	
 	
 	@GetMapping("/myPost")
-	public ModelAndView myPost(AdminPagingVO vo) {
+	public ModelAndView myPost(MyPostPagingVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
-		vo.setTotalRecord(service.totalRecord(vo));
+
+		String userid = (String)session.getAttribute("logId");
+		vo.setTotalRecord(service.mpTotalRecord(vo));
 		//System.out.println(vo.toString());
 		
-		List<OffPartDTO> list = service.offPageSelect(vo);
+		List<OffPartDTO> list = service.offPageSelect(vo,vo.getTotalPage(), vo.getSearchKey(), vo.getSearchWord(), userid, vo.getNowPage(), vo.getLastPageRecord(), vo.getOnePageRecord());
 		//System.out.println(list);
 		
 		mav.addObject("vo", vo);
@@ -112,14 +127,16 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myPostView")
-	public ModelAndView myPostView(int no, AdminPagingVO vo) {
+	public ModelAndView myPostView(int no, MyPostPagingVO vo) {
 		
 		OffPartDTO dto = service.boardSelect(no);
+		List<OffPartDTO> list = service.offPartList(no);
 		
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("dto", dto);
 		mav.addObject("vo", vo);
+		mav.addObject("list", list);
 		mav.setViewName("mypage/myPostView");
 		
 		return mav;

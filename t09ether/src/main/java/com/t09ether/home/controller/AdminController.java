@@ -16,10 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
+
+import com.t09ether.home.dto.AdReportPagingVO;
+import com.t09ether.home.dto.AdUserPagingVO;
+import com.t09ether.home.dto.CustomerCenterDTO;
+import com.t09ether.home.dto.CustomerCenterPagingVO;
+
 import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.ReplyDTO;
+import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.service.AdminService;
 
 @RestController
@@ -39,8 +48,22 @@ public class AdminController {
 		return mav;
 	}
 	
+	@GetMapping("/faqlistAdmin")
+	public ModelAndView faqlist(int cus_b_num, CustomerCenterDTO ccdto, CustomerCenterPagingVO vo) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		ccdto = service.csBoardSelect(cus_b_num);
+		mav.addObject("CustomerCenterDTO",ccdto);
+		mav.addObject("vo",vo);
+		mav.setViewName("admin/faqlistAdmin");
+
+		return mav;
+		
+	}
+	
 	@GetMapping("/adUser")
-	public ModelAndView adUser(AdminPagingVO vo) {
+	public ModelAndView adUser(AdUserPagingVO vo) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -57,11 +80,22 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adReport")
-	public ModelAndView adReport() {
+	public ModelAndView adReport(AdReportPagingVO vo) {
+		
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.rpTotalRecord(vo));
+		//System.out.println(vo.toString());
+		
+		List<ReportDTO> list = service.reportPageSelect(vo);
+		//System.out.println(list);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list", list);
 		mav.setViewName("admin/adReport");
 		return mav;
 	}
+	
 	
 	@GetMapping("/adStat")
 	public ModelAndView adStat() {
@@ -71,8 +105,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adQna")
-	public ModelAndView adQna() {
+	public ModelAndView adQna(CustomerCenterPagingVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.csTotalRecord(vo));
+		
+		List<CustomerCenterDTO> list = service.csPageSelect(vo);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list",list);
 		mav.setViewName("admin/adQna");
 		return mav;
 	}

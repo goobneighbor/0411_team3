@@ -89,8 +89,8 @@ public class CustomerCenterController {
 	}
 	
 	@GetMapping("/csBoardEdit")
-	public ModelAndView boardEdit(CustomerCenterDTO cdto, int cus_b_num, CustomerCenterPagingVO vo) {
-		cdto = service.csBoardEditSelect(cus_b_num);
+	public ModelAndView boardEdit(int cus_b_num, CustomerCenterPagingVO vo) {
+		CustomerCenterDTO cdto = service.csBoardEditSelect(cus_b_num);
 		
 		//"   "    '     ' 내용에 따옴표가 있으면
 		String subject = cdto.getSubject().replaceAll("\"", "&quot;");	// "  \"
@@ -107,13 +107,72 @@ public class CustomerCenterController {
 		return mav;
 		
 	}
+	
+	//수정(DB update)
+		@PostMapping("/csBoardEditOk")
+		public ResponseEntity<String> csBoardEditOk(CustomerCenterDTO cdto, CustomerCenterPagingVO vo, HttpSession session) {
+			//no레코드 번호, 로그인 아이디가 같을 때 업데이트 해야 함
+			cdto.setUserid((String)session.getAttribute("logId"));
+			//String kkk = cdto.getUserid();
+			//System.out.println("유저아이디는 :"+kkk);
+			String bodyTag = "<script>";
+			try {
+				service.csBoardUpdate(cdto);
+				// location.href='boardView?no=12&nowPage=2&searchKey=subject&searchWord=한화';
+				bodyTag += "location.href='faqlist?cus_b_num="+cdto.getCus_b_num()+"&nowPage="+vo.getNowPage();
+				if(vo.getSearchWord()!=null) { //검색어가 있으면 ~
+					bodyTag += "&searchKey="+vo.getSearchKey()+"&searchWord="+vo.getSearchWord();
+				}
+				bodyTag += "';";
+				
+			}catch(Exception e) {
+				//수정 실패
+				e.printStackTrace();
+				bodyTag += "alert('글 수정하는데 실패했습니다.');";
+				bodyTag += "history.back();";
+			}
+			bodyTag += "</script>";
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
+			headers.add("Content-Type", "text/html; charset=UTF-8");
+			
+			
+			ResponseEntity<String> entity = new ResponseEntity<String>(bodyTag, headers, HttpStatus.OK);
+			
+			return entity;
+		}
+		
+		// 삭제
+		@GetMapping("/csBoardDel")
+		public ModelAndView boardDel(CustomerCenterDTO cdto, CustomerCenterPagingVO vo, HttpSession session) {
+			cdto.setUserid((String) session.getAttribute("logId"));
+			int result = service.csBoardDelete(cdto);
+
+			ModelAndView mav = new ModelAndView();
+
+			// 페이지정보
+			mav.addObject("nowPage", vo.getNowPage());
+			if (vo.getSearchWord() != null) { // 검색어 있을 때
+				mav.addObject("searchKey", vo.getSearchKey());
+				mav.addObject("searchWord", vo.getSearchWord());
+			}
+			if (result > 0) { // 삭제되었음. 리스트로 이동시키기
+				mav.setViewName("redirect:customerBoard");
+			} else { // 삭제 실패 글 내용보기로 이동시키기
+				mav.addObject("cus_b_num", cdto.getCus_b_num());
+				mav.setViewName("redirect:faqlist");
+			}
+
+			return mav;
+		}
 
 	@GetMapping("/faqlist")
-	public ModelAndView boardView(int cus_b_num, CustomerCenterDTO ccdto, CustomerCenterPagingVO vo) {
+	public ModelAndView faqlist(int cus_b_num, CustomerCenterDTO ccdto, CustomerCenterPagingVO vo) {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		ccdto = service.boardView(cus_b_num);
+		ccdto = service.csBoardSelect(cus_b_num);
 		mav.addObject("CustomerCenterDTO",ccdto);
 		mav.addObject("vo",vo);
 		mav.setViewName("customer/faqlist");

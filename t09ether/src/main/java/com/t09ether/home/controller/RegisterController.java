@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.RegisterDTO;
-import com.t09ether.home.dto.ZipcodeDTO;
 import com.t09ether.home.service.RegisterService;
 
 @Controller
@@ -38,7 +37,8 @@ public class RegisterController {
 		RegisterDTO dto = service.loginOk(userid, userpwd);
 		
 		ModelAndView mav = new ModelAndView();
-		if(dto!=null) { //성공
+
+		if(dto!=null && dto.getReport()<6) { //성공
 			int rank = service.rankSelect(dto.getUserid());
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
@@ -54,8 +54,12 @@ public class RegisterController {
 			
 			mav.setViewName("redirect:/");
 			
-		}else { //실패
-			mav.setViewName("redirect:loginForm");
+		}else if(dto==null) { //실패
+			mav.addObject("msg", "존재하지 않는 아이디거나, 비밀번호 오류입니다.");
+			mav.setViewName("register/loginAlert");
+		}else if(dto.getReport()>=6) {
+			mav.addObject("msg", "신고 누적으로 인해 계정이 일시 정지되었습니다.");
+			mav.setViewName("register/acBlockAlert");
 		}
 		return mav;
 	}

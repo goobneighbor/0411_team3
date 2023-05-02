@@ -13,4 +13,5 @@ public interface OfflineCommentDAO {
 		public int commentUpdate(OfflineCommentDTO dto);
 		//댓글삭제
 		public int commentDelete(int comment_no, String userid);
+
 }

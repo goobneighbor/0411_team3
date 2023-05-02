@@ -4,6 +4,7 @@
 	li{
 		list-style-type: none;
 	}
+
 	.container px-4 px-lg-5 my-5{
 		padding:0 !important;
 	}
@@ -73,17 +74,14 @@
 		margin:10px;
 	}
 	.pHeader>div{	
-		width:50%;
+		width:100%;
 		float:left;
-		padding:10px 0;
-		background :orange;
+		padding:10px 10px;
+		background :orange;		
 	}
-	.pHeader>div:last-child{
-		text-align: right;
-	}
-	
+
 	.pagingDiv{		
-		text-align: center;		
+		text-align: center;	
 	}
 	.pagingDiv li{
 		float:left;
@@ -118,6 +116,7 @@
 		border-radius: 10px;
 		background-color: orange;
 	}
+
 	#searchForm{
       text-align:center;
    }
@@ -137,7 +136,7 @@
       text-align: center;
       width:100%;   
    }
-	
+
 </style>
 <script>
 	$(function(){
@@ -156,13 +155,13 @@
         	<h1 class="display-4 fw-bolder" style="color:#FFF">오프라인 공동구매</h1>
             <p class="lead fw-normal text-white-75 mb-0">같이 쇼핑할 사람들을 찾아보세요!</p>
             <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
+
         </div>
     </div>
 </header>
 <div class="container">		
 	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord }건 </div>
-		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>			
+		<div>진행중인 공구 : ${vo.totalRecord }건 </div>		
 	</div>	
 	<!-- 페이지번호, 검색어, 검색키 -->
 		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
@@ -179,12 +178,14 @@
   			<!-- 시작번호 설정 -->
 			<c:set var="recordNum" value="${vo.totalRecord -(vo.nowPage -1)*vo.onePageRecord }"></c:set>
         	<c:forEach var="offDTO" items="${list}">
+
 	        	<div class="col mb-5" style="width:350px;">
 	            	<div class="card h-100">
 	                	<!-- Product image-->
 	                    <img class="card-img-top" src="./resources/images/cart1jpg.jpg" alt="image" />
 	                    	
 	                    	<!-- details-->
+
 	                        <div class="card-body p-4" >
 	                        	<div class="text-center">
 	                            	<!-- name-->
@@ -210,10 +211,10 @@
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>
     </div>
-    
+
     <!-- 페이징 -->
-    <div class="pagingDiv">
-    <div id="wrapper">
+    <div class="pagingDiv" id="wrapper">
+
 		<div id="item">
 		<ul>
 			<!-- nowPage -->
@@ -252,13 +253,15 @@
 		</ul>
 		</div>	
 	</div>
+
 		<!--검색 -->	
 		<div class ="searchDiv">
-			<form method="get" id="searchForm" action="offline_board">
+			<form method="get" id="searchForm" action="offline">
 				<select name = "searchKey" id="searchKey">
-					<option value="subject">제목</option>
-					<option value="username">작성자</option>
-					<option value="content">글내용</option>
+					<option value="off_subject">제목</option>
+					<option value="userid">작성자</option>
+					<option value="off_content">내용</option>
+					<option value="location">지역</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWord"/>
 				<input type="submit" value="Search"/>
@@ -268,5 +271,8 @@
 	</div>
 
 </section>
+
+</div>
+
 
 </body>

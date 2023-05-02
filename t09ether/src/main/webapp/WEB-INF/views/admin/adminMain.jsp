@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
-<section id="main" class="container">
-      <header>
-         <h2></h2>
-       
-      </header>
-      <div class="row">
-         <div class="col-12">
+
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">관리자 페이지</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">관리자 메인페이지</li>
-                        </ol>                     
+                        </ol>
+                        
                         <div class="row">
+                        
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
@@ -75,6 +71,3 @@
             </div>
       <!--   </div>  -->
 </body>
-         </div>
-      </div>
-   </section>

@@ -140,8 +140,8 @@ function kakaoLogout() {
           <li><img src="resources/images/kakao_login.png" onclick="kakaoLogin()" alt=""/></li>
 		<li id="threestyle" >
 			<a href="join">회원가입</a>
-			<a href="<%=request.getContextPath() %>/register/idSearchForm">아이디찾기</a>
-			<a href="<%=request.getContextPath() %>/register/pwdSearchForm">비밀번호찾기</a>
+			<a href="<%=request.getContextPath() %>/idSearchForm">아이디찾기</a>
+			<a href="pwdSearchForm">비밀번호찾기</a>
 		</li>	
 		</ul>
 	</div>

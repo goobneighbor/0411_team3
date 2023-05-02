@@ -1,16 +1,10 @@
 package com.t09ether.home.controller;
 
 
-import javax.inject.Inject;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.RegisterDTO;
@@ -39,7 +32,7 @@ public class RegisterController {
 	
 	// DB로그인
 	
-	@PostMapping("/loginOk")
+	@PostMapping("loginOk")
 	public ModelAndView loginOk(String userid, String userpwd, HttpServletRequest request, HttpSession session) {
 		RegisterDTO dto = service.loginOk(userid, userpwd);
 		
@@ -156,80 +149,4 @@ public class RegisterController {
 			return mav;
 		}
 		
-		// 아이디 찾기 
-		@GetMapping("register/idSearchForm")
-		public String idSearchForm() {
-			return "register/idSearchForm";
-		}
-		
-		@PostMapping("register/idSearchOk")
-		public ModelAndView idSearchOk(RegisterDTO dto) {
-			ModelAndView mav = new ModelAndView();
-			
-			String userid= service.idSearchOk(dto);
-			
-			if( userid != null) {
-				mav.addObject("msg", "회원님의 아이디는 "+userid+" 입니다.");
-				mav.setViewName("register/idSearchOkay");
-				
-			} else {
-				mav.addObject("msg", "입력하신 정보와 일치하는 아이디가 없습니다.");
-				mav.setViewName("register/idSearchFail");
-			}
-			
-			return mav;
-		}
-		
-		// 비밀번호 찾기
-		@GetMapping("register/pwdSearchForm")
-		public String pwdSearchForm() {
-			return "register/pwdSearchForm";
-		}
-		
-		@Inject
-		JavaMailSenderImpl mailSender;
-		@PostMapping("/register/pwdSearchEmailSend")
-		@ResponseBody
-		public String pwdSearchEmailSend(RegisterDTO dto) {
-			String userpwd = service.pwdSearch(dto.getUserid(), dto.getEmail());
-			String userid = dto.getUserid();
-			
-			if(userid==null || userid.equals("")) {
-				return "N";
-			}else {
-				String emailSubject = "t09ether 비밀번호를 안내해 드립니다.";
-				
-				String emailContent = "<div style= 'display:flex; flex-direction:column; text-align:center; background:#FDF3EA; text-align:center;'>";
-				emailContent += "<h2>"+"안녕하세요? t09ether입니다."+"</h2>";
-				emailContent += "요청하신 비밀번호는 ";
-				emailContent += "["+"<b>"+userpwd +"</b>"+ "]" +" 입니다.";
-				emailContent += "<div style='display:flex; justify-content:center; align-items:center;'>";
-				emailContent += "<img src='https://img.freepik.com/premium-vector/good-business-team-and-cooperation-concept-group-of-young-colleagues-workers-standing-hugging-celebrating-success-in-business-together-vector-illustration_140689-3147.jpg?w=1380' alt='img'";
-				//emailContent += "<img src='cid:image'>";
-				emailContent += "</div>";
-				emailContent += "&nbsp;&nbsp;&nbsp;&nbsp;"+"<p>"+"</p>";
-				
-				emailContent +="</div>";
-				
-				
-				
-				try {
-				MimeMessage message = mailSender.createMimeMessage();
-				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-				
-				//보내는 메일 주소
-				messageHelper.setFrom("dmtome@naver.com");
-				messageHelper.setTo("dmtome@naver.com");
-				messageHelper.setSubject(emailSubject);
-				messageHelper.setText("text/html; charset=UTF-8", emailContent);
-				//messageHelper.addInline("image", new ClassPathResource("<%=request.getContextPath() %>/resources/images/09pic.jpg"));
-				mailSender.send(message);
-				return "Y";
-				}catch(Exception e) {
-					e.printStackTrace();
-					return "N";
-				}	
-			}
-		}
-		
-	}	
+}	

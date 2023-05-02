@@ -1,6 +1,5 @@
 package com.t09ether.home.dto;
 
-import java.util.Date;
 
 //오프라인 공동구매 게시판 글 정보
 public class OfflineDTO {
@@ -15,8 +14,9 @@ public class OfflineDTO {
 	private String deaddate;//모집마감일
 	private int off_hit;//조회수
 	private String writedate;//작성일
-	private int status;//처리상태
-	
+
+	private int status;//진행상태 (1: 진행중, 그외 : 완료)
+
 	public int getOff_no() {
 		return off_no;
 	}

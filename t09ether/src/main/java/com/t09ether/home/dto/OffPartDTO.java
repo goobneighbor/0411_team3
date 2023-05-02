@@ -8,15 +8,15 @@ public class OffPartDTO {
 	private String tel;
 	
 	private String off_subject;
-	private String off_content;
-	private String location;
-	private int group_num;
-	private int current_num;
-	private String app_time;
-	private String deaddate;
-	private int off_hit;
-	private String writedate;
-	private int status;
+    private String off_content;
+    private String location;
+    private int group_num;
+    private int current_num; 
+    private String app_time;
+    private String deaddate;
+    private int off_hit;
+    private String writedate;
+    private int status;
 	
 	public int getOff_j_no() {
 		return off_j_no;

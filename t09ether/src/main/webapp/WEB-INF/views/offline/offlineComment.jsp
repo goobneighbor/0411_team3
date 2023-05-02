@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 오프라인 공구 대화방(댓글) -->
 <style>
+	
 	li{list-style-type: none;}
 	.text-center text-white>h2{
 		color:#fff;
@@ -9,15 +10,18 @@
 		text-align: center;
 	}
 	.commentDiv{
+		margin:0 auto;
+		width:70%;
 		border: 2px double orange;
 	}
 	input[type='button']{
 		height:35px;
 		width:50px;
-		background: orange;
+		background: #A4D0A4;
 		padding:0 5px;
 		margin:0 2px;
-		border:1px solid tomato;		
+		border:1px solid #ddd;		
+		text-align: center;
 	}
 	
 	
@@ -62,6 +66,26 @@
   width: 0;
   z-index: 0;
 }
+	#view li{
+		border-bottom:1px solid tomato;
+		font-size: 1.2em;
+	}
+ 	#participantList{
+ 		margin:5px;
+ 	}
+ 	.centerInfo{
+ 		margin:10px auto;
+ 		text-align: center;
+ 		font-size:2em;
+ 		color:#A4D0A4;
+ 	}
+	#comment09{
+		width:80%;
+		margin: 10px 0 0 35px;
+	}
+	#commentInsert{
+		margin:0 0 0 35px;
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
@@ -200,13 +224,31 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">일정조율하기</h1>	
-	        	<h2>참가자들과 자유롭게 일정을 조율해보세요!</h2>	        	           
+	        	<h2 stlye="color:#A4D0A4">참가자들과 자유롭게 일정을 조율해보세요!</h2>	        	           
 	        </div>
 	    </div>
 	</header>
-	
-<div class="container">	
-	<h1>여기에 댓글구현</h1>	
+<div class="container">			
+	<div class="centerInfo">[참가자정보]</div>
+	<div id="participantList">		
+		<table>
+			<tr class="theader">
+			    <th>번호</th>
+			    <th>아이디</th>
+			    <th>이름</th>
+			    <th>연락처</th>
+			</tr>			  
+		<c:forEach var="opDTO" items="${list}" varStatus="status">
+			<tr class="infoDetail">
+				<td style="width:6%; text-align:center;">${status.count}</td>
+				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
+				<td>${opDTO.username}</td>
+				<td>${opDTO.tel}</td>
+			</tr>
+		</c:forEach>
+		</table>
+	</div>
+	<div class="centerInfo">이곳에서 의견을 조율해보세요!</div>
 	<div class="commentDiv">
 		<ul id="commentList">		
 		

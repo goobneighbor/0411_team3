@@ -12,7 +12,7 @@
 		padding:20px;
 		width:350px;
 		height:70px;
-		background-color:#F7D060;
+		background-color:#666/* #F7D060 */;
 		text-align: center;
 		border-radius: 10px;
 	}
@@ -73,16 +73,13 @@
 		margin:10px;
 	}
 	.pHeader>div{	
-		width:50%;
+		width:100%;
 		float:left;
-		padding:10px 0;
-		background :orange;
+		padding:10px 10px;
+		background :orange;		
 	}
-	.pHeader>div:last-child{
-		text-align: right;
-	}	
 	.pagingDiv{		
-		text-align: center;
+		text-align: center;	
 	}
 	.pagingDiv li{
 		float:left;
@@ -160,8 +157,7 @@
 </header>
 <div class="container">		
 	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord }건 </div>
-		<div>${vo.nowPage}페이지/${vo.totalPage}페이지</div>			
+		<div>진행중인 공구 : ${vo.totalRecord }건 </div>		
 	</div>	
 	<!-- 페이지번호, 검색어, 검색키 -->
 		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
@@ -209,10 +205,9 @@
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>
     </div>
-    
+
     <!-- 페이징 -->
-    <div class="pagingDiv">
-    <div id="wrapper">
+    <div class="pagingDiv" id="wrapper">
 		<div id="item">
 		<ul>
 			<!-- nowPage -->
@@ -253,11 +248,12 @@
 	</div>
 		<!--검색 -->	
 		<div class ="searchDiv">
-			<form method="get" id="searchForm" action="offline_board">
+			<form method="get" id="searchForm" action="offline">
 				<select name = "searchKey" id="searchKey">
-					<option value="subject">제목</option>
-					<option value="username">작성자</option>
-					<option value="content">글내용</option>
+					<option value="off_subject">제목</option>
+					<option value="userid">작성자</option>
+					<option value="off_content">내용</option>
+					<option value="location">지역</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWord"/>
 				<input type="submit" value="Search"/>
@@ -265,5 +261,4 @@
 		
 		</div>
 	</div>
-</section>
 </body>

@@ -64,6 +64,12 @@
 	}
 	#offlineReview{
 		padding:0;
+		height:50px;
+	}
+	.tdReview{
+		margin:auto;
+		padding:0 auto;;
+		height:50px;
 	}
 </style>
 <script>
@@ -93,7 +99,7 @@
 		<li class="participantInfo">참가자 정보</li>
 	</ul>
 	
-	<form method="post" action="offlineReview" id="offlineReview">
+	
 	<div id="participantList" style="border:2px solid orange;">		
 		<table>
 			<tr class="theader">
@@ -102,6 +108,7 @@
 			    <th>이름</th>
 			    <th>연락처</th>
 			    <th>리뷰쓰러가기</th>
+			    <th>신고하기</th>
 			</tr>			  
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
@@ -109,14 +116,23 @@
 				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
-				<td>	
-					<input type="hidden" name="off_no" value="${dto.off_no}"/>	
-					<input type="hidden" name="userid" value="${opDTO.userid}"/>			
-					<input type="submit" name ="review "value="리뷰" class="reviewButton"/>
+				<td class="tdReview">	
+					<form method="post" action="offlineReview" id="offlineReview">
+						<input type="hidden" name="off_no" value="${dto.off_no}"/>	
+						<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
+						<input type="submit" name ="review "value="리뷰" class="reviewButton"/>
+					</form>	
+				</td>
+				<td>
+					<form method="post" action="offlineReport" id="offlineReport">
+						<input type="hidden" name="off_no" value="${dto.off_no}"/>	
+						<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
+						<input type="submit" name ="review "value="신고" class="reportButton"/>
+					</form>	
 				</td>
 			</tr>
 		</c:forEach>
 		</table>
 	</div>
-	</form>
+
 </div>

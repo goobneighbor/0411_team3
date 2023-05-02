@@ -23,6 +23,8 @@
  	}
 </style>
 <script>
+
+
 $(function(){
 	$(document).on('click',"#onlineJoinForm", function(){
 		console.log($(this).parent().parent())
@@ -139,7 +141,7 @@ function listView(result) {
                 <div class="card mb-6">
                		<div class="card-header">상품상세</div>
                		<div class="card-body">
-                        <button class="btn btn-primary" id="button-search" style="float:right">리뷰</button>
+                        <button class="btn btn-primary" id="button-search" style="float:right" onclick="location.href='/home/online/onlineReview?pro_code=${dto.pro_code}'">리뷰</button>
                         <h2 class="card-title">${dto.pro_name }</h2>
                         <p class="card-text" style="font-size:1.4em; float:right">가격/할인적용시가격</p>
                       

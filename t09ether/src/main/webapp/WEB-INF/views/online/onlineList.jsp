@@ -1,12 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
-	
+$(function(){ 
+		var totalprice=document.getElementById('totalprice').innerHTML; 
+		totalprice = Math.floor(totalprice/10)*10; 
+		totalprice= totalprice.toLocaleString() 
+		document.getElementById('totalprice').innerHTML = totalprice; 
+		
+		var oneprice=document.getElementById('oneprice').innerHTML; 
+		oneprice = Math.floor(oneprice/10)*10; 
+		oneprice = oneprice.toLocaleString() 
+		document.getElementById('oneprice').innerHTML = oneprice; 
+});
 </script>
 <style>
+	#wrappertwo {
+		display: grid;
+		place-items: center;
+		min-height: 10vh;
+	}
+	
+	#searchForm{
+		text-align:center;
+	}
+	#searchKey, #searchWord, #search{
+		display:inline-block;
+	}
+	#searchKey { /*제목임*/
+		width:15%;
+		margin: auto;
+	}
+	#searchWord { /*검색칸*/
+		width:40%;
+		margin: auto;
+	}
+	.searchDiv{
+		padding:10px;
+		text-align: center;	
+		width:100%;	
+	}
 	.pagingDiv li{
 		float:left;
-		border:1px solid #000;
 		padding: 10px 20px;
 		list-style: none;
 	}
@@ -29,6 +63,19 @@
 
 <!-- Section-->
 <section class="py-5">
+	<c:if test="${vo.searchWord!=null}">
+		<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
+		<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
+	</c:if>
+	<div class ="searchDiv">
+		<form method="get" id="searchForm" action="onlineHome">
+			<select name = "searchKey" id="searchKey">
+					<option value="pro_name">상품명</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="Search" id="search"/>
+		</form>
+	</div>
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
@@ -49,8 +96,8 @@
 	                                <!-- 원래 가격 줄그어서 세일 표시하는 스타일
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
-	                                <div>총&nbsp;${proDTO.pro_price }&nbsp;원</div>
-	                                <div>개당&nbsp;${ Math.floor(proDTO.pro_price/proDTO.pro_total) }&nbsp;원</div>
+	                                <div>총&nbsp;<span id="totalprice">${proDTO.pro_price }</span>&nbsp;원</div>
+	                                <div>개당&nbsp;<span id="oneprice">${ Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10 }</span>&nbsp;원</div>
 	                            </div>
 	                        </div>
 	                        <!-- Product actions-->
@@ -64,7 +111,7 @@
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>
     </div>
-    <div class="pagingDiv">
+    <div class="pagingDiv" id="wrappertwo">
 				<ul>
 					<!-- nowPage -->
 					<c:if test="${vo.nowPage==1 }"> <!-- 현재페이지가 첫번째 페이지 일때 -->
@@ -72,7 +119,7 @@
 					</c:if>
 					
 					<c:if test="${vo.nowPage>1 }"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
-						<li><a href="onlineHome?nowPage=${vo.nowPage-1 }">이전</a></li>
+						<li><a href="onlineHome?nowPage=${vo.nowPage-1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 					</c:if>
 					<!-- 페이지번호 -->
 					<c:forEach var="p" begin="${vo.startPageNum }" end="${vo.startPageNum+vo.onePageNumCount-1 }">
@@ -84,13 +131,14 @@
 							<c:if test="${p!=vo.nowPage }">
 								<li id="sort">
 							</c:if>
-								<a href="onlineHome?nowPage=${p}">${p }</a></li>
+								<a href="onlineHome?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p }</a>
+							</li>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 다음페이지 -->
 					<c:if test="${vo.nowPage<vo.totalPage }">
-						<li><a href="onlineHome?nowPage=${vo.nowPage+1 }">다음</a></li>
+						<li><a href="onlineHome?nowPage=${vo.nowPage+1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
 					</c:if>
 					<c:if test="${vo.nowPage==vo.totalPage }">
 						<li>다음</li>

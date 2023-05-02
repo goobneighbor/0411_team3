@@ -79,6 +79,7 @@
 			return true;
 		});
 		
+		
 		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
 		//$("#allCheck").click(function(){
 		//	$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
@@ -86,11 +87,11 @@
 		//});
 		
 		//선택 삭제 버튼 클릭하면
-		$("#chooseDel1").click(function(){
+		$("#chooseDel").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
 			
 			var checkCount = 0;
-			$(".board_list input[name=noList1]").each(function(idx, obj){
+			$(".board_list input[name=noList]").each(function(idx, obj){
 				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
 					checkCount++;
 				}
@@ -105,30 +106,6 @@
 			}
 		});
 		
-		$("#allCheck2").click(function(){
-			$(".board_list input[name=noList2]").prop("checked", $("#allCheck2").prop("checked"));
-			
-		});
-		
-		//선택 삭제 버튼 클릭하면
-		$("#chooseDel2").click(function(){
-			// 최소 1개 이상 삭제를 선택했을 때
-			
-			var checkCount = 0;
-			$(".board_list input[name=noList2]").each(function(idx, obj){
-				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
-					checkCount++;
-				}
-			});
-			
-			if(checkCount>0){
-				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
-					$("#delList").submit();
-				}
-			}else{
-				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
-			}
-		});
 	});
 </script>
 	<!-- Main -->
@@ -189,12 +166,24 @@
 									</c:choose>
 									<td>${bDTO.orderdate }</td>
 									<c:choose>
-									<c:when test="${bDTO.pd_status==1 }">
-										<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
-									</c:when>
-									<c:otherwise>
-										<td>취소불가</td>
-									</c:otherwise>
+										<c:when test="${bDTO.pd_status==1}">
+											<td><input type="button" id="payCancel" onclick="location.href='<%=request.getContextPath() %>/pay/payCancel?ord_no=${bDTO.ord_no}'" value="결제 취소"/></td>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${bDTO.status==3}">
+													<c:choose>
+														<c:when test="${bDTO.userid==bDTO.pd_userid }">
+														<td><input type="button" id="joinUp" onclick="location.href='<%=request.getContextPath() %>/mypage/joinSuc?on_no=${bDTO.on_no}'" value="만남 완료"/></td>
+														</c:when>
+														<c:when test="${bDTO.userid!=bDTO.pd_userid }">
+															<td>취소불가</td>
+														</c:when>
+													</c:choose>
+												</c:when>
+												<c:otherwise><td>취소불가</td></c:otherwise>
+											</c:choose>
+										</c:otherwise>
 									</c:choose>
 								</tr>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
@@ -264,6 +253,7 @@
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
+			<h2> </h2>
 			<p>완료 내역</p>
 		</header>
 		<div class="row">
@@ -278,7 +268,6 @@
 						<input type="hidden" name="searchKey2" value="${vo2.searchKey2 }"/>
 						<input type="hidden" name="searchWord2" value="${vo2.searchWord2 }"/>
 					</c:if>
-				
 						<table class="board_list">
 							<thead>
 								<tr>
@@ -289,6 +278,7 @@
 									<th>주문개수</th>
 									<th>주문상태</th>
 									<th>주문날짜</th>
+									<th>신고하기</th>
 
 								</tr>
 							</thead>
@@ -300,12 +290,12 @@
 									<td>${recordNum2}</td>
 									<td>${bDTO2.ord_no }</td>
 									<c:choose>
-									<c:when test="${bDTO2.status==5 }">
-										<td><span class="text-muted text-decoration-line-through">${bDTO2.pro_name }</span></td>
-									</c:when>
-									<c:otherwise>
-									<<td>${bDTO2.pro_name }</td>
-									</c:otherwise>
+										<c:when test="${bDTO2.status==5 }">
+											<td><span class="text-muted text-decoration-line-through">${bDTO2.pro_name }</span></td>
+										</c:when>
+										<c:otherwise>
+										<td>${bDTO2.pro_name }</td>
+										</c:otherwise>
 									</c:choose>
 									<td>${bDTO2.pd_userid }</td>
 									<td>${bDTO2.ord_count }</td>
@@ -316,18 +306,33 @@
 										<c:when test="${bDTO2.status==5 }">
 											<td>환불</td>
 										</c:when>
+										<c:when test="${bDTO2.status==10 }">
+											<td>만남완료</td>
+										</c:when>
 									</c:choose>
 									<td>${bDTO2.orderdate }</td>
+									<c:choose>
+									<c:when test="${bDTO2.status==4}">
+										<c:choose>
+											<c:when test="${bDTO2.userid==bDTO2.pd_userid }">
+												<td>신고불가</td>
+											</c:when>
+											<c:when test="${bDTO2.userid!=bDTO2.pd_userid }">
+												<td><input type="button" id="reportWrite" onclick="location.href='<%=request.getContextPath() %>/mypage/reportWrite?pd_userid=${bDTO2.pd_userid}&ord_no=${bDTO2.ord_no }'" value="공구장신고"/></td>
+											</c:when>
+										</c:choose>
+									</c:when>
+									<c:when test="${bDTO2.status==10}">
+											<td>신고완료</td>
+									</c:when>
+									<c:otherwise>
+										<td>신고불가</td>
+									</c:otherwise>
+									</c:choose>
 								</tr>
 								<c:set var="recordNum2" value="${recordNum2-1}"/>	
 							</c:forEach>
 							</tbody>
-							<!--<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>  -->
 						</table>
 					</form>
 					</div>
@@ -367,6 +372,8 @@
 							</c:if>
 						</ul>
 					</div>
+					
+					
 					<!--검색 -->
 					<div class ="searchDiv2">
 						<form method="get" id="searchForm2" action="myOrder">

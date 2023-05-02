@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.AdminDAO;
 
+
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.DataVO;
 import com.t09ether.home.dto.OrderDTO;
+
+import com.t09ether.home.dto.ProductDTO;
+
+import com.t09ether.home.dto.CustomerCenterDTO;
+import com.t09ether.home.dto.CustomerCenterPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.dto.ReportDTO;
 
@@ -21,7 +27,7 @@ import com.t09ether.home.dto.ReportDTO;
 public class AdminServiceImpl implements AdminService {
 	@Inject
 	AdminDAO dao;
-
+	
 	@Override
 	public int totalRecord(AdUserPagingVO vo) {
 		return dao.totalRecord(vo);
@@ -73,5 +79,85 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<DataVO> onlineStat() {
 		return dao.onlineStat();
+	}
+
+
+	@Override
+	public int totalProductRecord(AdminPagingVO vo) {
+		return dao.totalProductRecord(vo);
+	}
+
+	@Override
+	public List<RegisterDTO> pageProductSelect(AdminPagingVO vo) {
+		return dao.pageProductSelect(vo);
+	}
+
+	@Override
+	public int productInsert(ProductDTO dto) {
+		return dao.productInsert(dto);
+	}
+
+	@Override
+	public int productDel(List<Integer> list) {
+		return dao.productDel(list);
+	}
+
+	@Override
+	public ProductDTO proInfor(int pro_code) {
+		return dao.proInfor(pro_code);
+	}
+
+	@Override
+	public int productUpdate(ProductDTO dto) {
+		return dao.productUpdate(dto);
+	}
+
+	@Override
+	public List<OrderDTO> totalOrdSelect(AdminPagingVO vo) {
+		return dao.totalOrdSelect(vo);
+	}
+
+	@Override
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
+	}
+
+	public int csTotalRecord(CustomerCenterPagingVO vo) {
+		return dao.csTotalRecord(vo);
+	}
+
+	@Override
+	public List<CustomerCenterDTO> csPageSelect(CustomerCenterPagingVO vo) {
+		return dao.csPageSelect(vo);
+	}
+
+	@Override
+	public int csBoardInsert(CustomerCenterDTO cdto) {
+		// TODO Auto-generated method stub
+		return dao.csBoardInsert(cdto);
+	}
+
+	@Override
+	public CustomerCenterDTO csBoardEditSelect(int cus_b_num) {
+		// TODO Auto-generated method stub
+		return dao.csBoardEditSelect(cus_b_num);
+	}
+
+	@Override
+	public int csBoardUpdate(CustomerCenterDTO cdto) {
+		// TODO Auto-generated method stub
+		return dao.csBoardUpdate(cdto);
+	}
+
+	@Override
+	public CustomerCenterDTO csBoardSelect(int cus_b_num) {
+		// TODO Auto-generated method stub
+		return dao.csBoardSelect(cus_b_num);
+	}
+
+	@Override
+	public int csBoardDelete(CustomerCenterDTO cdto) {
+		// TODO Auto-generated method stub
+		return dao.csBoardDelete(cdto);
 	}
 }

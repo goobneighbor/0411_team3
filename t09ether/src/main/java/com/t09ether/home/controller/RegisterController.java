@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.RegisterDTO;
-import com.t09ether.home.dto.ZipcodeDTO;
 import com.t09ether.home.service.RegisterService;
 
 @Controller
@@ -147,6 +146,13 @@ public class RegisterController {
 				mav.addObject("msg", "회원정보를 수정하는데 실패했습니다.");
 				mav.setViewName("register/joinOkResult");
 			}
+			return mav;
+		}
+		
+		@GetMapping("/idSearchForm")
+		public ModelAndView idSearch() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("register/idSearchForm");
 			return mav;
 		}
 		

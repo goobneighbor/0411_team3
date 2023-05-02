@@ -10,11 +10,15 @@ import com.t09ether.home.dao.MyPageDAO;
 
 import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
+
+import com.t09ether.home.dto.AdUserPagingVO;
+
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.MyPostPagingVO2;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ReportDTO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -68,6 +72,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
+	@Override
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
+	}
 	
 	@Override
 	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo) {
@@ -107,7 +115,43 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	//오프라인 구성원 리스트
 	@Override
+	public int myOrderSucUpdate(int on_no) {
+		return dao.myOrderSucUpdate(on_no);
+	}
+
+	@Override
+	public int reportInsert(ReportDTO dto) {
+		return dao.reportInsert(dto);
+	}
+
+	@Override
+	public int reportRegisterUpdate(String target_id) {
+		return dao.reportRegisterUpdate(target_id);
+	}
+
+	@Override
+	public int orderStatusUpdate(int ord_no) {
+		return dao.orderStatusUpdate(ord_no);
+	}
+
+	@Override
+	public int expUpdate(String userid) {
+		return dao.expUpdate(userid);
+	}
+	
+	@Override
 	public List<OffPartDTO> offPartList(int no) {
 		return dao.offPartList(no);
 	}
+
+	@Override
+	public int expSelect(String userid) {
+		return dao.expSelect(userid);
+	}
+
+	@Override
+	public int rankUpdate(String userid) {
+		return dao.rankUpdate(userid);
+	}
+
 }

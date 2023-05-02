@@ -36,7 +36,6 @@
     	</selectKey>
 	 	insert into order09(ord_no, pro_code, userid, ord_count, status, on_no, ord_amount) values(ord_no_sq.nextval, #{pro_code}, #{userid}, #{ord_count}, 1, #{on_no}, #{ord_amount})
 	</insert>
-	
 	<update id="restUpdate">
 		update product_detail set rest_count = ${rest_count} where on_no=${on_no}
 		
@@ -47,4 +46,7 @@
 	<select id="selectInfor" resultType="com.t09ether.home.dto.OrderDTO">
 		select r.userid, r.username, r.tel, r.email from registerinfo r join order09 o on r.userid=o.userid and o.on_no=${on_no}
 	</select>
+	<update id="updatePrice">
+		update order09 set ord_amount=#{finalNum} where ord_no=#{ord_no}
+	</update>
 </mapper>

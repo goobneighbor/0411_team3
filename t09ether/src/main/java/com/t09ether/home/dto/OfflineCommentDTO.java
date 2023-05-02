@@ -42,6 +42,4 @@ public class OfflineCommentDTO {
 		return "OfflineCommentDTO [comment_no=" + comment_no + ", off_no=" + off_no + ", comment09=" + comment09
 				+ ", writedate=" + writedate + ", userid=" + userid + "]";
 	}
-	
-	
 }

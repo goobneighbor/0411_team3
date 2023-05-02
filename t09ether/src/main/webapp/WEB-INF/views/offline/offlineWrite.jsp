@@ -42,6 +42,9 @@
      .conhead{margin:0;}
 </style>
 <script>
+	var logId = sessionStorage.getItem("logId");
+	console.log(logId);
+	
 	//=======================에디터 시작=====================//
 	$(function(){
 		CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
@@ -250,13 +253,15 @@
 	</section>
 	
 	<form method="post" action="offlineInsert" id="offlineWriteForm">
+		<input type="hidden" name="current_num" value="1"/>
+		<input type="hidden" name="off_hit" value="1"/>
 		<ul>
-			<li>글제목 : </li>
+			<li>제목 : </li>
 			<li><input type="text" name="off_subject" id="off_subject"/></li><hr/>
 			<li>[공구장소 설정]<li><br/>
 			<div class="zipcode">
 				우편번호
-				<input type="text" id="sample6_postcode" placeholder="우편번호">
+				<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>
 				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 			</div>	
 				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>

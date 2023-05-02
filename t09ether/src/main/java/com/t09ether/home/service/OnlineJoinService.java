@@ -21,4 +21,6 @@ public interface OnlineJoinService {
 	public int ordNoSelect(OrderDTO dto);
 	public int statusUpdate(int on_no);
 	public List<OrderDTO> selectInfor(int on_no);
+	public int finalSelect(int ord_no);
+	public int updatePrice(int finalNum, int ord_no);
 }

@@ -7,4 +7,11 @@
 		insert into off_review (off_r_no, off_no, userid, target_id, subject, content, writedate)
 		values (off_r_no_sq.nextval, ${off_no}, #{userid},#{target_id},#{subject},#{content},sysdate)
 	</insert>
+	<select id="reviewSelect" resultType="com.t09ether.home.dto.OfflineReviewDTO">
+		select off_r_no, off_no, userid, target_id, subject, content, to_char(writedate,'MM-DD') writedate
+		from off_review where target_id=#{userid}
+	</select>
+	<select id="reviewCount" resultType="int">
+		select count(*) from off_review where target_id=#{userid}
+	</select>
 </mapper>

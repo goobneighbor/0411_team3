@@ -3,8 +3,6 @@
 <style>
 	#view>li{
 			padding:5px 0;
-<<<<<<< HEAD
-=======
 			border-bottom:1px solid #ddd;
 			list-style-type: none;
 		}
@@ -14,11 +12,10 @@
 	}
 	#commentList>li{
 			padding:10px;
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 			border-bottom:1px solid #ddd;
 			list-style-type: none;
 		}
-<<<<<<< HEAD
+
 	.boardSubMenu{			
 		background: #fff;
 		padding:0 0 10px 30px;;
@@ -32,12 +29,12 @@
 		padding: 10px;
 		
 	}	
-=======
+
 	#coment{
 			width:50%;
 			height:80px;
 		}
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	.bg-tomato py-5{
 		margin:0;
 		padding:0;
@@ -46,9 +43,7 @@
 	.jr{
 		list-style-type: none;
 	}
-<<<<<<< HEAD
-	
-=======
+
 	.join{
 		width:110px;
 		border:1px solid tomato;
@@ -57,7 +52,7 @@
 		float:left;	
 		
 	}
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	.report{
 		width:100px;
 		border:1px solid tomato;
@@ -69,24 +64,46 @@
 	}
 	#offlineJoin{
 		margin:0 auto;
-<<<<<<< HEAD
 		text-align: center;
 	}
-	#joinButton{
+	.joinButton, .detailButton{
 		margin:0 auto;
+		background:##A4D0A4;
 	}
-	
-</style>
-<script>
-	
-=======
-		float:left;
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	  text-align: center;
+	}
+	.theader th{
 		text-align: center;
 	}
-	
+	td, th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	  background-color: orange;
+	}
+	tr:nth-child(odd) {
+	  background-color: yellow;
+	}
+	.joinDiv{
+		margin: 10px auto;
+	}
+	.joinDiv input{
+		float: left;
+		margin :10px 10px;;
+	}
+	.centerAlign{
+		margin:5px auto;
+		text-align: center;
+	}
 </style>
 <script>
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	function offlineDel(){
 		if(confirm("정말 삭제하시겠습니까?")){
 			location.href="offlineDel?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>";
@@ -96,12 +113,7 @@
 	$(function(){
 		var userid = '<%=session.getAttribute("logId")%>';	
 		console.log("userid="+userid);
-<<<<<<< HEAD
-		$("#joinButton").click(function(){			
-=======
-		$("#joinButton").click(function(){
-			
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+		$(".joinButton").click(function(){	
 				if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
 					//아니오 -> 참여안함
 					alert("공동구매 참여가 취소되었습니다.");
@@ -109,23 +121,13 @@
 				}else{//예 -> 참여함
 					if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
 						alert("정원이 가득 찼습니다");
-<<<<<<< HEAD
+
 						return false;
 					}	
 				}
 			});
 		});
 
-=======
-						//return false;
-					}	
-				}
-			}
-		});
-			
-		
-	});
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 </script>
 <div class="container">
 	<!-- Header-->
@@ -139,17 +141,11 @@
 	<ul id="view">
 		<li>번호 : ${dto.off_no}</li>	
 		<li>제목 : ${dto.off_subject}</li>
-<<<<<<< HEAD
+
 		<li>처리상태 : 
 			<c:choose>
 				<c:when test="${dto.status==1}">진행중</c:when>
 				<c:otherwise>마감</c:otherwise>
-=======
-		<li>처리상태 : (status=${dto.status})
-			<c:choose>
-				<c:when test="${dto.status==1}">진행중</c:when>
-				<c:otherwise>종료</c:otherwise>
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 			</c:choose>
 		</li>	
 		<li>등록일 : ${dto.writedate}</li>	
@@ -161,34 +157,9 @@
 		<li>만남시간 : ${dto.app_time}</li>					
 		<li>상세정보 : ${dto.off_content}</li>
 		
-		<li class="report"><a href="">신고하기</a></li>
+		<li class="report"><a href="offlineReport">신고하기</a></li>
 			
 	</ul>
-<<<<<<< HEAD
-	
-	<c:if test="${logStatus=='Y'&& dto.status==1}">
-		<form method="post" action="offlineJoin" id="offlineJoin">
-				<input type="hidden" name="off_no" value="${dto.off_no}"/>
-				<input type="submit" value="지금참여하기" id="joinButton"/>					
-		</form>
-	</c:if>		
-	<c:if test="${logStatus=='Y'&& dto.status==2}">
-		<form method="get" action="offlineFinished" id="offlineFinished">
-			<input type="hidden" name="off_no" value="${dto.off_no}"/>
-			<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
-		</form>
-	</c:if>
-	
-	<br/>	
-=======
-	<form method="post" action="offlineJoin" id="offlineJoin">
-			<input type="hidden" name="off_no" value="${dto.off_no}"/>
-			<c:if test="${logStatus=='Y'}">
-			<input type="submit" value="지금참여하기" id="joinButton"/>	
-			</c:if>
-	</form>
-			
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 	<div class="boardSubMenu">		
 		<!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
 		<c:if test="${logId==dto.userid}">
@@ -196,6 +167,53 @@
 			<a href="javascript:offlineDel()">삭제</a>
 		</c:if>
 	</div>
+	
+	<br/>	
+	<!-- 참여자 정보(아이디만 보이게) -->
+	<div id="participantList">	
+		<div style="text-align: center; color:tomato;">[참여자 정보]</div>	
+		<div style="text-align: center; color:#A4D0A4;"> ※ 공동구매에 참여하시면 참여자들에 대한 더 자세한 정보를 알 수 있습니다 ※</div>
+		<table>
+			<tr class="theader">
+			    <th>번호</th>
+			    <th>아이디</th>			    
+			</tr>			  
+		<c:forEach var="opDTO" items="${list}" varStatus="status">
+			<tr class="infoDetail">
+				<td style="width:6%; text-align:center;">${status.count}</td>
+				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
+			</tr>
+		</c:forEach>
+		</table>
+	</div>
+	
+	
+	<!-- 지금참여하기/리뷰쓰러가기 버튼 -->
+	<div class="joinDiv">
+		<c:if test="${logStatus=='Y'&& dto.status==1}">
+			<form method="post" action="offlineJoin" id="offlineJoin">
+					<input type="hidden" name="off_no" value="${dto.off_no}"/>
+					<input type="submit" value="지금참여하기" class="joinButton"/>					
+			</form>
+		</c:if>
+		<!-- 이미 참여되어있는 사람은 상세정보 페이지로 이동할 수 있는 버튼 -->
+		<c:forEach var="ids" items="${idList}">
+			<c:if test="${nowId==ids}">
+				<form method="post" action="offlineJoin" id="offlineJoin">
+					<input type="hidden" name="off_no" value="${dto.off_no}"/>
+					<input type="submit" value="공구페이지로 이동" class="detailButton"/>					
+			</form>
+			</c:if>
+		</c:forEach>		
+		<c:if test="${logStatus=='Y'&& dto.status==2}">
+			<form method="get" action="offlineFinished" id="offlineFinished">
+				<input type="hidden" name="off_no" value="${dto.off_no}"/>
+				<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
+			</form>
+		</c:if>
+	</div>
+	
+	
 	
 	
 </div>

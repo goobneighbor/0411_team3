@@ -21,22 +21,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
-import com.t09ether.home.dto.OffPartDTO;
-import com.t09ether.home.dto.OfflineCommentDTO;
-import com.t09ether.home.dto.OfflineDTO;
-import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.OfflineReviewDTO;
-import com.t09ether.home.dto.RegisterDTO;
-import com.t09ether.home.service.OfflineCommentService;
-import com.t09ether.home.service.OfflineReviewService;
-=======
+
+import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
+import com.t09ether.home.dto.OfflineReviewDTO;
 import com.t09ether.home.dto.RegisterDTO;
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+import com.t09ether.home.service.OfflineCommentService;
+import com.t09ether.home.service.OfflineReviewService;
+
+import com.t09ether.home.dto.OfflineCommentDTO;
+import com.t09ether.home.dto.OfflineDTO;
+import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.RegisterDTO;
+
 import com.t09ether.home.service.OfflineService;
 
 @RestController
@@ -55,14 +55,12 @@ public class OfflineController {
 		vo.setTotalRecord(service.totalRecord(vo));
 		
 		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
-		list = service.offList(vo);
+		list = service.offList(vo);//해당페이지 레코드 선택하기
 		
-		//해당페이지 레코드 선택하기
-<<<<<<< HEAD
 		mav.addObject("list", list);		
-=======
+
 		mav.addObject("list", service.offList(vo));		
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 		mav.addObject("vo", vo);
 		mav.setViewName("offline/offline_board");
 		return mav;
@@ -76,85 +74,68 @@ public class OfflineController {
 		return mav;
 	}
 	
-	//글등록(DB) 
+	//글등록(DB) -> 공구 생성
 	@PostMapping("/offlineInsert")	
 	public ResponseEntity<String> offlineInsert(OfflineDTO dto, HttpServletRequest request) {
 		
-		//dto.setIp(request.getRemoteAddr());//ip
+		//로그인아이디
 		String userid = (String)request.getSession().getAttribute("logId");
-<<<<<<< HEAD
 		dto.setUserid(userid);		
-		dto.setCurrent_num(1);		
-		dto.setOff_hit(1);					
-=======
-		dto.setUserid((userid));//로그인한 아이디 구하기
-		dto.setCurrent_num(1);
-		dto.setOff_hit(1);			
-		
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 		
 		String htmlTag="<script>";
-		try {
+		try {//글등록성공
 			int result = service.offlineInsert(dto);//DB등록
+			
+			//글등록성공하면 작성자를 참가자(off_participant)에 추가
+			RegisterDTO rDTO = service.getParticipant(userid); //userid를 이용해 작성자 회원정보를 가져와
+			OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
+			//DB의 offline_participant테이블에 insert한다
+			opDTO.setOff_no(dto.getOff_no());
+			opDTO.setUserid(userid);
+			opDTO.setUsername(rDTO.getUsername());
+			opDTO.setTel(rDTO.getTelAst());
+			
+			service.participantInsert(opDTO);//작성자->참여자 등록
+			
+			System.out.println("원글번호(dto.off_no)="+dto.getOff_no());
+			
+			System.out.println("작성자정보 : "+opDTO.toString());
+		
 			htmlTag += "location.href='offline';";
-		}catch(Exception e) {
+		}catch(Exception e) {//글등록실패
 			e.printStackTrace();
 			htmlTag += "alert('글이등록되지않았습니다.');";
 			htmlTag += "history.back();";
 		}
 		htmlTag += "</script>";
-		
-<<<<<<< HEAD
-		//글등록성공하면 자동으로 작성자를 참가자(off_participant)에 추가
-		OffPartDTO opDTO = new OffPartDTO();		
-		
-=======
-		//글등록성공하면 자동으로 off_participant에 추가
-		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
-		//userid를 이용해 참가하는 회원의 정보를 가져와
-		RegisterDTO rDTO = service.getParticipant(userid);  
-		//DB의 offline_participant테이블에 insert한다
-		opDTO.setOff_no(dto.getOff_no());
-		opDTO.setUserid(userid);
-		opDTO.setUsername(rDTO.getUsername());
-		opDTO.setTel(rDTO.getTel());
-<<<<<<< HEAD
-		
-		service.participantInsert(opDTO);
-		System.out.println("원글번호(dto.off_no)="+dto.getOff_no());
-		System.out.println("글작성자->offline_participant에 등록완료");
-		System.out.println("작성자정보 : "+opDTO.toString());
-=======
-		service.participantInsert(opDTO);
-		System.out.println("글작성자->offline_participant에 등록완료");
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 		//결과
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		System.out.println(dto.toString());		
 		
-		
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
-		
 	}
 	
 	//글내용보기
 	@GetMapping("/offlineView")
-	public ModelAndView boardView(int off_no, OfflinePagingVO vo) {
+	public ModelAndView boardView(int off_no, OfflinePagingVO vo,HttpServletRequest request) {
+		//현재 로그인한 사람의 아이디
+		String nowId = (String)request.getSession().getAttribute("logId");
 		//조회수증가
 		service.offlineHitCount(off_no);
 		//해당글(off_no)담기
-		OfflineDTO dto = service.offlineSelect(off_no);
-<<<<<<< HEAD
+		OfflineDTO dto = service.offlineSelect(off_no);		
 		dto.setCurrent_num(service.currentNumCount(off_no));
-=======
-		
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+		//참가자들 담기
+		List<OfflineParticipantDTO> list = service.participantList(off_no);
+		List<String> idList = service.getIds(off_no);
 		ModelAndView mav = new ModelAndView();		
 		
+		mav.addObject("nowId", nowId);
 		mav.addObject("dto", dto); //선택한레코드
+		mav.addObject("list", list);//참여자들
+		mav.addObject("idList", idList);//참여자들(아이디만)
 		mav.addObject("vo", vo); // 페이지번호, 검색어, 검색키
 		
 		mav.setViewName("offline/offlineView");
@@ -236,56 +217,49 @@ public class OfflineController {
 			}
 			return mav;
 		}
-	
-<<<<<<< HEAD
-	
+
 	//오프라인 공구 참여 
-	// 마감X-> 오프라인공구 상세페이지로
-	// 마감O -> 마감 페이지로
-=======
-	//오프라인 공구 참여 -> 오프라인공구 상세페이지로
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+	// 마감X-> 오프라인공구 상세페이지로 이동
+	// 마감O -> 마감 페이지로 이동
+
 	@PostMapping("/offlineJoin")
 	public ModelAndView offlineJoin(int off_no, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		OfflineDTO dto = service.offlineSelect(off_no);	
-		String userid = (String)request.getSession().getAttribute("logId");
+		OfflineDTO dto = service.offlineSelect(off_no);	//공구(원글)정보
 		
-<<<<<<< HEAD
-		List<OffPartDTO> list=service.participantList(off_no);
-		OffPartDTO opDTO = new OffPartDTO();
-=======
+		//로그인된 아이디
+		String userid = (String)request.getSession().getAttribute("logId");
+
+		//참가자들 리스트
 		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		OfflineParticipantDTO opDTO = new OfflineParticipantDTO();
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
-		//userid를 이용해 참가하는 회원의 정보를 가져오기
+
+		//userid를 이용해 참가하는 회원의 정보를 준비하기
 		RegisterDTO rDTO = service.getParticipant(userid);
 		opDTO.setOff_no(off_no);
 		opDTO.setUserid(userid);
 		opDTO.setUsername(rDTO.getUsername());
-		opDTO.setTel(rDTO.getTel());
+		opDTO.setTel(rDTO.getTelAst());
 		System.out.println("opDTO->"+opDTO.toString());
 		
 		List<String> idList = service.getIds(off_no);
 		if(idList.contains(userid)) {//이미 참여한 사람이면 따로 등록 X
-<<<<<<< HEAD
+
 			System.out.println("이미 등록된 회원");
-=======
-			System.out.println("이미 등록된 회원->처리는 어떻게?");
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 		}else { //등록되어있지 않은 사람인 경우
 			//DB의 offline_participant테이블에 insert한다
 			service.participantInsert(opDTO);
+			service.currentNumUpdate(off_no);//현재인원수 업데이트
 		}
 		dto.setCurrent_num(service.currentNumCount(off_no));
 		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
 		RegisterDTO firstDTO = service.getParticipant(dto.getUserid());//방장의 정보
-		
-		mav.addObject("firstDTO", firstDTO);//방장정보
+		//뷰페이지로 정보 전송		
+		mav.addObject("firstDTO", firstDTO);//방장정보 RegisterDTO
 		mav.addObject("list", list);// 공구참여자정보 List<OfflineParticipantDTO>
-		mav.addObject("dto", dto); //원글정보
+		mav.addObject("dto", dto); //원글정보 OfflineDTO
 		mav.setViewName("/offline/offlineDetail");
-<<<<<<< HEAD
 		
 		return mav;
 	}
@@ -297,7 +271,7 @@ public class OfflineController {
 	public ModelAndView offlineClose(int off_no) {
 		ModelAndView mav = new ModelAndView();
 		OfflineDTO dto = service.offlineSelect(off_no);
-		List<OffPartDTO> list=service.participantList(off_no);
+		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		
 		service.offlineClose(off_no);//status변경(마감)
 		mav.addObject("list", list);
@@ -312,36 +286,29 @@ public class OfflineController {
 		ModelAndView mav = new ModelAndView();
 		
 		OfflineDTO dto = service.offlineSelect(off_no);
-		List<OffPartDTO> list=service.participantList(off_no);
+		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		
 		mav.addObject("list", list);
 		mav.addObject("dto", dto);
 		mav.setViewName("/offline/offlineClose");
+	
 		return mav;
 	}
-	
-	
-=======
-		return mav;
-	}
-	
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	//일정조율페이지로 넘어가기(댓글)
 	@GetMapping("/offlineComment")
 	public ModelAndView offlineComment(int off_no) {
 		ModelAndView mav = new ModelAndView();
 		OfflineDTO dto = service.offlineSelect(off_no);	
+		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		
-<<<<<<< HEAD
 		mav.addObject("dto", dto);//원글정보
-=======
-		mav.addObject("dto", dto);
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+		mav.addObject("list", list);
 		mav.setViewName("/offline/offlineComment");
 		return mav;
 	}
 	
-<<<<<<< HEAD
+
 	//========================= 리뷰 시작 ========================//
 	//참가자리뷰페이지 넘어가기(
 	//참여자 한명에 대한 리뷰버튼 클릭 => 해당 참여자에 대한 리뷰 등록할 수 있는 글쓰기 폼으로 이동	
@@ -360,40 +327,13 @@ public class OfflineController {
 		mav.addObject("target_id", target_id);
 		mav.addObject("writer", writer);
 		mav.setViewName("/offline/offlineReviewWrite");
-=======
-	//댓글목록
-	/*
-	@GetMapping("/commentList")
-	public List<OfflineCommentDTO> commentList(int off_no){
-		List<OfflineCommentDTO> list;
 		
-		return list;
-	}
-	*/
-	
-	
-	//게시판목록(갤러리형)
-	@GetMapping("/offlineGB")
-	public ModelAndView offlineGallery(OfflinePagingVO vo) {		
-		ModelAndView mav = new ModelAndView();			
-		//총레코드수
-		vo.setTotalRecord(service.totalRecord(vo));
-			
-		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
-		list = service.offList(vo);
-			
-		//해당페이지 레코드 선택하기
-		mav.addObject("list", service.offList(vo));		
-		mav.addObject("vo", vo);
-		mav.setViewName("offline/offlineGB");
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 		return mav;
-	}
+		}
 	
-	
-<<<<<<< HEAD
+
 	//리뷰등록
-	@PostMapping("offlineReviewInsertOk")
+	@PostMapping("/offlineReviewInsertOk")
 	public ResponseEntity<String> offlineReviewInsertOk(OfflineReviewDTO dto, String target_id, HttpServletRequest request){
 		dto.setUserid((String)request.getSession().getAttribute("logId"));//작성자아이디
 		dto.setTarget_id(target_id);
@@ -404,7 +344,7 @@ public class OfflineController {
 			htmlTag += "location.href='offline';";
 		}catch(Exception e) {
 			e.printStackTrace();
-			htmlTag += "alert('글이 등록되지않았습니다.');";
+			htmlTag += "alert('신고가 등록되지않았습니다.');";
 			htmlTag += "history.back();";
 		}
 		htmlTag += "</script>";
@@ -418,6 +358,31 @@ public class OfflineController {
 	}
 	
 	
+	//공구 상세정보페이지 참여자 리뷰 보기 클릭 -> 리뷰보여주는 게시판(offlineInfo.jsp)으로 이동
+	@RequestMapping(value="/offlineInfo",method = RequestMethod.GET )
+	public ModelAndView offlineInfo(String userid){
+		ModelAndView mav = new ModelAndView();
+		
+		//registerinfo테이블에서 userid 에 해당하는 dto를 가져온다
+		RegisterDTO dto = service.getParticipant(userid);
+				
+		//off_review 테이블에서 userid 에 해당하는 댓글들(dto)을 list로 담는다
+		List<OfflineReviewDTO> list = reviewService.reviewSelect(userid);
+		
+		//해당회원이 받은 리뷰 수 
+		int reviewCount = reviewService.reviewCount(userid);
+		
+		
+		System.out.println("대상정보="+dto.toString());
+		System.out.println("리뷰목록->"+list.toString());
+		System.out.println("리뷰수="+reviewCount);
+		
+		mav.addObject("dto", dto);
+		mav.addObject("list", list);
+		mav.addObject("reviewCount", reviewCount);
+		mav.setViewName("/offline/offlineInfo");
+		return mav;
+	}
 	
 	//=========================== 리뷰 끝========================//
 	
@@ -457,8 +422,5 @@ public class OfflineController {
 	}
 	
 	//******************* 댓글 끝 ******************//	
-	
-=======
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
-	
+
 }

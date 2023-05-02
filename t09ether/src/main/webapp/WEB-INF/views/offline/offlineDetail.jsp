@@ -19,12 +19,8 @@
 	}	
 	.goComment{
 		margin:10px auto;
-<<<<<<< HEAD
 		padding: 5px 5px;
 		width:240px;
-=======
-		width:220px;
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 		font-size: 1.6em;
 		border:1px solid tomato;
 		border-radius: 10px;
@@ -52,8 +48,7 @@
 	tr:nth-child(odd) {
 	  background-color: yellow;
 	}
-<<<<<<< HEAD
-	
+
 	.offlineClose{
 		margin:0 auto;
 	}
@@ -79,24 +74,28 @@
 		font-size: 2em;
 		color: #9CA777;
 	}
-	
-=======
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+	.info{
+		border : 1px solid black;
+		border-radius : 5px;
+		padding:3px 5px;
+		background: #BFDB38;
+	}
+
 </style>
 <script>
-	
+	refreshList();
+	function refreshList(){
+		$("#participantList").load(location.href+' #participantList');
+	}
 </script>
 	<!-- Header-->
 	<header class="bg-tomato py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
-<<<<<<< HEAD
 	        	<h3 style="color:orange;">약속시간이 가까워지면 문자로 안내드립니다 즐거운시간되세요!</h3>
 	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>	    
-=======
-	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	        </div>
 	    </div>
 	</header>
@@ -115,25 +114,19 @@
 		<li>현재인원 : ${dto.current_num}</li>			
 		<li>모집마감일 : ${dto.deaddate}</li>				
 		<li>만남시간 : ${dto.app_time}</li>					
-<<<<<<< HEAD
 		<li>상세정보 : ${dto.off_content}</li>	
 		
 	</ul>
 	<form method="get" action="offlineClose" class="offlineClose">
 		<input type="hidden" name="off_no" value="${dto.off_no}"/>
 		<div class="buttonDiv">
-			<c:if test="${logStatus=='Y'}">
-				<input type="submit" value="모집마감하기" id="closeButton"/>	
-			</c:if>
+				<c:if test="${logStatus=='Y' && logId==firstDTO.userid}">
+					<input type="submit" value="모집마감하기" id="closeButton"/>	
+				</c:if>			
 		</div>
 	</form>
 	<div class="participantInfo"><h2>[참가자 정보]</h2></div>
-=======
-		<li>상세정보 : ${dto.off_content}</li>		
-		<li class="participantInfo">참가자 정보</li>
-	</ul>
-	
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+
 	<div id="participantList" style="border:2px solid orange;">		
 		<table>
 			<tr class="theader">
@@ -141,6 +134,7 @@
 			    <th>아이디</th>
 			    <th>이름</th>
 			    <th>연락처</th>
+			    <th></th>
 			</tr>			  
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
@@ -148,6 +142,7 @@
 				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
+				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info">리뷰보기</a></td>
 			</tr>
 		</c:forEach>
 		</table>

@@ -56,6 +56,10 @@ public class RegisterDTO {
 		tel = tel1 + "-" + tel2 + "-" + tel3;
 		return tel;
 	}
+	public String getTelAst() {
+		tel = tel1 + "-" + "****" + "-" + tel3;
+		return tel;
+	}
 	public void setTel(String tel) {
 		this.tel = tel;
 		

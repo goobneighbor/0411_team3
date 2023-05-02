@@ -10,10 +10,7 @@ import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
-<<<<<<< HEAD
-=======
 import com.t09ether.home.dto.OfflineParticipantDTO;
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
 import com.t09ether.home.dto.RegisterDTO;
 @Service
 public class OfflineServiceImpl implements OfflineService {
@@ -49,8 +46,6 @@ public class OfflineServiceImpl implements OfflineService {
 	public OfflineDTO offlineEditSelect(int off_no) {
 		return dao.offlineEditSelect(off_no);
 	}
-<<<<<<< HEAD
-=======
 
 	@Override
 	public int offlineUpdate(OfflineDTO dto) {
@@ -87,57 +82,17 @@ public class OfflineServiceImpl implements OfflineService {
 		return dao.getIds(off_no);
 	}
 
-	
-	
-
-	
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
-
-	@Override
-	public int offlineUpdate(OfflineDTO dto) {
-		return dao.offlineUpdate(dto);
-	}
-
-	@Override
-	public int offlineDelete(OfflineDTO dto) {
-		return dao.offlineDelete(dto);
-	}
-
-	@Override
-	public RegisterDTO getParticipant(String userid) {
-		return dao.getParticipant(userid);
-	}
-
-	@Override
-	public int participantInsert(OffPartDTO opDTO) {
-		return dao.participantInsert(opDTO);
-	}
-
-	@Override
-	public List<OffPartDTO> participantList(int off_no) {
-		return dao.participantList(off_no);
-	}
-
-	@Override
-	public int currentNumCount(int off_no) {
-		return dao.currentNumCount(off_no);
-	}
-
-	@Override
-	public void currentNumPlus(int off_no) {
-		dao.currentNumPlus(off_no);	
-		
-	}
-	
-	@Override
-	public List<String> getIds(int off_no) {
-		return dao.getIds(off_no);
-	}
-
 	@Override
 	public void offlineClose(int off_no) {
 		dao.offlineClose(off_no);
 	}
+
+	@Override
+	public void currentNumUpdate(int off_no) {
+		dao.currentNumUpdate(off_no);
+	}
+
+
 
 
 }

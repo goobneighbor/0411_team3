@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper namespace="com.t09ether.home.dao.OfflineCommentDAO">
 	<select id="commentListSelect" resultType="com.t09ether.home.dto.OfflineCommentDTO">
  		select comment_no, off_no, comment09, userid, writedate 
@@ -21,8 +20,4 @@
  		delete from comment09 where comment_no=${param1} and userid=#{param2}
  	</delete>
 </mapper>
-=======
- <mapper namespace="com.home.t09ether.dao.OfflineCommentDAO">
- 
- </mapper>
->>>>>>> e1553b84b7f1106e38dcfebd49b677c1b3164044
+

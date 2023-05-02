@@ -260,7 +260,8 @@
 				<select name = "searchKey" id="searchKey">
 					<option value="off_subject">제목</option>
 					<option value="userid">작성자</option>
-					<option value="off_content">글내용</option>
+					<option value="off_content">내용</option>
+					<option value="location">지역</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWord"/>
 				<input type="submit" value="Search"/>

@@ -13,7 +13,11 @@
  
  /*글꼴 적용*/ 
  
+<<<<<<< HEAD
 @font-face {
+=======
+ @font-face {
+>>>>>>> 8920c3b944b1028fe659a1be2a00ff6f8408846e
     font-family: 'KIMM_Light';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Light.woff2') format('woff2');
     font-weight: 700;
@@ -10871,14 +10875,27 @@ textarea.form-control-lg {
   	background-color:transparent;
   }
   
+<<<<<<< HEAD
   /*테이블 내용 글씨체 */
+=======
+
+/*테이블 내용 글씨체 */
+>>>>>>> 8920c3b944b1028fe659a1be2a00ff6f8408846e
 tbody td{
    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Light.woff2') format('woff2');
    font-family: 'KIMM_Light';
     font-weight: 300;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8920c3b944b1028fe659a1be2a00ff6f8408846e
 tbody td>a:link, tbody td>a:visited, tbody td>a:hover{
    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Light.woff2') format('woff2');
    font-family: 'KIMM_Light';
     font-weight: 300;   
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> 8920c3b944b1028fe659a1be2a00ff6f8408846e

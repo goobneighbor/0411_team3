@@ -2,27 +2,21 @@ package com.t09ether.home.dto;
 
 public class OffPartDTO {
 	private int off_j_no;
-	private int off_no;
-	private String userid;
-	private String username;
-	private String tel;
-	private int status;
-	private String off_content;
-	private String location;
-	private int group_num;
-	private int current_num;
-	private String app_time;
-	private String deaddate;
-	private int off_hit;
-	private String writedate;
-
-	
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+	   private int off_no;
+	   private String userid;
+	   private String username;
+	   private String tel;
+	   
+	   private String off_subject;
+	   private String off_content;
+	   private String location;
+	   private int group_num;
+	   private int current_num;
+	   private String app_time;
+	   private String deaddate;
+	   private int off_hit;
+	   private String writedate;
+	   private int status;
 	public int getOff_j_no() {
 		return off_j_no;
 	}
@@ -52,6 +46,12 @@ public class OffPartDTO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getOff_subject() {
+		return off_subject;
+	}
+	public void setOff_subject(String off_subject) {
+		this.off_subject = off_subject;
 	}
 	public String getOff_content() {
 		return off_content;
@@ -101,12 +101,21 @@ public class OffPartDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "OffPartDTO [off_j_no=" + off_j_no + ", off_no=" + off_no + ", userid=" + userid + ", username="
-				+ username + ", tel=" + tel + ", status=" + status + ", off_content=" + off_content + ", location="
-				+ location + ", group_num=" + group_num + ", current_num=" + current_num + ", app_time=" + app_time
-				+ ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate=" + writedate + "]";
+				+ username + ", tel=" + tel + ", off_subject=" + off_subject + ", off_content=" + off_content
+				+ ", location=" + location + ", group_num=" + group_num + ", current_num=" + current_num + ", app_time="
+				+ app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate=" + writedate
+				+ ", status=" + status + "]";
 	}
+	   
+	   
 	
 }

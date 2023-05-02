@@ -156,8 +156,6 @@
 		<li>모집마감일 : ${dto.deaddate}</li>				
 		<li>만남시간 : ${dto.app_time}</li>					
 		<li>상세정보 : ${dto.off_content}</li>
-		
-		<li class="report"><a href="offlineReport">신고하기</a></li>
 			
 	</ul>
 	<div class="boardSubMenu">		

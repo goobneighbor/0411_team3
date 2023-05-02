@@ -101,6 +101,10 @@
 	</header>
 	
 <div class="container">	
+	<form method>
+		<input type="hidden" name="off_no" value="${dto.off_no}"/>
+		<input type="submit" value="문자전송"/>
+	</form>
 	<ul id="view">		
 		<li>제목 : ${dto.off_subject}</li>
 		<li>처리상태 : 

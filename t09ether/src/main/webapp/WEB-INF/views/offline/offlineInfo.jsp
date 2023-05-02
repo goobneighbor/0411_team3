@@ -47,6 +47,10 @@
 		background: #00FFCA;
 		border:1px solid #ddd;
 	}
+	.noReview{
+		text-align: center;
+		font-size: 2em;
+	}
 	
 </style>
 <script>
@@ -66,17 +70,28 @@
 		<div>리뷰 수 : ${reviewCount} </div>
 	</div>
 	
-	<ul class="board">
-		<li>공구번호</li>
-		<li>작성자</li>
-		<li>내용</li>
-		<li>작성일</li>
-		<c:forEach var="rDTO" items="${list}">
-			<li>${rDTO.off_no}</li>
-			<li>${rDTO.userid}</li>
-			<li>${rDTO.content}</li>
-			<li>${rDTO.writedate }</li>
-		</c:forEach>		
-	</ul>
+	
+		
+	<c:choose>
+			<c:when test="${reviewCount==0}">
+				<div class="noReview">아직 작성된 리뷰가 없습니다 <br/>첫 리뷰를 작성해보세요!<hr/></div>
+			</c:when>
+			<c:otherwise>		
+				<ul class="board">
+					<li>공구번호</li>
+					<li>작성자</li>
+					<li>내용</li>
+					<li>작성일</li>
+					<c:forEach var="rDTO" items="${list}">
+						<li>${rDTO.off_no}</li>
+						<li>${rDTO.userid}</li>
+						<li>${rDTO.content}</li>
+						<li>${rDTO.writedate }</li>
+					</c:forEach>
+				</ul>	
+			</c:otherwise>		
+				
+		</c:choose>		
+	
 	<a href="javascript:history.back();" class="goBack">뒤로가기</a>
 </div>

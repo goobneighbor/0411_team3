@@ -40,7 +40,7 @@ import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineService;
 
 @RestController
-public class OfflineController {
+public class OfflineController extends SmsSend{
 	@Autowired
 	OfflineService service;
 	@Autowired
@@ -422,5 +422,34 @@ public class OfflineController {
 	}
 	
 	//******************* 댓글 끝 ******************//	
-
+	
+	
+	//문자 전송 메소드 -> 필요한 곳에서 호출
+	//공구번호(off_no)에 해당하는 참여자들에게 전송
+	public void sendOffMessage(int off_no) {
+		//send_msg(String tel, String username, String content)
+		//공구정보
+		OfflineDTO dto = service.offlineSelect(off_no);
+		//참여자정보
+		List<OfflineParticipantDTO> opList = service.participantList(off_no);
+		//참여자별로 문자보내기
+		for(OfflineParticipantDTO opDTO : opList) {
+			String tel = opDTO.getTel();
+			String username = opDTO.getUsername();
+			//보낼메세지
+		String content = "[t09ether]"+username+"님, 참여하신 공동구매가 내일 진행됩니다. 즐거운시간 보내시기를 t09ether가 항상 응원합니다!";		
+		super.send_msg(tel, username, content);
+		}
+	}
+	
+	//문자전송 테스트
+	@PostMapping("/offlineMessage")
+	public ModelAndView offlineMessage(int off_no) {
+		ModelAndView mav = new ModelAndView();
+		sendOffMessage(off_no);
+		System.out.println("문자전송...");
+		mav.setViewName("/offline/offline_board");
+		return mav;
+	}
+	
 }

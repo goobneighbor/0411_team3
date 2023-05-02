@@ -48,9 +48,9 @@
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
+			<p></p>
 			<h2>고객 센터</h2>
-			<p>고객센터 관리자 모드입니다.</p>
-			
+			<p>고객센터 관리자 모드입니다.</p>		
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -138,6 +138,7 @@
 							</form>
 
 						</div>
-						
-
 						</div>
+					</section>
+				</div>
+			</div>

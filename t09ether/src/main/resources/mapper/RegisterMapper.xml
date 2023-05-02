@@ -39,4 +39,10 @@
 	<select id="rankSelect" resultType="int">
 		select rank from registerinfo where userid=#{userid}
 	</select>
+	<select id="idSearchOk" resultType="String">
+		select replace(userid,substr(userid,4,5),'*****') from registerinfo where username=#{username} and email = #{email}
+	</select>
+	<select id="pwdSearch" resultType="String">
+		select userpwd from registerinfo where userid=#{param1} and email=#{param2}
+	</select>
 </mapper>

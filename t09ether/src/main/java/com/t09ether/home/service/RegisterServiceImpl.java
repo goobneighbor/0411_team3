@@ -48,14 +48,21 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public String idSearch(String username, String email) {
-		return dao.idSearch(username, email);
+	public String idSearchOk(RegisterDTO dto) {
+		return dao.idSearchOk(dto);
 	}
 
 	@Override
 	public int rankSelect(String userid) {
 		return dao.rankSelect(userid);
 	}
+
+	@Override
+	public String pwdSearch(String userid, String email) {
+		return dao.pwdSearch(userid, email);
+	}
+
+
 
 	
 	

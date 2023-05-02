@@ -6,6 +6,7 @@ import java.util.List;
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.DataVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.dto.ReportDTO;
@@ -22,5 +23,8 @@ public interface AdminService {
 	public List<RegisterDTO> userSelect();
 	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo);
 	public int ordMultiUpdate(int on_no); //List<Integer> on_noList, List<Integer> status
+	
+	//통계
+	public List<DataVO> getList();
 
 }

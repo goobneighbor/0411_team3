@@ -119,4 +119,11 @@
 		where rank>=1
 		]]>	
 	</select>
+	
+	<!-- 통계 -->
+	<select id="getList" resultType="com.t09ether.home.dto.DataVO">
+		select substr(to_char(writedate, 'YY-MM'),1,5) month, count(*) as cnt
+		from (select * from registerinfo where writedate<![CDATA[>=]]>'23-04-01' and writedate<![CDATA[<=]]>'23-05-31') a 
+		group by substr(to_char(writedate, 'YY-MM'),1,5) order by cnt desc;
+	</select>
 </mapper>

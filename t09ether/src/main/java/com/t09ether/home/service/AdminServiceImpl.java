@@ -12,6 +12,7 @@ import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.DataVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.dto.ReportDTO;
@@ -61,5 +62,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int totalOrderRecord(AdminPagingVO vo) {
 		return dao.totalOrderRecord(vo);
+	}
+	
+	//통계
+	@Override
+	public List<DataVO> getList() {
+		return dao.getList();
 	}
 }

@@ -20,14 +20,34 @@ public class RegisterDTO {
 	private int rank;
 	private String writedate;
 	private int report;
+	private int exp;
+	
+	
+	
+	
 	
 	@Override
 	public String toString() {
 		return "RegisterDTO [rownum=" + rownum + ", userid=" + userid + ", userpwd=" + userpwd + ", username="
 				+ username + ", tel=" + tel + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email="
 				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
-				+ ", writedate=" + writedate + ", report=" + report + "]";
+				+ ", writedate=" + writedate + ", report=" + report + ", exp=" + exp + "]";
 	}
+
+
+
+	public int getExp() {
+		return exp;
+	}
+
+
+
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+
+
+
 	public int getRownum() {
 		return rownum;
 	}

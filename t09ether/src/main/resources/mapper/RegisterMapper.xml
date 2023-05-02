@@ -18,8 +18,8 @@
 	</select>
 	-->
 	<insert id="registerInsert">
-		insert into registerinfo(userid, userpwd, username, tel, email, zipcode,  addr, addrdetail, rank, report )
-		values(#{userid}, #{userpwd}, #{username}, #{tel}, #{email}, #{zipcode}, #{addr}, #{addrdetail}, #{rank}, #{report})
+		insert into registerinfo(userid, userpwd, username, tel, email, zipcode,  addr, addrdetail, rank, report, exp )
+		values(#{userid}, #{userpwd}, #{username}, #{tel}, #{email}, #{zipcode}, #{addr}, #{addrdetail}, #{rank}, #{report},0)
 	</insert>
 	<select id="registerEdit" resultType="com.t09ether.home.dto.RegisterDTO">
 		select userid, username, tel, email, zipcode, addr, addrdetail from registerinfo

@@ -8,11 +8,17 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
+
+import com.t09ether.home.dto.AdminOrderPagingVO;
+import com.t09ether.home.dto.AdminPagingVO;
+
 import com.t09ether.home.dto.AdUserPagingVO;
+
 import com.t09ether.home.dto.MyPageDTO;
 import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ReportDTO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -52,6 +58,10 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
+
+	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
+		return dao.pageSelect(vo);
+	}
 	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
 		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
 	}
@@ -73,8 +83,67 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
+	public int totalOrdRecord(AdminPagingVO vo) {
+		return dao.totalOrdRecord(vo);
+	}
+
+	@Override
+	public int totalOrdSucRecord(AdminOrderPagingVO vo2) {
+		return dao.totalOrdSucRecord(vo2);
+	}
+
+	@Override
+	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo) {
+		return dao.pageOrdSelect(vo);
+	}
+
+	@Override
+	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2) {
+		return dao.pageOrdSucSelect(vo2);
+	}
+
+	@Override
+	public int myOrderSucUpdate(int on_no) {
+		return dao.myOrderSucUpdate(on_no);
+	}
+
+	@Override
+	public int reportInsert(ReportDTO dto) {
+		return dao.reportInsert(dto);
+	}
+
+	@Override
+	public int reportRegisterUpdate(String target_id) {
+		return dao.reportRegisterUpdate(target_id);
+	}
+
+	@Override
+	public int orderStatusUpdate(int ord_no) {
+		return dao.orderStatusUpdate(ord_no);
+	}
+
+	@Override
+	public int expUpdate(String userid) {
+		return dao.expUpdate(userid);
+	}
+
 	public List<OffPartDTO> offPartList(int no) {
 		return dao.offPartList(no);
+	}
+
+	@Override
+	public int totalRecord(AdminPagingVO vo) {
+		return dao.totalRecord(vo);
+	}
+
+	@Override
+	public int expSelect(String userid) {
+		return dao.expSelect(userid);
+	}
+
+	@Override
+	public int rankUpdate(String userid) {
+		return dao.rankUpdate(userid);
 	}
 
 	

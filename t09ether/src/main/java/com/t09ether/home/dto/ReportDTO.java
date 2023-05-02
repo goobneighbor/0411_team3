@@ -4,17 +4,28 @@ public class ReportDTO {
 	private int report_no;
 	private String mem_id;
 	private String target_id;
+	private int target_type;
 	private String report_content;
 	private String writedate;
-	private int target_type;
+	
+	private int ord_no;
+	
+	
+	
 	
 	@Override
 	public String toString() {
 		return "ReportDTO [report_no=" + report_no + ", mem_id=" + mem_id + ", target_id=" + target_id
-				+ ", report_content=" + report_content + ", writedate=" + writedate + ", target_type=" + target_type
-				+ "]";
+				+ ", target_type=" + target_type + ", report_content=" + report_content + ", writedate=" + writedate
+				+ ", ord_no=" + ord_no + "]";
 	}
 	
+	public int getOrd_no() {
+		return ord_no;
+	}
+	public void setOrd_no(int ord_no) {
+		this.ord_no = ord_no;
+	}
 	public int getReport_no() {
 		return report_no;
 	}
@@ -33,6 +44,17 @@ public class ReportDTO {
 	public void setTarget_id(String target_id) {
 		this.target_id = target_id;
 	}
+	
+	public int getTarget_type() {
+		return target_type;
+	}
+
+
+	public void setTarget_type(int target_type) {
+		this.target_type = target_type;
+	}
+
+
 	public String getReport_content() {
 		return report_content;
 	}
@@ -45,10 +67,7 @@ public class ReportDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	public int getTarget_type() {
-		return target_type;
-	}
-	public void setTarget_type(int target_type) {
-		this.target_type = target_type;
-	}
+	
+	
 }
+

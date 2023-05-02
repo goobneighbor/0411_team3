@@ -34,8 +34,15 @@ public interface OnlineJoinDAO {
 	public int restUpdate(OrderDTO dto);
 	
 	//status update
-	public int statusUpdate(OrderDTO dto);
+	public int statusUpdate(int on_no);
 	
 	//tel가져오기
 	public List<OrderDTO> selectInfor(int on_no);
+	
+	//final_amount가져오기
+	public int finalSelect(int ord_no);
+	
+	//할인 가격으로 DB업데이트
+	public int updatePrice(@Param("finalNum")int finalNum, @Param("ord_on")int ord_no);
+
 }

@@ -74,8 +74,14 @@ public class MyPageController {
 		try {
 			int result = service.myOrderSucUpdate(vo.getOn_no());
 			if(result>0) {
-				mav.addObject("errorMsg", "만남완료 업데이트 성공");
-				mav.setViewName("mypage/joinStatus");
+				int result2 = service.expUpdate(vo.getUserid());
+				if(result2>0) {
+					mav.addObject("errorMsg", "만남완료 및 경험치 업데이트 성공");
+					mav.setViewName("mypage/joinStatus");
+				}else {
+					mav.addObject("errorMsg",  "만남완료 업데이트 성공, 경험치 업데이트 실패");
+					mav.setViewName("mypage/joinStatus");
+				}
 			}else {
 				mav.addObject("errorMsg", "만남완료 업데이트 실패");
 				mav.setViewName("mypage/joinStatus");

@@ -29,6 +29,7 @@ public interface MyPageService {
 	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2);
 	
 	public int myOrderSucUpdate(int on_no);
+	public int expUpdate(String userid);
 	public int reportInsert(ReportDTO dto);
 	public int reportRegisterUpdate(String target_id);
 	

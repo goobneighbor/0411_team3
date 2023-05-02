@@ -12,7 +12,7 @@
 		padding:20px;
 		width:350px;
 		height:70px;
-		background-color:#F7D060;
+		background-color:#666/* #F7D060 */;
 		text-align: center;
 		border-radius: 10px;
 	}

@@ -160,17 +160,26 @@
         </div>
     </div>
 </header>
-<div class="container">		
-	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord }건 </div>		
-	</div>	
+<div>		
 	<!-- 페이지번호, 검색어, 검색키 -->
 	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 	<c:if test="${vo.searchWord!=null}">
 		<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 		<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 	</c:if>	
-	
+	<!--검색 -->	
+	<div class ="searchDiv">
+		<form method="get" id="searchForm" action="offline">
+			<select name = "searchKey" id="searchKey">
+				<option value="off_subject">제목</option>
+				<option value="userid">작성자</option>
+				<option value="off_content">내용</option>
+				<option value="location">지역</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="Search"/>
+		</form>	
+	</div>
 	<!-- Section-->
 	<section class="py-5" >
 		<div class="container px-4 px-lg-5 mt-5">
@@ -219,10 +228,10 @@
 			<ul>
 				<!-- nowPage -->
 				<c:if test="${vo.nowPage==1}"> <!-- 현재페이지가 1일때 -->
-					<li>prev</li>
+					<li>이전</li>
 				</c:if>
 				<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 1아닐때 -->
-					<li><a href="offline?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+					<li><a href="offline?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 				</c:if>
 				
 				<!-- 페이지번호 -->
@@ -230,7 +239,7 @@
 					<c:if test="${p <= vo.totalPage}"> <!-- 표시할 페이지 번호가 총페이지 수보다 작거나 같을 때 페이지 번호를 출력한다 -->
 						<!-- 현재페이지 표시하기 -->
 					<c:if test ="${p==vo.nowPage }">
-						<li style="background:orange;">
+						<li style="background:#ddd;">
 					</c:if>	
 					<c:if test ="${p!=vo.nowPage }">
 						<li>
@@ -242,30 +251,16 @@
 				
 				<!-- 다음페이지 -->
 				<c:if test="${vo.nowPage==vo.totalPage}"> <!-- 현재페이지가 마지막일때 -->
-					<li>next</li>
+					<li>다음</li>
 				</c:if>
 				<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 현재페이지가 마지막 아닐때 -->
 					
-					<li><a href="offline?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
+					<li><a href="offline?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>			
 					
 				</c:if>
 				
 			</ul>
 		</div>	
-	</div>
-
-	<!--검색 -->	
-	<div class ="searchDiv">
-		<form method="get" id="searchForm" action="offline">
-			<select name = "searchKey" id="searchKey">
-				<option value="off_subject">제목</option>
-				<option value="userid">작성자</option>
-				<option value="off_content">내용</option>
-				<option value="location">지역</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="submit" value="Search"/>
-		</form>	
 	</div>
 	</section>
 </div>

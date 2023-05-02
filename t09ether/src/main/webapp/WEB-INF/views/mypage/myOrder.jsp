@@ -134,6 +134,7 @@
 									<th>주문번호</th>
 									<th>상품명</th>
 									<th>공구장</th>
+									<th>공구장번호</th>
 									<th>주문개수</th>
 									<th>주문상태</th>
 									<th>주문날짜</th>
@@ -149,6 +150,7 @@
 									<td>${bDTO.ord_no }</td>
 									<td>${bDTO.pro_name }</td>
 									<td>${bDTO.pd_userid }</td>
+									<td>${bDTO.tel }</td>
 									<td>${bDTO.ord_count }</td>
 									<c:choose>
 										<c:when test="${bDTO.status==1 }">

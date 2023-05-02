@@ -40,7 +40,7 @@
    select * from
       (select * from
          (
-            select o.ord_no, o.pro_code, p.pro_name, pd.userid, pd.status as pd_status,o.ord_count, o.status, to_char(o.orderdate, 'MM-DD HH:MI') orderdate 
+            select o.ord_no, o.pro_code, p.pro_name, pd.userid, pd.status as pd_status,o.ord_count, o.status, to_char(o.orderdate, 'YY-MM-DD HH:MI') orderdate 
             from order09 o join product_detail pd on o.on_no=pd.on_no  
             join product p on o.pro_code=p.pro_code and o.userid=#{userid}
             <if test="searchWord!=null">
@@ -87,8 +87,9 @@
    select * from
       (select * from
          (
-             select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from 
-            (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[<]]>4
+             select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'YY-MM-DD HH:MI') orderdate, o.on_no,o.pd_userid,o.pd_status, r.tel from 
+				(select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, o.orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from 
+            		(select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[<]]>4) o join registerinfo r on o.pd_userid=r.userid
             <if test="searchWord!=null">
                and ${searchKey} like '%${searchWord}%' 
             </if>
@@ -118,7 +119,7 @@
    select * from
       (select * from
          (
-            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[>]]>3
+            select o.ord_no, o.pro_code, o.pro_name, o.ord_count, o.status, o.userid, to_char(o.orderdate, 'YY-MM-DD HH:MI') orderdate, p.on_no, p.userid as pd_userid, p.status as pd_status from (select o.ord_no, o.on_no, p.pro_code, p.pro_name, o.ord_count, o.status, o.orderdate, o.userid from order09 o join product p on o.pro_code=p.pro_code and o.userid=#{userid}) o join product_detail p on o.on_no=p.on_no and o.status<![CDATA[>]]>3
             <if test="searchWord2!=null">
                and ${searchKey2} like '%${searchWord2}%' 
             </if>

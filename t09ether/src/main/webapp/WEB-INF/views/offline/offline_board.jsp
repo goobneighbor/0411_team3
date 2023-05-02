@@ -13,7 +13,7 @@
 		padding:20px;
 		width:350px;
 		height:70px;
-		background-color:#666/* #F7D060 */;
+		background-color:#e9ddcd      /*#666*//* #F7D060 */;
 		text-align: center;
 		border-radius: 10px;
 	}
@@ -155,15 +155,12 @@
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
             <p style="color:#7d7b7a">같이 쇼핑할 사람들을 찾아보세요!</p>
-            <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
-
         </div>
     </div>
 </header>
+
 	
-	<%-- <div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord }건 </div>		
-	</div>	 --%>
+
 	<!-- 페이지번호, 검색어, 검색키 -->
 	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 	<c:if test="${vo.searchWord!=null}">
@@ -171,8 +168,23 @@
 		<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 	</c:if>	
 	
+	
+	
 	<!-- Section-->
 	<section class="py-5" >
+	<!--검색 -->	
+	<div class ="searchDiv">
+		<form method="get" id="searchForm" action="offline">
+			<select name = "searchKey" id="searchKey">
+				<option value="off_subject">제목</option>
+				<option value="userid">작성자</option>
+				<option value="off_content">내용</option>
+				<option value="location">지역</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="Search"/>
+		</form>	
+	</div>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
@@ -183,7 +195,7 @@
 	        		<div class="col mb-5" style="width:350px;">
 	            		<div class="card h-100">
 	                		<!-- Product image-->
-	                    	<img class="card-img-top" src="./resources/images/cart1jpg.jpg" alt="image" />
+	                    	<img class="card-img-top" src="<%=request.getContextPath() %>/resources/images/offline_test.jpg" alt="image" />
 	                    	
 	                    	<!-- details-->
 
@@ -213,16 +225,17 @@
         	</div>
     	</div>
     <!-- 페이징 -->
+    <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
     <div class="pagingDiv" id="wrapper">
-
+		
 		<div id="item">
 			<ul>
 				<!-- nowPage -->
 				<c:if test="${vo.nowPage==1}"> <!-- 현재페이지가 1일때 -->
-					<li>prev</li>
+					<li>이전</li>
 				</c:if>
 				<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 1아닐때 -->
-					<li><a href="offline?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+					<li><a href="offline?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 				</c:if>
 				
 				<!-- 페이지번호 -->
@@ -230,7 +243,7 @@
 					<c:if test="${p <= vo.totalPage}"> <!-- 표시할 페이지 번호가 총페이지 수보다 작거나 같을 때 페이지 번호를 출력한다 -->
 						<!-- 현재페이지 표시하기 -->
 					<c:if test ="${p==vo.nowPage }">
-						<li style="background:orange;">
+						<li style="background:#ddd;">
 					</c:if>	
 					<c:if test ="${p!=vo.nowPage }">
 						<li>
@@ -242,30 +255,16 @@
 				
 				<!-- 다음페이지 -->
 				<c:if test="${vo.nowPage==vo.totalPage}"> <!-- 현재페이지가 마지막일때 -->
-					<li>next</li>
+					<li>다음</li>
 				</c:if>
 				<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 현재페이지가 마지막 아닐때 -->
 					
-					<li><a href="offline?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>			
+					<li><a href="offline?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>			
 					
 				</c:if>
 				
 			</ul>
 		</div>	
-	</div>
-
-	<!--검색 -->	
-	<div class ="searchDiv">
-		<form method="get" id="searchForm" action="offline">
-			<select name = "searchKey" id="searchKey">
-				<option value="off_subject">제목</option>
-				<option value="userid">작성자</option>
-				<option value="off_content">내용</option>
-				<option value="location">지역</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="submit" value="Search"/>
-		</form>	
 	</div>
 	</section>
 

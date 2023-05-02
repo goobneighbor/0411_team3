@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.AdminDAO;
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
@@ -86,5 +87,35 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int totalOrdRecord(AdminPagingVO vo) {
 		return dao.totalOrdRecord(vo);
+	}
+
+	@Override
+	public int totalStopRecord(AdminOrderPagingVO vo2) {
+		return dao.totalStopRecord(vo2);
+	}
+
+	@Override
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2) {
+		return dao.pageStopSelect(vo2);
+	}
+
+	@Override
+	public int totalReportRecord(AdminPagingVO vo) {
+		return dao.totalReportRecord(vo);
+	}
+
+	@Override
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo) {
+		return dao.pageReportSelect(vo);
+	}
+
+	@Override
+	public int tempStopInsert(List<String> list) {
+		return dao.tempStopInsert(list);
+	}
+
+	@Override
+	public int tempStopDel(List<String> list) {
+		return dao.tempStopDel(list);
 	}
 }

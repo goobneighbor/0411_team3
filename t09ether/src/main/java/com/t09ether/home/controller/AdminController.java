@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.dto.TempDTO;
 import com.t09ether.home.service.AdminService;
 
 @RestController
@@ -40,25 +42,75 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adUser")
-	public ModelAndView adUser(AdminPagingVO vo) {
+	public ModelAndView adUser(AdminPagingVO vo, AdminOrderPagingVO vo2) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		vo.setTotalRecord(service.totalRecord(vo));
+		vo2.setTotalRecord(service.totalStopRecord(vo2));
 		//System.out.println(vo.toString());
 		
 		List<RegisterDTO> list = service.pageSelect(vo);
+		List<RegisterDTO> list2 = service.pageStopSelect(vo2);
 		//System.out.println(list);
 		
 		mav.addObject("vo",vo);
+		mav.addObject("vo2",vo2);
 		mav.addObject("list", list);
+		mav.addObject("list2", list2);
 		mav.setViewName("admin/adUser");
 		return mav;
 	}
 	
-	@GetMapping("/adReport")
-	public ModelAndView adReport() {
+	@PostMapping("/tempStop")
+	public ModelAndView tempStop(AdminPagingVO vo, RegisterDTO dto) {
 		ModelAndView mav = new ModelAndView();
+		
+		int result = service.tempStopInsert(dto.getNoList());
+		System.out.println(result);
+		
+		mav.addObject("nowPage", vo.getNowPage());
+		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {//자바니깐 공백도 물어봐야(equals("")
+			mav.addObject("searchKey", vo.getSearchKey());
+			mav.addObject("searchWord", vo.getSearchWord());
+		}
+		
+		mav.setViewName("redirect:adUser");
+		return mav;
+		
+	}
+	
+	@PostMapping("/unStop")
+	public ModelAndView unStop(AdminOrderPagingVO vo2, TempDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(dto.getNoList());
+
+		int result = service.tempStopDel(dto.getNoList());
+		
+		System.out.println(result);
+		
+		mav.addObject("nowPage2", vo2.getNowPage2());
+		if(vo2.getSearchWord2()!=null && !vo2.getSearchWord2().equals("")) {//자바니깐 공백도 물어봐야(equals("")
+			mav.addObject("searchKey2", vo2.getSearchKey2());
+			mav.addObject("searchWord2", vo2.getSearchWord2());
+		}
+		
+		mav.setViewName("redirect:adUser");
+		return mav;
+		
+	}
+	
+	@GetMapping("/adReport")
+	public ModelAndView adReport(AdminPagingVO vo) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalRecord(service.totalReportRecord(vo));
+	
+		List<RegisterDTO> list = service.pageReportSelect(vo);
+		
+		mav.addObject("vo",vo);
+		mav.addObject("list", list);
 		mav.setViewName("admin/adReport");
 		return mav;
 	}

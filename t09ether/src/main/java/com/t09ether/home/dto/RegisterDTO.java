@@ -1,5 +1,7 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
+
 public class RegisterDTO {
 	
 	private int rownum;
@@ -20,13 +22,17 @@ public class RegisterDTO {
 	private int rank;
 	private String writedate;
 	private int report;
+	private int exp;
 	
+	//여러개의 레코드 한번에 삭제할때 필요한 레코드 번호
+	private List<String> noList;
+		
 	@Override
 	public String toString() {
 		return "RegisterDTO [rownum=" + rownum + ", userid=" + userid + ", userpwd=" + userpwd + ", username="
 				+ username + ", tel=" + tel + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3 + ", email="
 				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
-				+ ", writedate=" + writedate + ", report=" + report + "]";
+				+ ", writedate=" + writedate + ", report=" + report + ", exp=" + exp + "]";
 	}
 	public int getRownum() {
 		return rownum;
@@ -123,6 +129,18 @@ public class RegisterDTO {
 	}
 	public void setReport(int report) {
 		this.report = report;
+	}
+	public int getExp() {
+		return exp;
+	}
+	public void setExp(int exp) {
+		this.exp = exp;
+	}
+	public List<String> getNoList() {
+		return noList;
+	}
+	public void setNoList(List<String> noList) {
+		this.noList = noList;
 	}
 	
 	

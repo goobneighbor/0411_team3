@@ -2,6 +2,7 @@ package com.t09ether.home.service;
 
 import java.util.List;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
@@ -23,4 +24,12 @@ public interface AdminService {
 	public int productDel(List<Integer> list);
 	public ProductDTO proInfor(int pro_code);
 	public int productUpdate(ProductDTO dto);
+	
+	public int totalStopRecord(AdminOrderPagingVO vo2);
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2);
+	public int tempStopInsert(List<String> list);
+	public int tempStopDel(List<String> list);
+	
+	public int totalReportRecord(AdminPagingVO vo);
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo);
 }

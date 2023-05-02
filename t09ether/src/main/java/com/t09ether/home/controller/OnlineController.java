@@ -147,11 +147,7 @@ public class OnlineController extends SmsSend {
 		System.out.println(dto.getOrd_no()+"+"+dto.getPro_code()+"+"+dto.getUserid()+"+"+dto.getOrd_count()+"+"+dto.getOrd_amount());
 		dto.setPro_code(pdto.getPro_code());
 		int restNum = dto.getRest_count();
-		
-		/*
-		 * //주문DB등록 할인가격으로 update int finalNum = service.finalSelect(dto.getOrd_no());
-		 * service.updatePrice(finalNum, dto.getOrd_no());
-		 */
+		 
 		if(restNum==0) {
 
 			//모든 공구참여자 status update

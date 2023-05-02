@@ -33,12 +33,66 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+	
 </style>
+<script>
+	$(function(){
+		$("#searchForm").submit(function(){
+			if($("#searchWord").val()==""){
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+			return true;
+		});
+
+		
+		//선택 삭제 버튼 클릭하면
+		$("#chooseDel").click(function(){
+			// 최소 1개 이상 삭제를 선택했을 때
+			
+			var checkCount = 0;
+			$(".board_list input[name=noList]").each(function(idx, obj){
+				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
+					checkCount++;
+				}
+			});
+			
+			if(checkCount>0){
+				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
+					$("#delList").submit();
+				}
+			}else{
+				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
+			}
+		});
+		
+		//신고업데이트
+		$("#reportAccept").click(function(){
+			// 최소 1개 이상 삭제를 선택했을 때
+			
+			var checkCount = 0;
+			$(".board_list input[name=noList]").each(function(idx, obj){
+				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
+					checkCount++;
+				}
+			});
+			
+			if(checkCount>0){
+				if(confirm(checkCount+'개의 신고를 승인하시겠습니까?')){
+					$("#delList").submit();
+				}
+			}else{
+				alert("한 개 이상의 글을 선택하세요.");
+			}
+		});
+	});
+</script>
+
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
-			<h2>회원 관리</h2>
-			<p>회원 목록</p>
+			<h2>신고 관리</h2>
+			<p>등록된 신고 확인</p>
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -46,7 +100,7 @@
 				
 				<section class="box">
 					<div class="table-wrapper">
-					<form method="post">
+					<form method="post" id="reportForm">
 					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 					<c:if test="${vo.searchWord!=null}">
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
@@ -57,14 +111,12 @@
 							<thead>
 								<tr>
 									<th><input type="checkbox" id="allCheck"/>전체선택</th>
-									<th>번호</th>
-									<th>이름</th>
-									<th>아이디</th>
-									<th>전화번호</th>
-									<th>이메일</th>
-									<th>등급</th>
-									<th>가입일</th>
-									<th>신고횟수</th>
+									<th>글번호</th>
+									<th>신고번호</th>
+									<th>신고자</th>
+									<th>신고대상</th>
+									<th>신고내용</th>
+									<th>신고날짜</th>
 								</tr>
 							</thead>
 							
@@ -72,15 +124,13 @@
 							<c:set var="recordNum" value="${1+(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
 								<tr>
-									<td><input type="checkbox" name="noList" value="${bDTO.username}"/></td>
+									<td><input type="checkbox" name="noList" value="${bDTO.report_no}"/></td>
 									<td>${recordNum}</td>
-									<td>${bDTO.username }</td>
-									<td>${bDTO.userid }</td>
-									<td>${bDTO.tel }</td>
-									<td>${bDTO.email }</td>
-									<td>${bDTO.rank }</td>
+									<td>${bDTO.report_no }</td>
+									<td>${bDTO.mem_id }</td>
+									<td>${bDTO.target_id }</td>
+									<td>${bDTO.report_content }</td>
 									<td>${bDTO.writedate }</td>
-									<td>${bDTO.report }</td>
 								</tr>
 								<c:set var="recordNum" value="${recordNum+1}"/>	
 							</c:forEach>
@@ -95,10 +145,11 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="선택삭제" id="chooseDel"/>
+						<input type="button" value="신고접수" id="reportAccept"/>
+						<input type="button" value="신고삭제" id="chooseDel"/>
 					</div>
 					<!-- 페이징 -->
-					
+					<div  id="wrapper">
 					<div class="paging_div"> 
 						<ul>
 							<!-- 이전 페이지 : nowPage를 기준으로 -->
@@ -106,7 +157,7 @@
 								<li></li>
 							</c:if>
 							<c:if test="${vo.nowPage>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
-								<li><a href="adUser?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
+								<li><a href="adReport?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 							</c:if>
 							<!-- 페이지 번호 -->
 							
@@ -119,14 +170,14 @@
 				               <c:if test="${p!=vo.nowPage}">
 				                 <li>
 				               </c:if>
-				                  <a href="adUser?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
+				                  <a href="adReport?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
 				                  </li>
 				            </c:if>
 				         </c:forEach>
 							
 							<!-- 다음 페이지 -->
 							<c:if test="${vo.nowPage<vo.totalPage}"><!-- 다음 페이지가 있을 때 -->
-								<li><a href="adUser?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
+								<li><a href="adReport?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
 							</c:if>
 							<c:if test="${vo.nowPage==vo.totalPage}"><!-- 다음 페이지가 없을 때 -->
 								<li></li>
@@ -137,19 +188,17 @@
 					
 					<!--검색 -->
 					<div class ="searchDiv">
-						<form method="get" id="searchForm" action="adUser">
-							<select name = "searchKey">
-								<option value="username">이름</option>
-								<option value="userid">아이디</option>
-								<option value="rank">등급</option>
+						<form method="get" id="searchForm" action="adReport">
+							<select name = "searchKey" id="searchKey">
+								<option value="mem_id">신고자</option>
+								<option value="target_id">신고대상</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search"/>
 						</form>
 					</div>
+					</div>
 				</section>
 			</div>
 		</div>
 	</section>
-</body>
-</html>

@@ -10,6 +10,7 @@ import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
+import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.RegisterDTO;
 @Service
 public class OfflineServiceImpl implements OfflineService {
@@ -62,12 +63,12 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public int participantInsert(OffPartDTO opDTO) {
+	public int participantInsert(OfflineParticipantDTO opDTO) {
 		return dao.participantInsert(opDTO);
 	}
 
 	@Override
-	public List<OffPartDTO> participantList(int off_no) {
+	public List<OfflineParticipantDTO> participantList(int off_no) {
 		return dao.participantList(off_no);
 	}
 
@@ -77,12 +78,6 @@ public class OfflineServiceImpl implements OfflineService {
 	}
 
 	@Override
-	public void currentNumPlus(int off_no) {
-		dao.currentNumPlus(off_no);	
-		
-	}
-	
-	@Override
 	public List<String> getIds(int off_no) {
 		return dao.getIds(off_no);
 	}
@@ -91,6 +86,13 @@ public class OfflineServiceImpl implements OfflineService {
 	public void offlineClose(int off_no) {
 		dao.offlineClose(off_no);
 	}
+
+	@Override
+	public void currentNumUpdate(int off_no) {
+		dao.currentNumUpdate(off_no);
+	}
+
+
 
 
 }

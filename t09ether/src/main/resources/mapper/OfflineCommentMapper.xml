@@ -20,3 +20,4 @@
  		delete from comment09 where comment_no=${param1} and userid=#{param2}
  	</delete>
 </mapper>
+

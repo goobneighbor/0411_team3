@@ -22,7 +22,6 @@
 	 		<mvc:mapping path="/online/productdetail"/>
 	 		
 	 		
-	 		
 	 		<bean class="com.t09ether.home.LoginInterceptor"></bean>
 	 	</mvc:interceptor>
 	 </mvc:interceptors>

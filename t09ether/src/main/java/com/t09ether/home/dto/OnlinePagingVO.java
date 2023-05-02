@@ -11,8 +11,23 @@ public class OnlinePagingVO {
 		private int onePageNumCount = 5;//한페이지당 페이지 갯수
 		private int startPageNum = 1;
 		
+		private String searchKey;
+		private String searchWord;
 		
 		
+		
+		public String getSearchKey() {
+			return searchKey;
+		}
+		public void setSearchKey(String searchKey) {
+			this.searchKey = searchKey;
+		}
+		public String getSearchWord() {
+			return searchWord;
+		}
+		public void setSearchWord(String searchWord) {
+			this.searchWord = searchWord;
+		}
 		public int getNowPage() {
 			return nowPage;
 		}

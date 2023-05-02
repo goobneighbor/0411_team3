@@ -52,6 +52,7 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+
 	.paging_div2 li{
 		float:left;
 		padding:10px 20px;
@@ -63,6 +64,10 @@
 	#usermain{
 		margin:10px;
 		margin-left:250px;
+		}
+
+	thead tr th, tbody{
+		text-align:center;
 	}
 </style>
 <script>
@@ -109,7 +114,7 @@
 			}else{
 				alert("한 명이상의 회원을 선택하세요.");
 			}
-	});
+		});
 	});
 </script>
 <!-- Main -->
@@ -136,7 +141,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th><input type="checkbox" id="allCheck"/></th>
 									<th>번호</th>
 									<th>이름</th>
 									<th>아이디</th>

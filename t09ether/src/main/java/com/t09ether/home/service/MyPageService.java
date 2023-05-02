@@ -2,11 +2,15 @@ package com.t09ether.home.service;
 
 import java.util.List;
 
+
+import com.t09ether.home.dto.AdUserPagingVO;
 import org.apache.ibatis.annotations.Param;
 
 import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
+
 import com.t09ether.home.dto.MyPageDTO;
+import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ReportDTO;
@@ -29,14 +33,27 @@ public interface MyPageService {
 	public List<OrderDTO> pageOrdSucSelect(AdminOrderPagingVO vo2);
 	
 	public int myOrderSucUpdate(int on_no);
+	public int expUpdate(String userid);
 	public int reportInsert(ReportDTO dto);
 	public int reportRegisterUpdate(String target_id);
 	
 	public int orderStatusUpdate(int ord_no);
 	
+
+	public int expSelect(String userid);
+	public int rankUpdate(String userid);
+
+	public int totalRecord(AdUserPagingVO vo);
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
+
+
 	//오프라인 공구 게시판 페이징
-	public List<OffPartDTO> offPageSelect(AdminPagingVO vo);
+	public int mpTotalRecord(MyPostPagingVO vo);
+	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
 	
 	public OffPartDTO boardSelect(int no);
+	
+	//오프라인 구성원 리스트
+	public List<OffPartDTO> offPartList(int no);
 }
 

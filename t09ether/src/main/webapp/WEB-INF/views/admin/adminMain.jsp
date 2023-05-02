@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<head>
-
+<style>
+#layoutSidenav_content{
+	margin:80px 50px;
+	margin-left:260px;
+}
+</style>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -67,7 +71,6 @@
                         </div>
                     </div>
                 </main>
-                
             </div>
       <!--   </div>  -->
 </body>

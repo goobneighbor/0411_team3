@@ -33,7 +33,15 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
-	
+
+	thead tr th, tbody{
+		text-align:center;
+	}
+	#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
+
 </style>
 <script>
 	$(function(){
@@ -45,7 +53,6 @@
 			return true;
 		});
 
-		
 		//선택 삭제 버튼 클릭하면
 		$("#chooseDel").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
@@ -61,6 +68,7 @@
 				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
 					$("#reportForm").attr("action","<%=request.getContextPath() %>/admin/reportDel");
 					$("#reportForm").submit();
+
 				}
 			}else{
 				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
@@ -89,12 +97,13 @@
 		});
 	});
 </script>
-
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
 			<h2>신고 관리</h2>
-			<p>등록된 신고 확인</p>
+			<p>등록된 신고 목록</p>
+
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -112,6 +121,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
+
 									<th><input type="checkbox" id="allCheck"/>전체선택</th>
 									<th>글번호</th>
 									<th>신고번호</th>
@@ -120,12 +130,14 @@
 									<th>신고내용</th>
 									<th>신고날짜</th>
 									<th>신고수(대상)</th>
+
 								</tr>
 							</thead>
 							
 							<tbody>
-							<c:set var="recordNum" value="${1+(vo.nowPage-1)*vo.onePageRecord}"/>
+							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
+
 								<tr>
 									<td><input type="checkbox" name="noList" value="${bDTO.report_no}"/></td>
 									<td>${recordNum}</td>
@@ -137,6 +149,7 @@
 									<td>${bDTO.report }</td>
 								</tr>
 								<c:set var="recordNum" value="${recordNum+1}"/>	
+
 							</c:forEach>
 							</tbody>
 							<!--<tfoot>
@@ -149,8 +162,10 @@
 					</form>
 					</div>
 					<div>
+
 						<input type="button" value="신고접수" id="reportAccept"/>
 						<input type="button" value="신고삭제" id="chooseDel"/>
+
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -194,8 +209,10 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="adReport">
 							<select name = "searchKey" id="searchKey">
+
 								<option value="mem_id">신고자</option>
 								<option value="target_id">신고대상</option>
+
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search"/>
@@ -206,3 +223,4 @@
 			</div>
 		</div>
 	</section>
+</div>

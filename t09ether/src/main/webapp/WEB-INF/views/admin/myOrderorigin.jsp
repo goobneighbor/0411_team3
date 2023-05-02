@@ -33,6 +33,10 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+	#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
 </style>
 <script>
 	$(function(){
@@ -79,11 +83,12 @@
 		
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
-			<h2>온라인 공구 내역</h2>
-			<p>진행중인 내역</p>
+			<h2>온라인 공구 배송 현황</h2>
+			<p>배송 상태</p>
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -196,8 +201,8 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myOrderorigin">
 							<select name = "searchKey" id="searchKey">
-								<option value="userid">공구장</option>
-								<option value="orderdate">주문날짜</option>
+								<option value="pro_name">상품명</option>
+								<option value="writedate">등록날짜</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search" id="search"/>
@@ -208,3 +213,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

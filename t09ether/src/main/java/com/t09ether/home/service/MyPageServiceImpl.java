@@ -8,9 +8,14 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.MyPageDAO;
+
 import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
+
+import com.t09ether.home.dto.AdUserPagingVO;
+
 import com.t09ether.home.dto.MyPageDTO;
+import com.t09ether.home.dto.MyPostPagingVO;
 import com.t09ether.home.dto.OffPartDTO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ReportDTO;
@@ -48,19 +53,28 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	//온라인 공구내역 게시판 리스트 + 페이징
 	@Override
-	public int totalRecord(AdminPagingVO vo) {
+	public int totalRecord(AdUserPagingVO vo) {
 		return dao.totalRecord(vo);
 	}
 
 	@Override
+
 	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
+	}
+	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
 	}
 	
 	//오프라인 공구 게시판 페이징
 	@Override
-	public List<OffPartDTO> offPageSelect(AdminPagingVO vo) {
-		return dao.offPageSelect(vo);
+	public int mpTotalRecord(MyPostPagingVO vo) {
+		return dao.mpTotalRecord(vo);
+	}
+
+	@Override
+	public List<OffPartDTO> offPageSelect(MyPostPagingVO vo, int totalPage, String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
+		return dao.offPageSelect(vo, totalPage, searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
 	}
 
 	@Override
@@ -106,6 +120,31 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int orderStatusUpdate(int ord_no) {
 		return dao.orderStatusUpdate(ord_no);
+	}
+
+
+	@Override
+	public int expUpdate(String userid) {
+		return dao.expUpdate(userid);
+	}
+
+	public List<OffPartDTO> offPartList(int no) {
+		return dao.offPartList(no);
+	}
+
+	@Override
+	public int totalRecord(AdminPagingVO vo) {
+		return dao.totalRecord(vo);
+	}
+
+	@Override
+	public int expSelect(String userid) {
+		return dao.expSelect(userid);
+	}
+
+	@Override
+	public int rankUpdate(String userid) {
+		return dao.rankUpdate(userid);
 	}
 
 	

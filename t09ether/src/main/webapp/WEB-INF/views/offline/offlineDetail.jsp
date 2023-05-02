@@ -48,7 +48,7 @@
 	tr:nth-child(odd) {
 	  background-color: yellow;
 	}
-	
+
 	.offlineClose{
 		margin:0 auto;
 	}
@@ -74,10 +74,19 @@
 		font-size: 2em;
 		color: #9CA777;
 	}
-	
+	.info{
+		border : 1px solid black;
+		border-radius : 5px;
+		padding:3px 5px;
+		background: #BFDB38;
+	}
+
 </style>
 <script>
-	
+	refreshList();
+	function refreshList(){
+		$("#participantList").load(location.href+' #participantList');
+	}
 </script>
 	<!-- Header-->
 	<header class="bg-tomato py-5">
@@ -86,6 +95,7 @@
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
 	        	<h3 style="color:orange;">약속시간이 가까워지면 문자로 안내드립니다 즐거운시간되세요!</h3>
 	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>	    
+
 	        </div>
 	    </div>
 	</header>
@@ -110,12 +120,13 @@
 	<form method="get" action="offlineClose" class="offlineClose">
 		<input type="hidden" name="off_no" value="${dto.off_no}"/>
 		<div class="buttonDiv">
-			<c:if test="${logStatus=='Y'}">
-				<input type="submit" value="모집마감하기" id="closeButton"/>	
-			</c:if>
+				<c:if test="${logStatus=='Y' && logId==firstDTO.userid}">
+					<input type="submit" value="모집마감하기" id="closeButton"/>	
+				</c:if>			
 		</div>
 	</form>
 	<div class="participantInfo"><h2>[참가자 정보]</h2></div>
+
 	<div id="participantList" style="border:2px solid orange;">		
 		<table>
 			<tr class="theader">
@@ -123,6 +134,7 @@
 			    <th>아이디</th>
 			    <th>이름</th>
 			    <th>연락처</th>
+			    <th></th>
 			</tr>			  
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
@@ -130,6 +142,7 @@
 				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
+				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info">리뷰보기</a></td>
 			</tr>
 		</c:forEach>
 		</table>

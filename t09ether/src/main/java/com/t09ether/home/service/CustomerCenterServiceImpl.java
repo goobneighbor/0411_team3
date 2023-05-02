@@ -17,18 +17,6 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	@Inject
 	CustomerCenterDAO dao;
 
-	// 고객센터 게시판 전체 목록 보기
-	@Override
-	public List<CustomerCenterDTO> boardList() {
-		return dao.boardList();
-	}
-	
-	//고객센터 게시판 글 조회
-	@Override
-	public CustomerCenterDTO boardView(int cus_b_num) {
-		return dao.boardView(cus_b_num);
-	}
-
 	@Override
 	public int totalRecord(CustomerCenterPagingVO vo) {
 		return dao.totalRecord(vo);
@@ -54,6 +42,17 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public int csBoardUpdate(CustomerCenterDTO cdto) {
 		return dao.csBoardUpdate(cdto);
 	}
+
+	@Override
+	public CustomerCenterDTO csBoardSelect(int cus_b_num) {
+		return dao.csBoardSelect(cus_b_num);
+	}
+
+	@Override
+	public int csBoardDelete(CustomerCenterDTO cdto) {
+		return dao.csBoardDelete(cdto);
+	}
+
 
 
 }

@@ -7,13 +7,20 @@
 		insert into product(pro_code, pro_total, pro_name, pro_price, pro_stock, image, detailed) values(pro_code_sq.nextval, #{pro_total}, #{pro_name},#{pro_price}, #{pro_stock}, #{image}, #{detailed})
 	</insert>
 	<select id="totalRecord" resultType="int">
-		select count(pro_code) totalRecord from product 
+		select count(pro_code) from product 
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
 	</select>
 	<select id="pageSelect" resultType="com.t09ether.home.dto.ProductDTO">
 		select * from 
 			(select * from
 				(
-					select * from product order by pro_code desc
+					select * from product
+					<if test="searchWord!=null">
+               			where ${searchKey} like '%${searchWord}%' 
+            		</if>
+            		order by pro_code desc
 				)
 			<![CDATA[
 			where rownum<=${onePageRecord*nowPage} order by pro_code asc

@@ -23,6 +23,7 @@ public class RegisterDTO {
 	private String writedate;
 	private int report;
 	private int exp;
+
 	
 	//여러개의 레코드 한번에 삭제할때 필요한 레코드 번호
 	private List<String> noList;
@@ -34,6 +35,8 @@ public class RegisterDTO {
 				+ email + ", zipcode=" + zipcode + ", addr=" + addr + ", addrdetail=" + addrdetail + ", rank=" + rank
 				+ ", writedate=" + writedate + ", report=" + report + ", exp=" + exp + "]";
 	}
+
+
 	public int getRownum() {
 		return rownum;
 	}
@@ -60,6 +63,10 @@ public class RegisterDTO {
 	}
 	public String getTel() {
 		tel = tel1 + "-" + tel2 + "-" + tel3;
+		return tel;
+	}
+	public String getTelAst() {
+		tel = tel1 + "-" + "****" + "-" + tel3;
 		return tel;
 	}
 	public void setTel(String tel) {

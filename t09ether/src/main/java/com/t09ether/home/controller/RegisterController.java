@@ -145,4 +145,11 @@ public class RegisterController {
 			return mav;
 		}
 		
+		@GetMapping("/idSearchForm")
+		public ModelAndView idSearch() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("register/idSearchForm");
+			return mav;
+		}
+		
 }	

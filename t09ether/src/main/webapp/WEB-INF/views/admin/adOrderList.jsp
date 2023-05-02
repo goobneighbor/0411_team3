@@ -139,6 +139,9 @@
 										<c:when test="${bDTO.status==5 }">
 											<td>환불</td>
 										</c:when>
+										<c:when test="${bDTO.status==10 }">
+											<td>만남완료</td>
+										</c:when>
 									</c:choose>
 									<td>${bDTO.ord_count }</td>
 									<td>${bDTO.on_no }</td>
@@ -149,9 +152,6 @@
 							</c:forEach>
 							</tbody>
 						</table>
-					<div>
-					<input type="button" value="다음단계" id="nextUp"/>
-					</div>
 					</form>
 					</div>
 					<!-- 페이징 -->
@@ -192,7 +192,7 @@
 					</div>
 					<!--검색 -->
 					<div class ="searchDiv">
-						<form method="get" id="searchForm" action="myOrderorigin">
+						<form method="get" id="searchForm" action="adOrderList">
 							<select name = "searchKey" id="searchKey">
 								<option value="ord_no">주문번호</option>
 								<option value="orderdate">주문날짜</option>

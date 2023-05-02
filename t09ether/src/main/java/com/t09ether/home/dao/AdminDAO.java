@@ -28,5 +28,7 @@ public interface AdminDAO {
 	public int ordMultiUpdate(int on_no); //@Param("on_noList")List<Integer> on_noList, @Param("status")List<Integer> status
 	
 	//통계
-	public List<DataVO> getList();
+	public List<DataVO> regiStat();
+	public List<DataVO> onlineStat();
+	
 }

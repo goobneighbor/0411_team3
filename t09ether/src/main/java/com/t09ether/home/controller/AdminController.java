@@ -80,14 +80,16 @@ public class AdminController {
 	public ModelAndView adStat() {
 		ModelAndView mav = new ModelAndView();
 		
-		List<DataVO> list = service.getList();
+		//통계
+		//월별 가입자
+		List<DataVO> regiList = service.regiStat();
 		
 		Gson gson = new Gson();
 		JsonArray jArray = new JsonArray();
 
-		Iterator<DataVO> it = list.iterator();
-		while(it.hasNext()) {
-			DataVO curVO = it.next();
+		Iterator<DataVO> regiIt = regiList.iterator();
+		while(regiIt.hasNext()) {
+			DataVO curVO = regiIt.next();
 			JsonObject object = new JsonObject();
 			String month = curVO.getMonth();
 			int cnt = curVO.getCnt();
@@ -95,11 +97,37 @@ public class AdminController {
 		    object.addProperty("Month", month);
 			object.addProperty("Count", cnt);
 			jArray.add(object);
-		}
-				
+		}		
+		
 		String json = gson.toJson(jArray);
 		mav.addObject("json", json);
+		//
 		
+		//월별 온라인 공구 거래량
+		List<DataVO> onlineList = service.onlineStat();
+		
+		Gson onlineGson = new Gson();
+		JsonArray onlinejArray = new JsonArray();
+		
+		Iterator<DataVO> OnlineIt = onlineList.iterator();
+		while(OnlineIt.hasNext()) {
+			DataVO curVO = OnlineIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			onlinejArray.add(object);
+		}		
+		
+		String onlineJson = onlineGson.toJson(onlinejArray);
+		mav.addObject("onlineJson", onlineJson);
+		//
+		
+		
+		
+		///			
 		mav.setViewName("admin/adStat");
 		return mav;
 	}

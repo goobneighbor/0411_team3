@@ -66,7 +66,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	//통계
 	@Override
-	public List<DataVO> getList() {
-		return dao.getList();
+	public List<DataVO> regiStat() {
+		return dao.regiStat();
+	}
+
+	@Override
+	public List<DataVO> onlineStat() {
+		return dao.onlineStat();
 	}
 }

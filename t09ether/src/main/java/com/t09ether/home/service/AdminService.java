@@ -25,6 +25,7 @@ public interface AdminService {
 	public int ordMultiUpdate(int on_no); //List<Integer> on_noList, List<Integer> status
 	
 	//통계
-	public List<DataVO> getList();
+	public List<DataVO> regiStat();
+	public List<DataVO> onlineStat();
 
 }

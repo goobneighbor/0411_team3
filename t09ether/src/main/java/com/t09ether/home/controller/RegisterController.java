@@ -199,11 +199,13 @@ public class RegisterController {
 			}else {
 				String emailSubject = "t09ether 비밀번호를 안내해 드립니다.";
 				
-				String emailContent = "<div style= 'display:flex; flex-direction:column; text-align:center; background:#FDF3EA; text-align:center;'>";
+				String emailContent = "<div style= 'display:flex; flex-direction:column; font-size: 15px; text-align:center; background:#FDF3EA; text-align:center;'>";
 				emailContent += "<h2>"+"안녕하세요? t09ether입니다."+"</h2>";
+				emailContent += "<h3>";
 				emailContent += userid+" 님의 비밀번호는 ";
-				emailContent += "["+"<b>"+userpwd +"</b>"+ "]" +" 입니다.";
+				emailContent += "[ " + userpwd +" ]" +" 입니다."+ "<br>";
 				emailContent += "만약 본인이 요청하지 않으신 정보라면 저희 홈페이지를 방문하셔서 비밀번호를 새롭게 변경해주시기 바랍니다.";
+				emailContent += "</h3>";
 				emailContent += "<div style='display:flex; justify-content:center; align-items:center;'>";
 				emailContent += "<img src='https://img.freepik.com/premium-vector/good-business-team-and-cooperation-concept-group-of-young-colleagues-workers-standing-hugging-celebrating-success-in-business-together-vector-illustration_140689-3147.jpg?w=1380' alt='img'";
 				//emailContent += "<img src='cid:image'>";

@@ -58,6 +58,7 @@ public class MyPageController {
 		List<OrderDTO> list = service.pageOrdSelect(vo);
 		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2);
 		//System.out.println(list);
+		System.out.println(vo2);
 		
 		mav.addObject("vo", vo);
 		mav.addObject("vo2", vo2);
@@ -123,7 +124,8 @@ public class MyPageController {
 		
 		List<OffPartDTO> list = service.offPageSelect(vo);
 		List<OffPartDTO> list2 = service.offPageSucSelect(vo2);
-		//System.out.println(list);
+		System.out.println(vo2);
+		System.out.println(list);
 		
 		mav.addObject("vo", vo);
 		mav.addObject("vo2", vo2);

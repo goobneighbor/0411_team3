@@ -23,6 +23,11 @@ public class MyPostPagingVO2 {
 				+ searchWord2 + "]";
 	}
 	
+
+
+
+
+
 	public String getUserid() {
 		return userid;
 	}
@@ -31,9 +36,14 @@ public class MyPostPagingVO2 {
 		this.userid = userid;
 	}
 
+
+
+
+
 	public void setTotalRecord2(int totalRecord2) {
 		this.totalRecord2 = totalRecord2;
 	}
+
 
 	public int getNowPage2() {
 		return nowPage2;
@@ -120,4 +130,3 @@ public class MyPostPagingVO2 {
 		this.searchWord2 = searchWord2;
 	}
 }
-

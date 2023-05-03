@@ -140,10 +140,10 @@ public class AdminController {
 		while(onPopIt.hasNext()) {
 			DataVO curVO = onPopIt.next();
 			JsonObject object = new JsonObject();
-			int pro_code = curVO.getPro_code();
+			String pro_name = curVO.getPro_name();
 			int cnt = curVO.getCnt();
 			
-		    object.addProperty("Pro_code", pro_code);
+		    object.addProperty("Pro_name", pro_name);
 			object.addProperty("Count", cnt);
 			onPopjArray.add(object);
 		}		
@@ -379,10 +379,10 @@ public class AdminController {
 		while(onPopIt.hasNext()) {
 			DataVO curVO = onPopIt.next();
 			JsonObject object = new JsonObject();
-			int pro_code = curVO.getPro_code();
+			String pro_name = curVO.getPro_name();
 			int cnt = curVO.getCnt();
 			
-		    object.addProperty("Pro_code", pro_code);
+		    object.addProperty("Pro_name", pro_name);
 			object.addProperty("Count", cnt);
 			onPopjArray.add(object);
 		}		

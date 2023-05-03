@@ -130,10 +130,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck1"/></th>
 									<th>번호</th>
-									<th>일련번호</th>
-									<th>원글번호</th>
 									<th>공구제목</th>
 									<th>공구장</th>
 									<th>만남장소</th>
@@ -147,10 +144,7 @@
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
 									<tr>
-										<td><input type="checkbox" name="noList1" value="${bDTO.username}"/></td>
 										<td>${recordNum}</td>
-										<td>${bDTO.off_j_no }</td>
-										<td>${bDTO.off_no }</td>
 										<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
 										<td>${bDTO.userid }</td>
 										<td>${bDTO.location }</td>
@@ -169,9 +163,6 @@
 							</tfoot>  -->
 						</table>
 					</form>
-					</div>
-					<div>
-						<input type="button" value="영구제명" id="chooseDel1"/>
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -213,7 +204,7 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myPost">
 							<select name = "searchKey" id="searchKey">
-								<option value="userid">공구장</option>
+								<option value="off_subject">공구제목</option>
 								<option value="location">만남장소</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
@@ -239,7 +230,7 @@
 					<div class="table-wrapper">
 					<form method="post">
 					<input type="hidden" name="nowPage2" value="${vo2.nowPage2 }"/>
-					<c:if test="${vo.searchWord!=null}">
+					<c:if test="${vo2.searchWord2!=null}">
 						<input type="hidden" name="searchKey2" value="${vo2.searchKey2 }"/>
 						<input type="hidden" name="searchWord2" value="${vo2.searchWord2 }"/>
 					</c:if>
@@ -247,10 +238,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck2"/></th>
 									<th>번호</th>
-									<th>일련번호</th>
-									<th>원글번호</th>
 									<th>공구제목</th>
 									<th>공구장</th>
 									<th>만남장소</th>
@@ -264,10 +252,7 @@
 							<c:set var="recordNum2" value="${vo2.totalRecord2-(vo2.nowPage2-1)*vo2.onePageRecord2}"/>
 							<c:forEach var="bDTO2" items="${list2}">
 								<tr>
-									<td><input type="checkbox" name="noList2" value="${bDTO2.username}"/></td>
 									<td>${recordNum2}</td>
-									<td>${bDTO2.off_j_no }</td>
-									<td>${bDTO2.off_no }</td>
 									<td><a href="myPostView?no=${bDTO2.off_no }&nowPage2=${vo2.nowPage2}<c:if test="${vo2.searchWord2!=null }">&searchKey2=${vo2.searchKey2 }&searchWord2=${vo2.searchWord2 }</c:if>">${bDTO2.off_subject }</a></td>
 									<td>${bDTO2.userid }</td>
 									<td>${bDTO2.location }</td>
@@ -286,9 +271,6 @@
 							</tfoot>  -->
 						</table>
 					</form>
-					</div>
-					<div>
-						<input type="button" value="영구제명" id="chooseDel2"/>
 					</div>
 					<!-- 페이징 -->
 					<div id="wrapper"> 
@@ -332,7 +314,7 @@
 					<div class ="searchDiv2">
 						<form method="get" id="searchForm2" action="myPost">
 							<select name = "searchKey2" id="searchKey2">
-								<option value="userid">공구장</option>
+								<option value="off_subject">공구제목</option>
 								<option value="location">만남장소</option>
 							</select>
 							<input type="text" name="searchWord2" id="searchWord2"/>

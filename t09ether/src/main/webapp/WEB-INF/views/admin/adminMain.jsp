@@ -245,7 +245,7 @@
 	
 	for(var i = 0; i<jData3.length; i++) {
 		var g = jData3[i];
-		labelList3.push(g.Pro_code);
+		labelList3.push(g.Pro_name);
 		valueList3.push(g.Count);
 		colorList3.push(colorize());
 	}

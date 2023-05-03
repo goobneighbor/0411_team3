@@ -256,8 +256,9 @@ public class OfflineController extends SmsSend{
 		dto.setCurrent_num(service.currentNumCount(off_no));
 		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
 		
-		//정원이 가득차면 문자 보내주기
-		if(dto.getCurrent_num() >= dto.getGroup_num()) {
+		//정원이 가득차면 문자 보내주기+마감하기
+		if(dto.getStatus()==1) {
+			if(dto.getCurrent_num() >= dto.getGroup_num()) {
 			//참여자별로 문자보내기
 			List<OfflineParticipantDTO> opList = service.participantList(off_no);
 			for(OfflineParticipantDTO participant : opList) {
@@ -269,8 +270,9 @@ public class OfflineController extends SmsSend{
 				String content = "[t09ether]"+username+"님, 공동구매 모집이 완료되었습니다. 공구정보를 확인해주세요!";		
 				super.send_msg(tel, username, content);
 			}
+			service.offlineClose(off_no); // status 2로 바꾸기
+			}
 		}
-		
 		
 		RegisterDTO firstDTO = service.getParticipant(dto.getUserid());//방장의 정보
 		//뷰페이지로 정보 전송		

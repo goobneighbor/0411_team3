@@ -13,7 +13,7 @@
  		values((comment_no_sq.nextval), #{off_no},#{comment09},#{userid})
  	</insert>
  	<update id="commentUpdate">
- 		update commen09 set comment09=#{comment09}
+ 		update comment09 set comment09=#{comment09}
  		where comment_no=#{comment_no} and userid=#{userid}
  	</update>
  	<delete id="commentDelete">

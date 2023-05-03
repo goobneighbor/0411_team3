@@ -92,11 +92,11 @@
 	}
 	.detailButton{
 		position: relative;
-		top: -30px;	
+		top: -40px;	
 	}
 	.joinButton{
 		position:relative;
-		top: 0px;
+		top: -10px;
 	}
 	.writedate{
 		width:30px;
@@ -195,7 +195,6 @@
 						<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
 					</form>
 				</c:if>
-	    </div>
-	</div>
+		</div>
 
 </section>

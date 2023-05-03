@@ -19,21 +19,21 @@
    #view{
       height:75px;
       margin-bottom:40px;
-      border-top:1px solid #ddd;
-      border-bottom:1px solid #ddd;
+      border-top:1px solid black;
+      border-bottom:1px solid black;
    }
    #view2{
       margin:10px 0;
       padding:0;
       height:90px;
-      border-top:1px solid #ddd;
-      border-bottom:1px solid #ddd;
+      border-top:1px solid black;
+      border-bottom:1px solid black;
    }
    #view2 li{
       float:left;
       width:15%;
-      border-right:1px solid #ddd;
-      border-left:1px solid #ddd;
+      border-right:1px solid black;
+      border-left:1px solid black;
       line-height:40px;
       height:90px;
       padding: 8px;
@@ -47,7 +47,7 @@
       margin:auto;
       padding:0;
       height:90px;
-      border-bottom:1px solid #ddd;
+      border-bottom:1px solid black;
    }
    #viewParty li{
       display:inline-block;
@@ -58,7 +58,7 @@
       text-align:center;
    }
    #view3 {
-      border: 1px solid #ddd;
+      border: 1px solid black;
       height:500px;
       margin: 0;
       padding: 0 32px;
@@ -69,11 +69,7 @@
        margin:32px 0 16px 0;
    }
 	li{list-style-type: none;}
-	#view>li{
-			padding:5px 0;
-			border-bottom:1px solid #ddd;
-			list-style-type: none;
-		}		
+	
 	.bg-tomato py-5{
 		margin:0;
 		padding:0;
@@ -82,17 +78,10 @@
 		border: none;;
 		font-size: 1.5em;
 		color:orange;
+		text-align: center;
 	}	
 	.goComment{
-		margin:10px auto;
-		padding: 5px 5px;
-		width:240px;
-		font-size: 1.6em;
-		border:1px solid tomato;
-		border-radius: 10px;
-		background-color:#FFD777;
-		color: white;
-		
+		text-align:center;		
 	}
 	table {
 	  font-family: arial, sans-serif;
@@ -104,12 +93,12 @@
 		text-align: center;
 	}
 	td, th {
-	  border: 1px solid #dddddd;
+	  border: 1px solid #ddd;
 	  padding: 8px;
 	}
 
 	tr:nth-child(even) {
-	  background-color: orange;
+	  background-color: #ddd;
 	}
 	tr:nth-child(odd) {
 	  background-color: yellow;
@@ -123,10 +112,10 @@
 		padding:0;
 		width:220px;
 		font-size: 1.6em;
-		border:1px solid tomato;
+		border:1px solid black;
 		border-radius: 10px;
-		background-color:#F79540;
-		color:#FEE8B0;		
+		background-color:white;
+		color:black;		
 	}
 	.buttonDiv{
 		margin:0 auto;
@@ -141,10 +130,17 @@
 		color: orange;
 	}
 	.info{
-		border : 1px solid black;
 		border-radius : 5px;
 		padding:3px 5px;
-		background: #BFDB38;
+		background: orange;
+		color:white;
+	}
+	#closeButton{
+		margin: 10px auto;
+	}
+	.buttonDiv{
+		margin: 0 auto;
+		text-align: center;
 	}
 
 </style>
@@ -160,8 +156,6 @@
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
 	        	<h3 style="color:orange;">모집이 완료되면 문자로 안내드립니다 즐거운시간되세요!</h3>
-	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}" style="color:#7d7b7a;">일정조율하러가기</a></div>	    
-
 	        </div>
 	    </div>
 	</header>
@@ -198,11 +192,12 @@
          <li>${dto.off_content}</li>   
       </ul>
    </section>
+   <div class="goComment"><a class="btn btn-outline-dark mt-auto" href="offlineComment?off_no=${dto.off_no}" style="margin:auto auto; padding:30px 10px 10px 10px ;width:300px;height:100px; text-align: center; font-size: 2em;" >일정조율하러가기</a></div>	    
 </section>
 	
 	<div class="participantInfo"><h2>[참가자 상세정보]</h2></div>
 
-	<div id="participantList" style="border:2px solid orange;">		
+	<div id="participantList" >		
 		<table>
 			<tr class="theader">
 			    <th>번호</th>
@@ -214,10 +209,10 @@
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
 			<tr class="infoDetail">
 				<td style="width:6%; text-align:center;">${status.count}</td>
-				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></td>
+				<td><b>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></b></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
-				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info">리뷰보기</a></td>
+				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
 			</tr>
 		</c:forEach>
 		</table>

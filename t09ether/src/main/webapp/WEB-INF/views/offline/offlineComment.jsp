@@ -119,8 +119,8 @@
 							//댓글 수정폼 만들기 - 기존댓글과, 댓글번호
 							tag += "<div style='display:none'>";
 							tag += "<form method='post'>";
-							tag += "<input type='hidden' name='c_no'  value='"+cDTO.comment_no+"'/>";//댓글일련번호
-							tag += "<textarea name='coment'>"+cDTO.comment09+"</textarea>";
+							tag += "<input type='hidden' name='comment_no'  value='"+cDTO.comment_no+"'/>";//댓글일련번호
+							tag += "<textarea name='comment09' style='border:1px solid black;'>"+cDTO.comment09+"</textarea>";
 							tag += "<input type='submit' value='댓글수정하기'/>";
 							tag += "</form>";
 							tag += "</div>";	
@@ -165,7 +165,7 @@
 			return false; //form의 기본이벤트 떄문에 다음 실행이 있고 그것을 중단
 		});
 		//댓글 수정폼 보여주기 : 본인이 쓴 글일때 Edit 버튼 클릭하면 글 내용은 숨기고, 폼을 보이게 한다
-		$(document).on('click', '#commentList input[value=Edit]', function(){
+		$(document).on('click', '#commentList input[value=수정]', function(){
 			//기존의 열어놓은 폼이나 숨겨놓은 댓글 내용을 처리하고(하나만 열려있게)
 			//$("#commentList>li>div:nth-frist").css("display","block");
 			//$("#commentList>li>div:nth-last").css("display","none");
@@ -200,7 +200,7 @@
 		
 		//댓글 삭제
 		
-		$(document).on('click','#commentList input[value=Del]',function(){
+		$(document).on('click','#commentList input[value=삭제]',function(){
 			if(confirm("댓글을 삭제할까요?")){
 				var params = "comment_no="+$(this).attr("title");
 				console.log(params);

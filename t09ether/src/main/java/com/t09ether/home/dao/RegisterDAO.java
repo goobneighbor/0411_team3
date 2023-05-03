@@ -22,5 +22,7 @@ public interface RegisterDAO {
 	public String idSearch(String username, String email);
 	//회원의 rank select
 	public int rankSelect(String userid);
+	//임시정지회원 select
+	public int tempSelect(String userid);
 
 }

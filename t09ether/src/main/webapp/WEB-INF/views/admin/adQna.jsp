@@ -7,41 +7,45 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#wrappertwo {
+	#wrappertwo {
 	display: grid;
 	place-items: center;
 	min-height: 10vh;
-}
+	}
 
-#searchKey { /*제목임*/
-	width: 40%;
-	text-align: center;
-	margin: auto;
-}
+	#searchKey, #searchWord, #search{
+		display:inline-block;
+	}
+	
+	#searchKey { /*제목임*/
+		width:15%;
+		margin: auto;
+	}
+	
+	#searchWord { /*검색칸*/
+		width:40%;
+		margin: auto;
+	}
 
-#searchWord { /*검색칸*/
-	width: 40%;
-	margin: auto;
-}
+	.pagingDiv li {
+		float: left;
+		text-align: center;
+		padding: 10px 20px;
+		list-style: none;
+	}
 
-.pagingDiv li {
-	float: left;
-	text-align: center;
-	padding: 10px 20px;
-	list-style: none;
-}
-
-.pagingDiv a:link, .pagingDiv a:hover, .pagingDiv a:visited, .board_list a:link,
+	.pagingDiv a:link, .pagingDiv a:hover, .pagingDiv a:visited, .board_list a:link,
 	.board_list a:hover, .board_list a:visited {
-	color: #000;
-}
+		color: #000;
+	}
 
-.searchDiv {
-	clear: left;
-	padding: 10px;
-	text-align: center;
-}
-#usermain{
+	.searchDiv {
+		clear: left;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	#usermain{
 		margin:10px;
 		margin-left:250px;
 		}
@@ -88,12 +92,12 @@
 								<!-- nowPage -->
 								<c:if test="${vo.nowPage==1}">
 									<!-- 현재페이지가 1일때 -->
-									<li>prev</li>
+									<li>이전</li>
 								</c:if>
 								<c:if test="${vo.nowPage>1}">
 									<!-- 현재페이지가 1아닐때 -->
 									<li><a
-										href="adQna?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">prev</a></li>
+										href="adQna?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
 								</c:if>
 
 								<!-- 페이지번호 -->
@@ -117,12 +121,12 @@
 								<!-- 다음페이지 -->
 								<c:if test="${vo.nowPage==vo.totalPage}">
 									<!-- 현재페이지가 마지막일때 -->
-									<li>next</li>
+									<li>다음</li>
 								</c:if>
 								<c:if test="${vo.nowPage<vo.totalPage}">
 									<!-- 현재페이지가 마지막 아닐때 -->
 									<li><a
-										href="adQna?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">next</a></li>
+										href="adQna?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord != null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
 								</c:if>
 
 							</ul>

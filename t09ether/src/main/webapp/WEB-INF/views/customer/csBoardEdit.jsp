@@ -12,7 +12,7 @@
 	
 	 .ck-editor__editable[role="textbox"] {
                 /* editing area */
-                min-height: 200px;
+                min-height: 500px;
             }
             .ck-content .image {
                 /* block images */
@@ -175,7 +175,8 @@
 	});
 </script>
 <div class="container">
-	<h1>Q&A게시판 글 수정하기</h1>
+	<h1></h1>
+	<h1 style="text-align:center;">Q&A게시판 글 수정하기</h1>
 	<form method="post" action="csBoardEditOk" id="csBoardForm">
 		<input type="hidden" name="cus_b_num" value="${cdto.cus_b_num}"/>
 		<ul>

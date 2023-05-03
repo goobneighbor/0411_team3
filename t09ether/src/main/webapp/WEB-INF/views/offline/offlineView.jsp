@@ -129,6 +129,13 @@
 		});
 
 </script>
+<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white">
+        	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
+        </div>
+    </div>
+</header>
 <section style="height:30px"></section>
 <section id="main" class="container">
    <ul id="view" class="major">

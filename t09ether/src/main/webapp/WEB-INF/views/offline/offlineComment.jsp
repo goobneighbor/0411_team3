@@ -89,6 +89,9 @@
 	#commentInsert{
 		margin:0 0 0 35px;
 	}
+	.bottomMenu a{
+		margin:10px; 
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
@@ -265,5 +268,8 @@
 		</form>		
 	</div>
 	<br/>
-
+	<div class="bottomMenu">
+	 <a class="btn btn-outline-dark mt-auto" href="javascript:history.go(-1)">뒤로가기</a>
+	 <a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/offline">목록으로</a>
+	</div>
 </div>

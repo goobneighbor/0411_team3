@@ -196,6 +196,7 @@
 							<input type="submit" value="공구페이지로 이동" class="detailButton"/>					
 					</form>
 					</c:if>
+					
 				</c:forEach>		
 				<c:if test="${logStatus=='Y'&& dto.status==2}">
 					<form method="get" action="offlineFinished" id="offlineFinished">

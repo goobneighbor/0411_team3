@@ -92,6 +92,8 @@ public class OfflineServiceImpl implements OfflineService {
 		dao.currentNumUpdate(off_no);
 	}
 
+	
+
 
 
 

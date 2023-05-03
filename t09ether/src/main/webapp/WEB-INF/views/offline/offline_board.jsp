@@ -136,7 +136,7 @@
       text-align: center;
       width:100%;   
    }
-
+	
 </style>
 <script>
 	$(function(){
@@ -202,7 +202,8 @@
 	                        </div>
 	                        <!-- Product actions-->
 	                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-	                        	<div class="text-center2"><a href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">참여하기</a></div>
+	                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">참여하기</a></div>
+	                        	
 	                        </div>
 	                 </div>
 	            </div>
@@ -258,10 +259,10 @@
 		<div class ="searchDiv">
 			<form method="get" id="searchForm" action="offline">
 				<select name = "searchKey" id="searchKey">
+					<option value="location" selected>지역</option>
 					<option value="off_subject">제목</option>
 					<option value="userid">작성자</option>
-					<option value="off_content">내용</option>
-					<option value="location">지역</option>
+					<option value="off_content">내용</option>					
 				</select>
 				<input type="text" name="searchWord" id="searchWord"/>
 				<input type="submit" value="Search"/>

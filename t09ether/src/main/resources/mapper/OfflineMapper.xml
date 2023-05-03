@@ -81,4 +81,5 @@
     <update id="currentNumUpdate" parameterType="int">
     	update off_gb set current_num = (select count(*) from off_participant where off_no = ${param1}) where off_no=${param1}
     </update>
+    
 </mapper>

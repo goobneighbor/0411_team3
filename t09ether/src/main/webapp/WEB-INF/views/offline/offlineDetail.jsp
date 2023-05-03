@@ -93,7 +93,7 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
-	        	<h3 style="color:orange;">약속시간이 가까워지면 문자로 안내드립니다 즐거운시간되세요!</h3>
+	        	<h3 style="color:orange;">모집이 완료되면 문자로 안내드립니다 즐거운시간되세요!</h3>
 	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>	    
 
 	        </div>
@@ -101,7 +101,7 @@
 	</header>
 	
 <div class="container">	
-	<form method>
+	<form method="post" action="offlineMessage">
 		<input type="hidden" name="off_no" value="${dto.off_no}"/>
 		<input type="submit" value="문자전송"/>
 	</form>

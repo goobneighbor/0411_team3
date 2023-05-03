@@ -40,5 +40,6 @@ public interface OfflineDAO {
 	public void offlineClose(int off_no);
 	// 공구 인원수(current_num)업데이트
 	public void currentNumUpdate(int off_no);
+	
 
 }

@@ -124,7 +124,7 @@ function listView(result) {
 		pro_code.push(lDTO.pro_code);
 		userid.push(lDTO.userid);
 		
-		tag += "<li><p><span style='width:30%;margin:6px'>"+lDTO.shareaddr+"</span><span style='width:20%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+		tag += "<li><p><span style='width:30%;margin:6px'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><span style='width:20%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	
@@ -175,11 +175,11 @@ $(function(){
                         <h2 class="card-title">${dto.pro_name }</h2>
                         <br/>
                         <div style="margin-left:420px;">
-		               	<div class="rate">
-					        <span id="avgRate"style="width:${Math.ceil(rateAvg/5*100)}%"></span>
-					    </div>
-					    <div style="margin-left:50px">(${rateAvg }/5)</div>
-				    </div>
+			               	<div class="rate">
+						        <span id="avgRate"style="width:${Math.ceil(rateAvg/5*100)}%"></span>
+						    </div>
+						    <div style="margin-left:50px">(${rateAvg }/5)</div>
+				    	</div>
                         <div id="price">
                         <div>총&nbsp;&nbsp;<span id="totalprice">${dto.pro_price }</span>&nbsp;원</div>
 	                    <div>개당&nbsp;&nbsp;<span id="oneprice">${dto.pro_price/dto.pro_total }</span>&nbsp;원</div>

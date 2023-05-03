@@ -50,6 +50,9 @@ $(function(){
 	.pagingDiv ul{
 		margin:0 auto;
 	}
+	.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+	.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+
 </style>
 <!-- Header-->
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
@@ -98,7 +101,14 @@ $(function(){
 	                                --> 
 	                                <div>총&nbsp;<span id="totalprice">${proDTO.pro_price }</span>&nbsp;원</div>
 	                                <div>개당&nbsp;<span id="oneprice">${Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10}</span>&nbsp;원</div>
+	                            	
 	                            </div>
+	                            <div style="margin-left:50px">
+	                            	<div class="rate">
+								        <span id="avgRate"style="width:${Math.ceil(proDTO.rateAvg/5*100)}%"></span>
+								    </div>
+								    <div style="margin-left:25px" >(${proDTO.rateAvg }/5)</div>
+								</div>
 	                        </div>
 	                        <!-- Product actions-->
 	                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

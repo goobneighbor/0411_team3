@@ -100,7 +100,7 @@ $(function(){
            <!-- Blog entries-->
            <div class="col-lg-5">
                <!-- Featured blog post-->
-               <div class="card mb-6">
+               <div class="card mb-6" style="height:850px">
                    <img src="${dto.image }" />
                    <hr/>
 	               <p style="margin-left:10px"><h2 class="card-title" style="margin-left:20px">${dto.pro_name }</h2></p>
@@ -154,7 +154,7 @@ $(function(){
             				</c:choose>
                       	</form>
                       	<br/>
-                      	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 500px; padding: 10px;">
+                      	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 520px; padding: 10px;">
                     <table class="table table-stripped" id="reviews">
 				    <thead>
 				        <tr>

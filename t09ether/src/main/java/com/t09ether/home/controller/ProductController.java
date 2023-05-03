@@ -80,8 +80,15 @@ public class ProductController {
 		mav.addObject("vo", vo);
 		
 		//해당페이지 레코드 선택하기
-		mav.addObject("list", service.pageSelect(vo));
-		
+		List<ProductDTO> list = service.pageSelect(vo);
+		for(int i=0;i<list.size();i++) {
+			double rateAvg=0;
+			if(reviewservice.selectReview(list.get(i).getPro_code()).size()>0) {
+			 rateAvg = reviewservice.rateAvg(list.get(i).getPro_code());
+			}
+			list.get(i).setRateAvg(rateAvg);
+		}
+		mav.addObject("list", list);
 		mav.setViewName("online/onlineList");
 		return mav;
 	}

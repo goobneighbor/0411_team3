@@ -147,7 +147,7 @@ header,footer{
 			pro_code.push(lDTO.pro_code);
 			userid.push(lDTO.userid);
 			
-			tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+lDTO.sharedetail+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+			tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 			
 			tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 		

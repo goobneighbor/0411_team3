@@ -33,6 +33,10 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
+	#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
 </style>
 <script>
 	$(function(){
@@ -79,6 +83,7 @@
 		
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
@@ -206,3 +211,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

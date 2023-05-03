@@ -6,7 +6,7 @@
 	#productForm ul{
 		overflow:auto; 
 		/*border:1px solid #ddd;*/
-		padding:50px;
+		
 		
 	}
 	#productForm li{
@@ -221,13 +221,13 @@
         
 	});
 </script>
-<div class="container">
+
 <section id="main" class="container">
 	<header>
 			<h2>관리자 상품 등록</h2>
 			<p>판매 상품 등록하기</p>
 	</header>
-</section>
+
 <form method="post" action="productWriteOk" id="productForm">
 	<ul> 
 		<li>상품명</li>
@@ -251,4 +251,4 @@
 		<li><input type="submit" value="등록하기"/></li>
 	</ul>
 </form>
-</div>
+</section>

@@ -19,8 +19,59 @@
 	 -->
 	 <mvc:interceptors>
 	 	<mvc:interceptor>
-	 		<mvc:mapping path="/online/productdetail"/>
+	 		<mvc:mapping path="/admin/adminMain"/>
+	 		<mvc:mapping path="/admin/adUser"/>
+	 		<mvc:mapping path="/admin/adReport"/>
+	 		<mvc:mapping path="/admin/adStat"/>
+	 		<mvc:mapping path="/admin/adQna"/>
+	 		<mvc:mapping path="/admin/adProduct"/>
+	 		<mvc:mapping path="/admin/productWrite"/>
+	 		<mvc:mapping path="/admin/productWriteOk"/>
+	 		<mvc:mapping path="/admin/productDel"/>
+	 		<mvc:mapping path="/admin/productEdit"/>
+	 		<mvc:mapping path="/admin/productEditOk"/>
+	 		<mvc:mapping path="/admin/adBoard"/>
+	 		<mvc:mapping path="/admin/myOrderorigin"/>
+	 		<mvc:mapping path="/admin/ordMultiUp"/>
+	 		<mvc:mapping path="/admin/adOrderList"/>
 	 		
+	 		<mvc:mapping path="/customer/customerBoard"/>
+	 		<mvc:mapping path="/customer/csBoardWrite"/>
+	 		<mvc:mapping path="/customer/csBoardWriteOk"/>
+	 		<mvc:mapping path="/customer/csBoardEdit"/>
+	 		<mvc:mapping path="/customer/csBoardEditOk"/>
+	 		<mvc:mapping path="/customer/csBoardDel"/>
+	 		
+	 		<mvc:mapping path="/mypage/myPage"/>
+	 		<mvc:mapping path="/mypage/myOder"/>
+	 		<mvc:mapping path="/mypage/joinSuc"/>
+			<mvc:mapping path="/mypage/myPost"/>
+			<mvc:mapping path="/mypage/myPostView"/>
+	 		<mvc:mapping path="/mypage/reportWrite"/>
+	 		<mvc:mapping path="/mypage/reportWriteOk"/>
+	 		
+	 		<mvc:mapping path="/online/onlineJoinForm"/>
+	 		<mvc:mapping path="/online/orderForm"/>
+	 		<mvc:mapping path="/online/paymentSuc"/>
+	 		
+	 		<mvc:mapping path="/order/paytestInfo"/>
+	 		<mvc:mapping path="/order/orderDelete"/>
+	 		<mvc:mapping path="/order/orderDeleteJoin"/>
+	 		
+	 		<mvc:mapping path="/pay/verifyIamport"/>
+	 		<mvc:mapping path="/pay/payCancel"/>
+	 		<mvc:mapping path="/pay/payCancelOk"/>
+	 		<mvc:mapping path="/pay/payCancel"/>
+	 		
+	 		<mvc:mapping path="/product/productWrite"/>
+	 		<mvc:mapping path="/product/productWriteOk"/>
+	 		<mvc:mapping path="/product/onlineGB"/>
+	 		
+	 		<mvc:mapping path="/offlineWrite"/>
+	 		<mvc:mapping path="/offlineInsert"/>
+	 		<mvc:mapping path="/offlineEdit"/>
+	 		<mvc:mapping path="/offlineEditOk"/>
+	 		<mvc:mapping path="/offlineDel"/>
 	 		
 	 		<bean class="com.t09ether.home.LoginInterceptor"></bean>
 	 	</mvc:interceptor>

@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.AdminDAO;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
+
+import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
 
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
@@ -29,12 +34,22 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO dao;
 	
 	@Override
+	public int totalRecord(AdminPagingVO vo) {
+		return dao.totalRecord(vo);
+	}
+	
+	@Override
 	public int totalRecord(AdUserPagingVO vo) {
 		return dao.totalRecord(vo);
 	}
 
 	@Override
 	public List<RegisterDTO> pageSelect(AdUserPagingVO vo) {
+		return dao.pageSelect(vo);
+	}
+	
+	@Override
+	public List<RegisterDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
 	
@@ -134,6 +149,52 @@ public class AdminServiceImpl implements AdminService {
 		return dao.totalOrdRecord(vo);
 	}
 
+	@Override
+	public int totalStopRecord(AdminOrderPagingVO vo2) {
+		return dao.totalStopRecord(vo2);
+	}
+
+	@Override
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2) {
+		return dao.pageStopSelect(vo2);
+	}
+
+	@Override
+	public int totalReportRecord(AdminPagingVO vo) {
+		return dao.totalReportRecord(vo);
+	}
+
+	@Override
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo) {
+		return dao.pageReportSelect(vo);
+	}
+
+	@Override
+	public int tempStopInsert(List<String> list) {
+		return dao.tempStopInsert(list);
+	}
+
+	@Override
+	public int tempStopDel(List<String> list) {
+		return dao.tempStopDel(list);
+	}
+
+	@Override
+	public int reportDel(List<Integer> list) {
+		return dao.reportDel(list);
+	}
+
+	@Override
+	public List<String> targetSelect(List<Integer> list) {
+		return dao.targetSelect(list);
+	}
+
+	@Override
+	public int targetUpdate(String userid) {
+		return dao.targetUpdate(userid);
+	}
+
+	@Override
 	public int csTotalRecord(CustomerCenterPagingVO vo) {
 		return dao.csTotalRecord(vo);
 	}
@@ -172,4 +233,6 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.csBoardDelete(cdto);
 	}
+
+	
 }

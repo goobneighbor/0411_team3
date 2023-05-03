@@ -106,7 +106,7 @@ $(function(){
 						    </c:forEach>
             					</select>
             				<c:choose>
-	            				<c:when test="${fn:contains(userList, logId)}">
+	            				<c:when test="${fn:contains(userList, logId) and logStatus == 'Y'}">
 	                      		<textarea rows="2" name="content" id="content" placeholder="코멘트를 입력하세요!" ></textarea>
 	            					<button type="submit" id="submitRev" style="float:right">리뷰 등록</button>
 	            				</c:when>

@@ -33,10 +33,15 @@
 	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
 		color:#000;
 	}
-<<<<<<< HEAD
+
 	thead tr th, tbody{
 		text-align:center;
 	}
+	#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
+
 </style>
 <script>
 	$(function(){
@@ -47,13 +52,7 @@
 			}
 			return true;
 		});
-		
-		//--- 전체 선택 클릭하면 체크박스 상태에 따라 선택 또는 해제 하는 기능 구현
-		$("#allCheck").click(function(){
-			$(".board_list input[name=noList]").prop("checked", $("#allCheck").prop("checked"));
-			
-		});
-		
+
 		//선택 삭제 버튼 클릭하면
 		$("#chooseDel").click(function(){
 			// 최소 1개 이상 삭제를 선택했을 때
@@ -67,19 +66,44 @@
 			
 			if(checkCount>0){
 				if(confirm(checkCount+'개의 글을 삭제 하시겠습니까?')){
-					$("#delList").submit();
+					$("#reportForm").attr("action","<%=request.getContextPath() %>/admin/reportDel");
+					$("#reportForm").submit();
+
 				}
 			}else{
 				alert("한 개 이상의 글을 선택 후 삭제 하세요.");
 			}
 		});
+		
+		//신고업데이트
+		$("#reportAccept").click(function(){
+			// 최소 1개 이상 삭제를 선택했을 때
+			
+			var checkCount = 0;
+			$(".board_list input[name=noList]").each(function(idx, obj){
+				if(obj.checked){ //$(obj.prop('checked'))>jquery 근데 안됨..
+					checkCount++;
+				}
+			});
+			
+			if(checkCount>0){
+				if(confirm(checkCount+'개의 신고를 승인하시겠습니까?')){
+					$("#reportForm").attr("action","<%=request.getContextPath() %>/admin/reportAccept");
+					$("#reportForm").submit();
+				}
+			}else{
+				alert("한 개 이상의 글을 선택하세요.");
+			}
+		});
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
 			<h2>신고 관리</h2>
-			<p>신고 목록</p>
+			<p>등록된 신고 목록</p>
+
 		</header>
 		<div class="row">
 			<div class="col-12">
@@ -87,7 +111,7 @@
 				
 				<section class="box">
 					<div class="table-wrapper">
-					<form method="post">
+					<form method="post" id="reportForm">
 					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 					<c:if test="${vo.searchWord!=null}">
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
@@ -97,29 +121,35 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck1"/></th>
+
+									<th><input type="checkbox" id="allCheck"/>전체선택</th>
 									<th>글번호</th>
 									<th>신고번호</th>
 									<th>신고자</th>
-									<th>신고 대상</th>
+									<th>신고대상</th>
 									<th>신고내용</th>
-									<th>작성일</th>
+									<th>신고날짜</th>
+									<th>신고수(대상)</th>
+
 								</tr>
 							</thead>
 							
 							<tbody>
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
-									<tr>
-										<td><input type="checkbox" name="noList1" value="${bDTO.report_no}"/></td>
-										<td>${recordNum}</td>
-										<td>${bDTO.report_no }</td>
-										<td>${bDTO.mem_id }</td>
-										<td>${bDTO.target_id }</td>
-										<td>${bDTO.report_content }</td>
-										<td>${bDTO.writedate}</td>
-									</tr>
-								<c:set var="recordNum" value="${recordNum-1}"/>	
+
+								<tr>
+									<td><input type="checkbox" name="noList" value="${bDTO.report_no}"/></td>
+									<td>${recordNum}</td>
+									<td>${bDTO.report_no }</td>
+									<td>${bDTO.mem_id }</td>
+									<td>${bDTO.target_id }</td>
+									<td>${bDTO.report_content }</td>
+									<td>${bDTO.writedate }</td>
+									<td>${bDTO.report }</td>
+								</tr>
+								<c:set var="recordNum" value="${recordNum+1}"/>	
+
 							</c:forEach>
 							</tbody>
 							<!--<tfoot>
@@ -132,7 +162,10 @@
 					</form>
 					</div>
 					<div>
-						<input type="button" value="영구제명" id="chooseDel"/>
+
+						<input type="button" value="신고접수" id="reportAccept"/>
+						<input type="button" value="신고삭제" id="chooseDel"/>
+
 					</div>
 					<!-- 페이징 -->
 					<div  id="wrapper">
@@ -176,9 +209,10 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="adReport">
 							<select name = "searchKey" id="searchKey">
-								<option value="username">이름</option>
-								<option value="userid">아이디</option>
-								<option value="rank">등급</option>
+
+								<option value="mem_id">신고자</option>
+								<option value="target_id">신고대상</option>
+
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search"/>
@@ -189,5 +223,4 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
+</div>

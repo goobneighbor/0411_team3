@@ -2,6 +2,13 @@ package com.t09ether.home.dao;
 
 import java.util.List;
 
+
+import com.t09ether.home.dto.AdminOrderPagingVO;
+
+import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.OrderDTO;
+import com.t09ether.home.dto.ProductDTO;
+
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
 
@@ -33,6 +40,19 @@ public interface AdminDAO {
 	public int productDel(List<Integer> list);
 	public ProductDTO proInfor(int pro_code);
 	public int productUpdate(ProductDTO dto);
+
+	//회원정보 임시정지
+	public int totalStopRecord(AdminOrderPagingVO vo2);
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2);
+	public int tempStopInsert(List<String> list);
+	public int tempStopDel(List<String> list);
+	
+	//신고관리
+	public int totalReportRecord(AdminPagingVO vo);
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo);
+	public int reportDel(List<Integer> list);
+	public List<String> targetSelect(List<Integer> list);
+	public int targetUpdate(String userid);
 
 	//회원 관리 게시판 리스트
 	public int totalRecord(AdUserPagingVO vo);
@@ -67,5 +87,5 @@ public interface AdminDAO {
 	public int csBoardDelete(CustomerCenterDTO cdto);
 	
 	//public List<CustomerCenterDTO> todoReplyList(CustomerCenterDTO dto);
-	
+
 }

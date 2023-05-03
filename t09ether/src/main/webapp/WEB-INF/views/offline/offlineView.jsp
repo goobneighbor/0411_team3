@@ -84,6 +84,7 @@
 		margin: 0 0 0 5px;
 	}
 	.joinDiv{
+		margin: 0 0 20px 0;
 		width:60%;
 		float:right;		
 	}
@@ -189,7 +190,7 @@
 				</c:if>
 				<!-- 이미 참여되어있는 사람은 상세정보 페이지로 이동할 수 있는 버튼 -->
 				<c:forEach var="ids" items="${idList}">
-					<c:if test="${nowId==ids}">
+					<c:if test="${nowId==ids && dto.status==1}">
 						<form method="post" action="offlineJoin" id="offlineJoin">
 							<input type="hidden" name="off_no" value="${dto.off_no}"/>
 							<input type="submit" value="공구페이지로 이동" class="detailButton"/>					

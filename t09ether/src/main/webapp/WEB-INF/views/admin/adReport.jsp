@@ -122,7 +122,7 @@
 							<thead>
 								<tr>
 
-									<th><input type="checkbox" id="allCheck"/>전체선택</th>
+									<th> </th>
 									<th>글번호</th>
 									<th>신고번호</th>
 									<th>신고자</th>

@@ -270,22 +270,22 @@
 				<if test="searchWord2!=null">
 					and ${searchKey2} like '%${searchWord2}%' 
 				</if>
-				order by report asc 
+				order by writedate desc 
 			)
 		<![CDATA[ 
-	  		where rownum<=${nowPage2*onePageRecord2} order by report desc 
+	  		where rownum<=${nowPage2*onePageRecord2} order by writedate asc 
 	  		]]>
 	  		)
 	  		
 	  	<choose>
 	  		<when test="nowPage2!=totalPage2">	
 	  			<![CDATA[
-	  			where rownum<=${onePageRecord2} order by report asc 
+	  			where rownum<=${onePageRecord2} order by writedate desc 
 	  			]]>
 	  		</when>
 	  		<when test="nowPage2==totalPage2">
 	  			<![CDATA[
-	  			where rownum<=${lastPageRecord2} order by report asc 
+	  			where rownum<=${lastPageRecord2} order by writedate desc 
 	  			]]>	  		
 	  		</when>
   		</choose>
@@ -318,21 +318,21 @@
 					<if test="searchWord!=null"> 
 						and ${searchKey} like '%${searchWord}%'
 					</if>
-					order by r.report_no desc)
+					order by writedate desc)
 		
 				<![CDATA[
-				where rownum<=${onePageRecord*nowPage} order by report_no asc
+				where rownum<=${onePageRecord*nowPage} order by writedate asc
 				]]>
 				)
 				<choose>  
 					<when test="nowPage != totalPage">
 						<![CDATA[
-						where rownum<=${onePageRecord} order by report_no desc
+						where rownum<=${onePageRecord} order by writedate desc
 						]]>
 					</when>
 					<when test="nowPage == totalPage">
 						<![CDATA[
-						where rownum<=${lastPageRecord} order by report_no desc
+						where rownum<=${lastPageRecord} order by writedate desc
 						]]>
 					</when>
 					

@@ -14,7 +14,7 @@ public interface OfflineDAO {
 	public int totalRecord(OfflinePagingVO vo);
 	//해당페이지 선택하기
 	public List<OfflineDTO> offList(OfflinePagingVO vo);
-	//글선택(off_no)
+	//공구 선택(off_no)
 	public OfflineDTO offlineSelect(int off_no);
 	//조회수증가
 	public void offlineHitCount(int off_no);

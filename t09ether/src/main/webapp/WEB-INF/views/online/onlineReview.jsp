@@ -5,7 +5,16 @@
 .card-text{
 	font-size:.1.2em;
 }
-
+.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+#price{
+	float:right;
+	font-size:1.5em;
+	margin: 20px 20px;
+	padding:5px;
+	text-align:right;
+	
+}
 </style>
 <script>
 $(function(){
@@ -67,6 +76,18 @@ $(function(){
 		}//if문
 		});		
 	
+
+		var totalprice=document.getElementById('totalprice').innerHTML; 
+		totalprice = Math.floor(totalprice/10)*10; 
+		totalprice= totalprice.toLocaleString() 
+		document.getElementById('totalprice').innerHTML = totalprice; 
+		
+		var oneprice=document.getElementById('oneprice').innerHTML; 
+		oneprice = Math.floor(oneprice/10)*10; 
+		oneprice = oneprice.toLocaleString() 
+		document.getElementById('oneprice').innerHTML = oneprice;
+
+
 });
 </script>
 <section id="main" class="container">
@@ -79,12 +100,21 @@ $(function(){
            <!-- Blog entries-->
            <div class="col-lg-5">
                <!-- Featured blog post-->
-               <div class="card mb-6">
+               <div class="card mb-6" style="height:850px">
                    <img src="${dto.image }" />
                    <hr/>
 	               <p style="margin-left:10px"><h2 class="card-title" style="margin-left:20px">${dto.pro_name }</h2></p>
-	               <p>총가격 : ${dto.pro_price }</p>
-	               <p>개당 가격 :${dto.pro_total }</p>
+	               	<div style="margin-left:310px;padding:0 50px">
+		               	<div class="rate">
+					        <span id="avgRate"style="width:${Math.ceil(rateAvg/5*100)}%"></span>
+					    </div>
+					    <div style="margin-left:50px">(${rateAvg }/5)</div>
+				    </div>
+	               <div id="price">
+	               
+                        <div>총&nbsp;&nbsp;<span id="totalprice">${dto.pro_price }</span>&nbsp;원</div>
+	                    <div>개당&nbsp;&nbsp;<span id="oneprice">${dto.pro_price/dto.pro_total }</span>&nbsp;원</div>
+	                </div>
 	               <p ></p>
 	               <br/>
                </div>
@@ -94,11 +124,18 @@ $(function(){
            <!-- Side widgets-->
            <div class="col-lg-7">
                <div class="card mb-6">
-              		<div class="card-header">리뷰 </div>
+              		<div class="card-header">리뷰</div>
               		<div class="card-body"> 
-              		<span class='star-rating'><span style = "width:70%"></span></span>                      
+              		                   
                       	<form method="get" id="reviewForm">
                       		<input type="hidden" name="pro_code" value="${dto.pro_code }">
+                      		<div>
+	                      		<div class="rate">
+							        <span style="width:${Math.ceil(rateAvg/5*100)}%"></span>
+							    </div>
+							    <div style="margin-left:50px">(${rateAvg }/5)</div>
+						    </div>
+                      		<br/>
                       		<select name="rate" id="rate">
             						<option value="">평점을 선택해주세요★</option>
 						     <c:forEach var="i" items="${rating}">
@@ -117,7 +154,7 @@ $(function(){
             				</c:choose>
                       	</form>
                       	<br/>
-                      	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 500px; padding: 10px;">
+                      	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 520px; padding: 10px;">
                     <table class="table table-stripped" id="reviews">
 				    <thead>
 				        <tr>

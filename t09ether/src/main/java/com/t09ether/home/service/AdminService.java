@@ -3,6 +3,7 @@ package com.t09ether.home.service;
 import java.util.List;
 
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
@@ -40,6 +41,17 @@ public interface AdminService {
 	public ProductDTO proInfor(int pro_code);
 	public int productUpdate(ProductDTO dto);
 	
+	public int totalStopRecord(AdminOrderPagingVO vo2);
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2);
+	public int tempStopInsert(List<String> list);
+	public int tempStopDel(List<String> list);
+	
+	public int totalReportRecord(AdminPagingVO vo);
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo);
+	public int reportDel(List<Integer> list);
+	public List<String> targetSelect(List<Integer> list);
+	public int targetUpdate(String userid);
+
 	//고객센터 게시판 리스트
 	public int csTotalRecord(CustomerCenterPagingVO vo);
 	public List<CustomerCenterDTO> csPageSelect(CustomerCenterPagingVO vo);
@@ -52,6 +64,5 @@ public interface AdminService {
 	public CustomerCenterDTO csBoardSelect(int cus_b_num);
 	//글 삭제하기
 	public int csBoardDelete(CustomerCenterDTO cdto);
-
 
 }

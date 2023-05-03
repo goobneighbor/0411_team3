@@ -52,11 +52,11 @@ $(function(){
 	}
 </style>
 <!-- Header-->
-<header class="bg-tomato py-5">
+<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#FFF">온라인 공동구매</h1>
-            <p class="lead fw-normal text-white-75 mb-0">공동구매를 시작하거나 참여해보세요.</p>
+        	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">온라인 공동구매</h1>
+            <p style="color:#7d7b7a" >공동구매를 시작하거나 참여해보세요.</p>
         </div>
     </div>
 </header>

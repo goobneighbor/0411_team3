@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.AdminDAO;
 
+import com.t09ether.home.dto.AdminOrderPagingVO;
+
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.ProductDTO;
@@ -106,6 +108,52 @@ public class AdminServiceImpl implements AdminService {
 		return dao.totalOrdRecord(vo);
 	}
 
+	@Override
+	public int totalStopRecord(AdminOrderPagingVO vo2) {
+		return dao.totalStopRecord(vo2);
+	}
+
+	@Override
+	public List<RegisterDTO> pageStopSelect(AdminOrderPagingVO vo2) {
+		return dao.pageStopSelect(vo2);
+	}
+
+	@Override
+	public int totalReportRecord(AdminPagingVO vo) {
+		return dao.totalReportRecord(vo);
+	}
+
+	@Override
+	public List<RegisterDTO> pageReportSelect(AdminPagingVO vo) {
+		return dao.pageReportSelect(vo);
+	}
+
+	@Override
+	public int tempStopInsert(List<String> list) {
+		return dao.tempStopInsert(list);
+	}
+
+	@Override
+	public int tempStopDel(List<String> list) {
+		return dao.tempStopDel(list);
+	}
+
+	@Override
+	public int reportDel(List<Integer> list) {
+		return dao.reportDel(list);
+	}
+
+	@Override
+	public List<String> targetSelect(List<Integer> list) {
+		return dao.targetSelect(list);
+	}
+
+	@Override
+	public int targetUpdate(String userid) {
+		return dao.targetUpdate(userid);
+	}
+
+	@Override
 	public int csTotalRecord(CustomerCenterPagingVO vo) {
 		return dao.csTotalRecord(vo);
 	}

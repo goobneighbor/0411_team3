@@ -193,12 +193,17 @@
 	});
 
 </script>
-
+<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/home_test3.jpg'); background-size: auto;;">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white" >
+        	<h1 class="display-4 fw-bolder" style="color:#41644A">${target_id}님은 어떠셨나요?</h1>        
+        </div>
+    </div>
+</header>
 <div class="container">
 	<section id="main" class="container">
 		<header class="conhead">
-		<h1>리뷰작성하기</h1>		
-		<p>${target_id}님은 어떠셨나요?</p>				
+		<h1>리뷰작성하기</h1>					
 		</header>
 	</section>
 	

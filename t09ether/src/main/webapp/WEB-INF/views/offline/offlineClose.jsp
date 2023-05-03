@@ -81,7 +81,7 @@
 	
 </script>
 	<!-- Header-->
-	<header class="bg-tomato py-5">
+	<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">공동구매가 종료되었습니다</h1>	          
@@ -121,7 +121,7 @@
 <div style="margin:50px 200px;">
  <div class="row">
 	<div class="card mb-4">
-       <div class="card-header"><div>리뷰를 써주세요!</div></div>
+       <div class="card-header"><div>리뷰를 작성해보세요!</div></div>
        <div class="card-body" style="height:300px">
 		<div style="overflow-y: scroll; width: 100%; height: 250px; padding: 10px;">	
 		<table>

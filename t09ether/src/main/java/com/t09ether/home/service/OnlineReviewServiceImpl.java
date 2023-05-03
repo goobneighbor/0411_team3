@@ -21,7 +21,7 @@ public class OnlineReviewServiceImpl implements OnlineReviewService{
 	}
 
 	@Override
-	public int rateAvg(int pro_code) {
+	public double rateAvg(int pro_code) {
 		return dao.rateAvg(pro_code);
 	}
 

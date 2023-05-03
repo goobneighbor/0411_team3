@@ -41,10 +41,12 @@
 	padding: 10px;
 	text-align: center;
 }
+#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
 </style>
-</head>
-
-<body>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>

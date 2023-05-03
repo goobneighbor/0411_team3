@@ -80,11 +80,13 @@ public class OfflineServiceImpl implements OfflineService {
 		return dao.getIds(off_no);
 	}
 
-	
-	
+	@Override
+	public void offlineClose(int off_no) {
+		dao.offlineClose(off_no);
+	}
 
-	
-
-	
-
+	@Override
+	public void currentNumUpdate(int off_no) {
+		dao.currentNumUpdate(off_no);
+	}
 }

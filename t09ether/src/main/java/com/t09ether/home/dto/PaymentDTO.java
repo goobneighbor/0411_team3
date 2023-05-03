@@ -19,6 +19,7 @@ public class PaymentDTO {
 	private int status;
 	private int on_no;
 	private String orderdate;
+	
 	public String getImp_uid() {
 		return imp_uid;
 	}
@@ -72,6 +73,7 @@ public class PaymentDTO {
 	}
 	public void setPay_no(String pay_no) {
 		this.pay_no = pay_no;
+		this.imp_uid = pay_no;
 	}
 	public int getTotal_amouont() {
 		return total_amouont;

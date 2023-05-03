@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +35,6 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
-import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.PaymentDTO;
 import com.t09ether.home.dto.RefundDTO;
 import com.t09ether.home.service.OrderService;
@@ -50,7 +48,7 @@ import com.siot.IamportRestClient.response.*;
 
 @RestController
 @RequestMapping("/pay")
-public class PaymentController extends SmsSend {
+public class PaymentController {
 	
 	@Autowired
 	PaymentService service;
@@ -63,6 +61,7 @@ public class PaymentController extends SmsSend {
 		int total_amount = data.getTotal_amount();
 		int discount_amount = data.getDiscount_amount();
 		int final_amount = data.getFinal_amount();
+		int ord_count = data.getOrd_count();
 		
 		
 		System.out.println(imp_uid+""+r_merchant_uid+""+final_amount+""+discount_amount+""+ord_no+""+total_amount);
@@ -79,7 +78,7 @@ public class PaymentController extends SmsSend {
 	    	}
 	        
 	        // DB에 결제 정보 삽입
-	    	service.payInsert(imp_uid,r_merchant_uid, final_amount, discount_amount, ord_no, total_amount);
+	    	service.payInsert(imp_uid,r_merchant_uid, final_amount, discount_amount, ord_no, ord_count);
 	        
 	        Map<String, Object> result = new HashMap<String, Object>();
 	        result.put("success", true);
@@ -113,15 +112,14 @@ public class PaymentController extends SmsSend {
 	        @RequestParam(value = "reason") String reason,
 	        @RequestParam(value = "ord_no") int ord_no,
 	        @RequestParam(value = "total_amount") int total_amount,
-	        @RequestParam(value = "on_no") int on_no,
-			@RequestParam(value = "ord_count") int ord_count){
+	        @RequestParam(value = "on_no") int on_no, HttpSession session) {
 		
 		System.out.println("환불컨트롤러까지는 오나요?");
 		RefundDTO dto = new RefundDTO();
 		dto.setPay_no(impUid);
 		dto.setRefund_amount(amount);
-		dto.setRefund_count(amount);
-		
+		dto.setRefund_count(total_amount);
+		String userid = (String)session.getAttribute("logId");
 	    try {
 	        // 아임포트 API 클라이언트 생성
 	        IamportClient iamportClient = new IamportClient("1456485756545636", "723XBRqRiIMZsO65ZY90OLJ1gGExsyrz70PAs7ZgOJRSyJanoUfv4StVHkXkxv10XDWABUK9eOB8ibnu");
@@ -140,49 +138,19 @@ public class PaymentController extends SmsSend {
 	        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
 	        	service.refundInsert(ord_no, amount, total_amount);
 	        	service.payDelete(impUid);
-	        	//////////////추가한부분
-	        	System.out.println(service.leaderSelect(on_no)+"-공구장:나-"+service.selfSelect(ord_no));
-	        	
-	        	//공구장유무 파악
-	        	if(service.leaderSelect(on_no).equals(service.selfSelect(ord_no))) {//공구장임
-		        	service.ordUpdate(ord_no, on_no); //order09 status->5
-		        	service.prodetailUpdate(on_no); //product_detail status->2
-		        	
-		        	ArrayList<Integer> ordList = service.ordNoSelect(on_no);
-		        	//공구장 제외하고 공구원들만 적용되게 수정해야함
-		        	System.out.println(ordList.toString());
-		        	for(Integer num : ordList) {
-		        		//결제 pay_no select
-		        		String pay_code = service.payNoSelect(num);
-		        		System.out.println("pay_code:"+pay_code);
-		        		
-		        	
-		        	}
-		        	/*
-		        	//공구 취소 문자
-		        	//모든 공구참여자 register정보
-					List<OrderDTO> list = service.selectInfor(on_no);
-				
-					for(OrderDTO odto : list) {
-						String tel = odto.getTel().replaceAll("-", "");
-						String username = odto.getUsername();
-						System.out.println(tel);
-						//문자보내기
-						String content = "["+username+"]님, 공구장님의 취소로 전체 공구가 취소되었습니다! 새로운 공구에 참여하세요![t09ther]";
-						super.send_msg(tel, username, content);
-					}
-					*/
-	        	}else {//공구장 아님
-	        		service.ordUpdateJoin(ord_no); //order09 status->5
-	        	
-	        		//rest_count update //파라미터에 ord_count넣었습니다아아
-	        		int newRest = service.restCountSelect(on_no) + ord_count;
-	        		service.restCountUpdate(newRest, on_no);
-	        	}
-	        	///////////////////////////////
 	        	
 	        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
-	        	
+	        	if(userid.equals(service.masterSelect(on_no))) {
+	        		service.ordUpdate(ord_no, on_no);
+	        		service.prodetailUpdate(on_no);
+	        		payCancelSub(on_no);
+	        	}else {
+	        		service.ordUpdateJoin(ord_no); //order09 status->5
+		        	
+	        		//rest_count update //파라미터에 ord_count넣었습니다아아
+	        		int newRest = service.restCountSelect(on_no) + total_amount;
+	        		service.restCountUpdate(newRest, on_no);
+	        	}
 	            // ...
 	            return ResponseEntity.ok().body("{\"code\":\"1\"}");
 
@@ -196,6 +164,57 @@ public class PaymentController extends SmsSend {
 	        // 오류 발생 시 처리할 코드 작성
 	        return ResponseEntity.ok().body("{\"code\":\"0\"}");
 	    }
+	}
+	
+	public ResponseEntity<String> payCancelSub(int on_no){
+		System.out.println("sub환불까지 오나요?");
+		List<PaymentDTO> ldto = service.paySubSelect(on_no);
+		for(int i=0; i<ldto.size(); i++) {
+			PaymentDTO tmpdto = ldto.get(i);
+			System.out.println(tmpdto.toString());
+			String impUid = tmpdto.getImp_uid();
+			String reason = "공구장환불";
+			int ord_no = tmpdto.getOrd_no();
+			int amount = tmpdto.getFinal_amount();
+			int total_amount = tmpdto.getTotal_amount();
+			int ord_count = tmpdto.getOrd_count();
+			System.out.println(ord_count);
+			try {
+		        // 아임포트 API 클라이언트 생성
+		        IamportClient iamportClient = new IamportClient("1456485756545636", "723XBRqRiIMZsO65ZY90OLJ1gGExsyrz70PAs7ZgOJRSyJanoUfv4StVHkXkxv10XDWABUK9eOB8ibnu");
+		        
+		        
+		        // 결제 정보 조회
+		        Payment payment = iamportClient.paymentByImpUid(impUid).getResponse();
+	
+		        // 결제 취소 데이터 생성
+		        CancelData cancelData = new CancelData(impUid, true); // 전액 환불
+		        cancelData.setReason(reason);
+	
+		        // 결제 취소 요청
+		        IamportResponse<Payment> cancelResponse = iamportClient.cancelPaymentByImpUid(cancelData);
+	
+		        // 결제 취소 결과 확인
+		        if (cancelResponse.getResponse().getStatus().equals("cancelled")) {
+		        	service.refundInsert(ord_no, amount, ord_count);
+		        	service.payDelete(impUid);
+		        	
+		        	// 환불 성공 시 DB에서 데이터 상태 변경 및 환불추가
+		        	
+		            // ...
+	
+		        } else {
+		            // 환불 실패 시 처리할 코드 작성
+		            return ResponseEntity.ok().body("{\"code\":\"0\"}");
+	
+		        }
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		        // 오류 발생 시 처리할 코드 작성
+		        return ResponseEntity.ok().body("{\"code\":\"0\"}");
+		    }
+		}
+		return ResponseEntity.ok().body("{\"code\":\"1\"}");
 	}
 	 
 }

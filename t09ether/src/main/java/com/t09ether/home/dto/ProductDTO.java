@@ -1,5 +1,7 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
+
 public class ProductDTO {
 	private int pro_code;
 	private int pro_total;
@@ -8,6 +10,9 @@ public class ProductDTO {
 	private String pro_stock;
 	private String image;
 	private String detailed;
+	
+	//여러개의 레코드 한번에 삭제할때 필요한 레코드 번호
+	private List<Integer> noList;
 	
 	@Override
 	public String toString() {
@@ -60,6 +65,14 @@ public class ProductDTO {
 	}
 	public void setDetailed(String detailed) {
 		this.detailed = detailed;
+	}
+
+	public List<Integer> getNoList() {
+		return noList;
+	}
+
+	public void setNoList(List<Integer> noList) {
+		this.noList = noList;
 	}
 	
 }

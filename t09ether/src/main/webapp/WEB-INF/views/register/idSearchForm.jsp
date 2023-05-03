@@ -16,6 +16,9 @@
 	.container input {
 		width:100%;
 	}
+	#idSearch li {
+		list-style:none;		
+	}
 	
 </style>
 <script>

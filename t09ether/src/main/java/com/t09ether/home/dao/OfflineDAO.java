@@ -34,4 +34,8 @@ public interface OfflineDAO {
 	public int currentNumCount(int off_no);
 	// 공구참여자들의 아이디만 뽑아오기
 	public List<String> getIds(int off_no);
+	// 공구 마감(status 2로변경)
+	public void offlineClose(int off_no);
+	// 공구 인원수(current_num)업데이트
+	public void currentNumUpdate(int off_no);
 }

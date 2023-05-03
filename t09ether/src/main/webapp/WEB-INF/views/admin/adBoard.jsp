@@ -1,11 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<style>
+	#wrapper {
+		display: grid;
+		place-items: center;
+		min-height: 10vh;
+	}
+	#searchForm{
+		text-align:center;
+	}
+	#searchKey, #searchWord, #search{
+		display:inline-block;
+	}
+	#searchKey { /*제목임*/
+		width:15%;
+		margin: auto;
+	}
+	#searchWord { /*검색칸*/
+		width:40%;
+		margin: auto;
+	}
+	.searchDiv{
+		padding:10px;
+		text-align: center;
+		width:100%;	
+	}
+	.paging_div li{
+		float:left;
+		padding:10px 20px;
+		list-style:none;
+	}
+	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
+		color:#000;
+	}
+</style>
 <body>
 	<!-- Main -->
 	<section id="main" class="container">

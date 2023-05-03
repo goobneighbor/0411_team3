@@ -1,6 +1,5 @@
 package com.t09ether.home.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.PaymentDAO;
-import com.t09ether.home.dto.OrderDTO;
 import com.t09ether.home.dto.PaymentDTO;
 import com.t09ether.home.dto.RefundDTO;
 
@@ -28,8 +26,8 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int refundInsert(int ord_no, int amount, int total_amount) {
-		return dao.refundInsert(ord_no, amount, total_amount);
+	public int refundInsert(int ord_no, int amount, int ord_count) {
+		return dao.refundInsert(ord_no, amount, ord_count);
 	}
 
 	@Override
@@ -48,34 +46,18 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public String leaderSelect(int on_on) {
-		return dao.leaderSelect(on_on);
+	public String masterSelect(int on_no) {
+		return dao.masterSelect(on_no);
+	}
+	
+	@Override
+	public List<PaymentDTO> paySubSelect(int on_no) {
+		return dao.paySubSelect(on_no);
 	}
 
-	@Override
-	public String selfSelect(int ord_on) {
-		return dao.selfSelect(ord_on);
-	}
-////////////////추가
 	@Override
 	public int ordUpdateJoin(int ord_no) {
-		
 		return dao.ordUpdateJoin(ord_no);
-	}
-
-	@Override
-	public List<OrderDTO> selectInfor(int on_on) {
-		return dao.selectInfor(on_on);
-	}
-
-	@Override
-	public ArrayList<Integer> ordNoSelect(int on_no) {
-		return dao.ordNoSelect(on_no);
-	}
-
-	@Override
-	public String payNoSelect(int ord_no) {
-		return dao.payNoSelect(ord_no);
 	}
 
 	@Override
@@ -90,3 +72,4 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 }
+

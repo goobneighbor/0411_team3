@@ -55,14 +55,25 @@ public class OnlineJoinServiceImpl implements OnlineJoinService {
 		return dao.ordNoSelect(dto);
 	}
 
-	@Override
-	public int statusUpdate(OrderDTO dto) {
-		return dao.statusUpdate(dto);
-	}
 
 	@Override
 	public List<OrderDTO> selectInfor(int on_no) {
 		return dao.selectInfor(on_no);
+	}
+
+	@Override
+	public int finalSelect(int ord_no) {
+		return dao.finalSelect(ord_no);
+	}
+
+	@Override
+	public int updatePrice(int finalNum, int ord_no) {
+		return dao.updatePrice(finalNum, ord_no);
+	}
+	@Override
+	public int statusUpdate(int on_no) {
+		return dao.statusUpdate(on_no);
+
 	}
 
 

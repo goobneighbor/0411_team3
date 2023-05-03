@@ -7,6 +7,9 @@
 		insert into	off_gb(off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate, status)
 		values(off_no_sq.nextval,#{userid},#{off_subject},#{off_content},
 		#{location},${group_num},${current_num},to_date(#{app_time},'MM-DD'),to_date(#{deaddate},'MM-DD'),${off_hit}, sysdate, 1)
+		<selectKey keyProperty="off_no" resultType="int" order="AFTER">
+			select off_no_sq.currval from dual
+		</selectKey>
 	</insert>
 	<select id="totalRecord" resultType="int">
 		select count(off_no) totalRecord from off_gb		
@@ -72,4 +75,10 @@
 	<select id="getIds" resultType="String">
 		select userid from off_participant where off_no=${param1}
 	</select>
+	<update id="offlineClose">
+		update off_gb set status=2 where off_no=${param1}
+	</update>
+    <update id="currentNumUpdate" parameterType="int">
+    	update off_gb set current_num = (select count(*) from off_participant where off_no = ${param1}) where off_no=${param1}
+    </update>
 </mapper>

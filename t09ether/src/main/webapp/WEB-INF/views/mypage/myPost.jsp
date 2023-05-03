@@ -6,31 +6,33 @@
 		place-items: center;
 		min-height: 10vh;
 	}
-	#searchForm{
+	#searchForm, #searchForm2{
 		text-align:center;
 	}
-	#searchKey, #searchWord, #search{
+	#searchKey, #searchWord, #search,
+	#searchKey2, #searchWord2, #search2 {
 		display:inline-block;
 	}
-	#searchKey { /*제목임*/
+	#searchKey, #searchKey2 { /*제목임*/
 		width:15%;
 		margin: auto;
 	}
-	#searchWord { /*검색칸*/
+	#searchWord, #searchWord2 { /*검색칸*/
 		width:40%;
 		margin: auto;
 	}
-	.searchDiv{
+	.searchDiv, .searchDiv2{
 		padding:10px;
 		text-align: center;	
 		width:100%;	
 	}
-	.paging_div li{
+	.paging_div li, .paging_div2 li{
 		float:left;
 		padding:10px 20px;
 		list-style:none;
 	}
-	.paging_div a:link, .paging_div a:hover, .paging_div a:visited{
+	.paging_div a:link, .paging_div a:hover, .paging_div a:visited
+	.paging_div2 a:link, .paging_div2 a:hover, .paging_div2 a:visited {
 		color:#000;
 	}
 	thead tr th, tbody{
@@ -41,6 +43,14 @@
 	$(function(){
 		$("#searchForm").submit(function(){
 			if($("#searchWord").val()==""){
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+			return true;
+		});
+		
+		$("#searchForm2").submit(function(){
+			if($("#searchWord2").val()==""){
 				alert("검색어를 입력하세요.");
 				return false;
 			}
@@ -117,7 +127,6 @@
 						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
 					</c:if>
-				
 						<table class="board_list">
 							<thead>
 								<tr>
@@ -137,7 +146,6 @@
 							<tbody>
 							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
 							<c:forEach var="bDTO" items="${list}">
-									<c:if test="${bDTO.status==1}">
 									<tr>
 										<td><input type="checkbox" name="noList1" value="${bDTO.username}"/></td>
 										<td>${recordNum}</td>
@@ -150,7 +158,6 @@
 										<td>${bDTO.deaddate }</td>
 										<td>${bDTO.current_num}/${bDTO.group_num}</td>
 									</tr>
-									</c:if>
 								<c:set var="recordNum" value="${recordNum-1}"/>	
 							</c:forEach>
 							</tbody>
@@ -206,8 +213,8 @@
 					<div class ="searchDiv">
 						<form method="get" id="searchForm" action="myPost">
 							<select name = "searchKey" id="searchKey">
-								<option value="userid">참가자</option>
-								<option value="orderdate">주문날짜</option>
+								<option value="userid">공구장</option>
+								<option value="location">만남장소</option>
 							</select>
 							<input type="text" name="searchWord" id="searchWord"/>
 							<input type="submit" value="Search" id="search"/>
@@ -231,10 +238,10 @@
 				<section class="box">
 					<div class="table-wrapper">
 					<form method="post">
-					<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
+					<input type="hidden" name="nowPage2" value="${vo2.nowPage2 }"/>
 					<c:if test="${vo.searchWord!=null}">
-						<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
-						<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
+						<input type="hidden" name="searchKey2" value="${vo2.searchKey2 }"/>
+						<input type="hidden" name="searchWord2" value="${vo2.searchWord2 }"/>
 					</c:if>
 				
 						<table class="board_list">
@@ -254,23 +261,21 @@
 							</thead>
 							
 							<tbody>
-							<c:set var="recordNum" value="${vo.totalRecord-(vo.nowPage-1)*vo.onePageRecord}"/>
-							<c:forEach var="bDTO" items="${list}">
-								<c:if test="${bDTO.status==2}">
+							<c:set var="recordNum2" value="${vo2.totalRecord2-(vo2.nowPage2-1)*vo2.onePageRecord2}"/>
+							<c:forEach var="bDTO2" items="${list2}">
 								<tr>
-									<td><input type="checkbox" name="noList2" value="${bDTO.username}"/></td>
-									<td>${recordNum}</td>
-									<td>${bDTO.off_j_no }</td>
-									<td>${bDTO.off_no }</td>
-									<td><a href="myPostView?no=${bDTO.off_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.off_subject }</a></td>
-									<td>${bDTO.userid }</td>
-									<td>${bDTO.location }</td>
-									<td>${bDTO.app_time }</td>
-									<td>${bDTO.deaddate }</td>
-									<td>${bDTO.current_num}/${bDTO.group_num}</td>
+									<td><input type="checkbox" name="noList2" value="${bDTO2.username}"/></td>
+									<td>${recordNum2}</td>
+									<td>${bDTO2.off_j_no }</td>
+									<td>${bDTO2.off_no }</td>
+									<td><a href="myPostView?no=${bDTO2.off_no }&nowPage2=${vo2.nowPage2}<c:if test="${vo2.searchWord2!=null }">&searchKey2=${vo2.searchKey2 }&searchWord2=${vo2.searchWord2 }</c:if>">${bDTO2.off_subject }</a></td>
+									<td>${bDTO2.userid }</td>
+									<td>${bDTO2.location }</td>
+									<td>${bDTO2.app_time }</td>
+									<td>${bDTO2.deaddate }</td>
+									<td>${bDTO2.current_num}/${bDTO2.group_num}</td>
 								</tr>
-								</c:if>
-								<c:set var="recordNum" value="${recordNum-1}"/>	
+								<c:set var="recordNum2" value="${recordNum2-1}"/>	
 							</c:forEach>
 							</tbody>
 							<!--<tfoot>
@@ -287,36 +292,36 @@
 					</div>
 					<!-- 페이징 -->
 					<div id="wrapper"> 
-					<div class="paging_div"> 
+					<div class="paging_div2"> 
 						<ul>
 							<!-- 이전 페이지 : nowPage를 기준으로 -->
-							<c:if test="${vo.nowPage==1}"><!-- 현재 페이지가 첫번째 페이지 일때 -->
+							<c:if test="${vo2.nowPage2==1}"><!-- 현재 페이지가 첫번째 페이지 일때 -->
 								<li></li>
 							</c:if>
-							<c:if test="${vo.nowPage>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
-								<li><a href="myPost?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
+							<c:if test="${vo2.nowPage2>1}"><!--  현재 페이지가 첫번째 페이지가 아닐때 -->
+								<li><a href="myPost?nowPage2=${vo2.nowPage2-1}<c:if test="${vo2.searchWord2!=null}">&searchKey2=${vo2.searchKey2}&searchWord2=${vo2.searchWord2}</c:if>">이전</a></li>
 							</c:if>
 							<!-- 페이지 번호 -->
 							
-				         <c:forEach var="p" begin="${vo.startPageNum}" end="${vo.startPageNum+vo.onePageNumCount-1}">
-				            <c:if test="${p<=vo.totalPage}"><!-- 표시할 페이지 번호가 총 페이지 수보다 작거나 같을 때 페이지 번호 출력.-->
+				         <c:forEach var="p" begin="${vo2.startPageNum2}" end="${vo2.startPageNum2+vo2.onePageNumCount2-1}">
+				            <c:if test="${p<=vo2.totalPage2}"><!-- 표시할 페이지 번호가 총 페이지 수보다 작거나 같을 때 페이지 번호 출력.-->
 				               <!-- 현재페이지 표시하기 -->
-				               <c:if test="${p==vo.nowPage}">
+				               <c:if test="${p==vo2.nowPage2}">
 				                  <li style="background:#ddd;">
 				               </c:if>
-				               <c:if test="${p!=vo.nowPage}">
+				               <c:if test="${p!=vo2.nowPage2}">
 				                 <li>
 				               </c:if>
-				                  <a href="myPost?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
+				                  <a href="myPost?nowPage2=${p}<c:if test="${vo2.searchWord2!=null}">&searchKey2=${vo2.searchKey2}&searchWord2=${vo2.searchWord2}</c:if>">${p}</a>
 				                  </li>
 				            </c:if>
 				         </c:forEach>
 							
 							<!-- 다음 페이지 -->
-							<c:if test="${vo.nowPage<vo.totalPage}"><!-- 다음 페이지가 있을 때 -->
-								<li><a href="myPost?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
+							<c:if test="${vo2.nowPage2<vo2.totalPage2}"><!-- 다음 페이지가 있을 때 -->
+								<li><a href="myPost?nowPage2=${vo2.nowPage2+1}<c:if test="${vo2.searchWord2!=null}">&searchKey2=${vo2.searchKey2}&searchWord2=${vo2.searchWord2}</c:if>">다음</a></li>
 							</c:if>
-							<c:if test="${vo.nowPage==vo.totalPage}"><!-- 다음 페이지가 없을 때 -->
+							<c:if test="${vo2.nowPage2==vo2.totalPage2}"><!-- 다음 페이지가 없을 때 -->
 								<li></li>
 							</c:if>
 						</ul>
@@ -324,13 +329,13 @@
 					
 					
 					<!--검색 -->
-					<div class ="searchDiv">
-						<form method="get" id="searchForm" action="myPost">
-							<select name = "searchKey" id="searchKey">
-								<option value="userid">참가자</option>
-								<option value="orderdate">주문날짜</option>
+					<div class ="searchDiv2">
+						<form method="get" id="searchForm2" action="myPost">
+							<select name = "searchKey2" id="searchKey2">
+								<option value="userid">공구장</option>
+								<option value="location">만남장소</option>
 							</select>
-							<input type="text" name="searchWord" id="searchWord"/>
+							<input type="text" name="searchWord2" id="searchWord2"/>
 							<input type="submit" value="Search"/>
 						</form>
 					</div>

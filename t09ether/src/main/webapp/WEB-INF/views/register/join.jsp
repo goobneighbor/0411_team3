@@ -169,9 +169,12 @@
 			<li><input type="text" name="addrdetail"/></li>
 
 			<!-- 등급 -->
-			<li><input type="hidden" name="rank" id="rank" value='0'/><li>
+			<li><input type="hidden" name="rank" id="rank" value="1"/><li>
+
 			<!-- 신고당한횟수 -->
 			<li><input type="hidden" name="report" id="report" value="0"/><li>
+			<!-- 신고당한횟수 -->
+			<li><input type="hidden" name="exp" id="exp" value="0"/><li>
 			<br/><br/>
 
 			<li><input type="submit" value="회원가입"/></li>

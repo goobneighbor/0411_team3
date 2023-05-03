@@ -9,8 +9,8 @@
 </style>
 <head>
 
-		<!-- admin -->
-		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+      <!-- admin -->
+      <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="<%=request.getContextPath() %>/resources/css/admin.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>    
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -45,9 +45,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/adUser">등급 관리</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/adUser">회원 및 제명관리</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/adReport">신고 관리</a>
-                                    <a class="nav-link" href="#">영구 제명</a>
                                 </nav>
                             </div>
                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
@@ -74,8 +73,7 @@
                                 		온라인
                                 		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                            			</a>
-                           		</nav>
-                           	
+                           		</nav>                           
                             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/adOrderList">전체주문목록</a>
@@ -94,7 +92,6 @@
                                 	</nav>
                             	</div>
                             </div> <!-- 공구관리 끝 -->
-
                             <!-- 여기는 addOn 자리임@@@@@ -->
                              <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="<%=request.getContextPath()%>/admin/adStat">

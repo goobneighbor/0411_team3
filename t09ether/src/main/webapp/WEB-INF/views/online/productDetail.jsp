@@ -35,6 +35,8 @@
 	margin: 20px 20px;
 	padding:5px;
 }
+.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
 </style>
 <script>
 
@@ -122,7 +124,7 @@ function listView(result) {
 		pro_code.push(lDTO.pro_code);
 		userid.push(lDTO.userid);
 		
-		tag += "<li><p><span style='width:30%'>"+lDTO.shareaddr+"</span><span style='width:20%;float:right;text-align:center'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+		tag += "<li><p><span style='width:30%;margin:6px'>"+lDTO.shareaddr+"</span><span style='width:20%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
 
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	
@@ -142,11 +144,7 @@ $(function(){
 	oneprice = Math.floor(oneprice/10)*10; 
 	oneprice = oneprice.toLocaleString() 
 	document.getElementById('oneprice').innerHTML = oneprice;
-	
-	var discountprice=document.getElementById('discountprice').innerHTML; 
-	discountprice = Math.floor(discountprice/10)*10; 
-	discountprice = discountprice.toLocaleString() 
-	document.getElementById('discountprice').innerHTML = discountprice; 
+ 
 });
 
 	
@@ -172,16 +170,23 @@ $(function(){
             <div class="col-lg-6">
                 <div class="card mb-6">
                		<div class="card-header">상품상세</div>
-               		<div class="card-body">
+               		<div class="card-body" style="height:585px;padding:30px">
                         <button class="btn btn-primary" id="button-search" style="float:right" onclick="location.href='/home/online/onlineReview?pro_code=${dto.pro_code}'">리뷰</button>
                         <h2 class="card-title">${dto.pro_name }</h2>
+                        <br/>
+                        <div style="margin-left:420px;">
+		               	<div class="rate">
+					        <span id="avgRate"style="width:${Math.ceil(rateAvg/5*100)}%"></span>
+					    </div>
+					    <div style="margin-left:50px">(${rateAvg }/5)</div>
+				    </div>
                         <div id="price">
                         <div>총&nbsp;&nbsp;<span id="totalprice">${dto.pro_price }</span>&nbsp;원</div>
 	                    <div>개당&nbsp;&nbsp;<span id="oneprice">${dto.pro_price/dto.pro_total }</span>&nbsp;원</div>
 	                    
                       	</div>
                         <br/>
-                        <div class="card-body" style="margin:20px">
+                        <div class="card-body" style="margin:20px;height:270px">
                         <br/>
                         <p id="detailed">${dto.detailed }</p>
                         <br/>
@@ -207,7 +212,7 @@ $(function(){
 			                    <input  id="searchWrd" name="searchWrd" value="${vo.searchWrd }" type="text" class="form-control" placeholder="지역명을 입력해주세요!" aria-label="search" aria-describedby="button-addon2">
 			                	
 			               <!--  </mx-auto>	 -->	
-			                <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+			                <button class="btn btn-primary" type="submit" id="button-addon2">검색</button>
 			                </div>
 		                </div>	
                        </form>

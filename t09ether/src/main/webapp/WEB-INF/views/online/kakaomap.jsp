@@ -192,7 +192,7 @@ header,footer{
 			                    <input  id="searchWrd" name="searchWrd" value="${vo.searchWrd }" type="text" class="form-control" placeholder="지역명을 입력해주세요!" aria-label="search" aria-describedby="button-addon2">
 			                	
 			               <!--  </mx-auto>	 -->	
-			                <button class="btn btn-success" type="submit" id="button-addon2">검색</button>
+			                <button class="btn btn-primary" type="submit" id="button-addon2">검색</button>
 			                </div>
 		                </div>	
                        </form>

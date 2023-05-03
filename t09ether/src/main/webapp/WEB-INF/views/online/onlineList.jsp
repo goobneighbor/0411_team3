@@ -97,7 +97,7 @@ $(function(){
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
 	                                <div>총&nbsp;<span id="totalprice">${proDTO.pro_price }</span>&nbsp;원</div>
-	                                <div>개당&nbsp;<span id="oneprice">${ Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10 }</span>&nbsp;원</div>
+	                                <div>개당&nbsp;<span id="oneprice">${Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10}</span>&nbsp;원</div>
 	                            </div>
 	                        </div>
 	                        <!-- Product actions-->

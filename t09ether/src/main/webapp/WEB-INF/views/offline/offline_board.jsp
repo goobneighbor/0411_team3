@@ -155,10 +155,7 @@
         </div>
     </div>
 </header>
-<div class="container">		
-	<div class = "pHeader">
-		<div>진행중인 공구 : ${vo.totalRecord }건 </div>		
-	</div>	
+<div>
 	<!-- 페이지번호, 검색어, 검색키 -->
 		<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 		<c:if test="${vo.searchWord!=null}">

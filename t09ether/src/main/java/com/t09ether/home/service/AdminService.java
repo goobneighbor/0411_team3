@@ -39,6 +39,8 @@ public interface AdminService {
 	//통계
 	public List<DataVO> regiStat();
 	public List<DataVO> onlineStat();
+	public List<DataVO> offlineStat();
+	public List<DataVO> onPopStat();
 
 	public int totalProductRecord(AdminPagingVO vo);
 	public List<RegisterDTO> pageProductSelect(AdminPagingVO vo);

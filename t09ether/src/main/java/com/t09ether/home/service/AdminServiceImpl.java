@@ -80,6 +80,18 @@ public class AdminServiceImpl implements AdminService {
 	public List<DataVO> onlineStat() {
 		return dao.onlineStat();
 	}
+	
+	@Override
+	public List<DataVO> offlineStat() {
+		return dao.offlineStat();
+	}
+	
+	@Override
+	public List<DataVO> onPopStat() {
+		return dao.onPopStat();
+	}
+	
+	//
 
 
 	@Override

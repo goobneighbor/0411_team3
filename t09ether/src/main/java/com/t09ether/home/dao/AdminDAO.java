@@ -45,6 +45,8 @@ public interface AdminDAO {
 	//통계
 	public List<DataVO> regiStat();
 	public List<DataVO> onlineStat();
+	public List<DataVO> offlineStat();
+	public List<DataVO> onPopStat();
 	
 	public List<RegisterDTO> userSelect();
 	

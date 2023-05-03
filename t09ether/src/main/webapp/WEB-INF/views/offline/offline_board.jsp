@@ -169,7 +169,6 @@
 	</c:if>	
 	
 	
-	
 	<!-- Section-->
 	<section class="py-5" >
 	<!--검색 -->	
@@ -216,7 +215,6 @@
 	                        <!-- Product actions-->
 	                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 	                        	<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="offlineView?off_no=${offDTO.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">참여하기</a></div>
-	                        	
 	                        </div>
 	                 	</div>
 	            	</div>
@@ -226,7 +224,7 @@
         	</div>
     	</div>
     <!-- 페이징 -->
-    <div class="board_header"><h3><a href="offlineWrite">오프라인공구 시작하기</a></h3></div>
+    <div class="board_header"><h3><a href="offlineWrite" style="color:#7d7b7a;">오프라인공구 시작하기</a></h3></div>
     <div class="pagingDiv" id="wrapper">
 		
 		<div id="item">

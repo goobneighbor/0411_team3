@@ -47,6 +47,7 @@ public class OfflineController extends SmsSend{
 	OfflineCommentService commentService;
 	@Autowired
 	OfflineReviewService reviewService;
+	
 	//게시판목록
 	@GetMapping("/offline")
 	public ModelAndView offline(OfflinePagingVO vo) {		

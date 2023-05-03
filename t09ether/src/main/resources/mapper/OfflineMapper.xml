@@ -44,7 +44,7 @@
 		</choose>
 	</select>
 	<select id="offlineSelect" resultType="com.t09ether.home.dto.OfflineDTO">
-		select off_no, userid, off_subject, off_content, location, group_num, current_num, app_time, deaddate, off_hit, writedate, status
+		select off_no, userid, off_subject, off_content, location, group_num, current_num, to_char(app_time, 'MM-DD') app_time, to_char(deaddate,'MM-DD') deaddate, off_hit, to_char(writedate,'MM-DD HH:MI')writedate, status
 		from off_gb where off_no=${param1}
 	</select>
 	<update id="offlineHitCount">

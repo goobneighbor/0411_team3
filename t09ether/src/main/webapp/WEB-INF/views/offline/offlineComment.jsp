@@ -11,8 +11,7 @@
 	}
 	.commentDiv{
 		margin:0 auto;
-		width:70%;
-		border: 2px double orange;
+		width:90%;
 	}
 
 	
@@ -85,6 +84,7 @@
 	#comment09{
 		width:80%;
 		margin: 10px 0 0 35px;
+		border: 1px solid black;
 	}
 	#commentInsert{
 		margin:0 0 0 35px;
@@ -224,7 +224,7 @@
 
 </script>
 	<!-- Header-->
-	<header class="bg-tomato py-5">
+	<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">일정조율하기</h1>	
@@ -254,7 +254,7 @@
 		</table>
 	</div>
 	<div class="centerInfo">이곳에서 의견을 조율해보세요!</div>
-	<div class="commentDiv">
+	<div class="commentDiv" style="background-image:url('<%=request.getContextPath() %>/resources/images/home_test2.jpg'); background-size: cover">
 		<ul id="commentList">		
 		
 		</ul>
@@ -264,5 +264,6 @@
 			<button id="commentInsert">댓글등록</button>
 		</form>		
 	</div>
+	<br/>
 
 </div>

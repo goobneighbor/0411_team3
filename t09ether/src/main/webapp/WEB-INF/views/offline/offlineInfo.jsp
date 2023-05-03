@@ -15,6 +15,7 @@
 		float:left;
 		padding:10px;
 		background :orange;
+		color:white;
 	}
 	.board li{
 		float:left;
@@ -42,9 +43,10 @@
 	}
 	.goBack{
 		margin: 20px 0 0 10px;
-		width:1800px;
-		height:50px;
-		background: #00FFCA;
+		width:180px;
+		height:100px;
+		background: orange;
+		color:white;
 		border:1px solid #ddd;
 	}
 	.noReview{
@@ -58,9 +60,9 @@
 </script>
 
 <!-- Header-->
-<header class="bg-tomato py-5">
+<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
+		<div class="text-center text-white" >
         	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님이 받은 리뷰</h1>        
         </div>
     </div>

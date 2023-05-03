@@ -13,12 +13,13 @@ public class ProductDTO {
 	
 	//여러개의 레코드 한번에 삭제할때 필요한 레코드 번호
 	private List<Integer> noList;
-	
+	private double rateAvg;
+		
 	@Override
 	public String toString() {
 		return "ProductDTO [pro_code=" + pro_code + ", pro_total=" + pro_total + ", pro_name=" + pro_name
 				+ ", pro_price=" + pro_price + ", pro_stock=" + pro_stock + ", image=" + image + ", detailed="
-				+ detailed + "]";
+				+ detailed + ", noList=" + noList + ", rateAvg=" + rateAvg + "]";
 	}
 	
 	public int getPro_code() {
@@ -74,5 +75,11 @@ public class ProductDTO {
 	public void setNoList(List<Integer> noList) {
 		this.noList = noList;
 	}
-	
+	public double getRateAvg() {
+		return rateAvg;
+	}
+
+	public void setRateAvg(double rateAvg) {
+		this.rateAvg = rateAvg;
+	}
 }

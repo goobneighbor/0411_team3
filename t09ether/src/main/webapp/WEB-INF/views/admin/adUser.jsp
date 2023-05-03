@@ -141,7 +141,7 @@
 						<table class="board_list">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/></th>
+									<th> </th>
 									<th>번호</th>
 									<th>이름</th>
 									<th>아이디</th>
@@ -255,7 +255,7 @@
 						<table class="board_list2">
 							<thead>
 								<tr>
-									<th><input type="checkbox" id="allCheck"/>선택</th>
+									<th> </th>
 									<th>번호</th>
 									<th>이름</th>
 									<th>아이디</th>

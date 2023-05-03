@@ -10,7 +10,7 @@
 		padding:0;
 		margin:0;
 		list-style-type:none;	
-		color:tomato;
+		color:black;
 	}
 	* input[name="group_num"]{
 		width:30%;
@@ -40,6 +40,7 @@
       margin: 20px auto;
      }
      .conhead{margin:0;}
+  
 </style>
 <script>
 	var logId = sessionStorage.getItem("logId");
@@ -256,28 +257,33 @@
 		<input type="hidden" name="current_num" value="1"/>
 		<input type="hidden" name="off_hit" value="1"/>
 		<ul>
-			<li>제목 : </li>
+			<li>제목</li>
 			<li><input type="text" name="off_subject" id="off_subject"/></li><hr/>
 			<li>[공구장소 설정]<li><br/>
-			<div class="zipcode">
-				우편번호
-				<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-			</div>	
-				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>
+			<li>우편번호</li>
+			<li>
+				<input type="text" id="sample6_postcode" placeholder="우편번호" readonly style="width:78%; float:left; margin:2px;">
+				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%; float:right; margin:2px;">
+			</li>	
+				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li><br/>
 				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	<hr/>
 				<!-- location 어떻게? -->					
-				<li>모집인원 : <input type="text" name="group_num" id="group_num" placeholder ="0" style="width:100px;"/></li>					
-				<li>모집마감일 :<input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
-				<li>공구날짜 :<input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
+		</ul>
+		<ul class="numInfo">	
+				<li>모집인원</li>
+				<li><input type="text" name="group_num" id="group_num" placeholder ="0" style="width:100px;"/></li>					
+				<li>모집마감일</li>
+				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
+				<li>공구날짜</li>
+				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
 				
 			<li>상세 안내</li>				
 			<li>
 				<!-- 에디터 -->
-				<textarea name="off_content" id="off_content"></textarea>
+				<textarea name="off_content" id="off_content" placeholder="공동구매해 대한 정보를 알려주세요!"></textarea>
 			</li>
 			<li>
-				<input type="submit" value="글등록하기"/>
+				<input type="submit" value="공구등록하기"/>
 			</li>
 			
 		</ul>

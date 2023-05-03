@@ -165,9 +165,9 @@ $(function(){
         				success: function(result) {
         					console.log(result);
         					alert("결재 성공");
-        					$("#onlineGBPayForm").attr("action","<%=request.getContextPath() %>/online/paymentSuc");
+        					location.href="/home/online/paymentSucOk";
                             //form에 정보담아 submit
-                           	document.getElementById('onlineGBPayForm').submit();
+                       
         					//self.close();
         				},
         				error: function(result){

@@ -45,16 +45,21 @@ public class OnlineReviewController {
 		
 		List<OnlineReviewDTO> list = service.selectReview(pro_code);
 		
-	
-		//리뷰수 평균
-		//double rateAvg = service.rateAvg(pro_code);
-		//rateAvg =  rateAvg/5*100;
+		double rateAvg=0;
+		if(list.size()>0) {
+			rateAvg = service.rateAvg(pro_code);
+			System.out.println(rateAvg);
+			/*rateAvg = (rateAvg/5)*100;
+			System.out.println(rateAvg);
+			*/
+		}
+		
 		
 		//물품을 구매한 userid select
 		List<String> userList = service.userList(pro_code);
 		
 		mav.addObject("userList",userList);
-		//mav.addObject("rateAvg", rateAvg);
+		mav.addObject("rateAvg", rateAvg);
 		mav.addObject("list", list);
 		mav.addObject("rating", rating);
 		mav.addObject("dto", dto);

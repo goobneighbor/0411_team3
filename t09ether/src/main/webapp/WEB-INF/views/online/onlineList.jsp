@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script>
-$(function(){ 
-		var totalprice=document.getElementById('totalprice').innerHTML; 
-		totalprice = Math.floor(totalprice/10)*10; 
-		totalprice= totalprice.toLocaleString() 
-		document.getElementById('totalprice').innerHTML = totalprice; 
-		
-		var oneprice=document.getElementById('oneprice').innerHTML; 
-		oneprice = Math.floor(oneprice/10)*10; 
-		oneprice = oneprice.toLocaleString() 
-		document.getElementById('oneprice').innerHTML = oneprice; 
-});
+
 </script>
 <style>
 	#wrappertwo {
@@ -50,6 +41,9 @@ $(function(){
 	.pagingDiv ul{
 		margin:0 auto;
 	}
+	.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+	.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+
 </style>
 <!-- Header-->
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
@@ -96,9 +90,15 @@ $(function(){
 	                                <!-- 원래 가격 줄그어서 세일 표시하는 스타일
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
-	                                <div>총&nbsp;<span id="totalprice">${proDTO.pro_price }</span>&nbsp;원</div>
-	                                <div>개당&nbsp;<span id="oneprice">${ Math.floor(proDTO.pro_price/proDTO.pro_total/10)*10 }</span>&nbsp;원</div>
+	                                <div>총&nbsp;<fmt:formatNumber value="${proDTO.pro_price }" maxFractionDigits="0" />&nbsp;원</div>
+	                            	<div>개당&nbsp;<fmt:formatNumber value="${proDTO.pro_price/proDTO.pro_total}" maxFractionDigits="0" />&nbsp;원</div>
 	                            </div>
+	                            <div style="margin-left:50px">
+	                            	<div class="rate">
+								        <span id="avgRate"style="width:${Math.ceil(proDTO.rateAvg/5*100)}%"></span>
+								    </div>
+								    <div style="margin-left:25px" >(${proDTO.rateAvg }/5)</div>
+								</div>
 	                        </div>
 	                        <!-- Product actions-->
 	                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

@@ -31,6 +31,7 @@ public class OnlineReviewController {
 	
 	@GetMapping("/onlineReview")
 	public ModelAndView onlineReview(int pro_code) {
+		System.out.println(pro_code);
 		ModelAndView mav = new ModelAndView();
 		ProductDTO dto = joinservice.proInfor(pro_code);
 		

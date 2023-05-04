@@ -144,18 +144,7 @@
 							</form>
 
 						</div>
-<<<<<<< HEAD
 						</div>
 					</section>
 				</div>
 			</div>
-=======
-						
-
-						</div>
-						</section>
-					</div>
-					</div>
-		</section>
-		</div>
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4

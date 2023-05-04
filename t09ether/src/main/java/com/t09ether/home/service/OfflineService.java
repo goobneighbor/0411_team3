@@ -25,8 +25,5 @@ public interface OfflineService {
 	public List<String> getIds(int off_no);
 	public void offlineClose(int off_no);
 	public void currentNumUpdate(int off_no);
-<<<<<<< HEAD
-=======
 
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 }

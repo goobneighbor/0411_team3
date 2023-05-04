@@ -70,6 +70,7 @@ $(function(){
 			}
 		});
 		
+		
 		if(checkCount>0){
 			if(confirm(checkCount+'개의 글을 삭제하시겠습니까?')){
 				$("#delList").submit();

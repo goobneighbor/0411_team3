@@ -43,6 +43,11 @@
 
 $(function(){
 	$(document).on('click',"#onlineJoinForm", function(){
+		if(${logStatus!='Y'}){
+			alert("로그인이 필요합니다 로그인해주세요!");
+			location.href="<%=request.getContextPath() %>/loginForm";
+			return false;
+		}
 		console.log($(this).parent().parent())
 	
 		var idx = $("#locationList>li").index($(this).parent().parent());

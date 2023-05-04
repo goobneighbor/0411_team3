@@ -44,6 +44,7 @@
 				window.open("idCheck?userid="+$("#userid").val(),"chk","width=400, height=300");
 			}else {
 				alert("아이디를 입력 후 중복검사를 해주세요.");
+			
 			}
 		});
 		

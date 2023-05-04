@@ -53,7 +53,8 @@ public class MyPageController {
 //		System.out.println(vo2.getUserid());
 		vo.setTotalRecord(service.totalOrdRecord(vo));
 		vo2.setTotalRecord(service.totalOrdSucRecord(vo2));
-		//System.out.println(vo.toString());
+		System.out.println(vo.toString());
+		System.out.println(vo2.toString());
 		
 		List<OrderDTO> list = service.pageOrdSelect(vo);
 		List<OrderDTO> list2 = service.pageOrdSucSelect(vo2);

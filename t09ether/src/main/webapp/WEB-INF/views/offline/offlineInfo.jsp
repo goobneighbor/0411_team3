@@ -66,34 +66,38 @@
         	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님이 받은 리뷰</h1>        
         </div>
     </div>
-</header>	
-<div class="container">	
-	<div class = "pHeader">
-		<div>리뷰 수 : ${reviewCount} </div>
-	</div>
-	
-	
-		
-	<c:choose>
-			<c:when test="${reviewCount==0}">
-				<div class="noReview">아직 작성된 리뷰가 없습니다 <br/>첫 리뷰를 작성해보세요!<hr/></div>
-			</c:when>
-			<c:otherwise>		
-				<ul class="board">
-					<li>공구번호</li>
-					<li>작성자</li>
-					<li>내용</li>
-					<li>작성일</li>
-					<c:forEach var="rDTO" items="${list}">
-						<li>${rDTO.off_no}</li>
-						<li>${rDTO.userid}</li>
-						<li>${rDTO.content}</li>
-						<li>${rDTO.writedate }</li>
-					</c:forEach>
-				</ul>	
-			</c:otherwise>		
-				
-		</c:choose>		
-	
-	<a href="javascript:history.back();" class="goBack">뒤로가기</a>
+</header>
+<div style="margin:50px 100px;">
+ <div class="row">
+        	<div class="card mb-4">
+                        <div class="card-header"><div>공동구매가 완료되면 리뷰를 작성해보세요!</div></div>
+                        <div class="card-body" style="margin:20px 40px; padding:10px; height:500px">
+                        <c:choose>
+						<c:when test="${reviewCount==0}">
+							<div class="noReview">아직 작성된 리뷰가 없습니다 <br/>첫 리뷰를 작성해보세요!<hr/></div>
+						</c:when>
+						<c:otherwise>		
+							<ul class="board">
+								<li>공구번호</li>
+								<li>작성자</li>
+								<li>내용</li>
+								<li>작성일</li>
+								<c:forEach var="rDTO" items="${list}">
+									<li>${rDTO.off_no}</li>
+									<li>${rDTO.userid}</li>
+									<li>${rDTO.content}</li>
+									<li>${rDTO.writedate }</li>
+								</c:forEach>
+							</ul>	
+						</c:otherwise>		
+							
+					</c:choose>		
+					
+					</div>
+            </div>
+     </div>
+     <br/>
+	<a href="javascript:history.back();" class="btn btn-outline-dark mt-auto">뒤로가기</a>
 </div>
+	
+	

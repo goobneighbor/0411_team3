@@ -35,10 +35,10 @@ public class RegisterController {
 	@PostMapping("loginOk")
 	public ModelAndView loginOk(String userid, String userpwd, HttpServletRequest request, HttpSession session) {
 		RegisterDTO dto = service.loginOk(userid, userpwd);
-		
+		int tempStop = service.tempSelect(userid);
 		ModelAndView mav = new ModelAndView();
 
-		if(dto!=null && dto.getReport()<6) { //성공
+		if(dto!=null && tempStop==0) { //성공
 			int rank = service.rankSelect(dto.getUserid());
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
@@ -57,7 +57,7 @@ public class RegisterController {
 		}else if(dto==null) { //실패
 			mav.addObject("msg", "존재하지 않는 아이디거나, 비밀번호 오류입니다.");
 			mav.setViewName("register/loginAlert");
-		}else if(dto.getReport()>=6) {
+		}else if(tempStop!=0) {
 			mav.addObject("msg", "신고 누적으로 인해 계정이 일시 정지되었습니다.");
 			mav.setViewName("register/acBlockAlert");
 		}

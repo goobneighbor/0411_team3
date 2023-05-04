@@ -16,6 +16,13 @@ import com.t09ether.home.dto.ProductDTO;
 
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
+
+import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OrderDTO;
+
+import com.t09ether.home.dto.ProductDTO;
+
 import com.t09ether.home.dto.CustomerCenterDTO;
 import com.t09ether.home.dto.CustomerCenterPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
@@ -27,12 +34,22 @@ public class AdminServiceImpl implements AdminService {
 	AdminDAO dao;
 	
 	@Override
+	public int totalRecord(AdminPagingVO vo) {
+		return dao.totalRecord(vo);
+	}
+	
+	@Override
 	public int totalRecord(AdUserPagingVO vo) {
 		return dao.totalRecord(vo);
 	}
 
 	@Override
 	public List<RegisterDTO> pageSelect(AdUserPagingVO vo) {
+		return dao.pageSelect(vo);
+	}
+	
+	@Override
+	public List<RegisterDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
 	
@@ -67,6 +84,30 @@ public class AdminServiceImpl implements AdminService {
 	public int totalOrderRecord(AdminPagingVO vo) {
 		return dao.totalOrderRecord(vo);
 	}
+	
+	//통계
+	@Override
+	public List<DataVO> regiStat() {
+		return dao.regiStat();
+	}
+
+	@Override
+	public List<DataVO> onlineStat() {
+		return dao.onlineStat();
+	}
+	
+	@Override
+	public List<DataVO> offlineStat() {
+		return dao.offlineStat();
+	}
+	
+	@Override
+	public List<DataVO> onPopStat() {
+		return dao.onPopStat();
+	}
+	
+	//
+
 
 	@Override
 	public int totalProductRecord(AdminPagingVO vo) {
@@ -193,14 +234,5 @@ public class AdminServiceImpl implements AdminService {
 		return dao.csBoardDelete(cdto);
 	}
 
-	@Override
-	public int totalRecord(AdminPagingVO vo) {
-		return dao.totalRecord(vo);
-	}
-
-	@Override
-	public List<RegisterDTO> pageSelect(AdminPagingVO vo) {
-		return dao.pageSelect(vo);
-	}
-
+	
 }

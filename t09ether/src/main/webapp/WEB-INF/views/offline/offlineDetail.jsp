@@ -103,7 +103,6 @@
 	tr:nth-child(odd) {
 	  background-color: yellow;
 	}
-
 	.offlineClose{
 		margin:0 auto;
 	}
@@ -142,7 +141,6 @@
 		margin: 0 auto;
 		text-align: center;
 	}
-
 </style>
 <script>
 	refreshList();

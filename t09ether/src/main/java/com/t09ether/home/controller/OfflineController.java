@@ -22,21 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import com.t09ether.home.dto.OffPartDTO;
+
 import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.OfflineParticipantDTO;
 import com.t09ether.home.dto.OfflineReviewDTO;
 import com.t09ether.home.dto.RegisterDTO;
 import com.t09ether.home.service.OfflineCommentService;
 import com.t09ether.home.service.OfflineReviewService;
-
-import com.t09ether.home.dto.OfflineCommentDTO;
-import com.t09ether.home.dto.OfflineDTO;
-import com.t09ether.home.dto.OfflinePagingVO;
-import com.t09ether.home.dto.RegisterDTO;
-
 import com.t09ether.home.service.OfflineService;
 
 @RestController
@@ -57,11 +52,9 @@ public class OfflineController extends SmsSend{
 		
 		List<OfflineDTO> list = new ArrayList<OfflineDTO>();
 		list = service.offList(vo);//해당페이지 레코드 선택하기
-		
+
 		mav.addObject("list", list);		
-
 		mav.addObject("list", service.offList(vo));		
-
 		mav.addObject("vo", vo);
 		mav.setViewName("offline/offline_board");
 		return mav;
@@ -81,6 +74,7 @@ public class OfflineController extends SmsSend{
 		
 		//로그인아이디
 		String userid = (String)request.getSession().getAttribute("logId");
+
 		dto.setUserid(userid);		
 		
 		String htmlTag="<script>";
@@ -109,6 +103,7 @@ public class OfflineController extends SmsSend{
 			htmlTag += "history.back();";
 		}
 		htmlTag += "</script>";
+
 		//결과
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
@@ -126,6 +121,7 @@ public class OfflineController extends SmsSend{
 		//조회수증가
 		service.offlineHitCount(off_no);
 		//해당글(off_no)담기
+
 		OfflineDTO dto = service.offlineSelect(off_no);		
 		dto.setCurrent_num(service.currentNumCount(off_no));
 		//참가자들 담기
@@ -342,7 +338,6 @@ public class OfflineController extends SmsSend{
 		mav.setViewName("/offline/offlineComment");
 		return mav;
 	}
-	
 
 	//========================= 리뷰 시작 ========================//
 	//참가자리뷰페이지 넘어가기(

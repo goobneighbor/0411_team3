@@ -15,14 +15,15 @@ public class MyPostPagingVO {
 	private String searchKey;
 	private String searchWord;
 	
+	private String userid;
+	
 	@Override
 	public String toString() {
-		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
+		return "MyPostPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
+				+ totalRecord + ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
 				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
-				+ searchWord + "]";
+				+ searchWord + ", userid=" + userid + "]";
 	}
-	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -58,17 +59,20 @@ public class MyPostPagingVO {
 				lastPageRecord = totalRecord % onePageRecord;
 			}
 		}
-	
 	}
+
 	public int getTotalPage() {
 		return totalPage;
 	}
+
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
+
 	public int getLastPageRecord() {
 		return lastPageRecord;
 	}
+
 	public void setLastPageRecord(int lastPageRecord) {
 		this.lastPageRecord = lastPageRecord;
 	}
@@ -104,4 +108,14 @@ public class MyPostPagingVO {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	
 }
+	

@@ -1,5 +1,7 @@
 package com.t09ether.home.controller;
 
+
+import java.util.Iterator;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -17,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import com.t09ether.home.dto.AdminOrderPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
@@ -25,10 +31,18 @@ import com.t09ether.home.dto.ProductDTO;
 
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
+
+import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OrderDTO;
+
+import com.t09ether.home.dto.ProductDTO;
+
 import com.t09ether.home.dto.CustomerCenterDTO;
 import com.t09ether.home.dto.CustomerCenterPagingVO;
 
 import com.t09ether.home.dto.RegisterDTO;
+
 
 import com.t09ether.home.dto.ReportDTO;
 import com.t09ether.home.dto.TempDTO;
@@ -48,9 +62,101 @@ public class AdminController {
 	@GetMapping("/adminMain")
 	public ModelAndView adminMain(RegisterDTO dto) {
 		ModelAndView mav = new ModelAndView();
-		List<RegisterDTO> list = service.userSelect();
 		
+		//통계
+		//월별 가입자
+		List<DataVO> regiList = service.regiStat();
+		
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+
+		Iterator<DataVO> regiIt = regiList.iterator();
+		while(regiIt.hasNext()) {
+			DataVO curVO = regiIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			jArray.add(object);
+		}		
+		
+		String json = gson.toJson(jArray);
+		mav.addObject("json", json);
+		//
+		
+		//월별 온라인 공구 거래량
+		List<DataVO> onlineList = service.onlineStat();
+		
+		Gson onlineGson = new Gson();
+		JsonArray onlinejArray = new JsonArray();
+		
+		Iterator<DataVO> OnlineIt = onlineList.iterator();
+		while(OnlineIt.hasNext()) {
+			DataVO curVO = OnlineIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			onlinejArray.add(object);
+		}		
+		
+		String onlineJson = onlineGson.toJson(onlinejArray);
+		mav.addObject("onlineJson", onlineJson);
+		//
+		
+		//월별 오프라인 공구 거래량
+		List<DataVO> offlineList = service.offlineStat();
+		
+		Gson offlineGson = new Gson();
+		JsonArray offlinejArray = new JsonArray();
+		
+		Iterator<DataVO> OfflineIt = offlineList.iterator();
+		while(OfflineIt.hasNext()) {
+			DataVO curVO = OfflineIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			offlinejArray.add(object);
+		}		
+		
+		String offlineJson = offlineGson.toJson(offlinejArray);
+		mav.addObject("offlineJson", offlineJson);
+		//
+		
+		//온라인 인기상품
+		List<DataVO> onPopList = service.onPopStat();
+		
+		Gson onPopGson = new Gson();
+		JsonArray onPopjArray = new JsonArray();
+		
+		Iterator<DataVO> onPopIt = onPopList.iterator();
+		while(onPopIt.hasNext()) {
+			DataVO curVO = onPopIt.next();
+			JsonObject object = new JsonObject();
+			String pro_name = curVO.getPro_name();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Pro_name", pro_name);
+			object.addProperty("Count", cnt);
+			onPopjArray.add(object);
+		}		
+		
+		String onPopJson = onPopGson.toJson(onPopjArray);
+		mav.addObject("onPopJson", onPopJson);
+		//
+		
+		///			
+		
+		List<RegisterDTO> list = service.userSelect();
 		mav.addObject("list", list);
+		
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}
@@ -195,6 +301,97 @@ public class AdminController {
 	@GetMapping("/adStat")
 	public ModelAndView adStat() {
 		ModelAndView mav = new ModelAndView();
+		
+		//통계
+		//월별 가입자
+		List<DataVO> regiList = service.regiStat();
+		
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+
+		Iterator<DataVO> regiIt = regiList.iterator();
+		while(regiIt.hasNext()) {
+			DataVO curVO = regiIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			jArray.add(object);
+		}		
+		
+		String json = gson.toJson(jArray);
+		mav.addObject("json", json);
+		//
+		
+		//월별 온라인 공구 거래량
+		List<DataVO> onlineList = service.onlineStat();
+		
+		Gson onlineGson = new Gson();
+		JsonArray onlinejArray = new JsonArray();
+		
+		Iterator<DataVO> OnlineIt = onlineList.iterator();
+		while(OnlineIt.hasNext()) {
+			DataVO curVO = OnlineIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			onlinejArray.add(object);
+		}		
+		
+		String onlineJson = onlineGson.toJson(onlinejArray);
+		mav.addObject("onlineJson", onlineJson);
+		//
+		
+		//월별 오프라인 공구 거래량
+		List<DataVO> offlineList = service.offlineStat();
+		
+		Gson offlineGson = new Gson();
+		JsonArray offlinejArray = new JsonArray();
+		
+		Iterator<DataVO> OfflineIt = offlineList.iterator();
+		while(OfflineIt.hasNext()) {
+			DataVO curVO = OfflineIt.next();
+			JsonObject object = new JsonObject();
+			String month = curVO.getMonth();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			offlinejArray.add(object);
+		}		
+		
+		String offlineJson = offlineGson.toJson(offlinejArray);
+		mav.addObject("offlineJson", offlineJson);
+		//
+		
+		//온라인 인기상품
+		List<DataVO> onPopList = service.onPopStat();
+		
+		Gson onPopGson = new Gson();
+		JsonArray onPopjArray = new JsonArray();
+		
+		Iterator<DataVO> onPopIt = onPopList.iterator();
+		while(onPopIt.hasNext()) {
+			DataVO curVO = onPopIt.next();
+			JsonObject object = new JsonObject();
+			String pro_name = curVO.getPro_name();
+			int cnt = curVO.getCnt();
+			
+		    object.addProperty("Pro_name", pro_name);
+			object.addProperty("Count", cnt);
+			onPopjArray.add(object);
+		}		
+		
+		String onPopJson = onPopGson.toJson(onPopjArray);
+		mav.addObject("onPopJson", onPopJson);
+		//
+		
+		///			
 		mav.setViewName("admin/adStat");
 		return mav;
 	}

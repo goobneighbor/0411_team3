@@ -122,13 +122,11 @@
 				}else{//예 -> 참여함
 					if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
 						alert("정원이 가득 찼습니다");
-
 						return false;
 					}	
 				}
 			});
 		});
-
 </script>
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 	<div class="container px-4 px-lg-5 my-5">
@@ -205,5 +203,5 @@
 					</form>
 				</c:if>
 		</div>
-</div>
+	</div>
 </section>

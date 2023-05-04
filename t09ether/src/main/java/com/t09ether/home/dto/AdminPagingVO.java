@@ -24,38 +24,25 @@ public class AdminPagingVO {
             + onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
             + searchWord + "]";
    }
-   
-  
 
-
-public int getOn_no() {
-	return on_no;
-}
-
-
-
-
-public void setOn_no(int on_no) {
-	this.on_no = on_no;
-}
-
-
-
-
-public String getUserid() {
-	return userid;
-}
-
-
-
-public void setUserid(String userid) {
-	this.userid = userid;
-}
-
-
-
-public int getNowPage() {
-      return nowPage;
+	public int getOn_no() {
+		return on_no;
+	}
+	
+	public void setOn_no(int on_no) {
+		this.on_no = on_no;
+	}
+	
+	public String getUserid() {
+		return userid;
+	}
+	
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	
+	public int getNowPage() {
+	      return nowPage;
    }
    public void setNowPage(int nowPage) {
       this.nowPage = nowPage;

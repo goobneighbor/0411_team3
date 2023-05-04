@@ -276,7 +276,6 @@
 				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
 				<li>공구날짜</li>
 				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
-				
 			<li>상세 안내</li>				
 			<li>
 				<!-- 에디터 -->

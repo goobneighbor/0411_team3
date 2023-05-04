@@ -13,9 +13,6 @@
 		margin:0 auto;
 		width:90%;
 	}
-
-	
-	
 	input[type='button']{
 		height:35px;
 		width:50px;
@@ -224,7 +221,6 @@
 		//댓글목록 뿌려주기 -- 처음에 글내용 보기로 오면 댓글 보여주기
 		commentList();
 	});
-
 </script>
 	<!-- Header-->
 	<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
@@ -235,7 +231,6 @@
 	        </div>
 	    </div>
 	</header>
-	
 <div class="container">			
 	<div class="centerInfo">[참가자정보]</div>
 	<div id="participantList">		

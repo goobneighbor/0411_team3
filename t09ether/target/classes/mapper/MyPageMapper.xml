@@ -114,7 +114,6 @@
         </choose>
    </select>
    
-   
    <select id="pageOrdSucSelect" resultType="com.t09ether.home.dto.OrderDTO">
    select * from
       (select * from
@@ -163,20 +162,33 @@
 	
 	<!-- 오프라인 공구 게시물 리스트 + 페이징  -->
 	<select id="mpTotalRecord" resultType="int">
-		select count(off_subject) ord_no from off_gb
+		select count(distinct off_subject) count from off_gb og join off_participant op
+		on og.off_no = op.off_no or og.off_no = op.off_j_no 
+		where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[<]]>2		
 		<if test="searchWord!=null">
-			where ${searchKey} like '%${searchWord}%'
+			and ${searchKey} like '%${searchWord}%'
 		</if> 
 	</select>
+	<select id="mpTotalSucRecord" resultType="int">
+		select count(distinct off_subject) count from off_gb og join off_participant op
+		on og.off_no = op.off_no or og.off_no = op.off_j_no 
+		where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[>]]>1  
+		<if test="searchWord2!=null">
+			and ${searchKey2} like '%${searchWord2}%'
+		</if> 
+	</select>
+
 	<select id="offPageSelect" resultType="com.t09ether.home.dto.OffPartDTO">
 	select * from
 		(select * from
 			(
-				select op.off_j_no, og.off_no, og.off_subject, og.userid, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
-				to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, og.status, og.group_num, og.current_num  
-				from off_gb og  join  (select * from off_participant) op on og.off_no=op.off_j_no and og.userid=#{userid} 
+				select distinct og.off_no, og.off_subject, og.userid, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+				to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, og.group_num, og.current_num, og.status
+				from off_gb og join off_participant op
+				on og.off_no = op.off_no or og.off_no = op.off_j_no
+				where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[<]]>2
 				<if test="searchWord!=null">
-					where ${searchKey} like '%${searchWord}%' 
+					and ${searchKey} like '%${searchWord}%' 
 				</if>
 				order by off_no desc
 			)
@@ -198,17 +210,49 @@
 	  		</when>
   		</choose>
 	</select>
+	<select id="offPageSucSelect" resultType="com.t09ether.home.dto.OffPartDTO">
+	select * from
+		(select * from
+			(
+				select distinct og.off_no, og.off_subject, og.userid, og.location, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+				to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, og.group_num, og.current_num, og.status
+				from off_gb og join off_participant op
+				on og.off_no = op.off_no or og.off_no = op.off_j_no
+				where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[>]]>1
+				<if test="searchWord2!=null">
+					and ${searchKey2} like '%${searchWord2}%' 
+				</if>
+				order by off_no desc
+			)
+		<![CDATA[ 
+	  		where rownum<=${nowPage2*onePageRecord2} order by off_no asc 
+	  		]]>
+	  		)
+	  		
+	  	<choose>
+	  		<when test="nowPage2!=totalPage2">	
+	  			<![CDATA[
+	  			where rownum<=${onePageRecord2} order by off_no desc 
+	  			]]>
+	  		</when>
+	  		<when test="nowPage2==totalPage2">
+	  			<![CDATA[
+	  			where rownum<=${lastPageRecord2} order by off_no desc 
+	  			]]>	  		
+	  		</when>
+  		</choose>
+	</select>
 	
 	<select id="boardSelect" resultType="com.t09ether.home.dto.OffPartDTO">
-		select og.off_no, og.off_subject, og.off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
+		select distinct og.off_no, og.off_subject, to_char(og.off_content) off_content, og.location, og.group_num, og.current_num, to_char(og.app_time, 'YY-MM-DD HH:MI') app_time, 
 		to_char(og.deaddate, 'YY-MM-DD HH:MI') deaddate, to_char(og.writedate, 'YY-MM-DD HH:MI') writedate, og.status, og.userid
-		from off_participant op join (select * from off_gb) og on og.off_no=op.off_j_no
+		from off_participant op join off_gb og on og.off_no=op.off_no
 		and og.off_no=#{param1}
 	</select>
 	
+	<!-- 오프라인 구성원 리스트 -->
 	<select id="offPartList" resultType="com.t09ether.home.dto.OffPartDTO">
-		select op.off_no, r.userid from off_participant op join registerinfo r 
-		on op.username=r.username where off_no=#{param1}
+		select off_no, userid from off_participant where off_no=#{param1}
 	</select>
 	
 	<select id="expSelect" resultType="int">

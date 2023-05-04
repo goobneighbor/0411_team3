@@ -78,6 +78,12 @@ header,footer{
 	$(function(){
 		//onlineJoinForm으로 이동
 		$(document).on('click',"#onlineJoinForm", function(){
+			if(${logStatus!='Y'}){
+				alert("로그인이 필요합니다 로그인해주세요!");
+				opener.document.location.href="<%=request.getContextPath() %>/loginForm";
+				window.close();
+				return false;
+			}
 			console.log($(this).parent().parent())
 		
 			var idx = $("#locationList>li").index($(this).parent().parent());

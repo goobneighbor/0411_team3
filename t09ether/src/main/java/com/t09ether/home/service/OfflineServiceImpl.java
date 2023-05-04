@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.t09ether.home.dao.OfflineDAO;
-import com.t09ether.home.dto.OffPartDTO;
-import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
@@ -91,10 +89,4 @@ public class OfflineServiceImpl implements OfflineService {
 	public void currentNumUpdate(int off_no) {
 		dao.currentNumUpdate(off_no);
 	}
-
-	
-
-
-
-
 }

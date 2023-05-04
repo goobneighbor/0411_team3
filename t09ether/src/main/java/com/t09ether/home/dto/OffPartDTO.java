@@ -6,8 +6,8 @@ public class OffPartDTO {
 	private String userid;
 	private String username;
 	private String tel;
+	
 	private String off_subject;
-
     private String off_content;
     private String location;
     private int group_num;
@@ -17,9 +17,37 @@ public class OffPartDTO {
     private int off_hit;
     private String writedate;
     private int status;
-
 	
-	
+	public int getOff_j_no() {
+		return off_j_no;
+	}
+	public void setOff_j_no(int off_j_no) {
+		this.off_j_no = off_j_no;
+	}
+	public int getOff_no() {
+		return off_no;
+	}
+	public void setOff_no(int off_no) {
+		this.off_no = off_no;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getOff_subject() {
 		return off_subject;
 	}
@@ -80,36 +108,13 @@ public class OffPartDTO {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getOff_j_no() {
-		return off_j_no;
-	}
-	public void setOff_j_no(int off_j_no) {
-		this.off_j_no = off_j_no;
-	}
-	public int getOff_no() {
-		return off_no;
-	}
-	public void setOff_no(int off_no) {
-		this.off_no = off_no;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
 	
+	@Override
+	public String toString() {
+		return "OffPartDTO [off_j_no=" + off_j_no + ", off_no=" + off_no + ", userid=" + userid + ", username="
+				+ username + ", tel=" + tel + ", off_subject=" + off_subject + ", off_content=" + off_content
+				+ ", location=" + location + ", group_num=" + group_num + ", current_num=" + current_num + ", app_time="
+				+ app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate=" + writedate
+				+ ", status=" + status + "]";
+	}
 }

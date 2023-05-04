@@ -4,12 +4,11 @@
 	li{
 		list-style-type: none;
 	}
-
 	.container px-4 px-lg-5 my-5{
 		padding:0 !important;
 	}
 	.board_header{
-		margin:30px auto;;
+		margin:30px auto;
 		padding:20px;
 		width:350px;
 		height:70px;
@@ -79,7 +78,6 @@
 		padding:10px 10px;
 		background :orange;		
 	}
-
 	.pagingDiv{		
 		text-align: center;	
 	}
@@ -136,7 +134,7 @@
       text-align: center;
       width:100%;   
    }
-	
+
 </style>
 <script>
 	$(function(){
@@ -158,9 +156,6 @@
         </div>
     </div>
 </header>
-
-	
-
 	<!-- 페이지번호, 검색어, 검색키 -->
 	<input type="hidden" name="nowPage" value="${vo.nowPage }"/>
 	<c:if test="${vo.searchWord!=null}">
@@ -197,7 +192,6 @@
 	                    	<img class="card-img-top" src="<%=request.getContextPath() %>/resources/images/offline_test.jpg" alt="image" />
 	                    	
 	                    	<!-- details-->
-
 	                        <div class="card-body p-4" >
 	                        	<div class="text-center">
 	                            	<!-- name-->
@@ -226,7 +220,6 @@
     <!-- 페이징 -->
     <div class="board_header"><h3><a href="offlineWrite" style="color:#7d7b7a;">오프라인공구 시작하기</a></h3></div>
     <div class="pagingDiv" id="wrapper">
-		
 		<div id="item">
 			<ul>
 				<!-- nowPage -->
@@ -267,7 +260,5 @@
 	</div>
 
 	</section>
-
-
 </body>
 

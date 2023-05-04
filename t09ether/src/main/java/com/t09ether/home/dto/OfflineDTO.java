@@ -14,6 +14,7 @@ public class OfflineDTO {
 	private String deaddate;//모집마감일
 	private int off_hit;//조회수
 	private String writedate;//작성일
+
 	private int status;//진행상태 (1: 진행중, 그외 : 완료)
 
 	public int getOff_no() {
@@ -83,7 +84,6 @@ public class OfflineDTO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-
 	public int getStatus() {
 		return status;
 	}
@@ -97,12 +97,4 @@ public class OfflineDTO {
 				+ ", app_time=" + app_time + ", deaddate=" + deaddate + ", off_hit=" + off_hit + ", writedate="
 				+ writedate + ", status=" + status + "]";
 	}
-	
-	
-	
-
-	
-	
-	
-	
 }

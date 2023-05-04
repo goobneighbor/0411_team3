@@ -11,6 +11,13 @@ import com.t09ether.home.dto.ProductDTO;
 
 import com.t09ether.home.dto.AdReportPagingVO;
 import com.t09ether.home.dto.AdUserPagingVO;
+
+import com.t09ether.home.dto.AdminPagingVO;
+import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OrderDTO;
+
+import com.t09ether.home.dto.ProductDTO;
+
 import com.t09ether.home.dto.CustomerCenterDTO;
 import com.t09ether.home.dto.CustomerCenterPagingVO;
 import com.t09ether.home.dto.RegisterDTO;
@@ -54,7 +61,13 @@ public interface AdminDAO {
 	//신고관리 게시판 리스트
 	public int rpTotalRecord(AdReportPagingVO vo);
 	public List<ReportDTO> reportPageSelect(AdReportPagingVO vo);
-
+	
+	//통계
+	public List<DataVO> regiStat();
+	public List<DataVO> onlineStat();
+	public List<DataVO> offlineStat();
+	public List<DataVO> onPopStat();
+	
 	public List<RegisterDTO> userSelect();
 	
 	/*고객센터 게시판*/

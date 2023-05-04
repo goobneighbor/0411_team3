@@ -2,8 +2,6 @@ package com.t09ether.home.dao;
 
 import java.util.List;
 
-import com.t09ether.home.dto.OffPartDTO;
-import com.t09ether.home.dto.OfflineCommentDTO;
 import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OfflineParticipantDTO;
@@ -40,6 +38,4 @@ public interface OfflineDAO {
 	public void offlineClose(int off_no);
 	// 공구 인원수(current_num)업데이트
 	public void currentNumUpdate(int off_no);
-	
-
 }

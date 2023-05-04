@@ -12,10 +12,14 @@ header,footer{
 } 
 
 </style>
+
 <script>
 	$(function(){
 			
 		$(document).on('click','#insertbtn',function(){
+			/* if(${logStatus=='Y'}){
+				
+			} */
 			
 			if($("#ord_count").val()==""){
 				alert("수량을 입력하세요.")

@@ -35,13 +35,14 @@ import com.t09ether.home.service.OfflineReviewService;
 import com.t09ether.home.service.OfflineService;
 
 @RestController
-public class OfflineController {
+public class OfflineController extends SmsSend{
 	@Autowired
 	OfflineService service;
 	@Autowired
 	OfflineCommentService commentService;
 	@Autowired
 	OfflineReviewService reviewService;
+	
 	//게시판목록
 	@GetMapping("/offline")
 	public ModelAndView offline(OfflinePagingVO vo) {		
@@ -247,9 +248,29 @@ public class OfflineController {
 			//DB의 offline_participant테이블에 insert한다
 			service.participantInsert(opDTO);
 			service.currentNumUpdate(off_no);//현재인원수 업데이트
+			
 		}
 		dto.setCurrent_num(service.currentNumCount(off_no));
 		System.out.println(off_no+"번 공동구매 참여인원 : "+dto.getCurrent_num()+"명");
+		
+		//정원이 가득차면 문자 보내주기+마감하기
+		if(dto.getStatus()==1) {
+			if(dto.getCurrent_num() >= dto.getGroup_num()) {
+			//참여자별로 문자보내기
+			List<OfflineParticipantDTO> opList = service.participantList(off_no);
+			for(OfflineParticipantDTO participant : opList) {
+				//하이픈(-)없는 전화번호 가져오기
+				RegisterDTO registerDTO = service.getParticipant(participant.getUserid());				
+				String tel = registerDTO.getNHTel();
+				String username = participant.getUsername();
+				//보낼메세지
+				String content = "[t09ether]"+username+"님, 공동구매 모집이 완료되었습니다. 공구정보를 확인해주세요!";		
+				super.send_msg(tel, username, content);
+			}
+			service.offlineClose(off_no); // status 2로 바꾸기
+			}
+		}
+		
 		RegisterDTO firstDTO = service.getParticipant(dto.getUserid());//방장의 정보
 		//뷰페이지로 정보 전송		
 		mav.addObject("firstDTO", firstDTO);//방장정보 RegisterDTO
@@ -278,17 +299,31 @@ public class OfflineController {
 	
 	//마감된공구 - 리뷰쓰러가기 클릭 => 마감페이지로 이동
 	@GetMapping("/offlineFinished")
-	public ModelAndView offlineFinished(int off_no, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+	public ResponseEntity<String> offlineFinished(int off_no, HttpServletRequest request) {
 		
+		//참여자 아닌 사람은 못들어가게
 		OfflineDTO dto = service.offlineSelect(off_no);
 		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		
-		mav.addObject("list", list);
-		mav.addObject("dto", dto);
-		mav.setViewName("/offline/offlineClose");
-	
-		return mav;
+		String userid = (String)request.getSession().getAttribute("logId");
+		
+		List<String> partyIds = service.getIds(off_no);//공구참여자 아이디목록
+		
+		String htmlTag="<script>";
+		if(partyIds.contains(userid)) {//참여자가 맞으면 리뷰작성할 수 있는 페이지(마감된공구)로 이동
+			htmlTag += "location.href='offlineClose?off_no="+off_no+"'";
+		}else{//참여자 아닌경우 뒤로 돌려보내		
+			htmlTag += "alert('해당 공동구매 참여자가 아닙니다.');";
+			htmlTag += "history.back();";
+		}
+		htmlTag += "</script>";
+		//결과
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+
+		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 	}
 
 	//일정조율페이지로 넘어가기(댓글)
@@ -417,5 +452,62 @@ public class OfflineController {
 	}
 	
 	//******************* 댓글 끝 ******************//	
-
+	
+	
+	//문자 전송 메소드 -> 필요한 곳에서 호출
+	//공구번호(off_no)에 해당하는 참여자들에게 전송
+	public void sendOffMessage(int off_no) {
+		//send_msg(String tel, String username, String content)
+		
+		//참여자정보
+		List<OfflineParticipantDTO> opList = service.participantList(off_no);
+		//참여자별로 문자보내기
+		for(OfflineParticipantDTO opDTO : opList) {
+			String tel = opDTO.getTel();
+			String username = opDTO.getUsername();
+			//보낼메세지
+		String content = "[t09ether]"+username+"님, 참여하신 공동구매가 내일 진행됩니다. 즐거운시간 보내시기를 t09ether가 항상 응원합니다!";		
+		super.send_msg(tel, username, content);
+		}
+	}
+	
+	//문자전송 테스트
+	@PostMapping("/offlineMessage")
+	public ResponseEntity<String> offlineMessage(int off_no){
+		//send_msg(String tel, String username, String content)
+		//문자전송 -> 실패하면 예외발생
+		//참여자정보
+		List<OfflineParticipantDTO> opList = service.participantList(off_no);
+		
+		String htmlTag = "<script>";
+		try {
+			//참여자별로 문자보내기
+			for(OfflineParticipantDTO opDTO : opList) {
+				//하이픈(-)없는 전화번호 가져오기
+				RegisterDTO rDTO = service.getParticipant(opDTO.getUserid());				
+				String tel = rDTO.getNHTel();
+				String username = opDTO.getUsername();
+				//보낼메세지
+				String content = "[t09ether]"+username+"님, 참여하신 공동구매가 내일 진행됩니다. 즐거운시간 보내시기를 t09ether가 항상 응원합니다!";		
+				super.send_msg(tel, username, content);
+			}
+			htmlTag += "alert('문자 전송 성공!);";			
+			htmlTag += "history.go(0);";
+			;
+		}catch(Exception e) {
+			e.printStackTrace();
+			htmlTag += "alert('문자 전송 실패...');";
+			htmlTag += "history.go(0);";
+		}
+		htmlTag += "</script>";
+		
+		//결과
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+		
+		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);		
+	}
+	
 }

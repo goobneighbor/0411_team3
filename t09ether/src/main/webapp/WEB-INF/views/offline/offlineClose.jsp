@@ -2,81 +2,86 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- 오프라인 공구 종료 -->
 <style>
-	li{list-style-type: none;}
-	#view>li{
-			padding:5px 0;
-			border-bottom:1px solid #ddd;
-			list-style-type: none;
-		}		
-	.bg-tomato py-5{
-		margin:0;
-		padding:0;
-	}
-	.info{
-		margin:30px auto;
-		color:#7AA874 !important;
-		text-align: center;
-	}
-	.participantInfo{
-		border: none;;
-		font-size: 1.5em;
-		color:tomato;
-	}	
-	.goComment{
-		margin:10px auto;
-		width:220px;
-		font-size: 1.6em;
-		border:1px solid tomato;
-		border-radius: 10px;
-		background-color:#FFD777;
-		color: white;
-		
-	}
-	table {
-	  font-family: arial, sans-serif;
-	  border-collapse: collapse;
-	  width: 100%;
-	  text-align: center;
-	}
-	.theader th{
-		text-align: center;
-	}
-	td, th {
-	  border: 1px solid #dddddd;
-	  padding: 8px;
-	}
-	
-	tr:nth-child(even) {
-	  background-color: orange;
-	}
-	tr:nth-child(odd) {
-	  background-color: yellow;
-	}
-	.offlineClose{
-		margin:10px auto;
-		width:220px;
-		font-size: 1.6em;
-		border:1px solid tomato;
-		border-radius: 10px;
-		background-color:#FFEBEB;
-		color: white;
-		
-	}
-	#offlineReview{
-		padding:0;
-		height:50px;
-	}
-	.tdReview{
-		margin:auto;
-		padding:0 auto;;
-		height:50px;
-	}
+	 #view, #view2, #viewParty ,#view3 {
+      list-style:none;
+   }
+   #view li:first-child{
+      font-size:30px;
+      float:left;
+      width:75%;
+      padding:15px;
+   }
+   #view li:nth-child(2){
+      float:right;
+      width:13%;
+      padding-top:30px;
+   }
+   #view{
+      height:75px;
+      margin-bottom:40px;
+      border-top:1px solid #ddd;
+      border-bottom:1px solid #ddd;
+   }
+   #view2{
+      margin:10px 0;
+      padding:0;
+      height:90px;
+      border-top:1px solid #ddd;
+      border-bottom:1px solid #ddd;
+   }
+   #view2 li{
+      float:left;
+      width:15%;
+      border-right:1px solid #ddd;
+      border-left:1px solid #ddd;
+      line-height:40px;
+      height:90px;
+      padding: 8px;
+      text-align:center;
+   }
+   #view2 li:nth-child(3){
+      width: 40%;
+   }
+   #viewParty{
+      text-align:center;
+      margin:auto;
+      padding:0;
+      height:90px;
+      border-bottom:1px solid #ddd;
+   }
+   #viewParty li{
+      display:inline-block;
+      width:15%;
+      line-height:40px;
+      height:20px;
+      padding: 8px;
+      text-align:center;
+   }
+   #view3 {
+      border: 1px solid #ddd;
+      height:500px;
+      margin: 0;
+      padding: 0 32px;
+   }
+   
+   #view3 li {
+       text-align:left;
+       margin:32px 0 16px 0;
+   }
+.scrollspy-example bg-light p-3 rounded-2 {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scrollspy-example bg-light p-3 rounded-2::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
 </style>
 <script>
 	
 </script>
 	<!-- Header-->
-	<header class="bg-tomato py-5">
+	<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">공동구매가 종료되었습니다</h1>	          
@@ -85,22 +90,40 @@
 	    </div>
 	</header>
 	
-<div class="container">	
-	<div class="info"><h2>[공동구매 상세정보]</h2></div>
-	
-	<ul id="view">
-		
-		<li>제목 : ${dto.off_subject}</li>				
-		<li>작성자 : ${dto.userid}</li>			
-		<li>모집인원 : ${dto.group_num}</li>				
-		<li>모집마감일 : ${dto.deaddate}</li>				
-		<li>만남시간 : ${dto.app_time}</li>					
-		<li>상세정보 : ${dto.off_content}</li>		
-		<li class="participantInfo">참가자 정보</li>
-	</ul>
-	
-	
-	<div id="participantList" style="border:2px solid orange;">		
+<section id="main" class="container">
+   <ul id="view" class="major">
+      <!-- <li>원글번호</li>
+      <li>${dto.off_no }</li>
+      <hr/> -->
+      <li>${dto.off_subject }</li>
+      <li>${dto.writedate }</li>
+   </ul>
+   <section>
+      <ul id="view2">
+         <li>공구장 <br/>${dto.userid}</li>
+         <li>현재인원/모집 인원 <br/>${dto.current_num}/${dto.group_num}</li>
+         <li>만남장소 <br/>${dto.location}</li>
+         <li>약속시간 <br/>${dto.app_time}</li>
+         <li>모집마감일 <br/>${dto.deaddate}</li>
+      </ul>
+   </section>
+   <section>
+         <ul id="viewParty">
+            <li>공구원</li><br/>
+               <c:forEach var="bDTO" items="${list}">
+                  <li>${bDTO.userid}<c:if test="${bDTO.userid==dto.userid}">(방장)</c:if></li>
+               </c:forEach>
+         </ul>
+      
+   </section>
+</section>
+
+<div style="margin:50px 200px;">
+ <div class="row">
+	<div class="card mb-4">
+       <div class="card-header"><div>리뷰를 작성해보세요!</div></div>
+       <div class="card-body" style="height:300px">
+		<div style="overflow-y: scroll; width: 100%; height: 250px; padding: 10px;">	
 		<table>
 			<tr class="theader">
 			    <th>번호</th>
@@ -109,30 +132,34 @@
 			    <th>연락처</th>
 			    <th>리뷰쓰러가기</th>
 			    <th>신고하기</th>
-			</tr>			  
-		<c:forEach var="opDTO" items="${list}" varStatus="status">
-			<tr class="infoDetail">
-				<td style="width:6%; text-align:center;">${status.count}</td>
-				<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
-				<td>${opDTO.username}</td>
-				<td>${opDTO.tel}</td>
-				<td class="tdReview">	
-					<form method="post" action="offlineReview" id="offlineReview">
-						<input type="hidden" name="off_no" value="${dto.off_no}"/>	
-						<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
-						<input type="submit" name ="review "value="리뷰" class="reviewButton"/>
-					</form>	
-				</td>
-				<td>
-					<form method="post" action="offlineReport" id="offlineReport">
-						<input type="hidden" name="off_no" value="${dto.off_no}"/>	
-						<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
-						<input type="submit" name ="review "value="신고" class="reportButton"/>
-					</form>	
-				</td>
-			</tr>
-		</c:forEach>
+			</tr>	
+					  
+				<c:forEach var="opDTO" items="${list}" varStatus="status">
+					<tr class="infoDetail">
+						<td style="text-align:center;">${status.count}</td>
+						<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
+						<td>${opDTO.username}</td>
+						<td>${opDTO.tel}</td>
+						<td class="tdReview">	
+							<form method="post" action="offlineReview" id="offlineReview">
+								<input type="hidden" name="off_no" value="${dto.off_no}"/>	
+								<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
+								<input type="submit" name ="review "value="리뷰" class="reviewButton"/>
+							</form>	
+						</td>
+						<td>
+							<form method="post" action="offlineReport" id="offlineReport">
+								<input type="hidden" name="off_no" value="${dto.off_no}"/>	
+								<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
+								<input type="submit" name ="review "value="신고" class="reportButton"/>
+							</form>	
+						</td>
+					</tr>
+				</c:forEach>
+				
 		</table>
+		</div>
+		</div>
 	</div>
-
+</div>
 </div>

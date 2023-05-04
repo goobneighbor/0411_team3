@@ -15,7 +15,7 @@
 		</header>
 		<div class="row">
 		<input class="btn" type="button" value="온라인공구로 가기" onClick="location.href='<%=request.getContextPath()%>/product/onlineHome'"/>
-		<input class="btn" type="button" value="마이페이지로 가기" onClick="location.href='<%=request.getContextPath()%>/mypage/myPage'"/>
+		<input class="btn" type="button" value="마이페이지로 가기" onClick="location.href='<%=request.getContextPath()%>/mypage/myOrder'"/>
 		</div>
 	</section>
 </div>

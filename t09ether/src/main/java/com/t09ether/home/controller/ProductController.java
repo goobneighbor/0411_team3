@@ -1,9 +1,9 @@
 package com.t09ether.home.controller;
 
-import java.nio.charset.Charset;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.t09ether.home.dto.OnlinePagingVO;
+import com.t09ether.home.dto.OnlineReviewDTO;
 import com.t09ether.home.dto.ProductDTO;
 import com.t09ether.home.dto.SearchVO;
-import com.t09ether.home.dto.RegisterDTO;
+import com.t09ether.home.service.OnlineReviewService;
 import com.t09ether.home.service.ProductService;
 
 @RestController
@@ -26,7 +27,8 @@ public class ProductController {
 	
 	@Autowired
 	ProductService service;
-	
+	@Autowired
+	OnlineReviewService reviewservice;
 	
 	@GetMapping("/productWrite")
 	public ModelAndView productIn() {
@@ -78,8 +80,15 @@ public class ProductController {
 		mav.addObject("vo", vo);
 		
 		//해당페이지 레코드 선택하기
-		mav.addObject("list", service.pageSelect(vo));
-		
+		List<ProductDTO> list = service.pageSelect(vo);
+		for(int i=0;i<list.size();i++) {
+			double rateAvg=0;
+			if(reviewservice.selectReview(list.get(i).getPro_code()).size()>0) {
+			 rateAvg = reviewservice.rateAvg(list.get(i).getPro_code());
+			}
+			list.get(i).setRateAvg(rateAvg);
+		}
+		mav.addObject("list", list);
 		mav.setViewName("online/onlineList");
 		return mav;
 	}
@@ -90,6 +99,17 @@ public class ProductController {
 		String userid = (String)session.getAttribute("logId");
 		ProductDTO dto = service.productDetailSelect(pro_code);
 
+		List<OnlineReviewDTO> list = reviewservice.selectReview(pro_code);
+		
+		double rateAvg=0;
+		if(list.size()>0) {
+			rateAvg = reviewservice.rateAvg(pro_code);
+			System.out.println(rateAvg);
+			/*rateAvg = (rateAvg/5)*100;
+			System.out.println(rateAvg);
+			*/
+		}
+		mav.addObject("rateAvg", rateAvg);
 		mav.addObject("dto", dto); //선택 레코드
 		mav.addObject("vo", vo);//검색어
 		mav.setViewName("online/productDetail");

@@ -25,6 +25,9 @@
       max-width: 100%;
       margin: 20px auto;
      }
+     .bottomMenu{
+     	margin:20px;
+     }
 </style>
 <script>
 	$(function(){
@@ -204,7 +207,8 @@
 			<input type="hidden" name ="searchWord" value="${vo.searchWord}"/>
 		</c:if>
 	</form>
-	<p style="background-color:#ff6347; padding:30px;">
-		<a href="boardList?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">리스트로 돌아가기</a>
-	</p>
+	<div class="bottomMenu">
+		<a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">목록으로</a>
+		<a class="btn btn-outline-dark mt-auto" href="javascript:history.go(-1);">이전페이지로</a>
+	</div>
 </div>

@@ -69,17 +69,27 @@
                             </a>
                              <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">   
+<<<<<<< HEAD
                                 	<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
                                 		온라인
                                 		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                            			</a>
                            		</nav>                           
+=======
+                                   <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
+                                      온라인
+                                      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                 </nav>
+                              
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
                             <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/adOrderList">전체주문목록</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/myOrderorigin">배송관리</a>
                                 </nav>
                             </div>
+<<<<<<< HEAD
                                 	<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
                                 		오프라인
                                 		<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -92,12 +102,27 @@
                                 	</nav>
                             	</div>
                             </div> <!-- 공구관리 끝 -->
+=======
+                                   <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
+                                      오프라인
+                                      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                 <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+                                      <nav class="sb-sidenav-menu-nested nav">
+                                       <a class="nav-link" href="#">거래량</a>
+                                            <a class="nav-link" href="#">QnA</a>
+                                            <a class="nav-link" href="#"></a>
+                                   </nav>
+                               </div> <!-- 공구관리 끝 -->
+								</div>
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
                             <!-- 여기는 addOn 자리임@@@@@ -->
                              <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="<%=request.getContextPath()%>/admin/adStat">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 통계
                             </a>
+<<<<<<< HEAD
                            	<a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
@@ -107,3 +132,16 @@
            </nav>
         </div>
      </div>
+=======
+                              <a class="nav-link" href="tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a>
+                     </div>
+               </div>
+           </nav>
+        </div>
+     </div>  
+
+            
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4

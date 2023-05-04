@@ -165,7 +165,9 @@ $(function(){
         				success: function(result) {
         					console.log(result);
         					alert("결재 성공");
-        					location.href="/home/mypage/myOrder";
+        					location.href="/home/online/paymentSucOk";
+                            //form에 정보담아 submit
+                       
         					//self.close();
         				},
         				error: function(result){

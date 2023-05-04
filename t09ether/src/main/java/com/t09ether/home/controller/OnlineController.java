@@ -138,6 +138,7 @@ public class OnlineController extends SmsSend {
 		
 	}
 	
+	
 	@PostMapping("/paymentSuc")
 	public ModelAndView paymentSuc(OrderDTO dto, ProductDTO pdto) {
 		System.out.println(":::"+pdto);
@@ -172,6 +173,14 @@ public class OnlineController extends SmsSend {
 		mav.addObject("pdto", pdto);
 		mav.setViewName("/online/paymentSuc");
 		return mav;
+	}
+	
+	@GetMapping("/paymentSucOk")
+	public ModelAndView myPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/online/paymentSuc");
+		
+		return mav;		
 	}
 	
 	

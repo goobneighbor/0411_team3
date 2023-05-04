@@ -108,10 +108,8 @@
                                       <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                  <div class="collapse" id="collapseLayouts3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
-                                      <nav class="sb-sidenav-menu-nested nav">
-                                       <a class="nav-link" href="#">거래량</a>
-                                            <a class="nav-link" href="#">QnA</a>
-                                            <a class="nav-link" href="#"></a>
+                                      <nav class="sb-sidenav-menu-nested nav">                                       
+                                            <a class="nav-link" href="<%=request.getContextPath()%>/admin/adOfflineList">전체공구목록</a>                                       
                                    </nav>
                                </div> <!-- 공구관리 끝 -->
 								</div>

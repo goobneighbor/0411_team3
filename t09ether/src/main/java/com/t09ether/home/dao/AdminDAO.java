@@ -14,6 +14,8 @@ import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OfflineDTO;
+import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OrderDTO;
 
 import com.t09ether.home.dto.ProductDTO;
@@ -27,7 +29,12 @@ public interface AdminDAO {
 
 	public int totalRecord(AdminPagingVO vo);
 	public int totalOrdRecord(AdminPagingVO vo);
-	public int totalOrderRecord(AdminPagingVO vo);
+	public int totalOrderRecord(AdminPagingVO vo);	
+	//-- 05.04 오프라인 부분 추가 --//
+	public int totalOffRecord(AdminPagingVO vo);//오프라인 공구 총레코드수
+	public List<OfflineDTO> offList(AdminPagingVO vo);	
+	public int adOfflineMultiDelete(List<Integer> noList);//여러글 한번에 삭제
+	//---------------------------//
 	public List<RegisterDTO> pageSelect(AdminPagingVO vo);
 	public List<OrderDTO> totalOrdSelect(AdminPagingVO vo);
 	public List<OrderDTO> mgtPageSelect(AdminPagingVO vo);

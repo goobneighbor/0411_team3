@@ -19,6 +19,8 @@ import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OfflineDTO;
+import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OrderDTO;
 
 import com.t09ether.home.dto.ProductDTO;
@@ -232,6 +234,24 @@ public class AdminServiceImpl implements AdminService {
 	public int csBoardDelete(CustomerCenterDTO cdto) {
 		// TODO Auto-generated method stub
 		return dao.csBoardDelete(cdto);
+	}
+
+	@Override
+	public int totalOffRecord(AdminPagingVO vo) {
+		// TODO Auto-generated method stub
+		return dao.totalOffRecord(vo);
+	}
+
+	@Override
+	public List<OfflineDTO> offList(AdminPagingVO vo) {
+		// TODO Auto-generated method stub
+		return dao.offList(vo);
+	}
+
+	@Override
+	public int adOfflineMultiDelete(List<Integer> noList) {
+		// TODO Auto-generated method stub
+		return dao.adOfflineMultiDelete(noList);
 	}
 
 	

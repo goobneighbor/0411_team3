@@ -29,8 +29,13 @@
 	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.naver.com"></beans:property>
 		<beans:property name="port" value="587"></beans:property>
+<<<<<<< HEAD
 		<beans:property name="username" value="input_your_email"></beans:property>
 		<beans:property name="password" value="input_your_pwd"></beans:property>
+=======
+		<beans:property name="username" value="이메일을 입력해주세요! 골뱅이까지요!"></beans:property>
+		<beans:property name="password" value="비밀번호 입력해주세요!"></beans:property>
+>>>>>>> 19e3f1958d3ed0246aec1837b7cd7082931159a4
 		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
 		<beans:property name="javaMailProperties">
 			<beans:props>

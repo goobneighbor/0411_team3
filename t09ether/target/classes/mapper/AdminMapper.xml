@@ -400,6 +400,42 @@
 	<delete id="csBoardDelete">
 		delete from cus_center where cus_b_num=${cus_b_num} and userid=#{userid}
 	</delete>
-	
-
+	<select id="totalOffRecord" resultType="int">
+		select count(off_no) totalRecord from off_gb		
+	</select>
+	<select id="offList" resultType="com.t09ether.home.dto.OfflineDTO">
+		select * from	
+			(select * from
+				(
+					 select b.off_no, b.userid, b.off_subject, b.off_content, b.location, b.current_num,
+					 b.group_num, to_char(b.app_time, 'MM-DD') app_time, to_char(b.deaddate, 'MM-DD') deaddate, 
+					 r.username, b.off_hit, to_char(b.writedate,'MM-DD') writedate , b.status 
+					 from off_gb b join registerinfo r on b.userid=r.userid 
+					 <if test="searchWord != null"><!-- 검색어가 있을 경우 -->
+					 	and ${searchKey} like '%${searchWord}%'
+					 </if>
+					 order by b.off_no desc)		
+				<![CDATA[
+				where rownum <= ${onePageRecord * nowPage} order by off_no asc
+				]]>
+			 )
+		<choose>	
+			<when test="nowPage!=totalPage">
+			<![CDATA[
+			where rownum<=${onePageRecord} order by off_no desc 
+			]]>
+			</when>
+			<when test="nowPage==totalPage">
+			<![CDATA[
+			where rownum<=${lastPageRecord} order by off_no desc 
+			]]>
+			</when>
+		</choose>
+	</select>
+	<delete id="adOfflineMultiDelete">	
+		delete from off_gb
+		<foreach item="item" collection="list" open="where off_no in (" separator=", " close=")">
+			#{item}
+		</foreach> 
+	</delete>
 </mapper>

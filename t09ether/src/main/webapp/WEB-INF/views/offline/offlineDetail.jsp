@@ -153,12 +153,51 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">	        	
 	        	<h1 class="display-4 fw-bolder" style="color:#FFF">${dto.userid}님의 공동구매</h1>	           
+<<<<<<< HEAD
 	        	<h3 style="color:orange;">모집이 완료되면 문자로 안내드립니다 즐거운시간되세요!</h3>
+=======
+<<<<<<< HEAD
+	        	<h3 style="color:orange;">약속시간이 가까워지면 문자로 안내드립니다 즐거운시간되세요!</h3>
+	        	<div class="goComment"><a href="offlineComment?off_no=${dto.off_no}">일정조율하러가기</a></div>	    
+=======
+	        	<h3 style="color:orange;">모집이 완료되면 문자로 안내드립니다 즐거운시간되세요!</h3>
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 	        </div>
 	    </div>
 	</header>
 	
 <div class="container">	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	<ul id="view">		
+		<li>제목 : ${dto.off_subject}</li>
+		<li>처리상태 : 
+			<c:choose>
+				<c:when test="${dto.status==1}">진행중</c:when>
+				<c:otherwise>종료</c:otherwise>
+			</c:choose>
+		</li>			
+		<li>작성자 : ${dto.userid}</li>			
+		<li>모집인원 : ${dto.group_num}</li>
+		<li>현재인원 : ${dto.current_num}</li>			
+		<li>모집마감일 : ${dto.deaddate}</li>				
+		<li>만남시간 : ${dto.app_time}</li>					
+		<li>상세정보 : ${dto.off_content}</li>	
+	</ul>
+	<form method="get" action="offlineClose" class="offlineClose">
+		<input type="hidden" name="off_no" value="${dto.off_no}"/>
+		<div class="buttonDiv">
+				<c:if test="${logStatus=='Y' && logId==firstDTO.userid}">
+					<input type="submit" value="모집마감하기" id="closeButton"/>	
+				</c:if>			
+		</div>
+	</form>
+	<div class="participantInfo"><h2>[참가자 정보]</h2></div>
+	<div id="participantList" style="border:2px solid orange;">		
+=======
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 <section id="main" class="container">
    <ul id="view" class="major">
       <!-- <li>원글번호</li>
@@ -196,6 +235,10 @@
 	<div class="participantInfo"><h2>[참가자 상세정보]</h2></div>
 
 	<div id="participantList" >		
+<<<<<<< HEAD
+=======
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 		<table>
 			<tr class="theader">
 			    <th>번호</th>

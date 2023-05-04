@@ -7,12 +7,12 @@
 		list-style:none;	
 	}
 	#subject {
-		width:95%;
+		width:100%;
 	}
 	
 	 .ck-editor__editable[role="textbox"] {
                 /* editing area */
-                min-height: 200px;
+                min-height: 500px;
             }
             .ck-content .image {
                 /* block images */
@@ -175,7 +175,8 @@
 	});
 </script>
 <div class="container">
-	<h1>Q&A게시판 글쓰기</h1>
+	<h1></h1>
+	<h1 style="text-align:center;">Q&A게시판 글쓰기</h1>
 	<form method="post" action="csBoardWriteOk" id="csBoardForm">
 		<ul>
 			<li>말머리</li>
@@ -186,11 +187,11 @@
 				<option value="기타 문의">기타 문의</option>
 			</select>
 			<li>제목</li>
-			<li><input type="text" name="subject" id="subject"/></li>
+			<li><input type="text" name="subject" id="subject" placeholder="제목을 입력해 주세요"/></li>
 			<li>글내용</li>
 			<li>
 				<!-- 에디터 -->
-				<textarea name="content" id="content"></textarea>
+				<textarea name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
 			</li>
 			<li>
 				<input type="submit" value="글등록하기"/>

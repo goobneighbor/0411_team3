@@ -241,10 +241,11 @@
 	</ul>
 		<br><br>
 	<hr/>
-	<ul id="contentdesign">	
-		<li>${CustomerCenterDTO.content }</li>
-	</ul>
-	
+		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 500px; padding: 10px;">
+			<ul id="contentdesign">	
+				<li>${CustomerCenterDTO.content }</li>
+			</ul>
+		</div>
 	
 	<hr/>
 	<div class="boardSubMenu">

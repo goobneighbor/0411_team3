@@ -268,6 +268,14 @@
 				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li><br/>
 				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	<hr/>
 				<!-- location 어떻게? -->					
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+				<li>모집인원 : <input type="text" name="group_num" id="group_num" placeholder ="0" style="width:100px;"/></li>					
+				<li>모집마감일 :<input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
+				<li>공구날짜 :<input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
+=======
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 		</ul>
 		<ul class="numInfo">	
 				<li>모집인원</li>
@@ -276,6 +284,11 @@
 				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
 				<li>공구날짜</li>
 				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
+<<<<<<< HEAD
+=======
+				
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 			<li>상세 안내</li>				
 			<li>
 				<!-- 에디터 -->

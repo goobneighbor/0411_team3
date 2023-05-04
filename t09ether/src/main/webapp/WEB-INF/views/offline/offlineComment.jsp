@@ -262,9 +262,18 @@
 			<button id="commentInsert">댓글등록</button>
 		</form>		
 	</div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 	<br/>
 	<div class="bottomMenu">
 	 <a class="btn btn-outline-dark mt-auto" href="javascript:history.go(-1)">뒤로가기</a>
 	 <a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/offline">목록으로</a>
 	</div>
+<<<<<<< HEAD
+=======
+>>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
+>>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 </div>

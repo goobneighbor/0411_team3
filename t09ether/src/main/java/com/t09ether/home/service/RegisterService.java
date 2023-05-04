@@ -13,7 +13,8 @@ public interface RegisterService {
 	public int registerInsert(RegisterDTO dto);
 	public RegisterDTO registerEdit(String userid);
 	public int registerEditOk(RegisterDTO dto);
-	public String idSearch(String username, String email);
+	public String idSearchOk(String username, String email);
 	public int rankSelect(String userid);
 	public int tempSelect(String userid);
+	public String pwdSearch(String userid, String email);
 }

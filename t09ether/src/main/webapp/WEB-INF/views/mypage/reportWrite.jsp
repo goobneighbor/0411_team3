@@ -22,7 +22,7 @@
 	}
 	.ck-editor__editable[role="textbox"] {
 		/* editing area */
-        min-height: 200px;
+        min-height: 500px;
         max-width: 100%;
     }
 </style>
@@ -218,7 +218,7 @@
 		</li>
 		<!-- <li><input type="file" name=image id="image" accept=".gif, .jpg, .png"/></li> -->
 		<li>신고내용</li>
-		<li><textarea name="report_content" id="report_content"></textarea></li>
+		<li><textarea name="report_content" id="report_content" maxlength="30" placeholder="30자이내로 입력하세요." onfocus="this.placeholder=''"></textarea></li>
 		<li><input type="submit" id="reportIn" value="신고하기"/></li>
 	</ul>
 </form>

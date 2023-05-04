@@ -205,5 +205,5 @@
 					</form>
 				</c:if>
 		</div>
-
+</div>
 </section>

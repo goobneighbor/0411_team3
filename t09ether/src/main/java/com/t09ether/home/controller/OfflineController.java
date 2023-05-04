@@ -303,17 +303,31 @@ public class OfflineController extends SmsSend{
 	
 	//마감된공구 - 리뷰쓰러가기 클릭 => 마감페이지로 이동
 	@GetMapping("/offlineFinished")
-	public ModelAndView offlineFinished(int off_no, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
+	public ResponseEntity<String> offlineFinished(int off_no, HttpServletRequest request) {
 		
+		//참여자 아닌 사람은 못들어가게
 		OfflineDTO dto = service.offlineSelect(off_no);
 		List<OfflineParticipantDTO> list=service.participantList(off_no);
 		
-		mav.addObject("list", list);
-		mav.addObject("dto", dto);
-		mav.setViewName("/offline/offlineClose");
-	
-		return mav;
+		String userid = (String)request.getSession().getAttribute("logId");
+		
+		List<String> partyIds = service.getIds(off_no);//공구참여자 아이디목록
+		
+		String htmlTag="<script>";
+		if(partyIds.contains(userid)) {//참여자가 맞으면 리뷰작성할 수 있는 페이지(마감된공구)로 이동
+			htmlTag += "location.href='offlineClose?off_no="+off_no+"'";
+		}else{//참여자 아닌경우 뒤로 돌려보내		
+			htmlTag += "alert('해당 공동구매 참여자가 아닙니다.');";
+			htmlTag += "history.back();";
+		}
+		htmlTag += "</script>";
+		//결과
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+
+		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);	
 	}
 
 	//일정조율페이지로 넘어가기(댓글)

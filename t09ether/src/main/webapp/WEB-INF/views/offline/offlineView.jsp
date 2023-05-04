@@ -84,6 +84,7 @@
 		margin: 0 0 0 5px;
 	}
 	.joinDiv{
+		margin: 0 0 20px 0;
 		width:60%;
 		float:right;		
 	}
@@ -171,7 +172,7 @@
    <div class="bottomMenu">
   	   <!-- 목록,수정,삭제 버튼 / 지금참여하기/리뷰쓰러가기버튼-->
 	   <div class="boardSubMenu">
-	         <a class="btn btn-outline-dark mt-auto" href="myPost?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord }</c:if> ">목록</a>
+	         <a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord }</c:if> ">목록</a>
 		      <!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
 			<c:if test="${logId==dto.userid}">
 				<a class="btn btn-outline-dark mt-auto" href="offlineEdit?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">수정</a>
@@ -189,12 +190,13 @@
 				</c:if>
 				<!-- 이미 참여되어있는 사람은 상세정보 페이지로 이동할 수 있는 버튼 -->
 				<c:forEach var="ids" items="${idList}">
-					<c:if test="${nowId==ids}">
+					<c:if test="${nowId==ids && dto.status==1}">
 						<form method="post" action="offlineJoin" id="offlineJoin">
 							<input type="hidden" name="off_no" value="${dto.off_no}"/>
 							<input type="submit" value="공구페이지로 이동" class="detailButton"/>					
 					</form>
 					</c:if>
+					
 				</c:forEach>		
 				<c:if test="${logStatus=='Y'&& dto.status==2}">
 					<form method="get" action="offlineFinished" id="offlineFinished">

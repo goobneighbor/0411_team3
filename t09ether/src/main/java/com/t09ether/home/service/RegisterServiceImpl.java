@@ -57,6 +57,11 @@ public class RegisterServiceImpl implements RegisterService {
 		return dao.rankSelect(userid);
 	}
 
+	@Override
+	public int tempSelect(String userid) {
+		return dao.tempSelect(userid);
+	}
+
 	
 	
 }

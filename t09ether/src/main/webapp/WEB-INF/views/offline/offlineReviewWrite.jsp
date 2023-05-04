@@ -193,12 +193,17 @@
 	});
 
 </script>
-
+<header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="text-center text-white" >
+        	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">${target_id}님은 어떠셨나요?</h1>        
+        </div>
+    </div>
+</header>
 <div class="container">
 	<section id="main" class="container">
 		<header class="conhead">
-		<h1>리뷰작성하기</h1>		
-		<p>${target_id}님은 어떠셨나요?</p>				
+		<h1>리뷰작성하기</h1>					
 		</header>
 	</section>
 	
@@ -209,7 +214,7 @@
 		<input type="hidden" name="off_no" value="${off_no}"/>
 		<input type="hidden" name="userid" value="${writer}"/>
 		<ul>
-			<li>제목 : </li>
+			<li>제목 </li>
 			<li><input type="text" name="subject" id="subject"/></li>
 			<li>리뷰</li>				
 			<li>

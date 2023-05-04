@@ -15,4 +15,5 @@ public interface RegisterService {
 	public int registerEditOk(RegisterDTO dto);
 	public String idSearch(String username, String email);
 	public int rankSelect(String userid);
+	public int tempSelect(String userid);
 }

@@ -39,4 +39,7 @@
 	<select id="rankSelect" resultType="int">
 		select rank from registerinfo where userid=#{userid}
 	</select>
+	<select id="tempSelect" resultType="int">
+		select count(userid) from temp_stop where userid=#{userid}
+	</select>
 </mapper>

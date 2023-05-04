@@ -72,6 +72,13 @@
 	 		<mvc:mapping path="/offlineEdit"/>
 	 		<mvc:mapping path="/offlineEditOk"/>
 	 		<mvc:mapping path="/offlineDel"/>
+	 		<mvc:mapping path="/offlineJoin"/>
+	 		<mvc:mapping path="/offlineClose"/>
+	 		<mvc:mapping path="/offlineFinished"/>
+	 		<mvc:mapping path="/offlineComment"/>
+	 		<mvc:mapping path="/offlineReview"/>
+	 		<mvc:mapping path="/offlineReviewInsertOk"/>
+	 		<mvc:mapping path="/commentList"/>
 	 		
 	 		<bean class="com.t09ether.home.LoginInterceptor"></bean>
 	 	</mvc:interceptor>

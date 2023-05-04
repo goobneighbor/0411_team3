@@ -70,7 +70,7 @@
 <div style="margin:50px 100px;">
  <div class="row">
         	<div class="card mb-4">
-                        <div class="card-header"><div>리뷰 수 : ${reviewCount} </div></div>
+                        <div class="card-header"><div>공동구매가 완료되면 리뷰를 작성해보세요!</div></div>
                         <div class="card-body" style="margin:20px 40px; padding:10px; height:500px">
                         <c:choose>
 						<c:when test="${reviewCount==0}">

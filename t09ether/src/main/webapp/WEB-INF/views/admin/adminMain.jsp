@@ -31,19 +31,18 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        월별 온라인 공동구매 거래량
+                                        월별 온라인 공구 거래량
                                     </div>
                                     <div class="card-body"><canvas id="onlineChart"></canvas></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                        
+                         </div>   
+                         <div class="row">   
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        월별 오프라인 공동구매 거래량
+                                        월별 오프라인 공구 거래량
                                     </div>
                                     <div class="card-body"><canvas id="offlineChart"></canvas></div>
                                 </div>
@@ -58,6 +57,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>

@@ -41,8 +41,7 @@ public interface MyPageService {
 
 	public int expSelect(String userid);
 	public int rankUpdate(String userid);
-
-	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage, String searchKey, String searchWord, String userid,int nowPage, int onePageRecord,int lastPageRecord);
+	
 
 	//오프라인 공구 게시판 페이징
 	public int mpTotalRecord(MyPostPagingVO vo);

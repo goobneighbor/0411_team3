@@ -27,8 +27,6 @@ public interface MyPageDAO {
 	public int totalOrdRecord(AdminPagingVO vo);
 	public int totalOrdSucRecord(AdminOrderPagingVO vo2);
 	public List<OrderDTO> pageSelect(AdminPagingVO vo);
-
-	public List<OrderDTO> pageSelect(@Param("vo")AdUserPagingVO vo,@Param("totalPage") int totalPage, @Param("searchKey") String searchKey, @Param("searchWord") String searchWord,  @Param("userid")String userid, @Param("nowPage") int nowPage, @Param("onePageRecord") int onePageRecord, @Param("lastPageRecord") int lastPageRecord);
 	
 	public int expSelect(String userid);
 	public int rankUpdate(String userid);

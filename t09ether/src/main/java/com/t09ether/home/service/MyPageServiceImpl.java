@@ -72,10 +72,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OrderDTO> pageSelect(AdminPagingVO vo) {
 		return dao.pageSelect(vo);
 	}
-	@Override
-	public List<OrderDTO> pageSelect(AdUserPagingVO vo, int totalPage,String searchKey, String searchWord, String userid, int nowPage, int onePageRecord, int lastPageRecord) {
-		return dao.pageSelect(vo, totalPage,searchKey, searchWord, userid, nowPage, onePageRecord, lastPageRecord);
-	}
 	
 	@Override
 	public List<OrderDTO> pageOrdSelect(AdminPagingVO vo) {

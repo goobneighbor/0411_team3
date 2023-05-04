@@ -124,7 +124,7 @@ public class MyPageController {
 		
 		List<OffPartDTO> list = service.offPageSelect(vo);
 		List<OffPartDTO> list2 = service.offPageSucSelect(vo2);
-		System.out.println(vo2);
+		System.out.println(vo2.toString());
 		System.out.println(list);
 		
 		mav.addObject("vo", vo);

@@ -162,15 +162,17 @@
 	
 	<!-- 오프라인 공구 게시물 리스트 + 페이징  -->
 	<select id="mpTotalRecord" resultType="int">
-		select count(off_subject) ord_no from off_gb
-		where userid=#{userid} and status<![CDATA[<]]>2
+		select count(distinct off_subject) count from off_gb og join off_participant op
+		on og.off_no = op.off_no or og.off_no = op.off_j_no 
+		where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[<]]>2		
 		<if test="searchWord!=null">
 			and ${searchKey} like '%${searchWord}%'
 		</if> 
 	</select>
 	<select id="mpTotalSucRecord" resultType="int">
-		select count(off_subject) ord_no from off_gb
-		where userid=#{userid} and status<![CDATA[>]]>1
+		select count(distinct off_subject) count from off_gb og join off_participant op
+		on og.off_no = op.off_no or og.off_no = op.off_j_no 
+		where (og.userid= #{userid} or op.userid = #{userid}) and og.status<![CDATA[>]]>1  
 		<if test="searchWord2!=null">
 			and ${searchKey2} like '%${searchWord2}%'
 		</if> 

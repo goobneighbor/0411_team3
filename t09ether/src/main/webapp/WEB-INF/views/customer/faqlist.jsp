@@ -16,38 +16,40 @@
 		font-color: #black;
 	}
 	#uldesign li:nth-child(1) { /* 제목 */
-		font-size:30px;
+		font-size:23px;
 		float:left;
-		width:40%;
+		width:60%;
 		text-align:center;
-		padding:15px;
+		padding:10px;
+		/*padding-top:25px;*/
 	}
 	#uldesign li:nth-child(2) { /* 분류 */
 		float:right;
-		width:20%;
+		width:10%;
 		text-align:center;
 		padding-top:30px;
 	}
 	#uldesign li:nth-child(3) { /* 작성자 */
 		float:right;
-		width:20%;
+		width:10%;
 		text-align:center;
 		padding-top:30px;
 	}
 	#uldesign li:nth-child(4) { /* 등록일 */
 		float:right;
-		width:20%;
+		width:10%;
 		text-align:center;
 		padding-top:30px;
 	}
-	<!-- 
+	 
 	#uldesign li:nth-child(5) { /* 글 내용 */
+		height:500px;
 		padding-top:30px;
 		font-size:30px;
 		border :1px solid #ddd;
 		width: 100%;
 	}
-	-->
+	
 	#contentdesign>li {
 		width:100%;
 		list-style:none;
@@ -105,7 +107,7 @@
 						//본인이 쓴 댓글일 때 수정 삭제 버튼 나오게
 						if(rDTO.userid == '${logId}') {
 							//<button type="button"> <img src="" /></button>
-							tag += "<button type='button' value='Edit'> <img src='../resources/images/erase.png'></button>";
+							tag += "<button type='button' value='Edit' style='1px solid tomato;'> <img src='../resources/images/erase.png'></button>";
 							tag += "<button type='button' value='Del' title='"+rDTO.reply_num+"'> <img src='../resources/images/trash.png'> </button>";
 							
 							tag += "<p>"+rDTO.content+"</p></div>"; //댓글 내용
@@ -240,10 +242,11 @@
 	</ul>
 		<br><br>
 	<hr/>
-	<ul id="contentdesign">	
-		<li>${CustomerCenterDTO.content }</li>
-	</ul>
-	
+	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 500px; padding: 10px;">
+		<ul id="contentdesign">
+			<li>${CustomerCenterDTO.content }</li>
+		</ul>
+	</div>	
 	
 	<hr/>
 	<div class="boardSubMenu">

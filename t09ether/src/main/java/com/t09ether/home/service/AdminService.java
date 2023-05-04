@@ -12,6 +12,8 @@ import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OfflineDTO;
+import com.t09ether.home.dto.OfflinePagingVO;
 import com.t09ether.home.dto.OrderDTO;
 
 import com.t09ether.home.dto.ProductDTO;
@@ -25,7 +27,11 @@ public interface AdminService {
 	
 	public int totalRecord(AdminPagingVO vo);
 	public int totalOrdRecord(AdminPagingVO vo);
-
+	//-- 05.04 오프라인 부분 추가 --//
+	public int totalOffRecord(AdminPagingVO vo);
+	public List<OfflineDTO> offList(AdminPagingVO vo);
+	public int adOfflineMultiDelete(List<Integer> noList);
+	//--------------------------------------//
 	public int totalRecord(AdUserPagingVO vo);
 	public List<RegisterDTO> pageSelect(AdUserPagingVO vo);
 	public List<RegisterDTO> pageSelect(AdminPagingVO vo);

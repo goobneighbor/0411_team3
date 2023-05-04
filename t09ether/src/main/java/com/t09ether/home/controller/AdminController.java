@@ -34,6 +34,7 @@ import com.t09ether.home.dto.AdUserPagingVO;
 
 import com.t09ether.home.dto.AdminPagingVO;
 import com.t09ether.home.dto.DataVO;
+import com.t09ether.home.dto.OfflineDTO;
 import com.t09ether.home.dto.OrderDTO;
 
 import com.t09ether.home.dto.ProductDTO;
@@ -58,6 +59,7 @@ public class AdminController {
 	
 	@Autowired
 	AdminService service;
+
 	
 	@GetMapping("/adminMain")
 	public ModelAndView adminMain(RegisterDTO dto) {
@@ -582,5 +584,36 @@ public class AdminController {
 		return mav;
 	}
 	
+	//관리자페이지헤더 -> 오프라인 -> 전체공구목록 페이지 이동
+	@GetMapping("/adOfflineList")
+	public ModelAndView adOfflineList(AdminPagingVO vo) {
+		ModelAndView mav = new ModelAndView();
+		vo.setTotalRecord(service.totalOffRecord(vo));
+		List<OfflineDTO> list = service.offList(vo);
+		
+		mav.addObject("list", list);
+		mav.addObject("vo", vo);
+		mav.setViewName("admin/adOfflineList");
+		return mav;
+	}
+	
+	//오프라인 공구 리스트 여러개 삭제
+	@PostMapping("/adOfflineMultiDel")
+	public ModelAndView adOfflineMultiDel(OfflineDTO dto, AdminPagingVO vo) {
+		ModelAndView mav = new ModelAndView();
+		int result = service.adOfflineMultiDelete(dto.getNoList());
+		
+		vo.setTotalRecord(service.totalOffRecord(vo));
+		List<OfflineDTO> list = service.offList(vo);		
+		if(vo.getSearchWord()!=null && !vo.getSearchWord().equals("")) {
+			mav.addObject("searchKey", vo.getSearchKey());
+			mav.addObject("searchWord", vo.getSearchWord());
+		}
+		mav.addObject("list", list);
+		mav.addObject("vo", vo);		
+		mav.addObject("nowPage", vo.getNowPage());
+		mav.setViewName("admin/adOfflineList");
+		return mav;
+	}
 	
 }

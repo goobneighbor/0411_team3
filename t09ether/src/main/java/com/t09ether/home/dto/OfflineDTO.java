@@ -1,5 +1,6 @@
 package com.t09ether.home.dto;
 
+import java.util.List;
 
 //오프라인 공동구매 게시판 글 정보
 public class OfflineDTO {
@@ -17,6 +18,15 @@ public class OfflineDTO {
 
 	private int status;//진행상태 (1: 진행중, 그외 : 완료)
 
+	//여러개의 레코드 한번에 삭제할 때 필요한 레코드 번호
+	private List<Integer> noList;
+	
+	public List<Integer> getNoList() {
+		return noList;
+	}
+	public void setNoList(List<Integer> noList) {
+		this.noList = noList;
+	}
 	public int getOff_no() {
 		return off_no;
 	}

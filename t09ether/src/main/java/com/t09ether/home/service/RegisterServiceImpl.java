@@ -48,8 +48,8 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public String idSearch(String username, String email) {
-		return dao.idSearch(username, email);
+	public String idSearchOk(String username, String email) {
+		return dao.idSearchOk(username, email);
 	}
 
 	@Override
@@ -60,6 +60,11 @@ public class RegisterServiceImpl implements RegisterService {
 	@Override
 	public int tempSelect(String userid) {
 		return dao.tempSelect(userid);
+	}
+
+	@Override
+	public String pwdSearch(String userid, String email) {
+		return dao.pwdSearch(userid, email);
 	}
 
 	

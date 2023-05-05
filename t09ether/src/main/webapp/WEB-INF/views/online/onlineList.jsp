@@ -91,7 +91,7 @@
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
 	                                <div>총&nbsp;<fmt:formatNumber value="${proDTO.pro_price }" maxFractionDigits="0" />&nbsp;원</div>
-	                            	<div>개당&nbsp;<fmt:formatNumber value="${proDTO.pro_price/proDTO.pro_total}" maxFractionDigits="0" />&nbsp;원</div>
+	                            	<div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
 	                            </div>
 	                            <div style="margin-left:50px">
 	                            	<div class="rate">

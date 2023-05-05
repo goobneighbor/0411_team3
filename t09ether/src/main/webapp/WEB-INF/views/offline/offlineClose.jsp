@@ -51,7 +51,7 @@
    }
    #viewParty li{
       display:inline-block;
-      width:15%;
+      width:20%;
       line-height:40px;
       height:20px;
       padding: 8px;
@@ -136,6 +136,7 @@
 					  
 				<c:forEach var="opDTO" items="${list}" varStatus="status">
 					<tr class="infoDetail">
+					<c:if test="${opDTO.userid != logId}">
 						<td style="text-align:center;">${status.count}</td>
 						<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
 						<td>${opDTO.username}</td>
@@ -154,7 +155,8 @@
 								<input type="submit" name ="review "value="신고" class="reportButton"/>
 							</form>	
 						</td>
-					</tr>
+						</c:if>
+					</tr>					
 				</c:forEach>
 				
 		</table>

@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
-
-=======
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
 <style>
 #layoutSidenav_content{
 	margin:80px 50px;
@@ -98,7 +94,6 @@
                     </div>
                 </main>
             </div>
-<<<<<<< HEAD
 <script>
 	function colorize() {
 		var r = Math.floor(Math.random()*200);
@@ -277,7 +272,4 @@
 	});
 	
 </script>
-=======
-      <!--   </div>  -->
 </body>
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4

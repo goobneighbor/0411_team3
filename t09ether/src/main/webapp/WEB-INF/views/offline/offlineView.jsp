@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 	#view>li{
 			padding:5px 0;
 			border-bottom:1px solid #ddd;
@@ -93,8 +90,6 @@
 		margin: 10px auto;
 	}
 	.joinDiv input{
-=======
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
    #view, #view2, #viewParty ,#view3 {
       list-style:none;
    }
@@ -162,10 +157,6 @@
        margin:32px 0 16px 0;
    }
    .joinDiv input{
-<<<<<<< HEAD
-=======
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 		float: left;
 		margin :10px 10px;;
 	}
@@ -226,9 +217,7 @@
 			});
 		});
 </script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 <div class="container">
 	<!-- Header-->
 	<header class="bg-tomato py-5">
@@ -312,8 +301,6 @@
 		</c:if>
 	</div>
 </div>
-=======
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
@@ -391,7 +378,3 @@
 		</div>
 	</div>
 </section>
-<<<<<<< HEAD
-=======
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602

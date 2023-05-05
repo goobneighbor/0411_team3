@@ -40,8 +40,8 @@
 	table th{
 		text-align: center;
 		
-		font-size: 1.2em;
-    	font-weight: 100;
+		/* font-size: 1.2em;
+    	font-weight: 100; */
    		padding: 0.75em 0.75em 0.75em 0.75em;
 	}
 </style>

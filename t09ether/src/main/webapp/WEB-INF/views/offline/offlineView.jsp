@@ -50,7 +50,7 @@
    }
    #viewParty li{
       display:inline-block;
-      width:15%;
+      width:20%;
       line-height:40px;
       height:20px;
       padding: 8px;

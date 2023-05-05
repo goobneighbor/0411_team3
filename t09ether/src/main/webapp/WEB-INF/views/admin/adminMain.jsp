@@ -18,7 +18,7 @@
                         
                         <div class="row">
                         
-                            <div class="col-xl-6">
+                            <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
@@ -27,7 +27,7 @@
                                     <div class="card-body"><canvas id="regiChart"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
@@ -36,9 +36,9 @@
                                     <div class="card-body"><canvas id="onlineChart"></canvas></div>
                                 </div>
                             </div>
-                         </div>   
-                         <div class="row">   
-                            <div class="col-xl-6">
+          <!--                </div>   
+                         <div class="row">    -->
+                            <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
@@ -47,7 +47,7 @@
                                     <div class="card-body"><canvas id="offlineChart"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>

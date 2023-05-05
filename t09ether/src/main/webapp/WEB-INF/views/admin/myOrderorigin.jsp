@@ -138,10 +138,10 @@
 									<td>${bDTO.userid }</td>
 									<c:choose>
 										<c:when test="${bDTO.status==1 }">
-											<td>결제완료</td>
+											<td style="color:#A0D8B3;">결제완료</td>
 										</c:when>
 										<c:when test="${bDTO.status==2 }">
-											<td>배송중</td>
+											<td style="color:#19A7CE;">배송중</td>
 										</c:when>
 										<c:when test="${bDTO.status==3 }">
 											<td>배송완료</td>

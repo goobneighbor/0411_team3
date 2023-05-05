@@ -2,7 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
-
+<style>
+	#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
+</style>
+<div id="usermain" class="row">
 	<section id="main" class="container">
 		<header>
 			<p></p>
@@ -50,7 +56,7 @@
                 </div>
             </div>
 	</section>
-	
+</div>
 
 <script>
 	function colorize() {

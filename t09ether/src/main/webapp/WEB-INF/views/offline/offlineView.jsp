@@ -67,6 +67,9 @@
        text-align:left;
        margin:32px 0 16px 0;
    }
+   #view3 li>p>span {
+       font-size:16px;
+   }
    .joinDiv input{
 		float: left;
 		margin :10px 10px;;

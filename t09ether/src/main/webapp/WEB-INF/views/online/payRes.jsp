@@ -164,21 +164,21 @@ $(function(){
         				dataType:"json",
         				success: function(result) {
         					console.log(result);
-        					alert("결재 성공");
+        					alert("결제 성공");
         					location.href="/home/online/paymentSucOk";
                             //form에 정보담아 submit
                        
         					//self.close();
         				},
         				error: function(result){
-        					alert("결재 실패");
+        					alert("결제 실패");
         					console.log(result);
         					orderDelete();
         				}
         			});
         			
                 } else {// 결제 실패 시 로직
-        			alert("결재 실패");
+        			alert("결제 실패");
         			//alert(rsp.error_msg);
         			console.log(rsp);         
         			orderDelete();
@@ -269,6 +269,25 @@ $(function(){
 							<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
 							<li>수량</li>
 							<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
+							<li>
+		                        <c:choose>
+		                           <c:when test="${sdto.rank==1}">
+		                              ${logName }님은 <b style="color:red;">1등급으로 할인이 적용되지 않습니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==2}">
+		                              ${logName }님은 <b style="color:red;">2등급으로 1% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==3}">
+		                              ${logName }님은 <b style="color:red;">3등급으로 2% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==4}">
+		                              ${logName }님은 <b style="color:red;">4등급으로 3% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==5}">
+		                              ${logName }님은 <b style="color:red;">5등급으로 4% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                        </c:choose>
+		                     </li>
 							<li>할인 금액</li>
 							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
 							<li>전체 가격 </li>

@@ -265,7 +265,8 @@ public class OfflineController extends SmsSend{
 				String username = participant.getUsername();
 				//보낼메세지
 				String content = "[t09ether]"+username+"님, 공동구매 모집이 완료되었습니다. 공구정보를 확인해주세요!";		
-//				super.send_msg(tel, username, content);
+
+				//super.send_msg(tel, username, content);
 			}
 			service.offlineClose(off_no); // status 2로 바꾸기
 			}

@@ -151,10 +151,6 @@
    		insert into report(report_no, mem_id, target_id, target_type, report_content) values(report_no_sq.nextval, #{mem_id}, #{target_id}, #{target_type}, #{report_content})
    </insert>
    
-   <update id="reportRegisterUpdate">
-   		update registerinfo set report=report+1 where userid=#{target_id}
-   </update>
-   
    <update id="orderStatusUpdate">
    		update order09 set status=10 where ord_no=#{ord_no}
    </update>

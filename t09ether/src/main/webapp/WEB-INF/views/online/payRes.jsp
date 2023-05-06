@@ -269,6 +269,25 @@ $(function(){
 							<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
 							<li>수량</li>
 							<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
+							<li>
+								<c:choose>
+									<c:when test="${sdto.rank==1}">
+										<b style="color:#ff6347;">${logName }님은 1등급으로 할인이 적용되지 않습니다.</b>
+									</c:when>
+									<c:when test="${sdto.rank==2}">
+										<b style="color:#ff6347;">${logName }님은 2등급으로 1% 할인이 적용됩니다.</b>
+									</c:when>
+									<c:when test="${sdto.rank==3}">
+										<b style="color:#ff6347;">${logName }님은 3등급으로 2% 할인이 적용됩니다.</b>
+									</c:when>
+									<c:when test="${sdto.rank==4}">
+										<b style="color:#ff6347;">${logName }님은 4등급으로 3% 할인이 적용됩니다.</b>
+									</c:when>
+									<c:when test="${sdto.rank==5}">
+										<b style="color:#ff6347;">${logName }님은 5등급으로 4% 할인이 적용됩니다.</b>
+									</c:when>
+								</c:choose>
+							</li>
 							<li>할인 금액</li>
 							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
 							<li>전체 가격 </li>

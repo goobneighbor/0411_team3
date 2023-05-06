@@ -130,6 +130,7 @@
 			    <th>아이디</th>
 			    <th>이름</th>
 			    <th>연락처</th>
+			    <th>리뷰보기</th>
 			    <th>리뷰쓰러가기</th>
 			    <th>신고하기</th>
 			</tr>	
@@ -141,11 +142,14 @@
 						<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
 						<td>${opDTO.username}</td>
 						<td>${opDTO.tel}</td>
+						<td>
+							<a class="btn btn-outline-dark mt-auto" href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a>
+						</td>
 						<td class="tdReview">	
 							<form method="post" action="offlineReview" id="offlineReview">
 								<input type="hidden" name="off_no" value="${dto.off_no}"/>	
 								<input type="hidden" name="target_id" value="${opDTO.userid}"/>			
-								<input type="submit" name ="review "value="리뷰" class="reviewButton"/>
+								<input type="submit" name ="review "value="리뷰작성" class="reviewButton"/>
 							</form>	
 						</td>
 						<td>
@@ -156,7 +160,7 @@
 							</form>	
 						</td>
 					</c:if>
-					</tr>
+					</tr>					
 				</c:forEach>
 				
 		</table>

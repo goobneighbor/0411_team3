@@ -152,7 +152,9 @@
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
-            <p style="color:#7d7b7a">같이 쇼핑할 사람들을 찾아보세요!</p>
+            <p style="color:#7d7b7a">혼자 마트가기 힘드세요?
+				대형 마트에서도 공동구매를 하고 싶으세요?
+				함께 할 공구메이트를 찾아보세요!</p>
         </div>
     </div>
 </header>

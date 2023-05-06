@@ -199,7 +199,7 @@ $(function(){
                         <span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 적용됩니다.</span>
                      </c:when>
                      <c:otherwise>
-                        <span class="rankinfo"><c:if test="${logStatus=='Y'}">${logName }님,</c:if> 할인이 적용되지 않는 등급입니다!<br/>공구장이되거나 리뷰를 써서 등급을 올려 할인받으세요!</span>
+                        <span class="rankinfo"><c:if test="${logStatus=='Y'}">${logName }님,</c:if> 할인이 적용되지 않는 등급입니다!<br/>공구장이 되거나 리뷰를 써서 등급을 올려 할인받으세요!</span>
                      </c:otherwise>
                   </c:choose>
                     </div>                    

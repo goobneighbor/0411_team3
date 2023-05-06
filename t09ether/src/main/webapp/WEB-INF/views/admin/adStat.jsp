@@ -54,8 +54,8 @@
                     </div>
                 </div>
             </div>
-	</section>
-	</div>
+	</section>	
+</div>
 
 <script>
 	function colorize() {

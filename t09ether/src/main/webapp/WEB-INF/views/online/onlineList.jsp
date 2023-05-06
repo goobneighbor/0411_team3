@@ -104,7 +104,8 @@
                                    <div>총&nbsp;<fmt:formatNumber value="${proDTO.pro_price }" maxFractionDigits="0" />&nbsp;원</div>
                                   <div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
                                   <%-- <c:if test="${log }" --%>
-                                  <%-- <div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div> --%>
+                                  <!--<div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
+                               -->
                                </div>
                                <div style="margin-left:50px">
                                   <div class="rate">

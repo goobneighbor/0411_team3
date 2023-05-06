@@ -60,78 +60,81 @@
       border: 1px solid #ddd;
       height:500px;
       margin: 0;
-      padding: 0 32px;
+      padding: 0 32px;      
    }
    
    #view3 li {
        text-align:left;
        margin:32px 0 16px 0;
    }
+   #view3 li>p>span {
+       font-size:16px;
+   }
    .joinDiv input{
-		float: left;
-		margin :10px 10px;;
-	}
-	
-	
-	.bottomMenu{
-		float:left;
-		width:100%;
+      float: left;
+      margin :10px 10px;;
+   }
+   
+   
+   .bottomMenu{
+      float:left;
+      width:100%;
 
-	}
-	
-	.boardSubMenu {
-		float: left;
-		margin: 0 0 0 5px;
-	}
-	.joinDiv{
-		margin: 0 0 20px 0;
-		width:60%;
-		float:right;		
-	}
-	.joinDiv input{
-		float:right;
-	}
-	.detailButton{
-		position: relative;
-		top: -40px;	
-	}
-	.joinButton{
-		position:relative;
-		top: -10px;
-	}
-	.writedate{
-		width:30px;
-	}
+   }
+   
+   .boardSubMenu {
+      float: left;
+      margin: 0 0 0 5px;
+   }
+   .joinDiv{
+      margin: 0 0 20px 0;
+      width:60%;
+      float:right;      
+   }
+   .joinDiv input{
+      float:right;
+   }
+   .detailButton{
+      position: relative;
+      top: -40px;   
+   }
+   .reviewButton{
+      position:relative;
+      top: -10px;
+   }
+   .writedate{
+      width:30px;
+   }
 </style>
 <script>
 
-	function offlineDel(){
-		if(confirm("정말 삭제하시겠습니까?")){
-			location.href="offlineDel?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>";
-		}	
-	}
-	
-	$(function(){
-		var userid = '<%=session.getAttribute("logId")%>';	
-		console.log("userid="+userid);
-		$(".joinButton").click(function(){	
-				if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
-					//아니오 -> 참여안함
-					alert("공동구매 참여가 취소되었습니다.");
-					return false;
-				}else{//예 -> 참여함
-					if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
-						alert("정원이 가득 찼습니다");
-						return false;
-					}	
-				}
-			});
-		});
+   function offlineDel(){
+      if(confirm("정말 삭제하시겠습니까?")){
+         location.href="offlineDel?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>";
+      }   
+   }
+   
+   $(function(){
+      var userid = '<%=session.getAttribute("logId")%>';   
+      console.log("userid="+userid);
+      $(".joinButton").click(function(){   
+            if(!confirm(userid+"님 공동구매에 참여하시겠습니까?")){
+               //아니오 -> 참여안함
+               alert("공동구매 참여가 취소되었습니다.");
+               return false;
+            }else{//예 -> 참여함
+               if(${dto.current_num}>=${dto.group_num}){//자리없으면 돌려보내기
+                  alert("정원이 가득 찼습니다");
+                  return false;
+               }   
+            }
+         });
+      });
 </script>
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
+   <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+           <h1 class="display-4 fw-bolder" style="color:#7d7b7a">오프라인 공동구매</h1>
         </div>
     </div>
 </header>
@@ -164,44 +167,50 @@
    </section>
    <section class="box special" style="padding:0; margin-top:50px;">
       <ul id="view3">
-         <li>${dto.off_content}</li>   
+         <li style="font-size: 4em;">${dto.off_content}</li>   
       </ul>
    </section>
    <div class="bottomMenu">
-  	   <!-- 목록,수정,삭제 버튼 / 지금참여하기/리뷰쓰러가기버튼-->
-	   <div class="boardSubMenu">
-	         <a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord }</c:if> ">목록</a>
-		      <!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->		
-			<c:if test="${logId==dto.userid}">
-				<a class="btn btn-outline-dark mt-auto" href="offlineEdit?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">수정</a>
-				<a class="btn btn-outline-dark mt-auto" href="javascript:offlineDel()">삭제</a>
-			</c:if>
-			<!-- 지금참여하기/리뷰쓰러가기 버튼 -->
-		</div>
-		
-		<div class="joinDiv">	
-				<c:if test="${logStatus=='Y'&& dto.status==1}">
-					<form method="post" action="offlineJoin" id="offlineJoin">
-							<input type="hidden" name="off_no" value="${dto.off_no}"/>
-							<input type="submit" value="지금참여하기" class="joinButton"/>					
-					</form>
-				</c:if>
-				<!-- 이미 참여되어있는 사람은 상세정보 페이지로 이동할 수 있는 버튼 -->
-				<c:forEach var="ids" items="${idList}">
-					<c:if test="${nowId==ids && dto.status==1}">
-						<form method="post" action="offlineJoin" id="offlineJoin">
-							<input type="hidden" name="off_no" value="${dto.off_no}"/>
-							<input type="submit" value="공구페이지로 이동" class="detailButton"/>					
-					</form>
-					</c:if>
-					
-				</c:forEach>		
-				<c:if test="${logStatus=='Y'&& dto.status==2}">
-					<form method="get" action="offlineFinished" id="offlineFinished">
-						<input type="hidden" name="off_no" value="${dto.off_no}"/>
-						<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
-					</form>
-				</c:if>
-		</div>
-	</div>
+        <!-- 목록,수정,삭제 버튼 / 지금참여하기/리뷰쓰러가기버튼-->
+      <div class="boardSubMenu">
+            <a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord }</c:if> ">목록</a>
+            <!-- 작성자와 로그인 아이디 같은경우 수정 삭제 버튼 -->      
+         <c:if test="${logId==dto.userid}">
+            <a class="btn btn-outline-dark mt-auto" href="offlineEdit?off_no=${dto.off_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">수정</a>
+            <a class="btn btn-outline-dark mt-auto" href="javascript:offlineDel()">삭제</a>
+         </c:if>
+         <!-- 지금참여하기/리뷰쓰러가기 버튼 -->
+      </div>
+      
+      <div class="joinDiv">   
+            <c:if test="${logStatus=='Y'&& dto.status==1}">
+               <form method="post" action="offlineJoin" id="offlineJoin">
+                     <input type="hidden" name="off_no" value="${dto.off_no}"/>
+                     <input type="submit" value="지금참여하기" class="joinButton"/>               
+               </form>
+            </c:if>
+            <!-- 이미 참여되어있는 사람은 상세정보 페이지로 이동할 수 있는 버튼 -->
+            <c:forEach var="ids" items="${idList}">
+               <c:if test="${nowId==ids && dto.status==1}">
+                  <form method="post" action="offlineJoin" id="offlineJoin">
+                     <input type="hidden" name="off_no" value="${dto.off_no}"/>
+                     <input type="submit" value="공구페이지로 이동" class="detailButton"/>               
+               </form>
+               </c:if>
+               
+            </c:forEach>      
+            <c:if test="${logStatus=='Y'&& dto.status==2}">
+               <form method="get" action="offlineFinished" id="offlineFinished">
+                  <input type="hidden" name="off_no" value="${dto.off_no}"/>
+                  <input type="submit" value="리뷰쓰러가기" class="reviewButton">
+               </form>
+               <form method="get" action="offlineComment" id="offlineFinished">
+                  <input type="hidden" name="off_no" value="${dto.off_no}"/>
+                  <input type="submit" value="일정조율하러가기" class="detailButton"/>
+               </form>
+               
+               
+            </c:if>
+      </div>
+   </div>
 </section>

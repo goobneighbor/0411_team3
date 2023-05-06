@@ -205,13 +205,13 @@
 			    <th></th>
 			</tr>			  
 		<c:forEach var="opDTO" items="${list}" varStatus="status">
-			<tr class="infoDetail">
+			<tr class="infoDetail">			
 				<td style="width:6%; text-align:center;">${status.count}</td>
 				<td><b>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></b></td>
-				<td>${opDTO.username}</td>
+				<td>${opDTO.username}</td>				
 				<td>${opDTO.tel}</td>
 			<c:if test="${opDTO.userid != logId}">	
-				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
+				<td><a class="btn btn-outline-dark mt-auto" href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
 			</c:if>
 			</tr>
 		</c:forEach>

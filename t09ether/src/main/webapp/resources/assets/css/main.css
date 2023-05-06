@@ -29,7 +29,7 @@
 		/*font: inherit; */
 		vertical-align: baseline;
 	}
-	span {
+	span{
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -37,7 +37,6 @@
 		/*font: inherit; */
 		vertical-align: baseline;
 	}
-
 	article, aside, details, figcaption, figure,
 	footer, header, hgroup, menu, nav, section {
 		display: block;

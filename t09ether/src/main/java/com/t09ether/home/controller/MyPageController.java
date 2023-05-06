@@ -248,17 +248,15 @@ public class MyPageController {
 		try {
 			int result = service.reportInsert(dto);
 			//select
-			int result2 = service.reportRegisterUpdate(dto.getTarget_id());
-			
-			int result3= service.orderStatusUpdate(dto.getOrd_no());
-			
-			if(result>0 && result2>0 && result3>0) {
-				htmlTag += "alert('신고가 등록되었습니다.');";
-				htmlTag += "location.href='myOrder';";
-			}else {
-				htmlTag += "alert('신고가 등록되지 않았습니다.');";
-				htmlTag += "history.back();";
-			}
+			int result2= service.orderStatusUpdate(dto.getOrd_no());
+	         
+	         if(result>0 && result2>0) {
+	            htmlTag += "alert('신고가 등록되었습니다.');";
+	            htmlTag += "location.href='myOrder';";
+	         }else {
+	            htmlTag += "alert('신고가 등록되지 않았습니다.');";
+	            htmlTag += "history.back();";
+	         }
 		}catch(Exception e) {
 			e.printStackTrace();
 			htmlTag += "alert('신고가 등록되지 않았습니다.');";

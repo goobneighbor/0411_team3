@@ -51,7 +51,7 @@
    }
    #viewParty li{
       display:inline-block;
-      width:15%;
+      width:20%;
       line-height:40px;
       height:20px;
       padding: 8px;
@@ -136,7 +136,11 @@
 					  
 				<c:forEach var="opDTO" items="${list}" varStatus="status">
 					<tr class="infoDetail">
+<<<<<<< HEAD
 					<c:if test="${opDTO.userid != logId }">
+=======
+					<c:if test="${opDTO.userid != logId}">
+>>>>>>> c468723dbbfe3409167735a5936dcfa95858b998
 						<td style="text-align:center;">${status.count}</td>
 						<td>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}">(방장)</c:if></td>
 						<td>${opDTO.username}</td>
@@ -155,8 +159,13 @@
 								<input type="submit" name ="review "value="신고" class="reportButton"/>
 							</form>	
 						</td>
+<<<<<<< HEAD
 					</c:if>
 					</tr>
+=======
+						</c:if>
+					</tr>					
+>>>>>>> c468723dbbfe3409167735a5936dcfa95858b998
 				</c:forEach>
 				
 		</table>

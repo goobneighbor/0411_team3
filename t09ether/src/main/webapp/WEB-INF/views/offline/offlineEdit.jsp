@@ -31,7 +31,7 @@
 </style>
 <script>
 	$(function(){
-		CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
+		CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
                 items: [

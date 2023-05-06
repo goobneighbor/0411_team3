@@ -134,14 +134,6 @@
       text-align: center;
       width:100%;   
    }
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-	
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 </style>
 <script>
 	$(function(){
@@ -267,13 +259,5 @@
 	</div>
 
 	</section>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 5b53ef0a20bfd809b3afe3cf7fa168cfac913ae4
->>>>>>> ba3f6ef08de907eae6cbeb0dcbbe63222e7aa602
 </body>
 

@@ -51,7 +51,7 @@
    }
    #viewParty li{
       display:inline-block;
-      width:15%;
+      width:20%;
       line-height:40px;
       height:20px;
       padding: 8px;
@@ -194,35 +194,34 @@
 </section>
    
    <div class="participantInfo"><h2>[참가자 상세정보]</h2></div>
-
-   <div id="participantList" >      
-      <table>
-         <tr class="theader">
-             <th>번호</th>
-             <th>아이디</th>
-             <th>이름</th>
-             <th>연락처</th>
-             <th></th>
-         </tr>           
-      <c:forEach var="opDTO" items="${list}" varStatus="status">
-         <tr class="infoDetail">
-         <c:if test="${opDTO.userid != logId}">
-            <td style="width:6%; text-align:center;">${status.count}</td>
-            <td><b>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></b></td>
-            <td>${opDTO.username}</td>
-            <td>${opDTO.tel}</td>
-            <td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
-         </c:if>
-         </tr>
-      </c:forEach>
-      </table>
-   </div>
-   <form method="get" action="offlineClose" class="offlineClose">
-      <input type="hidden" name="off_no" value="${dto.off_no}"/>
-      <div class="buttonDiv">
-            <c:if test="${logStatus=='Y' && logId==firstDTO.userid}">
-               <input type="submit" value="모집마감하기" id="closeButton"/>   
-            </c:if>         
-      </div>
-   </form>
+	<div id="participantList" >		
+		<table>
+			<tr class="theader">
+			    <th>번호</th>
+			    <th>아이디</th>
+			    <th>이름</th>
+			    <th>연락처</th>
+			    <th></th>
+			</tr>			  
+		<c:forEach var="opDTO" items="${list}" varStatus="status">
+         	<tr class="infoDetail">         
+            	<td style="width:6%; text-align:center;">${status.count}</td>
+            	<td><b>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></b></td>
+            	<td>${opDTO.username}</td>            
+            	<td>${opDTO.tel}</td>
+         		<c:if test="${opDTO.userid != logId}">   
+            		<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
+         		</c:if>
+         	</tr>
+      	</c:forEach>
+      	</table>
+	</div>
+	<form method="get" action="offlineClose" class="offlineClose">
+		<input type="hidden" name="off_no" value="${dto.off_no}"/>
+		<div class="buttonDiv">
+				<c:if test="${logStatus=='Y' && logId==firstDTO.userid}">
+					<input type="submit" value="모집마감하기" id="closeButton"/>	
+				</c:if>			
+		</div>
+	</form>
 </div>

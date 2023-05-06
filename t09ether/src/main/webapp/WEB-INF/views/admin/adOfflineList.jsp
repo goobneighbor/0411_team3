@@ -192,7 +192,6 @@ $(function(){
 						<select name = "searchKey" id="searchKey">
 							<option value="location" selected>지역</option>
 							<option value="off_subject">제목</option>
-							<option value="userid">작성자</option>
 							<option value="off_content">내용</option>				
 						</select>
 						<input type="text" name="searchWord" id="searchWord" placeholder="검색할 내용을 입력하세요"/>

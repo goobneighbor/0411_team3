@@ -11,7 +11,7 @@
 
 /* Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain) */
 
-	html, body, div, span, applet, object,
+	html, body, div, applet, object,
 	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 	pre, a, abbr, acronym, address, big, cite,
 	code, del, dfn, em, img, ins, kbd, q, s, samp,
@@ -29,6 +29,16 @@
 		/*font: inherit; */
 		vertical-align: baseline;
 	}
+	span{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 20px;
+		/*font: inherit; */
+		vertical-align: baseline;
+	}
+	
+	
 
 	article, aside, details, figcaption, figure,
 	footer, header, hgroup, menu, nav, section {

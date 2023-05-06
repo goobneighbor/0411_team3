@@ -60,7 +60,7 @@
       border: 1px solid #ddd;
       height:500px;
       margin: 0;
-      padding: 0 32px;
+      padding: 0 32px;      
    }
    
    #view3 li {
@@ -95,7 +95,7 @@
 		position: relative;
 		top: -40px;	
 	}
-	.joinButton{
+	.reviewButton{
 		position:relative;
 		top: -10px;
 	}
@@ -164,7 +164,7 @@
    </section>
    <section class="box special" style="padding:0; margin-top:50px;">
       <ul id="view3">
-         <li>${dto.off_content}</li>   
+         <li style="font-size: 4em;">${dto.off_content}</li>   
       </ul>
    </section>
    <div class="bottomMenu">
@@ -199,8 +199,14 @@
 				<c:if test="${logStatus=='Y'&& dto.status==2}">
 					<form method="get" action="offlineFinished" id="offlineFinished">
 						<input type="hidden" name="off_no" value="${dto.off_no}"/>
-						<input type="submit" value="리뷰쓰러가기" id="reviewButton"/>
+						<input type="submit" value="리뷰쓰러가기" class="reviewButton">
 					</form>
+					<form method="get" action="offlineComment" id="offlineFinished">
+						<input type="hidden" name="off_no" value="${dto.off_no}"/>
+						<input type="submit" value="일정조율하러가기" class="detailButton"/>
+					</form>
+					
+					
 				</c:if>
 		</div>
 	</div>

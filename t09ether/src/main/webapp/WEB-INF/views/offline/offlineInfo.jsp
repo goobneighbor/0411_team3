@@ -98,6 +98,7 @@
      </div>
      <br/>
 	<a href="javascript:history.back();" class="btn btn-outline-dark mt-auto">뒤로가기</a>
+	
 </div>
 	
 	

@@ -51,7 +51,7 @@
    }
    #viewParty li{
       display:inline-block;
-      width:15%;
+      width:20%;
       line-height:40px;
       height:20px;
       padding: 8px;
@@ -210,7 +210,10 @@
 				<td><b>${opDTO.userid}<c:if test="${opDTO.userid==dto.userid}"> (방장)</c:if></b></td>
 				<td>${opDTO.username}</td>
 				<td>${opDTO.tel}</td>
-				<td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
+				<c:if test="${opDTO.userid != logId}">   
+            <td><a href ="offlineInfo?userid=${opDTO.userid}" class="info" style="color:white;"><b>리뷰보기</b></a></td>
+
+			</c:if>
 			</tr>
 		</c:forEach>
 		</table>

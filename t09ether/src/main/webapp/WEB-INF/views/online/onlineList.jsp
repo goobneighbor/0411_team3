@@ -43,7 +43,10 @@
 	}
 	.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
 	.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
-
+	.rankinfo{
+		color:tomato;
+		font-size:1.1em;
+	}
 </style>
 <!-- Header-->
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
@@ -51,6 +54,18 @@
 		<div class="text-center text-white">
         	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">온라인 공동구매</h1>
             <p style="color:#7d7b7a" >공동구매를 시작하거나 참여해보세요.</p>
+          	<c:choose>
+				<c:when test = "${logStatus!='Y'}">
+					<span class="rankinfo">로그인을 하시면 등급별로 할인받으실 수 있습니다.</span>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+					<c:when test="${logRank > 1}"><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 전품목 적용됩니다.</span></c:when>
+					<c:otherwise><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 할인이 적용되지 않는 등급입니다!<br/>공구장이 되거나 리뷰를 써서 등급을 올려 할인받으세요!</span></c:otherwise>
+					</c:choose>
+					
+				</c:otherwise>
+			</c:choose>
         </div>
     </div>
 </header>
@@ -91,7 +106,9 @@
 	                                <span class="text-muted text-decoration-line-through">총${proDTO.pro_price }원</span> 
 	                                --> 
 	                                <div>총&nbsp;<fmt:formatNumber value="${proDTO.pro_price }" maxFractionDigits="0" />&nbsp;원</div>
-	                            	<div>개당&nbsp;<fmt:formatNumber value="${proDTO.pro_price/proDTO.pro_total}" maxFractionDigits="0" />&nbsp;원</div>
+	                            	<div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
+	                            	<%-- <c:if test="${log }" --%>
+	                            	<%-- <div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div> --%>
 	                            </div>
 	                            <div style="margin-left:50px">
 	                            	<div class="rate">

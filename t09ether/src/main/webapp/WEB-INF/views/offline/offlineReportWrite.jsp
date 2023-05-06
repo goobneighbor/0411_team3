@@ -217,7 +217,7 @@
 					<option value="7">약속시간을 안지켜요</option>
 					<option value="8">연락이 안돼요</option>
 					<option value="9">매너가 안좋아요</option>
-					<option value="10">직접입력</option>
+					<option value="0">직접입력</option>
 				</select>
 			</li>
 			<li>신고내용</li>				

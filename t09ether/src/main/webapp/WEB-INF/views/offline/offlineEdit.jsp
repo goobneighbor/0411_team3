@@ -31,7 +31,7 @@
 </style>
 <script>
 $(function() {
-   CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
+	CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
         // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
         toolbar: {
             items: [
@@ -171,7 +171,7 @@ $(function() {
             'MathType'
         ]
     }); //ck editor end..
-   
+
       
       //폼 유효성검사
       $("#boardForm").submit(function(){
@@ -182,6 +182,7 @@ $(function() {
       });
       
    });
+
 </script>
 <div class="container">
    <h1>오프라인 공구모집 글 수정하기</h1>

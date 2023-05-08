@@ -38,9 +38,11 @@
 	thead tr th, tbody{
 		text-align:center;
 	}
-	#usermain{
-		margin:100px;
-		}
+
+	 #usermain{
+      margin:100px;
+      }
+
 </style>
 <script>
 	$(function(){

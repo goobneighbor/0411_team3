@@ -5,54 +5,55 @@
 
 </script>
 <style>
-	#wrappertwo {
-		display: grid;
-		place-items: center;
-		min-height: 10vh;
-	}
-	
-	#searchForm{
-		text-align:center;
-	}
-	#searchKey, #searchWord, #search{
-		display:inline-block;
-	}
-	#searchKey { /*제목임*/
-		width:15%;
-		margin: auto;
-	}
-	#searchWord { /*검색칸*/
-		width:40%;
-		margin: auto;
-	}
-	.searchDiv{
-		padding:10px;
-		text-align: center;	
-		width:100%;	
-	}
-	.pagingDiv li{
-		float:left;
-		padding: 10px 20px;
-		list-style: none;
-	}
-	.pagingDiv a:link, .pagingDiv a:hover, .pagingDiv a:visited{
-		color:#000;
-	}
-	.pagingDiv ul{
-		margin:0 auto;
-	}
-	.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
-	.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
-	.rankinfo{
-		color:tomato;
-		font-size:1.1em;
-	}
+   #wrappertwo {
+      display: grid;
+      place-items: center;
+      min-height: 10vh;
+   }
+   
+   #searchForm{
+      text-align:center;
+   }
+   #searchKey, #searchWord, #search{
+      display:inline-block;
+   }
+   #searchKey { /*제목임*/
+      width:15%;
+      margin: auto;
+   }
+   #searchWord { /*검색칸*/
+      width:40%;
+      margin: auto;
+   }
+   .searchDiv{
+      padding:10px;
+      text-align: center;   
+      width:100%;   
+   }
+   .pagingDiv li{
+      float:left;
+      padding: 10px 20px;
+      list-style: none;
+   }
+   .pagingDiv a:link, .pagingDiv a:hover, .pagingDiv a:visited{
+      color:#000;
+   }
+   .pagingDiv ul{
+      margin:0 auto;
+   }
+   .rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;width: 121px;height: 20px;position: relative;}
+   .rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+   .rankinfo{
+      color:tomato;
+      font-size:1.2em;
+   }
+
 </style>
 <!-- Header-->
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
-	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
-        	<h1 class="display-4 fw-bolder" style="color:#7d7b7a">온라인 공동구매</h1>
+   <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+           <h1 class="display-4 fw-bolder" style="color:#7d7b7a">온라인 공동구매</h1>
             <p style="color:#7d7b7a" >공동구매를 시작하거나 참여해보세요.</p>
           	<c:choose>
 				<c:when test = "${logStatus!='Y'}">
@@ -72,6 +73,7 @@
 
 <!-- Section-->
 <section class="py-5">
+
 	<c:if test="${vo.searchWord!=null}">
 		<input type="hidden" name="searchKey" value="${vo.searchKey }"/>
 		<input type="hidden" name="searchWord" value="${vo.searchWord }"/>
@@ -124,43 +126,43 @@
 	                 </div>
 	            </div>
 	            <c:set var="recordNum" value="${recordNum-1 }"></c:set>
+
             </c:forEach>
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>
     </div>
     <div class="pagingDiv" id="wrappertwo">
-				<ul>
-					<!-- nowPage -->
-					<c:if test="${vo.nowPage==1 }"> <!-- 현재페이지가 첫번째 페이지 일때 -->
-						<li>이전</li>
-					</c:if>
-					
-					<c:if test="${vo.nowPage>1 }"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
-						<li><a href="onlineHome?nowPage=${vo.nowPage-1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
-					</c:if>
-					<!-- 페이지번호 -->
-					<c:forEach var="p" begin="${vo.startPageNum }" end="${vo.startPageNum+vo.onePageNumCount-1 }">
-						<c:if test="${p <= vo.totalPage }"><!-- 표시할 페이지번호 총페이지수보다 작거나 같을때 페이지번호를 출력한다. -->	
-							<!-- 현재페이지 표시하기 -->
-							<c:if test="${p==vo.nowPage }">
-								<li style="background:#ddd;"> 
-							</c:if>
-							<c:if test="${p!=vo.nowPage }">
-								<li id="sort">
-							</c:if>
-								<a href="onlineHome?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p }</a>
-							</li>
-						</c:if>
-					</c:forEach>
-					
-					<!-- 다음페이지 -->
-					<c:if test="${vo.nowPage<vo.totalPage }">
-						<li><a href="onlineHome?nowPage=${vo.nowPage+1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
-					</c:if>
-					<c:if test="${vo.nowPage==vo.totalPage }">
-						<li>다음</li>
-					</c:if>
-				</ul>
-	</div>
+            <ul>
+               <!-- nowPage -->
+               <c:if test="${vo.nowPage==1 }"> <!-- 현재페이지가 첫번째 페이지 일때 -->
+                  <li>이전</li>
+               </c:if>
+               
+               <c:if test="${vo.nowPage>1 }"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
+                  <li><a href="onlineHome?nowPage=${vo.nowPage-1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">이전</a></li>
+               </c:if>
+               <!-- 페이지번호 -->
+               <c:forEach var="p" begin="${vo.startPageNum }" end="${vo.startPageNum+vo.onePageNumCount-1 }">
+                  <c:if test="${p <= vo.totalPage }"><!-- 표시할 페이지번호 총페이지수보다 작거나 같을때 페이지번호를 출력한다. -->   
+                     <!-- 현재페이지 표시하기 -->
+                     <c:if test="${p==vo.nowPage }">
+                        <li style="background:#ddd;"> 
+                     </c:if>
+                     <c:if test="${p!=vo.nowPage }">
+                        <li id="sort">
+                     </c:if>
+                        <a href="onlineHome?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p }</a>
+                     </li>
+                  </c:if>
+               </c:forEach>
+               
+               <!-- 다음페이지 -->
+               <c:if test="${vo.nowPage<vo.totalPage }">
+                  <li><a href="onlineHome?nowPage=${vo.nowPage+1 }<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">다음</a></li>
+               </c:if>
+               <c:if test="${vo.nowPage==vo.totalPage }">
+                  <li>다음</li>
+               </c:if>
+            </ul>
+   </div>
 </section>
-

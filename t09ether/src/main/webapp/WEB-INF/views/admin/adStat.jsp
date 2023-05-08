@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-#usermain{
+	#usermain{
 		margin:10px;
 		margin-left:250px;
-		}
+	}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
 <div id="usermain" class="row">
@@ -55,6 +56,8 @@
                 </div>
             </div>
 	</section>
+
+	
 </div>
 
 <script>

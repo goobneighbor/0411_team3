@@ -262,6 +262,7 @@ $(function(){
                 <div class="col-lg-6">
 
                         <ul id="firstul">
+
                      <li><h3>주문상품</h3></li>
                      <!-- 상품이미지가져와야함 -->
                      <li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
@@ -302,6 +303,7 @@ $(function(){
                      <li><input type="hidden" name="image" id="image" value="${sdto.image }"/></li>
                         
                   </ul>
+
                 </div>
             <!-- Side widgets-->
                 

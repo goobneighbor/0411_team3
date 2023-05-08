@@ -7,6 +7,7 @@
 	margin:80px 50px;
 	margin-left:260px;
 }
+
 </style>
             <div id="layoutSidenav_content">
                 <main>
@@ -36,7 +37,9 @@
                                     <div class="card-body"><canvas id="onlineChart"></canvas></div>
                                 </div>
                             </div>
-                       
+
+                         <!--  </div>   
+                         <div class="row">   -->
                             <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">

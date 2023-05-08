@@ -46,10 +46,9 @@
 		text-align: center;
 	}
 	
-	#usermain{
-		margin:10px;
-		margin-left:250px;
-		}
+   #usermain{
+      margin:100px;
+      }
 
 	.pagingDiv a:link, .pagingDiv a:hover, .pagingDiv a:visited, .board_list a:link,
 	.board_list a:hover, .board_list a:visited {
@@ -61,10 +60,15 @@
 		padding: 10px;
 		text-align: center;
 	}
+	
+	thead tr th, tbody{
+      text-align:center;
+   }
 </style>
 </head>
 
 <body>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
@@ -199,5 +203,4 @@
 			</div>
 		</div>
 	</section>
-</body>
-</html>
+	</div>

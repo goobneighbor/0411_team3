@@ -11,34 +11,35 @@
 
 /* Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain) */
 
-   html, body, div, applet, object,
-   iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-   pre, a, abbr, acronym, address, big, cite,
-   code, del, dfn, em, img, ins, kbd, q, s, samp,
-   small, strike, strong, sub, sup, tt, var, b,
-   u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-   form, label, legend, table, caption, tbody,
-   tfoot, thead, tr, th, td, article, aside,
-   canvas, details, embed, figure, figcaption,
-   footer, header, hgroup, menu, nav, output, ruby,
-   section, summary, time, mark, audio, video {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 100%;
-      /*font: inherit; */
-      vertical-align: baseline;
-   }
-   span{
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 20px;
-      /*font: inherit; */
-      vertical-align: baseline;
-   }
-   
-   
+
+	html, body, div, applet, object,
+	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+	pre, a, abbr, acronym, address, big, cite,
+	code, del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var, b,
+	u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+	form, label, legend, table, caption, tbody,
+	tfoot, thead, tr, th, td, article, aside,
+	canvas, details, embed, figure, figcaption,
+	footer, header, hgroup, menu, nav, output, ruby,
+	section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		/*font: inherit; */
+		vertical-align: baseline;
+	}
+	span{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 16px;
+		/*font: inherit; */
+		vertical-align: baseline;
+	}
+	
+	
 
    article, aside, details, figcaption, figure,
    footer, header, hgroup, menu, nav, section {
@@ -2685,16 +2686,26 @@
       width: 100%;
    }
 
+<<<<<<< HEAD
       table tbody tr {
          border: solid 1px #e5e5e5;
          border-left: 0;
          border-right: 0;
       }
+=======
+		table tbody tr {
+			border: solid 1px #e5e5e5;
+			border-left: 0;
+			border-right: 0;
+			text-align: center;
+		}
+>>>>>>> cf6062493ab286f73bcebcea8c8df0f7d8cadfb5
 
          table tbody tr:nth-child(2n + 1) {
             background-color: #f8f8f8;
          }
 
+<<<<<<< HEAD
       table td {
          padding: 0.75em 0.75em;
       }
@@ -2710,6 +2721,25 @@
       table thead {
          border-bottom: solid 2px #e5e5e5;
       }
+=======
+		table td {
+			padding: 0.75em 0.75em;
+			text-align: center;
+			
+		}
+
+		table th {
+			color: #646464;
+			font-size: 0.9em;
+			font-weight: 300;
+			padding: 0 0.75em 0.75em 0.75em;
+			text-align: center;
+		}
+		
+		table thead {
+			border-bottom: solid 2px #e5e5e5;
+		}
+>>>>>>> cf6062493ab286f73bcebcea8c8df0f7d8cadfb5
 
       table tfoot {
          border-top: solid 2px #e5e5e5;

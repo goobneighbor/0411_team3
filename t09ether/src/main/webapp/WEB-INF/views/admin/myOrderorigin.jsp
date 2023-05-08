@@ -37,6 +37,9 @@
 		margin:10px;
 		margin-left:250px;
 		}
+	input[type=checkbox]{
+		margin:0 0 0 42px;
+	}
 </style>
 <script>
 	$(function(){

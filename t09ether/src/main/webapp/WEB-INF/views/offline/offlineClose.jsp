@@ -168,7 +168,8 @@ thead tr th, tbody{
 						</td>
 
 					</c:if>
-					</tr>
+					</tr>					
+
 				</c:forEach>
 				
 		</table>

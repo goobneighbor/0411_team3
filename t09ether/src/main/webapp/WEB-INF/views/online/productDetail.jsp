@@ -242,10 +242,10 @@ $(function(){
                          </div>
                       </div>   
                        </form>
-                        	<p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소<span style="font-size:1.5em"><i class="bi bi-geo-alt-fill"></i></span></span><span style='width:20%;float:right;text-align:center' >[참여/남은갯수]</span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><hr/>
-                           	<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
-			  					<ul id="locationList" style="list-style-type:none"></ul>
-							</div>
+							<p><span style='display: inline-block; width:50%; text-align:center;'>나눔 주소<span style="font-size:1.5em"><i class="bi bi-geo-alt-fill"></i></span></span><span style='padding-top:10px; width:13%;float:right;text-align:center;' >[참여/남은갯수]</span><span style='padding-top:10px; width:32%;float:right;text-align:center'>공구장 아이디</span><hr/>
+                              <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
+                          <ul id="locationList" style="list-style-type:none"></ul>
+                     </div>
 
                        </div>
                    </div>

@@ -34,8 +34,8 @@
 	 		<mvc:mapping path="/admin/myOrderorigin"/>
 	 		<mvc:mapping path="/admin/ordMultiUp"/>
 	 		<mvc:mapping path="/admin/adOrderList"/>
-	 		
-	 		<!--<mvc:mapping path="/customer/customerBoard"/>-->
+
+	 		<!-- <mvc:mapping path="/customer/customerBoard"/> -->
 	 		<mvc:mapping path="/customer/csBoardWrite"/>
 	 		<mvc:mapping path="/customer/csBoardWriteOk"/>
 	 		<mvc:mapping path="/customer/csBoardEdit"/>

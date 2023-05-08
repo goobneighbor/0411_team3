@@ -2,20 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
-	#boardForm{
-		padding: 10px 0px;		
-	}
-	#boardForm li{
-		list-style-type: none;
-	}
-	#subject{
-		width:100%;		
-	}
-	.button{
-		background: #ff6347;
-	}
-	/*CKEDITOR*/
-	.ck-editor__editable[role="textbox"] {
+   #boardForm{
+      padding: 10px 0px;      
+   }
+   #boardForm li{
+      list-style-type: none;
+   }
+   #subject{
+      width:100%;      
+   }
+   .button{
+      background: #ff6347;
+   }
+   /*CKEDITOR*/
+   .ck-editor__editable[role="textbox"] {
       /* editing area */
       min-height: 200px;
       max-width: 100%;
@@ -26,7 +26,7 @@
       margin: 20px auto;
      }
      .bottomMenu{
-     	margin:20px;
+        margin:20px;
      }
 </style>
 <script>
@@ -171,6 +171,7 @@ $(function() {
             'MathType'
         ]
     }); //ck editor end..
+<<<<<<< HEAD
 	
 		
 		//폼 유효성검사
@@ -182,34 +183,47 @@ $(function() {
 		});
 		
 	});
+=======
+   
+      
+      //폼 유효성검사
+      $("#boardForm").submit(function(){
+         if($("#off_subject").val()==""){
+            alert("제목을 입력하세요...");
+            return false;
+         }
+      });
+      
+   });
+>>>>>>> 99a31b38f43285ae7372c7da9d886bddb6ee1663
 </script>
 <div class="container">
-	<h1>오프라인 공구모집 글 수정하기</h1>
-	<form method="post" action="offlineEditOk" id="boardForm">
-	<input type="hidden" name="off_no" value="${dto.off_no}"/>
-		<ul>
-			<li>제목</li>
-			<li><input type="text" name="off_subject" id="off_subject" value ="${dto.off_subject }"/></li>
-			<li>모집인원 : <input type="text" name="group_num" value="${dto.group_num }"/></li>
-			<li>글내용</li>				
-			<li>
-				<!-- 에디터 -->
-				<textarea name="off_content" id="off_content">${dto.off_content}</textarea>
-			</li>
-			<li>
-				<input type="submit" value="글수정하기" class="button"/>
-			</li>
-			
-		</ul>
-	<!-- 페이지정보, 검색어, 검색키 -->
-	<input type="hidden" name ="nowPage" value="${vo.nowPage}"/>
-		<c:if test="${vo.searchWord!=null }">
-			<input type="hidden" name ="searchKey" value="${vo.searchKey}"/>
-			<input type="hidden" name ="searchWord" value="${vo.searchWord}"/>
-		</c:if>
-	</form>
-	<div class="bottomMenu">
-		<a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">목록으로</a>
-		<a class="btn btn-outline-dark mt-auto" href="javascript:history.go(-1);">이전페이지로</a>
-	</div>
+   <h1>오프라인 공구모집 글 수정하기</h1>
+   <form method="post" action="offlineEditOk" id="boardForm">
+   <input type="hidden" name="off_no" value="${dto.off_no}"/>
+      <ul>
+         <li>제목</li>
+         <li><input type="text" name="off_subject" id="off_subject" value ="${dto.off_subject }"/></li>
+         <li>모집인원 : <input type="text" name="group_num" value="${dto.group_num }"/></li>
+         <li>글내용</li>            
+         <li>
+            <!-- 에디터 -->
+            <textarea name="off_content" id="off_content">${dto.off_content}</textarea>
+         </li>
+         <li>
+            <input type="submit" value="글수정하기" class="button"/>
+         </li>
+         
+      </ul>
+   <!-- 페이지정보, 검색어, 검색키 -->
+   <input type="hidden" name ="nowPage" value="${vo.nowPage}"/>
+      <c:if test="${vo.searchWord!=null }">
+         <input type="hidden" name ="searchKey" value="${vo.searchKey}"/>
+         <input type="hidden" name ="searchWord" value="${vo.searchWord}"/>
+      </c:if>
+   </form>
+   <div class="bottomMenu">
+      <a class="btn btn-outline-dark mt-auto" href="offline?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">목록으로</a>
+      <a class="btn btn-outline-dark mt-auto" href="javascript:history.go(-1);">이전페이지로</a>
+   </div>
 </div>

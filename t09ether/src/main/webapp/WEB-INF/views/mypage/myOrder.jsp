@@ -60,6 +60,12 @@
 	.paging_div2 a:link, .paging_div2 a:hover, .paging_div2 a:visited{
 		color:#000;
 	}
+	thead tr th, tbody{
+		text-align:center;
+	}
+	 #usermain{
+      margin:100px;
+    }
 </style>
 <script>
 	$(function(){
@@ -109,6 +115,7 @@
 	});
 </script>
 	<!-- Main -->
+	<div id="usermain" class="row">
 	<section id="main" class="container">
 		<header>
 			<h2>온라인 공구 내역</h2>
@@ -392,3 +399,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

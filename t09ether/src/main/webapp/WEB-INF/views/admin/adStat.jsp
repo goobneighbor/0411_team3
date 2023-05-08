@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+<<<<<<< HEAD
 	#usermain{
 		margin:10px;
 		margin-left:250px;
 	}
+=======
+#usermain{
+		margin:10px;
+		margin-left:250px;
+		}
+>>>>>>> 99a31b38f43285ae7372c7da9d886bddb6ee1663
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
 <div id="usermain" class="row">
@@ -54,8 +61,14 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 	</section>	
 </div>
+=======
+	</section>
+</div>
+
+>>>>>>> 99a31b38f43285ae7372c7da9d886bddb6ee1663
 <script>
 	function colorize() {
 		var r = Math.floor(Math.random()*200);

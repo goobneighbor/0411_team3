@@ -38,6 +38,9 @@
 	thead tr th, tbody{
 		text-align:center;
 	}
+	 #usermain{
+      margin:100px;
+    }
 </style>
 <script>
 	$(function(){
@@ -110,6 +113,7 @@
 	});
 </script>
 	<!-- Main -->
+	<div id="usermain" class="row">
 	<section id="main" class="container">
 		<header>
 			<h2>오프라인 공구 게시물</h2>
@@ -326,3 +330,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

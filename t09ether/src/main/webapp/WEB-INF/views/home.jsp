@@ -43,7 +43,6 @@
 
                   </div>
                   <div class="col-6 col-12-narrower">
-
                      <section class="box special">
                         <span class="image featured"><img src="<%=request.getContextPath()%>/resources/images/home_test2.jpg" alt="" /></span>
                         <h3 style="line-height:50px; margin-bottom:30px;">오프라인 공동구매</h3>
@@ -111,7 +110,6 @@
                      </section>
                   </div>
                   <div class="col-6 col-12-narrower">
-
                      <section class="box special">
                         <h3 style="line-height:50px; margin-bottom:0;">오프 공구 상세안내</h3>
                         <span class="image featured" style="margin-top:0; margin-bottom:0;"><img src="<%=request.getContextPath()%>/resources/images/home_test4.png" style="width:400px; height:330px; margin:0 auto;" alt="" /></span>

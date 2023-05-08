@@ -159,7 +159,7 @@
 								<input type="submit" name ="review "value="신고" class="reportButton"/>
 							</form>	
 						</td>
-						</c:if>
+					</c:if>
 					</tr>
 				</c:forEach>
 				

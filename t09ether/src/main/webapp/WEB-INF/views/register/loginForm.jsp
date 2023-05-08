@@ -66,7 +66,7 @@ function kakaoLogout() {
 	}
 	#logFrm div{
 		width: 580px;
-		height: 430px;
+		height: 330px;
 		border: 1px solid #ddd;
 		margin: 0 auto;
 		padding: 0;
@@ -76,7 +76,7 @@ function kakaoLogout() {
 		width: 700px;
 		height: 400px;
 		margin-left:-370px;
-		margin-top:-220px;
+		margin-top:-185px;
 		left:50%;
 		top:50%;
 		position:absolute;
@@ -134,10 +134,10 @@ function kakaoLogout() {
 			<li><input type="text" name="userid" id="userid" placeholder="t09ether 아이디"/></li>
 			<li><input type="password" name="userpwd" id="userpwd" placeholder="비밀번호"/></li>
 			<li><input type="submit" value="LOGIN"/></li>
-			<li style="font-size:13px;">───────────────── 또는 ─────────────────</li>
+			<!-- <li style="font-size:13px;">───────────────── 또는 ─────────────────</li> -->
 			<!-- <li onclick="kakaoLogin();"> 
       <a href="javascript:void(0)">-->
-          <li><img src="resources/images/kakao_login.png" onclick="kakaoLogin()" alt=""/></li>
+          <!-- <li><img src="resources/images/kakao_login.png" onclick="kakaoLogin()" alt=""/></li> -->
 		<li id="threestyle" >
 			<a href="join">회원가입</a>
 			<a href="<%=request.getContextPath() %>/idSearchForm">아이디찾기</a>

@@ -67,7 +67,7 @@
       margin:100px;
       }
 </style>
-<div id="usermain" class="row">
+
 <script>
 	$(function(){
 		$("#searchForm").submit(function(){
@@ -115,6 +115,7 @@
 		
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>

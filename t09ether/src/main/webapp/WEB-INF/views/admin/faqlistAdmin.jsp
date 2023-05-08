@@ -15,39 +15,77 @@
 	#uldesign li:nth-child(3), #uldesign li:nth-child(4) { /* 폰트 컬러 */
 		font-color: #black;
 	}
-	#uldesign li:nth-child(1) { /* 제목 */
+/* 	#uldesign li:nth-child(1) { 
 		font-size:30px;
 		float:left;
 		width:40%;
 		text-align:center;
 		padding:15px;
 	}
-	#uldesign li:nth-child(2) { /* 분류 */
+	#uldesign li:nth-child(2) {
 		float:right;
 		width:20%;
 		text-align:center;
 		padding-top:30px;
 	}
-	#uldesign li:nth-child(3) { /* 작성자 */
+	#uldesign li:nth-child(3) { 
 		float:right;
 		width:20%;
 		text-align:center;
 		padding-top:30px;
 	}
-	#uldesign li:nth-child(4) { /* 등록일 */
+	#uldesign li:nth-child(4) { 
 		float:right;
 		width:20%;
 		text-align:center;
 		padding-top:30px;
 	}
-	<!-- 
-	#uldesign li:nth-child(5) { /* 글 내용 */
+	
+	#uldesign li:nth-child(5) { 
 		padding-top:30px;
 		font-size:30px;
 		border :1px solid #ddd;
 		width: 100%;
-	}
-	-->
+	}  */
+	
+	   #uldesign li:nth-child(1) { /* 제목 */
+      font-size:23px;
+      float:left;
+      width:60%;
+      text-align:left;
+      padding-top:30px;
+      /*padding-top:25px;*/
+   }
+   #uldesign li:nth-child(2) { /* 등록일 */
+      float:right;
+      width:10%;
+      text-align:center;
+      padding-top:30px;
+      width:200px;
+      margin-top:10px;
+   }
+   #uldesign li:nth-child(3) { /* 작성자 */
+      float:right;
+      width:10%;
+      text-align:center;
+      padding-top:30px;
+      margin-top:10px;
+   }
+   #uldesign li:nth-child(4) { /* 분류 */
+      float:right;
+      width:10%;
+      text-align:center;
+      padding-top:30px;
+      margin-top:10px;
+   }
+    
+   #uldesign li:nth-child(5) { /* 글 내용 */
+      height:500px;
+      padding-top:30px;
+      font-size:30px;
+      border :1px solid #ddd;
+      width: 100%;
+   }
 	#contentdesign>li {
 		width:100%;
 		list-style:none;
@@ -234,9 +272,9 @@
 		<li>글 번호 : ${CustomerCenterDTO.cus_b_num }</li>
 		-->
 		<li> ${CustomerCenterDTO.subject }</li>
-		<li> ${CustomerCenterDTO.category }</li>
-		<li> ${CustomerCenterDTO.writedate }</li>
-		<li> ${CustomerCenterDTO.userid }</li>
+	    <li> ${CustomerCenterDTO.writedate }</li>
+	    <li> ${CustomerCenterDTO.userid }</li>
+	    <li> ${CustomerCenterDTO.category }</li>
 		
 	</ul>
 		<br><br>

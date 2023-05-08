@@ -3,33 +3,33 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
-	.container{
-		padding:0;
-	}
-	body,ul,li{
-		padding:0;
-		margin:0;
-		list-style-type:none;	
-		color:black;
-	}
-	* input[name="group_num"]{
-		width:30%;
-	}
-	
-	#boardForm{
-		padding: 10px 0px;
-	}
-	#boardForm li{
-		text-decoration: none;
-	}
-	#subject{
-		width:100%;		
-	}
-	.zipcode{
-		float:left;
-	}	
-	/*CKEDITOR*/
-	.ck-editor__editable[role="textbox"] {
+   .container{
+      padding:0;
+   }
+   body,ul,li{
+      padding:0;
+      margin:0;
+      list-style-type:none;   
+      color:black;
+   }
+   * input[name="group_num"]{
+      width:30%;
+   }
+   
+   #boardForm{
+      padding: 10px 0px;
+   }
+   #boardForm li{
+      text-decoration: none;
+   }
+   #subject{
+      width:100%;      
+   }
+   .zipcode{
+      float:left;
+   }   
+   /*CKEDITOR*/
+   .ck-editor__editable[role="textbox"] {
       /* editing area */
       min-height: 200px;
       max-width: 100%;
@@ -40,15 +40,19 @@
       margin: 20px auto;
      }
      .conhead{margin:0;}
+     #sample6_address{
+        margin-top:16px;
+        margin-bottom:10px;
+     }
   
 </style>
 <script>
-	var logId = sessionStorage.getItem("logId");
-	console.log(logId);
-	
-	//=======================에디터 시작=====================//
-	$(function(){
-		CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
+   var logId = sessionStorage.getItem("logId");
+   console.log(logId);
+   
+   //=======================에디터 시작=====================//
+   $(function(){
+      CKEDITOR.ClassicEditor.create(document.getElementById("off_content"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
                 items: [
@@ -189,19 +193,19 @@
             ]
         });//CKEDITOR
         //=======================에디터 끝=====================//
-		//폼 유효성검사
-		$("#offlineWriteForm").submit(function(){
-			if($("#off_subject").val()==""){
-				alert("제목을 입력하세요...");
-				return false;
-			}
-		});
-		
-	});
-	
-	// ------------------ 다음 주소 API 시작---------------//
-	function sample6_execDaumPostcode() {
-		
+      //폼 유효성검사
+      $("#offlineWriteForm").submit(function(){
+         if($("#off_subject").val()==""){
+            alert("제목을 입력하세요...");
+            return false;
+         }
+      });
+      
+   });
+   
+   // ------------------ 다음 주소 API 시작---------------//
+   function sample6_execDaumPostcode() {
+      
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -232,7 +236,7 @@
                 } else {
                     document.getElementById("sample6_extraAddress").value = '';
                 }
-				
+            
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
@@ -242,51 +246,52 @@
             }
         }).open();
     }
-	// ------------------ 다음 주소 API 끝 ---------------//
+   // ------------------ 다음 주소 API 끝 ---------------//
 </script>
 
 <div class="container">
-	<section id="main" class="container">
-		<header class="conhead">
-		<h1>오프라인 공동구매 시작하기</h1>		
-		<p>상세 정보를 입력하세요</p>				
-		</header>
-	</section>
-	
-	<form method="post" action="offlineInsert" id="offlineWriteForm">
-		<input type="hidden" name="current_num" value="1"/>
-		<input type="hidden" name="off_hit" value="1"/>
-		<ul>
-			<li>제목</li>
-			<li><input type="text" name="off_subject" id="off_subject"/></li><hr/>
-			<li>[공구장소 설정]<li><br/>
-			<li>우편번호</li>
-			<li>
-				<input type="text" id="sample6_postcode" placeholder="우편번호" readonly style="width:78%; float:left; margin:2px;">
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%; float:right; margin:2px;">
-			</li>	
-				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li><br/>
-				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	<hr/>
-				<!-- location 어떻게? -->					
-		</ul>
-		<ul class="numInfo">	
-				<li>모집인원</li>
-				<li><input type="text" name="group_num" id="group_num" placeholder ="0" style="width:100px;"/></li>					
-				<li>모집마감일</li>
-				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
-				<li>공구날짜</li>
-				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
-			<li>상세 안내</li>				
-			<li>
-				<!-- 에디터 -->
-				<textarea name="off_content" id="off_content" placeholder="공동구매해 대한 정보를 알려주세요!"></textarea>
-			</li>
-			<li>
-				<input type="submit" value="공구등록하기"/>
-			</li>
-			
-		</ul>
-	
-	</form>
+   <section id="main" class="container">
+      <header class="conhead">
+      <h1>오프라인 공동구매 시작하기</h1>      
+      <p>상세 정보를 입력하세요</p>            
+      </header>
+   </section>
+   
+   <form method="post" action="offlineInsert" id="offlineWriteForm">
+      <input type="hidden" name="current_num" value="1"/>
+      <input type="hidden" name="off_hit" value="1"/>
+      <ul>
+         <li>제목</li>
+         <li><input type="text" name="off_subject" id="off_subject"/></li><hr/>
+         <li>[공구장소 설정]<li><br/>
+         <li>우편번호</li>
+         <li>
+            <input type="text" id="sample6_postcode" placeholder="우편번호" readonly style="width:78%; float:left; margin:2px;">
+            <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%; float:right; margin:2px; margin-bottom:10px;">
+         </li>   
+            <li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>
+            <li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>   <hr/>
+            <!-- location 어떻게? -->               
+      </ul>
+      <ul class="numInfo">   
+            <li style="width:12%; float:left; margin:2px; text-align:center; margin-top:15px;">모집인원</li>
+            <li><input type="text" name="group_num" id="group_num" placeholder ="0" style="width:20%; float:left; margin:2px;"/></li>               
+            <li style="width:14%; float:left; margin:2px; text-align:center; margin-top:15px;">모집마감일</li>
+            <li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:20%; float:left; margin:2px;"/></li>
+            <li style="width:14%; float:left; margin:2px; text-align:center; margin-top:15px;">공구날짜</li>
+            <li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:18%; float:left; margin:2px;"/></li>         
+         <li style="margin-bottom:40px;">&nbsp;</li>
+         <li>상세 안내</li>            
+         <li>
+            <!-- 에디터 -->
+            <textarea name="off_content" id="off_content" placeholder="공동구매해 대한 정보를 알려주세요!"></textarea>
+         </li>
+         <li>
+            <input type="submit" value="공구등록하기"/>
+         </li>
+         
+      </ul>
+   
+   </form>
 </div>
 </body>

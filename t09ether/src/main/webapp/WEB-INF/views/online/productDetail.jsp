@@ -39,7 +39,7 @@
 .rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
 .rankinfo{
       color:tomato;
-      font-size:20px;
+      font-size:18px;
    }
 </style>
 <script>
@@ -133,7 +133,7 @@ function listView(result) {
       pro_code.push(lDTO.pro_code);
       userid.push(lDTO.userid);
       
-      tag += "<li><p><span style='width:30%;margin:6px'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><span style='width:20%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button>";
+      tag += "<li><p><span style='width:60%;margin:6px'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button><span style='width:38%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span>";
 
       tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
    
@@ -164,7 +164,7 @@ $(function(){
         <div class="row">
            <div class="card mb-4">
                         <div class="card-header">온라인 공동구매 시작하세요!</div>
-                        <div class="card-body" style="font-size:1em; text-align:center; font-weight:lighter"><a class="btn btn-primary">내가 공구만들기</a>로 <span style="font-size:1.8em">공구장</span>이되면  <span style="font-size:1.8em"><i class="bi bi-house-fill"></i></span>으로  물품이  배송됩니다!  공구장이  되어  <span style="font-size:1.8em">할인등급<i class="bi bi-graph-up"></i></span>을  올리세요! <br/>공구목록에서  가까운  <span style="font-size:1.8em"><i class="bi bi-geo-alt-fill"></i></span>를  확인하고  <button type='button'class='btn btn-primary'>참여/남은갯수</button>을  클릭해 <span style="font-size:1.8em">공구원</span>이되어 공구에 참여해보세요!</div>
+                        <div class="card-body" style="font-size:1em; text-align:center; font-weight:lighter"><!-- <a class="btn btn-primary"> --><span>[내가 공구만들기]</span><!-- </a> -->로 <span style="font-size:1.8em">공구장</span>이되면  <span style="font-size:1.8em"><i class="bi bi-house-fill"></i></span>으로  물품이  배송됩니다!  공구장이  되어  <span style="font-size:1.8em">할인등급<i class="bi bi-graph-up"></i></span>을  올리세요! <br/>공구목록에서  가까운  <span style="font-size:1.8em"><i class="bi bi-geo-alt-fill"></i></span>를  확인하고  <!-- <button type='button'class='btn btn-primary'> --><span>[참여/남은갯수]</span><!-- </button> -->을  클릭해 <span style="font-size:1.8em">공구원</span>이되어 공구에 참여해보세요!</div>
             </div>
             
             <!-- Blog entries-->
@@ -195,14 +195,18 @@ $(function(){
                        <div>개당&nbsp;&nbsp;<span id="oneprice">${dto.pro_price/dto.pro_total }</span>&nbsp;원</div>
                        
                        <c:choose>
-                     <c:when test = "${logRank > 1 && logStatus=='Y'}">
-                        <span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 적용됩니다.</span>
+                     <c:when test = "${logStatus!='Y'}">
+                        <span class="rankinfo">로그인을 하시면 등급별로 할인받으실 수 있습니다.</span>
                      </c:when>
                      <c:otherwise>
-                        <span class="rankinfo"><c:if test="${logStatus=='Y'}">${logName }님,</c:if> 할인이 적용되지 않는 등급입니다!<br/>공구장이되거나 리뷰를 써서 등급을 올려 할인받으세요!</span>
+                        <c:choose>
+                        <c:when test="${logRank > 1}"><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 전품목 적용됩니다.</span></c:when>
+                        <c:otherwise><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 할인이 적용되지 않는 등급입니다!<br/>공구장이 되거나 리뷰를 써서 등급을 올려 할인받으세요!</span></c:otherwise>
+                        </c:choose>
+                        
                      </c:otherwise>
                   </c:choose>
-                    </div>                    
+                                 </div>                    
                         <br/>
                         <br/>
                         <div class="card-body" style="margin:20px;height:270px;font-size:1.2em;color:#646464">
@@ -235,7 +239,7 @@ $(function(){
                          </div>
                       </div>   
                        </form>
-                           <p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소<span style="font-size:1.5em"><i class="bi bi-geo-alt-fill"></i></span></span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><button type='button' style='float:right' class='btn btn-primary'>참여/남은갯수</button></p><hr/>
+                           <p><span style='width:60%; text-align:center;'>&nbsp;&nbsp;&nbsp;나눔 주소<span style="font-size:1.5em"><i class="bi bi-geo-alt-fill"></i></span></span><span style='width:20%;float:right;text-align:center' >[참여/남은갯수]</span><span style='width:20%;float:right;text-align:center'>공구장 아이디</span><hr/>
                               <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0" style="overflow: scroll; width: 100%; height: 300px; padding: 10px;">
                           <ul id="locationList" style="list-style-type:none"></ul>
                      </div>
@@ -245,4 +249,3 @@ $(function(){
                     
                     
               </div>
-            </div>

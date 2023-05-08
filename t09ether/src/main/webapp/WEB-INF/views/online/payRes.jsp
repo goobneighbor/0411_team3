@@ -272,22 +272,22 @@ $(function(){
 							<li>
 		                        <c:choose>
 		                           <c:when test="${sdto.rank==1}">
-		                              ${logName }님은 <b style="color:red;">1등급으로 할인이 적용되지 않습니다.</b>
+		                              <b style="color:#ff6347;">${logName }님은 1등급으로 할인이 적용되지 않습니다.</b>
 		                           </c:when>
 		                           <c:when test="${sdto.rank==2}">
-		                              ${logName }님은 <b style="color:red;">2등급으로 1% 할인이 적용됩니다.</b>
+		                              <b style="color:#ff6347;">${logName }님은 2등급으로 1% 할인이 적용됩니다.</b>
 		                           </c:when>
 		                           <c:when test="${sdto.rank==3}">
-		                              ${logName }님은 <b style="color:red;">3등급으로 2% 할인이 적용됩니다.</b>
+		                              <b style="color:#ff6347;">${logName }님은 3등급으로 2% 할인이 적용됩니다.</b>
 		                           </c:when>
 		                           <c:when test="${sdto.rank==4}">
-		                              ${logName }님은 <b style="color:red;">4등급으로 3% 할인이 적용됩니다.</b>
+		                              <b style="color:#ff6347;">${logName }님은 4등급으로 3% 할인이 적용됩니다.</b>
 		                           </c:when>
 		                           <c:when test="${sdto.rank==5}">
-		                              ${logName }님은 <b style="color:red;">5등급으로 4% 할인이 적용됩니다.</b>
+		                              <b style="color:#ff6347;">${logName }님은 5등급으로 4% 할인이 적용됩니다.</b>
 		                           </c:when>
 		                        </c:choose>
-	                   	 	</li>
+		                     </li>
 							<li>할인 금액</li>
 							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
 							<li>전체 가격 </li>

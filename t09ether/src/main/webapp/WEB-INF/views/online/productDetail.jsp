@@ -133,7 +133,7 @@ function listView(result) {
 		pro_code.push(lDTO.pro_code);
 		userid.push(lDTO.userid);
 		
-		tag += "<li><p><span style='width:60%;margin:6px'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><span style='width:30%;float:center'><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button></span><span style='width:38%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span>";
+		tag += "<li><p><span style='width:60%;margin:6px'>"+lDTO.shareaddr+" "+lDTO.sharedetail+"</span><button type='button' style='float:right' id='onlineJoinForm' class='btn btn-primary'>참여/"+lDTO.rest_count+"</button><span style='width:38%;float:right;text-align:center;margin:6px'>"+lDTO.userid+"</span>";
 
 		tag += "</p></li>"; //리스트하나에 li하나 열리는 상황
 	

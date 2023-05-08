@@ -38,6 +38,9 @@
 	thead tr th, tbody{
 		text-align:center;
 	}
+	#usermain{
+		margin:100px;
+		}
 </style>
 <script>
 	$(function(){
@@ -109,6 +112,7 @@
 		});
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
@@ -326,3 +330,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

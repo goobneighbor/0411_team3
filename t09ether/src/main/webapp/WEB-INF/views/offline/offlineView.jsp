@@ -97,6 +97,10 @@
       position: relative;
       top: -40px;   
    }
+   .joinButton{
+      position: relative;
+      top: -8px;   
+   }
    .reviewButton{
       position:relative;
       top: -10px;

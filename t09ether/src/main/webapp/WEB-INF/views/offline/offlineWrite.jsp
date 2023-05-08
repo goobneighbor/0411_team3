@@ -40,6 +40,10 @@
       margin: 20px auto;
      }
      .conhead{margin:0;}
+     #sample6_address{
+     	margin-top:16px;
+     	margin-bottom:10px;
+     }
   
 </style>
 <script>
@@ -263,19 +267,20 @@
 			<li>우편번호</li>
 			<li>
 				<input type="text" id="sample6_postcode" placeholder="우편번호" readonly style="width:78%; float:left; margin:2px;">
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%; float:right; margin:2px;">
+				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%; float:right; margin:2px; margin-bottom:10px;">
 			</li>	
-				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li><br/>
+				<li><input type="text" name="location" id="sample6_address" placeholder="주소"></li>
 				<li><input type="text" id="sample6_detailAddress" placeholder="상세주소"></li>	<hr/>
 				<!-- location 어떻게? -->					
 		</ul>
 		<ul class="numInfo">	
-				<li>모집인원</li>
-				<li><input type="text" name="group_num" id="group_num" placeholder ="0" style="width:100px;"/></li>					
-				<li>모집마감일</li>
-				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:150px;"/></li>
-				<li>공구날짜</li>
-				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:150px;"/></li>			
+				<li style="width:12%; float:left; margin:2px; text-align:center; margin-top:15px;">모집인원</li>
+				<li><input type="text" name="group_num" id="group_num" placeholder ="0" style="width:20%; float:left; margin:2px;"/></li>					
+				<li style="width:14%; float:left; margin:2px; text-align:center; margin-top:15px;">모집마감일</li>
+				<li><input type="text" name="deaddate" id="deaddate" placeholder="MM-DD" style="width:20%; float:left; margin:2px;"/></li>
+				<li style="width:14%; float:left; margin:2px; text-align:center; margin-top:15px;">공구날짜</li>
+				<li><input type="text" name="app_time" id="app_time" placeholder="MM-DD" style="width:18%; float:left; margin:2px;"/></li>			
+			<li style="margin-bottom:40px;">&nbsp;</li>
 			<li>상세 안내</li>				
 			<li>
 				<!-- 에디터 -->

@@ -47,6 +47,7 @@
       color:tomato;
       font-size:1.2em;
    }
+
 </style>
 <!-- Header-->
 <header class="bg-tomato py-5" style="background-image:url('<%=request.getContextPath() %>/resources/images/test_banner.jpg'); background-size: 107% 100%">
@@ -55,11 +56,15 @@
            <h1 class="display-4 fw-bolder" style="color:#7d7b7a">온라인 공동구매</h1>
             <p style="color:#7d7b7a" >공동구매를 시작하거나 참여해보세요.</p>
              <c:choose>
-            <c:when test = "${logRank > 1 && logStatus=='Y'}">
-               <span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 전품목 적용됩니다.</span>
+            <c:when test = "${logStatus!='Y'}">
+               <span class="rankinfo">로그인을 하시면 등급별로 할인받으실 수 있습니다.</span>
             </c:when>
             <c:otherwise>
-               <span class="rankinfo"><c:if test="${logStatus=='Y'}">${logName }님,</c:if> 할인이 적용되지 않는 등급입니다!<br/>공구장이되거나 리뷰를 써서 등급을 올리려 할인받으세요!</span>
+               <c:choose>
+               <c:when test="${logRank > 1}"><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 ${logRank-1 }% 할인이 전품목 적용됩니다.</span></c:when>
+               <c:otherwise><span class="rankinfo">${logName }님, 현재 ${logRank }등급으로 할인이 적용되지 않는 등급입니다!<br/>공구장이 되거나 리뷰를 써서 등급을 올려 할인받으세요!</span></c:otherwise>
+               </c:choose>
+               
             </c:otherwise>
          </c:choose>
         </div>
@@ -68,6 +73,7 @@
 
 <!-- Section-->
 <section class="py-5">
+
    <c:if test="${vo.searchWord!=null}">
       <input type="hidden" name="searchKey" value="${vo.searchKey }"/>
       <input type="hidden" name="searchWord" value="${vo.searchWord }"/>
@@ -104,8 +110,7 @@
                                    <div>총&nbsp;<fmt:formatNumber value="${proDTO.pro_price }" maxFractionDigits="0" />&nbsp;원</div>
                                   <div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
                                   <%-- <c:if test="${log }" --%>
-                                  <!--<div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div>
-                               -->
+                                  <%-- <div>개당&nbsp;<fmt:formatNumber value="${(proDTO.pro_price/proDTO.pro_total)-(proDTO.pro_price/proDTO.pro_total%10)}" maxFractionDigits="0" />&nbsp;원</div> --%>
                                </div>
                                <div style="margin-left:50px">
                                   <div class="rate">
@@ -121,6 +126,7 @@
                     </div>
                </div>
                <c:set var="recordNum" value="${recordNum-1 }"></c:set>
+
             </c:forEach>
      <!-- 여기에 있던 코드 잠시 테스트로 인해 뺌 -->
         </div>

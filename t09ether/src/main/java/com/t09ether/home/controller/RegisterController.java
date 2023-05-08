@@ -218,7 +218,7 @@ public class RegisterController {
 	            MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	            
 	            //보내는 메일 주소
-	            messageHelper.setFrom("이메일을 입력해주세요! 골뱅이까지요!");
+	            messageHelper.setFrom("rnsjtm0811@naver.com");
 	            messageHelper.setTo(dto.getEmail());
 	            messageHelper.setSubject(emailSubject);
 	            messageHelper.setText("text/html; charset=UTF-8", emailContent);

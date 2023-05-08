@@ -67,6 +67,7 @@
       margin:100px;
    }
 </style>
+
 <script>
 	$(function(){
 		$("#searchForm").submit(function(){
@@ -114,6 +115,7 @@
 		
 	});
 </script>
+<div id="usermain" class="row">
 	<!-- Main -->
 	<section id="main" class="container">
 		<header>
@@ -398,3 +400,4 @@
 			</div>
 		</div>
 	</section>
+	</div>

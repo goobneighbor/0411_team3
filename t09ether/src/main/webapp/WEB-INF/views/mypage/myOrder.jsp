@@ -61,12 +61,13 @@
 		color:#000;
 	}
 	thead tr th, tbody{
-		text-align:center;
-	}
-	 #usermain{
+      text-align:center;
+   }
+    #usermain{
       margin:100px;
-    }
+      }
 </style>
+
 <script>
 	$(function(){
 		$("#searchForm").submit(function(){
@@ -399,4 +400,4 @@
 			</div>
 		</div>
 	</section>
-	</div>
+</div>

@@ -37,12 +37,6 @@
                                     <div class="card-body"><canvas id="onlineChart"></canvas></div>
                                 </div>
                             </div>
-<<<<<<< HEAD
-                         <!--  </div>   
-                         <div class="row">   -->
-=======
-                       
->>>>>>> 99a31b38f43285ae7372c7da9d886bddb6ee1663
                             <div class="col-xl-3">
                                 <div class="card mb-4">
                                     <div class="card-header">

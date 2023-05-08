@@ -19,27 +19,31 @@
 		font-size:23px;
 		float:left;
 		width:60%;
-		text-align:center;
-		padding:10px;
+		text-align:left;
+		padding-top:30px;
 		/*padding-top:25px;*/
 	}
-	#uldesign li:nth-child(2) { /* 분류 */
+	#uldesign li:nth-child(2) { /* 등록일 */
 		float:right;
 		width:10%;
 		text-align:center;
 		padding-top:30px;
+		width:200px;
+		margin-top:10px;
 	}
 	#uldesign li:nth-child(3) { /* 작성자 */
 		float:right;
 		width:10%;
 		text-align:center;
 		padding-top:30px;
+		margin-top:10px;
 	}
-	#uldesign li:nth-child(4) { /* 등록일 */
+	#uldesign li:nth-child(4) { /* 분류 */
 		float:right;
 		width:10%;
 		text-align:center;
 		padding-top:30px;
+		margin-top:10px;
 	}
 	 
 	#uldesign li:nth-child(5) { /* 글 내용 */

@@ -76,6 +76,13 @@
     display: none; /* Chrome, Safari, Opera*/
 }
 
+thead tr th, tbody{
+      text-align:center;
+   }
+   .theader{
+   text-align:center !important;
+   }
+
 </style>
 <script>
 	

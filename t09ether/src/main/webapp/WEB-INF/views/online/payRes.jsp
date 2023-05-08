@@ -262,46 +262,45 @@ $(function(){
                 <div class="col-lg-6">
 
                         <ul id="firstul">
-                     <li><h3>주문상품</h3></li>
-                     <!-- 상품이미지가져와야함 -->
-                     <li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
-                     <li>상품명</li>
-                     <li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
-                     <li>수량</li>
-                     <li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
-                     <li>
-                              <c:choose>
-                                 <c:when test="${sdto.rank==1}">
-                                    <b style="color:#ff6347;">${logName }님은 1등급으로 할인이 적용되지 않습니다.</b>
-                                 </c:when>
-                                 <c:when test="${sdto.rank==2}">
-                                    <b style="color:#ff6347;">${logName }님은 2등급으로 1% 할인이 적용됩니다.</b>
-                                 </c:when>
-                                 <c:when test="${sdto.rank==3}">
-                                    <b style="color:#ff6347;">${logName }님은 3등급으로 2% 할인이 적용됩니다.</b>
-                                 </c:when>
-                                 <c:when test="${sdto.rank==4}">
-                                    <b style="color:#ff6347;">${logName }님은 4등급으로 3% 할인이 적용됩니다.</b>
-                                 </c:when>
-                                 <c:when test="${sdto.rank==5}">
-                                    <b style="color:#ff6347;">${logName }님은 5등급으로 4% 할인이 적용됩니다.</b>
-                                 </c:when>
-                              </c:choose>
-                           </li>
-                     <li>할인 금액</li>
-                     <li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
-                     <li>전체 가격 </li>
-                     <li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
-                     
-                     <li><input type="hidden" name="total_amount" id="total_amount" value="${sdto.pro_total} }"/></li>
-                     <li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no }"/></li>
-                     <li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
-                     <li><input type="hidden" name="shareaddr" id="shareaddr" value="${sdto.shareaddr }"/></li>
-                     <li><input type="hidden" name="sharedetail" id="sharedetail" value="${sdto.sharedetail }"/></li>
-                     <li><input type="hidden" name="on_no" id="on_no" value="${sdto.on_no }"/></li>
-                     <li><input type="hidden" name="image" id="image" value="${sdto.image }"/></li>
-                        
-                  </ul>
+							<li><h3>주문상품</h3></li>
+							<!-- 상품이미지가져와야함 -->
+							<li><img class="card-img-top" src="${sdto.image }" alt="${sdto.pro_name }" /></li>
+							<li>상품명</li>
+							<li><input type="text" name="pro_name" id="pro_name" value="${sdto.pro_name }" readonly></li> <!-- 상품명가져와야함 -->
+							<li>수량</li>
+							<li><input type="number" name="ord_count" id="ord_count" value="${sdto.ord_count }" readonly/></li>
+							<li>
+		                        <c:choose>
+		                           <c:when test="${sdto.rank==1}">
+		                              <b style="color:#ff6347;">${logName }님은 1등급으로 할인이 적용되지 않습니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==2}">
+		                              <b style="color:#ff6347;">${logName }님은 2등급으로 1% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==3}">
+		                              <b style="color:#ff6347;">${logName }님은 3등급으로 2% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==4}">
+		                              <b style="color:#ff6347;">${logName }님은 4등급으로 3% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                           <c:when test="${sdto.rank==5}">
+		                              <b style="color:#ff6347;">${logName }님은 5등급으로 4% 할인이 적용됩니다.</b>
+		                           </c:when>
+		                        </c:choose>
+		                     </li>
+							<li>할인 금액</li>
+							<li><input type="number" name="discount_amount" id="discount_amount" value="0" readonly/> 원</li>
+							<li>전체 가격 </li>
+							<li><input type="number" name="final_amount" id="final_amount" value="${sdto.ord_amount}" readonly/> 원</li>
+							
+							<li><input type="hidden" name="total_amount" id="total_amount" value="${sdto.pro_total} }"/></li>
+							<li><input type="hidden" name="ord_no" id="ord_no" value="${sdto.ord_no }"/></li>
+							<li><input type="hidden" name="rank" id="rank" value="${sdto.rank }" readonly/></li>
+							<li><input type="hidden" name="shareaddr" id="shareaddr" value="${sdto.shareaddr }"/></li>
+							<li><input type="hidden" name="sharedetail" id="sharedetail" value="${sdto.sharedetail }"/></li>
+							<li><input type="hidden" name="on_no" id="on_no" value="${sdto.on_no }"/></li>
+							<li><input type="hidden" name="image" id="image" value="${sdto.image }"/></li>	
+						</ul>
                 </div>
             <!-- Side widgets-->
                 

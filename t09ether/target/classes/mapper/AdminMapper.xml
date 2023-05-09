@@ -358,7 +358,7 @@
 	<select id="csPageSelect" resultType="com.t09ether.home.dto.CustomerCenterDTO">
 		select * from
 			(select * from
-				(select cus_b_num, category , subject, userid, to_char(writedate,'YYYY-MM-DD') writedate
+				(select cus_b_num, category , subject, userid, to_char(writedate,'YY-MM-DD HH:MI') writedate
 					 from cus_center 
 					 <if test="searchWord!=null"> <!-- 검색어가 있을 경우 -->
 					 	where ${searchKey} like '%${searchWord}%'
@@ -385,7 +385,7 @@
 	</select>
 	
 	<select id="csBoardSelect" resultType="com.t09ether.home.dto.CustomerCenterDTO"> <!-- 여기서 b.userid지움 -->
-		select cus_b_num, category, c.subject, c.content, r.userid, c.writedate
+		select cus_b_num, category, c.subject, c.content, r.userid, to_char(c.writedate, 'YY-MM-DD HH:MI') writedate
 		from cus_center c join registerinfo r on c.userid=r.userid
 		and c.cus_b_num=${param1}
 	</select>

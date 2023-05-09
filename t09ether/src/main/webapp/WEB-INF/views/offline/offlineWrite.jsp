@@ -31,7 +31,7 @@
 	/*CKEDITOR*/
 	.ck-editor__editable[role="textbox"] {
       /* editing area */
-      min-height: 200px;
+      min-height: 500px;
       max-width: 100%;
     }
     .ck-content .image {

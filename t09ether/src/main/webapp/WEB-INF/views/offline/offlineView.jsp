@@ -170,7 +170,7 @@
    </section>
    <section class="box special" style="padding:0; margin-top:50px;">
       <ul id="view3">
-         <li style="font-size: 4em;">${dto.off_content}</li>   
+         <li style="font-size: 16px;">${dto.off_content}</li>   
       </ul>
    </section>
    <div class="bottomMenu">

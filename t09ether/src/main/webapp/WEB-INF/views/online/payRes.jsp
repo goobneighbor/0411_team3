@@ -164,21 +164,21 @@ $(function(){
         				dataType:"json",
         				success: function(result) {
         					console.log(result);
-        					alert("결재 성공");
+        					alert("결제 성공");
         					location.href="/home/online/paymentSucOk";
                             //form에 정보담아 submit
                        
         					//self.close();
         				},
         				error: function(result){
-        					alert("결재 실패");
+        					alert("결제 실패");
         					console.log(result);
         					orderDelete();
         				}
         			});
         			
                 } else {// 결제 실패 시 로직
-        			alert("결재 실패");
+        			alert("결제 실패");
         			//alert(rsp.error_msg);
         			console.log(rsp);         
         			orderDelete();
